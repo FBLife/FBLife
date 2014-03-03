@@ -5,41 +5,36 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>B62DDFFD-D6FD-4A87-B81D-712630AA4690</string>
+	<string>8A131F6B-66ED-4018-9923-68E137DDCF81</string>
 	<key>IDESourceControlProjectName</key>
 	<string>越野e族</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>29C9D072-43B4-49BA-BE95-00DAEAB61C64</key>
-		<string>svn://60.18.150.50:3316</string>
+		<key>48660D53-E4A8-4ECD-ACED-72B0D56CDC7C</key>
+		<string>https://github.com/FBLife/FBLife.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>越野e族 2/越野e族.xcodeproj/project.xcworkspace</string>
+	<string>终极版 226/越野e族 2/越野e族.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>29C9D072-43B4-49BA-BE95-00DAEAB61C64</key>
+		<key>48660D53-E4A8-4ECD-ACED-72B0D56CDC7C</key>
 		<string>../../../..</string>
 	</dict>
-	<key>IDESourceControlProjectRepositoryRootDictionary</key>
-	<dict>
-		<key>29C9D072-43B4-49BA-BE95-00DAEAB61C64</key>
-		<string>svn://60.18.150.50:3316</string>
-	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>svn://60.18.150.50:3316/%E7%BB%88%E6%9E%81%E7%89%88/%E8%B6%8A%E9%87%8Ee%E6%97%8F%202/%E8%B6%8A%E9%87%8Ee%E6%97%8F.xcodeproj</string>
+	<string>https://github.com/FBLife/FBLife.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>110</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>29C9D072-43B4-49BA-BE95-00DAEAB61C64</string>
+	<string>48660D53-E4A8-4ECD-ACED-72B0D56CDC7C</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
-			<string>public.vcs.subversion</string>
+			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>29C9D072-43B4-49BA-BE95-00DAEAB61C64</string>
+			<string>48660D53-E4A8-4ECD-ACED-72B0D56CDC7C</string>
 			<key>IDESourceControlWCCName</key>
-			<string>lasttest</string>
+			<string>testgitoffblife</string>
 		</dict>
 	</array>
 </dict>
