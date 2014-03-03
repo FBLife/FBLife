@@ -1,0 +1,92 @@
+//
+//  newscellview.m
+//  FbLife
+//
+//  Created by 史忠坤 on 13-2-25.
+//  Copyright (c) 2013年 szk. All rights reserved.
+//
+
+#import "newscellview.h"
+
+@implementation newscellview
+@synthesize imagev=_imagev,title_label=_title_label,date_label=_date_label,discribe_label=_discribe_label;
+@synthesize imv_string=_imv_string,title_string=_title_string,date_string=_date_string,discribe_string=_discribe_string,grayorblack;
+- (id)initWithFrame:(CGRect)frame
+{
+    
+    self = [super initWithFrame:frame];
+    if (self) {
+        _imagev=[[AsyncImageView alloc]initWithFrame:CGRectMake( 12, 8,90 , 60)];
+        [self addSubview:_imagev];
+        _title_label=[[UILabel alloc]init];
+        [self addSubview:_title_label];
+        _date_label=[[UILabel alloc]initWithFrame:CGRectMake(ALL_FRAME.size.width-10-60-3,32,61.5-2, 10)];
+       // _date_label.backgroundColor=[UIColor redColor];
+        _date_label.textAlignment=UITextAlignmentRight;
+        [self addSubview:_date_label];
+        _discribe_label=[[UILabel alloc]initWithFrame:CGRectMake(101+7, 47,ALL_FRAME.size.width-85-24-12, 23)];
+        [self addSubview:_discribe_label];
+        
+        self.title_label.font=[UIFont systemFontOfSize:14.0];
+        self.title_label.backgroundColor=[UIColor clearColor];
+        
+        self.date_label.font=[UIFont systemFontOfSize:10];
+        
+        UIView *viewline=[[UIView alloc]initWithFrame:CGRectMake(12, 76, 320-24, 1)];
+        viewline.backgroundColor=RGBCOLOR(240, 240, 240);
+        [self addSubview:viewline];
+
+    }
+    return self;
+}
+-(void)setImv_string:(NSString *)imv_string{
+    _imv_string=imv_string;
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        
+        if (1) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [_imagev loadImageFromURL:_imv_string withPlaceholdImage:[UIImage imageNamed:@"smallimplace.png"]];
+            });
+        }
+    });
+}
+-(void)setTitle_string:(NSString *)title_string{
+    _title_string=title_string;
+
+    NSString *cellText = _title_string;
+    self.title_label.text=_title_string;
+    self.title_label.numberOfLines=0;
+    self.title_label.textColor=[UIColor blackColor];
+    self.title_label.font=[UIFont fontWithName:@"Helvetica-Bold" size:14.0];
+    UIFont *cellFont = [UIFont fontWithName:@"Helvetica-Bold" size:14.0];
+    CGSize constraintSize = CGSizeMake(ALL_FRAME.size.width-85-22-12, MAXFLOAT);
+    CGSize labelSize = [cellText sizeWithFont:cellFont constrainedToSize:constraintSize lineBreakMode:UILineBreakModeWordWrap];
+    self.title_label.frame = CGRectMake(101+7, 7,ALL_FRAME.size.width-85-22-12, labelSize.height);
+    
+}
+-(void)setDate_string:(NSString *)date_string{
+    _date_string=date_string;
+    self.date_label.text=[personal timchange:_date_string];
+}
+-(void)setDiscribe_string:(NSString *)discribe_string{
+    _discribe_string=discribe_string;
+    
+    self.discribe_label.textColor=[UIColor grayColor];
+    self.discribe_label.font=[UIFont systemFontOfSize:9];
+    self.discribe_label.numberOfLines=0;
+    
+    if (_discribe_string.length>43) {
+        _discribe_string=[_discribe_string substringToIndex:43];
+    }
+    _discribe_string=[NSString stringWithFormat:@"%@...",_discribe_string];
+    self.discribe_label.text=_discribe_string;
+}
+
+-(void)setGrayorblack:(int)_grayorblack{
+    
+    self.title_label.textColor=_grayorblack?[UIColor grayColor]:[UIColor blackColor];
+    
+}
+
+
+@end
