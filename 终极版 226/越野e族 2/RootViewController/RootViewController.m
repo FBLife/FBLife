@@ -37,6 +37,7 @@
     AlertRePlaceView *_replaceAlertView;
     
     WenJiViewController * wenji;
+    UIView *halfblackView;
 }
 
 @end
@@ -214,6 +215,33 @@
     
     
     
+
+    
+}
+
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:NO];
+    
+//    for (UIView *_viewhalf in [UIApplication sharedApplication].keyWindow.subviews) {
+//        [_viewhalf removeFromSuperview];
+//    }
+    
+//    
+//    UIAlertView *alert_=[[UIAlertView alloc]initWithTitle:@"dismiss" message:nil delegate:nil cancelButtonTitle:@"yes" otherButtonTitles:nil, nil];
+//    [alert_ show];
+//    
+//    if (!halfblackView) {
+//        halfblackView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, iPhone5?568:480)];
+//        
+//        halfblackView.backgroundColor=[UIColor blackColor];
+//        halfblackView.userInteractionEnabled=NO;
+//        halfblackView.alpha=0.8;
+//        halfblackView.window.windowLevel=UIWindowLevelAlert-1;
+//        [[UIApplication sharedApplication].keyWindow
+//         addSubview:halfblackView];
+//    
+//    }
+ 
 }
 #pragma mark-通知
 
@@ -716,6 +744,7 @@
     [orr_array_discribe removeAllObjects];
     [orr_array_id removeAllObjects];
     [tab_ reloadData];
+    
     
     if (!isHaveNetWork) {
         [UIView beginAnimations:nil context:nil];
@@ -1860,7 +1889,6 @@
                         [self.navigationController pushViewController:_bbsdetail animated:YES];
                     }
                     
-                    
                 }
                     break;
                 case 3:{
@@ -2582,7 +2610,7 @@
 -(void)showguanggao{
     
     downloadtool *tool_=[[downloadtool alloc]init];
-    [tool_ setUrl_string:@"http://cast.aim.yoyi.com.cn/afp/door/;ap=x17117be4be6c5150001;ct=js;pu=n1428243fc09e7230001;/?"];
+    [tool_ setUrl_string:@"http://cmsweb.fblife.com/data/app.ad.txt"];
     tool_.delegate=self;
     
     
@@ -2600,7 +2628,7 @@
     @try {
         //  NSDictionary * dic = [data objectFromJSONData];
         NSLog(@"%s",__FUNCTION__);
-        NSArray *array_test=[data objectFromJSONData];
+        NSDictionary *array_test=[data objectFromJSONData];
         NSLog(@"dic== %@",array_test);
         AsyncImageView *guanggao_image=[[AsyncImageView alloc]init];
         guanggao_image.delegate=self;
@@ -2610,9 +2638,8 @@
             NSLog(@"没有找到图片");
             
         }else{
-            NSDictionary *dic_img=[array_test objectAtIndex:0];
             
-            NSString *string_src=[NSString stringWithFormat:@"%@",[dic_img objectForKey:@"imgsrc"]];
+            NSString *string_src=[NSString stringWithFormat:@"%@",[array_test objectForKey:@"imgsrc"]];
             
             [guanggao_image loadImageFromURL:string_src withPlaceholdImage:nil];
             

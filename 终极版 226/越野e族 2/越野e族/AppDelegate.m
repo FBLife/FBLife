@@ -128,14 +128,14 @@
     [guanggao_image addGestureRecognizer:singleRecognizer];
     guanggao_image.delegate = self;
     NSLog(@"defaimg======%@",string_img);
+    NSLog(@"dangqian===%@",[Reachability checkNetWork]);
+
     
     if (string_img.length!=0) {
         NSLog(@"长度不等于0");
-      //  [self showguanggao];
 
         
     }else{
-      //  [self showguanggao];
         
     }
     [bigimageview addSubview:guanggao_image];
@@ -155,6 +155,7 @@
     
     [self usenewguanggao];
 
+    
     [self.window makeKeyAndVisible];
     
     
@@ -231,7 +232,7 @@
     
     downloadtool *tool_=[[downloadtool alloc]init];
     tool_.tag=100;
-    [tool_ setUrl_string:@"http://cast.aim.yoyi.com.cn/afp/door/;ap=x17117be4be6c5150001;ct=js;pu=n1428243fc09e7230001;/?"];
+    [tool_ setUrl_string:@"http://cmsweb.fblife.com/data/app.ad.txt"];
     tool_.delegate=self;
     [tool_ start];
     
@@ -256,7 +257,7 @@
         
       //  [self performSelector:@selector(showzhuview) withObject:nil afterDelay:3];
         
-        [self showguanggao];
+        [self usenewguanggao];
         
     }else
     {
@@ -321,20 +322,34 @@
         @try {
             //  NSDictionary * dic = [data objectFromJSONData];
             
-            NSArray *array_test=[data objectFromJSONData];
+            NSDictionary *array_test=[data objectFromJSONData];
             NSLog(@"dic== %@",array_test);
             
+            
+            
+            
+            
             if (array_test.count==0) {
+                
+                
+                
                 [self showzhuview];
                 [[NSUserDefaults standardUserDefaults] setObject:nil forKey:@"img"];
                 
                 NSLog(@"没有找到图片");
                 
             }else{
-                NSDictionary *dic=[array_test objectAtIndex:0];
+                
+                
+                
+                
+                
+                
+                
+               NSDictionary *dic=[array_test objectForKey:@""];
                 NSLog(@"dic== %@",dic);
                 
-                NSString *string_src=[NSString stringWithFormat:@"%@",[dic objectForKey:@"imgsrc"]];
+                NSString *string_src=[NSString stringWithFormat:@"%@",[array_test objectForKey:@"imgsrc"]];
                 
                 NSLog(@"src==%@",string_src);
                 [guanggao_image loadImageFromURL:string_src withPlaceholdImage:nil];

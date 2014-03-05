@@ -818,13 +818,20 @@
         newstool=[[downloadtool alloc]init];
         NSString *string_url=[NSString stringWithFormat:@"http://cmsweb.fblife.com/ajax.php?c=newstwo&a=newsinfo&id=%@&type=json&page=%d",self.string_Id,currentpage];
         //  NSString *string_test=@"http://cmstest.fblife.com/ajax.php?c=newstwo&a=newsinfo&type=json&id=3457&page=3&pagesize=1";
+        
+        
+        
+        
+        
+        
         NSLog(@"请求的url为%@",string_url);
         [newstool setUrl_string:string_url];
         newstool.delegate=self;
         if (jiushizhegele<10) {
-            [newstool start];
             
         }
+        [newstool start];
+
 
     }else{
         [_replaceAlertView removeFromSuperview];
@@ -1626,7 +1633,7 @@
     _replaceAlertView.hidden=YES;
     
 
- 
+  
     
     [self.navigationController popViewControllerAnimated:YES];
 }

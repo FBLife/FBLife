@@ -566,15 +566,13 @@
                         
                         [tab_pinglunliebiao reloadData];
                     }
-                    if([array_content count]>0&&[array_content count]<=20){
+                    if([array_content count]>0&&[array_content count]<20){
                         
                         tab_pinglunliebiao.tableFooterView=label_meiduoshao;
                         
                     }else{
                         tab_pinglunliebiao.tableFooterView=loadview;
-                        
                     }
-                    
                 }
                 else {
                     NSLog(@"wocao ,zhenmeiyou");
@@ -587,7 +585,6 @@
             break;
         case 102:{
             
-            
             NSData *data=[request responseData];
             
             _dic = [data objectFromJSONData];
@@ -598,26 +595,19 @@
                 NSString *stringerr=[NSString stringWithFormat:@"%@",[_dic objectForKey:@"data"]];
                 UIAlertView *alert_=[[UIAlertView alloc]initWithTitle:@"提示" message:stringerr delegate:nil cancelButtonTitle:@"知道了" otherButtonTitles:nil, nil];
                 [alert_ show];
-            }else{
+            }else
+            {
                 [self fasongpinglunqingqiu];
             }
             [activity stopAnimating];
-
- 
         }
-            
             break;
         case 103:{
-            
             
             isloadsuccess=!isloadsuccess;
             NSData *dataloadmore=[request responseData];
             NSDictionary *dic_loadmore=[dataloadmore objectFromJSONData];
-            
-            
-            
             NSLog(@"==dic_loadmore====%@",dic_loadmore);
-
             if (!array_weiboinfo) {
                 array_weiboinfo=[[NSMutableArray alloc]init];
             }else{
@@ -844,7 +834,6 @@
     [l setCornerRadius:2.0f];
     
     if ([arrayofcommentc count]!=0) {
-        NSLog(@"image==%@",array_image);
         [ image_head loadImageFromURL:[dic_infocommofcomm objectForKey:@"face_original"] withPlaceholdImage:[UIImage imageNamed:@"head_img64X64.png"]];
         image_head.tag=[[dic_infocommofcomm objectForKey:@"uid"] integerValue];
         image_head.backgroundColor=[UIColor clearColor];
@@ -1046,7 +1035,6 @@
         
         if ([array_name count]!=0) {
             
-            NSLog(@"image==%@",array_image);
             [image_head loadImageFromURL:[array_image objectAtIndex:section-2] withPlaceholdImage:[UIImage imageNamed:@"head_img64X64.png"]];
             image_head.tag=section+100;
             
