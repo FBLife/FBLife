@@ -486,11 +486,9 @@
     
     BOOL authkey=[[NSUserDefaults standardUserDefaults] boolForKey:USER_IN];
     
-    
     selectedView = authkey?0:1;
     
     [self initHttpRequest:1 Url:selectedView];
-    
     
     
     UIBarButtonItem *negativeSpacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];

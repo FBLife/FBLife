@@ -36,7 +36,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     [self judgeversionandclean];
-    
+        
     //友盟分享平台
     
     if (launchOptions) {
