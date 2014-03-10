@@ -254,7 +254,13 @@
     
     recognizer.direction = UISwipeGestureRecognizerDirectionRight;
     [_webView addGestureRecognizer:recognizer];
-    [secondWebView addGestureRecognizer:recognizer];
+    
+    UISwipeGestureRecognizer* recognizer2;
+    // handleSwipeFrom 是偵測到手势，所要呼叫的方法
+    recognizer2 = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeFrom)];
+    
+    recognizer2.direction = UISwipeGestureRecognizerDirectionRight;
+    [secondWebView addGestureRecognizer:recognizer2];
     //评论部分
     
     if (isiphone5) {
@@ -891,7 +897,8 @@
                 str_titleofnews=[NSString stringWithFormat:@"%@",[dic objectForKey:@"title"]];
                 str_dateofnews=[NSString stringWithFormat:@"%@",[dic objectForKey:@"publishtime"]];
                 str_dateofnews=[personal timechange:str_dateofnews];
-                str_author=[NSString stringWithFormat:@"%@",[dic objectForKey:@"author"]];
+                str_author=[NSString stringWithFormat:@"%@",[dic objectForKey:@"editor"]];
+                str_resource=[NSString stringWithFormat:@"%@",[dic objectForKey:@"resource"]];
                 if (str_author.length==0||[str_author isEqualToString:@"(null)"]) {
                     str_author=@"";
                 }
@@ -1268,6 +1275,7 @@
     comment_.string_commentnumber=str_commentnumberofnews;
     comment_.string_date=str_dateofnews;
     comment_.string_author=str_author;
+    comment_.string_resource=str_resource;
     [self.leveyTabBarController hidesTabBar:YES animated:YES];
     [self.navigationController pushViewController:comment_ animated:YES];
     

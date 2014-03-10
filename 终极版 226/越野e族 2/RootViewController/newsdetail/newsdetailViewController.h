@@ -88,6 +88,7 @@
     NSString *str_dateofnews;
     NSString *str_commentnumberofnews;
     NSString *str_author;
+    NSString *str_resource;
     
     NSMutableString *string_email;
     

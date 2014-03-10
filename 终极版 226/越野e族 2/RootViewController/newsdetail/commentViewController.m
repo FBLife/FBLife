@@ -33,7 +33,7 @@
 @end
 @implementation commentViewController
 @synthesize string_content,pageN,allcount,string_paixu,string_ID,string_biaoti;
-@synthesize string_commentnumber,string_date,string_title,string_author;
+@synthesize string_commentnumber,string_date,string_title,string_author,string_resource;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -45,6 +45,9 @@
 -(void)viewWillAppear:(BOOL)animated{
     
     [super viewWillAppear:NO];
+    
+    
+//    NSLog(@"编辑：%@",string_author);
     
     [MobClick beginEvent:@"commentViewController"];
     
@@ -77,6 +80,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    
+    
     
     whichsectionopend=100000;
     isopen=YES;
@@ -814,7 +820,8 @@
     
     UILabel *label_name=[[UILabel alloc]initWithFrame:CGRectMake(55, 9, 100, 20)];
     label_name.backgroundColor=[UIColor clearColor];
-    label_name.font=[UIFont boldSystemFontOfSize:14.f];
+    label_name.textColor= RGBCOLOR(90,107,148);
+    label_name.font=[UIFont systemFontOfSize:15];
     
     UILabel *label_time=[[UILabel alloc]initWithFrame:CGRectMake(240, 7, 320-240-5, 15)];
     label_time.textAlignment=NSTextAlignmentLeft;
@@ -829,6 +836,8 @@
     
     AsyncImageView *image_head=[[AsyncImageView alloc]initWithFrame:CGRectMake(11, 13, 35, 35)];
     
+    label_time.frame=CGRectMake(245, image_head.frame.origin.y-1, 100, 20);
+
     CALayer *l = [image_head layer];   //获取ImageView的层
     [l setMasksToBounds:YES];
     [l setCornerRadius:2.0f];
@@ -864,7 +873,7 @@
         
         otherheaderview.frame=CGRectMake(0, 0, 320, haha+48);
         
-        UIImageView *imagexian=[[UIImageView alloc]initWithFrame:CGRectMake(0, haha+44, 320, 4)];
+        UIImageView *imagexian=[[UIImageView alloc]initWithFrame:CGRectMake(0, haha+46, 320, 4)];
         imagexian.image=[UIImage imageNamed:@"lineofnews@2x.png"];
         [otherheaderview addSubview:imagexian];
         otherheaderview.backgroundColor=RGBCOLOR(247, 247, 247);
@@ -883,7 +892,7 @@
     NSString *stringtest=[string_neirong stringByReplacingOccurrencesOfString:@"[" withString:@" ["];
     NSArray *arraytest = [stringtest componentsSeparatedByString:@" "];
     
-    CGFloat haha=[self qugaodu:arraytest]+44;
+    CGFloat haha=[self qugaodu:arraytest]+49;
     
     return haha;
 }
@@ -898,7 +907,7 @@
         UIView *firstsectionview=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 156/2)];
         firstsectionview.backgroundColor=RGBCOLOR(255, 255, 255);
         UILabel *label_bigtitle=[[UILabel alloc]initWithFrame:CGRectMake(10, 10, 300, 30)];
-        label_bigtitle.font=[UIFont boldSystemFontOfSize:20];
+        label_bigtitle.font=[UIFont systemFontOfSize:20];
         label_bigtitle.lineBreakMode = UILineBreakModeWordWrap|UILineBreakModeTailTruncation;
         label_bigtitle.backgroundColor=[UIColor clearColor];
         label_bigtitle.text=self.string_title;
@@ -914,8 +923,13 @@
         label_bigtitle.textAlignment=UITextAlignmentLeft;
         [firstsectionview addSubview:label_bigtitle];
         
+        //计算来源的长度
         
-        UILabel *label_mytime=[[UILabel alloc]initWithFrame:CGRectMake(10, labelSize.height+15, 80, 20)];
+//       CGSize conts = CGSizeMake(MAXFLOAT, 20);
+//        CGSize maxsize = [self.string_resource sizeWithFont:[UIFont systemFontOfSize:11.f] constrainedToSize:conts lineBreakMode:NSLineBreakByCharWrapping];
+//        NSLog(@"wight====%f",maxsize.width);
+        
+        UILabel *label_mytime=[[UILabel alloc]initWithFrame:CGRectMake(string_resource.length>4?137:100, labelSize.height+15, 80, 20)];
         label_mytime.font=[UIFont systemFontOfSize:11];
         label_mytime.textAlignment=UITextAlignmentLeft;
         label_mytime.textColor=[UIColor grayColor];
@@ -923,22 +937,26 @@
         label_mytime.backgroundColor=[UIColor clearColor];
         [firstsectionview addSubview:label_mytime];
         
-        UILabel *label_fblife=[[UILabel alloc]initWithFrame:CGRectMake(90,labelSize.height+15, 60, 20)];
+        
+        UILabel *label_fblife=[[UILabel alloc]initWithFrame:CGRectMake(10,labelSize.height+15, string_resource.length>4?120:90, 20)];
         label_fblife.font=[UIFont systemFontOfSize:11];
         label_fblife.textAlignment=UITextAlignmentLeft;
         label_fblife.textColor=[UIColor grayColor];
-        label_fblife.text=@"越野e族";
+        label_fblife.text=[NSString stringWithFormat:@"来自：%@",self.string_resource];
         label_fblife.backgroundColor=[UIColor clearColor];
         [firstsectionview addSubview:label_fblife];
         
         
         
-        UILabel *label_comment=[[UILabel alloc]initWithFrame:CGRectMake(150, labelSize.height+15, 100, 20)];
+        UILabel *label_comment=[[UILabel alloc]initWithFrame:CGRectMake(string_resource.length>4?210:177, labelSize.height+15, 100, 20)];
         label_comment.font=[UIFont systemFontOfSize:11];
         label_comment.textAlignment=UITextAlignmentLeft;
         label_comment.textColor=[UIColor grayColor];
         label_comment.backgroundColor=[UIColor clearColor];
-        label_comment.text=[NSString stringWithFormat:@"%@" ,self.string_author ];
+        if (string_author.length>0) {
+            label_comment.text=[NSString stringWithFormat:@"编辑：%@" ,self.string_author ];
+
+        }
         [firstsectionview addSubview:label_comment];
         
         
@@ -1018,7 +1036,8 @@
         
         UILabel *label_replys=[[UILabel alloc]init];
         label_replys.backgroundColor=[UIColor clearColor];
-        label_replys.textColor=RGBCOLOR(49 , 49, 49);
+      label_replys.textColor=RGBCOLOR(100 , 100, 140);
+//        label_replys.textColor=[UIColor redColor];
         label_replys.font=[UIFont fontWithName:@"Helvetica" size:13.0];
         
         
@@ -1059,12 +1078,13 @@
             aview1.backgroundColor=[UIColor whiteColor];
             [otherheaderview addSubview:aview1];
             label_time.frame=CGRectMake(245, image_head.frame.origin.y-1, 100, 20);
-            img_reply.frame=CGRectMake(280, haha+49, 26/2, 25/2);
-           // [otherheaderview addSubview:img_reply];
+            img_reply.frame=CGRectMake(280, haha+38, 26/2, 25/2);
+            [otherheaderview addSubview:img_reply];
             
-            label_replys.frame=CGRectMake(300, haha+44, 100, 20);
+            label_replys.frame=CGRectMake(302, haha+33, 100, 20);
             label_replys.text=[NSString stringWithFormat:@"%@",[array_reply objectAtIndex:section-2]];
-            //[otherheaderview addSubview:label_replys];
+//            label_replys.textColor=RGBCOLOR(20, 20, 40);
+            [otherheaderview addSubview:label_replys];
             otherheaderview.frame=CGRectMake(0, 0, 320, haha+48+20);
             
             otherheaderview.backgroundColor=RGBCOLOR(255, 255, 255);
@@ -1105,6 +1125,7 @@
         
         CGSize constraintSize = CGSizeMake(300, MAXFLOAT);
         CGSize labelSize = [self.string_title sizeWithFont:[UIFont boldSystemFontOfSize:20.f] constrainedToSize:constraintSize lineBreakMode:NSLineBreakByCharWrapping];
+        
         
         return labelSize.height+20+12+5;
     }else if(section==1)

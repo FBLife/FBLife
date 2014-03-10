@@ -83,6 +83,8 @@
 @property(nonatomic,strong)NSString *string_date;
 @property(nonatomic,strong)NSString *string_commentnumber;
 @property(nonatomic,strong)NSString *string_author;
+@property(nonatomic,strong)NSString *string_resource;
+
 
 
 

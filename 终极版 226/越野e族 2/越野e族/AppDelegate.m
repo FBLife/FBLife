@@ -164,23 +164,23 @@
     
     return YES;
 }
--(void)showguanggao{
-    
-    
-    downloadtool *tool_=[[downloadtool alloc]init];
-    tool_.tag=99;
-    [tool_ setUrl_string:@"http://cast.aim.yoyi.com.cn/afp/door/;ap=x17117be4be6c5150001;ct=js;pu=n1428243fc09e7230001;/?"];
-    tool_.delegate=self;
-    [tool_ start];
-    
-    
-//    timer=[NSTimer scheduledTimerWithTimeInterval:15
-//                                           target:self
-//                                         selector:@selector(showzhuview)
-//                                         userInfo:nil
-//                                          repeats:NO];
-    
-}
+//-(void)showguanggao{
+//    
+//    
+//    downloadtool *tool_=[[downloadtool alloc]init];
+//    tool_.tag=99;
+//    [tool_ setUrl_string:@"http://cast.aim.yoyi.com.cn/afp/door/;ap=x17117be4be6c5150001;ct=js;pu=n1428243fc09e7230001;/?"];
+//    tool_.delegate=self;
+//    [tool_ start];
+//    
+//    
+////    timer=[NSTimer scheduledTimerWithTimeInterval:15
+////                                           target:self
+////                                         selector:@selector(showzhuview)
+////                                         userInfo:nil
+////                                          repeats:NO];
+//    
+//}
 -(void)changepic{
     
     
@@ -526,6 +526,7 @@
 }
 
 -(void)downloadtoolError{
+    
     NSLog(@"网络链接异常");
     [self showzhuview];
     
