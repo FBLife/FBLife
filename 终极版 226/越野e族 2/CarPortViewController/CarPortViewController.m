@@ -425,18 +425,6 @@
     pageCount = 1;
     
     
-    NSMutableArray * cache_array = [CarInfo findAll];
-    
-    if (cache_array.count > 0)
-    {
-        [self exChangeData:cache_array];
-    }else
-    {
-        [self initHttpRequestWithType:@"brand"];
-        
-        [self initHttpRecommendedCar];
-    }
-    
     self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
     
     self.view.backgroundColor=[UIColor whiteColor];
@@ -494,6 +482,21 @@
     [self.view addSubview:seg];
     
     
+    
+    
+    
+    if (_refreshHeaderView == nil) {
+		
+		EGORefreshTableHeaderView *view = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0.0f, - self.myTableView.bounds.size.height, self.view.frame.size.width, self.myTableView.bounds.size.height)];
+		view.delegate = self;
+        //  view.backgroundColor=[UIColor redColor];
+		//[tab_pinglunliebiao addSubview:view];
+		_refreshHeaderView = view;
+	}
+	[_refreshHeaderView refreshLastUpdatedDate];
+    
+    
+    
     CGRect rect = CGRectMake(0,33,320,iPhone5?568-33-20-44-49:480-33-20-44-49);
     
     self.myTableView = [[UITableView alloc] initWithFrame:rect style:UITableViewStylePlain];
@@ -502,7 +505,26 @@
     
     self.myTableView.dataSource = self;
     
+    self.myTableView.tableHeaderView = _refreshHeaderView;
+    
     [self.view addSubview:self.myTableView];
+    
+    
+    
+    NSMutableArray * cache_array = [CarInfo findAll];
+    
+    if (cache_array.count > 0)
+    {
+        [self exChangeData:cache_array];
+    }else
+    {
+        [self refreshState];
+        
+        [self initHttpRequestWithType:@"brand"];
+        
+        [self initHttpRecommendedCar];
+    }
+    
     
     
     
@@ -568,6 +590,18 @@
 }
 
 
+-(void)refreshState
+{
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:0.3];
+    
+    _myTableView.contentOffset=CGPointMake(0, -80);
+    [_refreshHeaderView szksetstate];
+    
+    [UIView commitAnimations];
+}
+
+
 #pragma mark-搜车按钮
 
 -(void)searchCar:(UIButton *)button
@@ -581,6 +615,9 @@
 
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
+    [_refreshHeaderView egoRefreshScrollViewDidScroll:scrollView];
+
+    
     if (_silder_view.frame.origin.x != 320 && scrollView == _myTableView)
     {
         if (request2)
@@ -603,6 +640,8 @@
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
 {
+    [_refreshHeaderView egoRefreshScrollViewDidEndDragging:scrollView];
+    
     if(_Screening_tableView.contentOffset.y > (_Screening_tableView.contentSize.height - _Screening_tableView.frame.size.height+40) && _Screening_tableView.contentOffset.y > 0 && scrollView == _Screening_tableView)
     {
         if ([loadingView.normalLabel.text isEqualToString:@"加载中..."])
@@ -1473,7 +1512,45 @@
     }
 }
 
+#pragma mark-下拉刷新的代理
+- (void)reloadTableViewDataSource
+{
+    _reloading = YES;
+    
+    
+}
+- (void)doneLoadingTableViewData
+{
+    _reloading = NO;
+	[_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:self.myTableView];
+}
 
+
+
+#pragma mark -
+#pragma mark EGORefreshTableHeaderDelegate Methods
+
+- (void)egoRefreshTableHeaderDidTriggerRefresh:(EGORefreshTableHeaderView*)view{
+	
+	[self initHttpRequestWithType:@"brand"];
+    
+    [self initHttpRecommendedCar];
+    
+	[self performSelector:@selector(doneLoadingTableViewData) withObject:nil afterDelay:3.0];
+	
+}
+
+- (BOOL)egoRefreshTableHeaderDataSourceIsLoading:(EGORefreshTableHeaderView*)view{
+	
+	return _reloading; // should return ccif data source model is reloading
+	
+}
+
+- (NSDate*)egoRefreshTableHeaderDataSourceLastUpdated:(EGORefreshTableHeaderView*)view{
+	
+	return [NSDate date]; // should return date data source was last changed
+	
+}
 
 
 - (void)didReceiveMemoryWarning

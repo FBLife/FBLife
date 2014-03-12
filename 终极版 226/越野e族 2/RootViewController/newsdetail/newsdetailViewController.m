@@ -50,7 +50,7 @@
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:NO];
-    
+        
     [MobClick beginEvent:@"newsdetailViewController"];
     
     for (id aviewp in [UIApplication sharedApplication].keyWindow.subviews) {
@@ -79,7 +79,6 @@
 -(void)viewWillDisappear:(BOOL)animated
 {
     _isloadingIv.hidden=YES;
-
     
     [MobClick endEvent:@"newsdetailViewController"];
 

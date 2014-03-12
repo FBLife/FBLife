@@ -12,10 +12,15 @@
 #import "CarType.h"
 #import "LoadingIndicatorView.h"
 #import "AlertRePlaceView.h"
+#import "EGORefreshTableHeaderView.h"
 
 
-@interface CarPortViewController : UIViewController<CarPortSegDelegate,UITableViewDataSource,UITableViewDelegate,ASIHTTPRequestDelegate,AsyncImageDelegate,AlertRePlaceViewDelegate>
+@interface CarPortViewController : UIViewController<CarPortSegDelegate,UITableViewDataSource,UITableViewDelegate,ASIHTTPRequestDelegate,AsyncImageDelegate,EGORefreshTableHeaderDelegate,AlertRePlaceViewDelegate>
 {
+    EGORefreshTableHeaderView *_refreshHeaderView;
+    
+    BOOL _reloading;
+    
     CarPortSeg * seg;
     
     UILabel * name_label;

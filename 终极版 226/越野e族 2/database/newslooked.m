@@ -39,7 +39,7 @@
 }
 +(NSMutableArray *)findbytheid:(NSString *)thelookedid{
     
-    
+    NSLog(@"thelookedid --------   %@",thelookedid);
     sqlite3 *db =[dataBase openDB];
     sqlite3_stmt *stmt=nil;
     int result=sqlite3_prepare_v2(db,"select * from newslooked where newsid=?",-1,&stmt,nil);

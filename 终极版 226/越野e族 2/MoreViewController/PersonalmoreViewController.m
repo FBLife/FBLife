@@ -873,9 +873,6 @@
     NSArray *arra=[NSArray arrayWithObject:reloadIndexPath];
     [ _myTableView reloadRowsAtIndexPaths:arra withRowAnimation:UITableViewRowAnimationNone];
     
-    
-    
-    
     //弹出提示信息
     UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"温馨提示" message:@"缓存清除成功" delegate:nil cancelButtonTitle:@"知道了" otherButtonTitles:nil, nil];
     [alert show];

@@ -14,6 +14,8 @@
 #import "ImagesViewController.h"
 #import "WenJiViewController.h"
 #import "LogInViewController.h"
+#import "SDImageCache.h"
+#import "FullyLoaded.h"
 
 
 @interface NewWeiBoViewController ()
@@ -74,34 +76,31 @@
 
 -(void)ClickWeiBoCustomSegmentWithIndex:(int)index
 {
-    [UIView animateWithDuration:0.4 animations:^{
+//    [UIView animateWithDuration:0.4 animations:^{
         _rootScrollView.contentOffset = CGPointMake(320*index,0);
-    } completion:^(BOOL finished) {
-        
-    }];
+//    } completion:^(BOOL finished) {
+//        
+//    }];
+    
+    selectedView = index;
     
     if (isCacheData[index])
     {
+        [self refreshState];
         [self initHttpRequest:1 Url:index];
     }
     
     pageCount[index] = 1;
-    selectedView = index;
-    
 }
 
 
 -(void)refreshData
 {
+    [self refreshState];
+    
     pageCount[selectedView] = 1;
     [self initHttpRequest:1 Url:selectedView];
 }
-
--(void)refreshCurrentData
-{
-    [self initHttpRequest:1 Url:selectedView];
-}
-
 
 
 //请求数据
@@ -384,6 +383,36 @@
     
     [super viewWillAppear:YES];
 }
+
+
+-(void)refreshState
+{
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:0.3];
+    
+    
+    switch (selectedView) {
+        case 0:
+            _myTableView1.contentOffset=CGPointMake(0, -80);
+            [_refreshHeaderView1 szksetstate];
+            break;
+        case 1:
+            _myTableView.contentOffset=CGPointMake(0, -80);
+            [_refreshHeaderView2 szksetstate];
+            break;
+        case 2:
+            _myTableView2.contentOffset=CGPointMake(0, -80);
+            [_refreshHeaderView3 szksetstate];
+            break;
+            
+        default:
+            break;
+    }
+    
+    [UIView commitAnimations];
+}
+
+
 
 -(void)viewWillDisappear:(BOOL)animated
 {
@@ -737,9 +766,7 @@
     
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshData) name:@"refreshmydata" object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshCurrentData) name:@"refreshNewWeiBoData" object:nil];
-    
+        
     
     _rootScrollView.scrollsToTop = NO;
     
@@ -884,6 +911,18 @@
 //点击键盘上的search按钮时调用
 -(void)hidenavbar
 {
+    CGRect rect = _myTableView1.frame;
+    
+    rect.size.height += 64;
+    
+    _myTableView1.frame = rect;
+    
+    CGRect rect1 = _rootScrollView.frame;
+    
+    rect1.size.height += 64;
+    
+    _rootScrollView.frame = rect1;
+
     [self.navigationController setNavigationBarHidden:YES animated:YES];
 }
 
@@ -896,6 +935,22 @@
     temp_view.hidden = YES;
     view_xialaherader.hidden=YES;
     [_searchbar resignFirstResponder];
+    [search_request cancel];
+    search_request.delegate = nil;
+    search_request = nil;
+    
+    
+    CGRect rect = _myTableView1.frame;
+    
+    rect.size.height -= 64;
+    
+    _myTableView1.frame = rect;
+    
+    CGRect rect1 = _rootScrollView.frame;
+    
+    rect1.size.height -= 64;
+    
+    _rootScrollView.frame = rect1;
     
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     [UIView commitAnimations];
@@ -1389,6 +1444,8 @@
             if (isCacheData[selectedView])
             {
                 [self initHttpRequest:pageCount[selectedView] Url:selectedView];
+                
+                [self refreshState];
             }
         }
     }
@@ -1644,7 +1701,7 @@
         }
         
         
-        [cell setAllViewWithType:0];
+       [cell setAllViewWithType:0];
         
         [cell setInfo:info withReplysHeight:[tableView rectForRowAtIndexPath:indexPath].size.height WithType:0];
         
@@ -2256,6 +2313,16 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
+    
+    
+    NSLog(@"didReceiveMemoryWarning");
+    
+    
+    [[SDImageCache sharedImageCache] clearMemory];
+    
+    [[FullyLoaded sharedFullyLoaded] emptyCache];
+    
+    
 }
 
 @end
