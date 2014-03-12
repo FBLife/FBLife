@@ -89,9 +89,9 @@ static CGFloat SWITCH_FOCUS_PICTURE_INTERVAL = 6.0; //switch interval time
 #pragma mark - private methods
 - (void)setupViews
 {
-    greenlabel=[[UILabel alloc]initWithFrame:CGRectMake(0, self.frame.size.height -25+3, 320, 19)];
-    greenlabel.font=[UIFont systemFontOfSize:14];
-    greenlabel.textAlignment=UITextAlignmentCenter;
+    greenlabel=[[UILabel alloc]initWithFrame:CGRectMake(108, self.frame.size.height -25+1, 320, 19)];
+    greenlabel.font=[UIFont systemFontOfSize:16];
+    greenlabel.textAlignment=UITextAlignmentLeft;
     greenlabel.textColor=[UIColor whiteColor];
     greenlabel.backgroundColor=[UIColor clearColor];
     NSArray *imageItems = objc_getAssociatedObject(self, (const void *)SG_FOCUS_ITEM_ASS_KEY);
@@ -104,10 +104,10 @@ static CGFloat SWITCH_FOCUS_PICTURE_INTERVAL = 6.0; //switch interval time
     
     _pagecontrol.backgroundColor = [UIColor clearColor];
     _pagecontrol.numberOfPages = 5;
-    _pagecontrol.indicatorMargin=8.0f;
+    _pagecontrol.indicatorMargin=6.0f;
     [_pagecontrol setPageIndicatorImage:[UIImage imageNamed:@"dot.png"]];
     [_pagecontrol setCurrentPageIndicatorImage:[UIImage imageNamed:@"dot1.png"]];
-    _pagecontrol.center=CGPointMake(160, 130);
+    _pagecontrol.center=CGPointMake(40, 150);
     
     _pagecontrol.currentPage = 0;
     

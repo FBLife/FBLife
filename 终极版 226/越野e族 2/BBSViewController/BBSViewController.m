@@ -1093,21 +1093,34 @@ if (scrollView==xiala_tab)
         @try {
             NSDictionary * dicofsearch = [request.responseData objectFromJSONData];
             NSLog(@"搜索的信息 -=-=  %@",dicofsearch);
-            if ([[dicofsearch objectForKey:@"allnumbers"] integerValue]>0) {
-                xiala_tab.hidden=NO;
-                blackcolorview.hidden=YES;
-                NSLog(@"是有数据的");
-                [searchloadingview stopLoading:1];
-                issearchloadsuccess=NO;
+            if ([[dicofsearch objectForKey:@"allnumbers"] integerValue]==0) {
                 
-                NSArray *array_zanshi=[dicofsearch objectForKey:@"searchinfo"];
-                for (int i=0; i<array_zanshi.count; i++) {
-                    [array_searchresault addObject:[array_zanshi objectAtIndex:i]];
-                    
-                }
                 
-                NSLog(@"array_searchresault===%@",array_searchresault);
-                [xiala_tab reloadData];
+                
+                
+                blackcolorview.hidden=NO;
+
+                  }else{
+                      
+                      
+                      
+                      
+                      xiala_tab.hidden=NO;
+                      blackcolorview.hidden=YES;
+                      NSLog(@"是有数据的");
+                      [searchloadingview stopLoading:1];
+                      issearchloadsuccess=NO;
+                      
+                      NSArray *array_zanshi=[dicofsearch objectForKey:@"searchinfo"];
+                      for (int i=0; i<array_zanshi.count; i++) {
+                          [array_searchresault addObject:[array_zanshi objectAtIndex:i]];
+                          
+                      }
+                      
+                      NSLog(@"array_searchresault===%@",array_searchresault);
+                      [xiala_tab reloadData];
+
+                
             }
         }
         @catch (NSException *exception) {

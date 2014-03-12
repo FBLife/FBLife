@@ -236,7 +236,7 @@
                 [imgarray addObject:strimg];
                 
                 
-                NSString *str_rec_title=[dic_ofcomment objectForKey:@"title"];
+                NSString *str_rec_title=[dic_ofcomment objectForKey:@"stitle"];
                 [com_title_array addObject:str_rec_title];
                 /*           id = 82920;
                  link = "http://drive.fblife.com/html/20131226/82920.html";

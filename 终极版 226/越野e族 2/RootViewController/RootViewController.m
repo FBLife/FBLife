@@ -75,6 +75,10 @@
 {
     [super viewWillAppear:NO];
     //
+    if (searchheaderview) {
+        self.navigationController.navigationBarHidden=!searchheaderview.hidden;
+
+    }
     
     
     [MobClick beginEvent:@"RootViewController"];
@@ -677,6 +681,15 @@
     _loadingview=[[loadingview alloc]initWithFrame:CGRectMake(0, 80, 320, iPhone5?568-20-40-40-49:480-20-40-40-49)];
     //[self.view addSubview:_loadingview];
     [self judgeversionandclean];
+    
+    
+    
+    searchresaultview=[[UITableView alloc]initWithFrame:CGRectMake(0,IOS_VERSION>=7?108:88, 320, iPhone5?568-20-40-40-49-8:480-19-40-40-49-8)];
+    searchresaultview.delegate=self;
+    searchresaultview.dataSource=self;
+    //searchresaultview.backgroundColor=[UIColor redColor];
+    searchresaultview.hidden=YES;
+    [self.view addSubview:searchresaultview];
     
     rootnewsModel *model=[[rootnewsModel alloc]init];
     [model startloadcommentsdatawithtag:800 thetype:[personal place:[array_lanmu objectAtIndex:0]]];
@@ -1894,7 +1907,6 @@
                 case 3:{
                     NSLog(@"到新闻的");
                     if (imagesc.iscount-1>=0&&imagesc.iscount-1<5) {
-                        self.navigationController.navigationBarHidden=NO;
                         NSLog(@"第三种情况link=%@",string_link_);
                         fbWebViewController *_web=[[fbWebViewController alloc]init];
                         _web.urlstring=string_link_;
@@ -2007,16 +2019,10 @@
         
         //        _searchbar.showsCancelButton=NO;
         
-        if (!searchresaultview) {
+        
             
             
-            
-            searchresaultview=[[UITableView alloc]initWithFrame:CGRectMake(0,IOS_VERSION>=7?108:88, 320, iPhone5?568-20-40-40-49-8:480-19-40-40-49-8)];
-            searchresaultview.delegate=self;
-            searchresaultview.dataSource=self;
-            //searchresaultview.backgroundColor=[UIColor redColor];
-            [self.view addSubview:searchresaultview];
-        }
+
         // searchresaultview.backgroundColor=[UIColor greenColor];
         searchresaultview.hidden=NO;
         
@@ -2144,7 +2150,10 @@
 - (void)searchBarCancelButtonClicked:(UISearchBar *) searchBar{
     
     self.navigationController.navigationBarHidden=NO;
-    searchresaultview.hidden=NO;
+    searchresaultview.backgroundColor=[UIColor redColor];
+    searchresaultview.hidden=YES;
+    
+//    [searchresaultview removeFromSuperview];
     [_searchbar resignFirstResponder];
     
     searchheaderview.hidden=YES;
@@ -2153,8 +2162,9 @@
 -(void)searchcancell{
     
     self.navigationController.navigationBarHidden=NO;
-    [searchresaultview removeFromSuperview];
+   // [searchresaultview removeFromSuperview];
     [_searchbar resignFirstResponder];
+    searchresaultview.hidden=YES;
     
     searchheaderview.hidden=YES;
     blackcolorview.hidden=YES;
@@ -2166,6 +2176,10 @@
 
 -(void)searchbythenetework
 {
+    
+    
+    
+    
     NSString * authod = [[NSUserDefaults standardUserDefaults] objectForKey:USER_AUTHOD];
     
     switch (mysegment.currentPage)
@@ -2254,7 +2268,10 @@
                 
                 if ([errcode intValue]==0)
                 {
+                    
+                    
                     NSDictionary * dic111 = [dicofsearch objectForKey:@"bbsinfo"];
+                    
                     
                     PersonInfo * info = [[PersonInfo alloc] initWithDictionary:dic111];
                     
@@ -2277,6 +2294,7 @@
                     UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"未找到该用户,请检查用户名是否正确" delegate:self cancelButtonTitle:@"确认" otherButtonTitles:nil,nil];
                     
                     [alert show];
+                    blackcolorview.hidden=NO;
                 }
                 
                 return;
@@ -2285,14 +2303,38 @@
             
             //        if ([[dicofsearch objectForKey:@"allnumbers"] integerValue]>0)
             //        {
-            NSLog(@"是有数据的");
             if (dicofsearch.count>0) {
-                [self.array_searchresault addObjectsFromArray:[dicofsearch objectForKey:@"searchinfo"]];
+                
+                if ([[dicofsearch objectForKey:@"allnumbers"] integerValue]>0) {
+                    [self.array_searchresault addObjectsFromArray:[dicofsearch objectForKey:@"searchinfo"]];
+                    NSLog(@"是有数据的");
+
+
+                }else{
+                    NSLog(@"没有相关数据");
+
+                    if (mysegment.currentPage==0) {
+                        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"未找到相关的新闻信息" delegate:self cancelButtonTitle:@"确认" otherButtonTitles:nil,nil];
+                        
+                        [alert show];
+                    }
+                    if (mysegment.currentPage==1) {
+                        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"未找到相关的论坛信息" delegate:self cancelButtonTitle:@"确认" otherButtonTitles:nil,nil];
+                        
+                        [alert show];
+                    }
+                    blackcolorview.hidden=NO;
+                    return;
+                }
+
+                
                 
             }
             
             
             if (self.array_searchresault.count>0) {
+                
+                
                 searchresaultview.tableFooterView=searchloadingview;
             }else{
                 searchresaultview.tableFooterView=nil;
@@ -2344,6 +2386,19 @@
 
 -(void)getWeiBoSearchData:(NSDictionary *)dic11111
 {
+    
+    NSLog(@"dic1111===%@",dic11111);
+    
+    
+    if ([dic11111 objectForKey:@"errcode"]!=0) {
+        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"未找到相关的微博信息" delegate:self cancelButtonTitle:@"确认" otherButtonTitles:nil,nil];
+        
+        [alert show];
+        return;
+        blackcolorview.hidden=NO;
+
+    }
+    
     NSDictionary * rootObject = [[NSDictionary alloc] initWithDictionary:dic11111];
     
     NSString *errcode =[NSString stringWithFormat:@"%@",[rootObject objectForKey:ERRCODE]];
@@ -2360,6 +2415,8 @@
             UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"未找到相关的微博信息" delegate:self cancelButtonTitle:@"确认" otherButtonTitles:nil,nil];
             
             [alert show];
+            blackcolorview.hidden=NO;
+
             
             return;
             
