@@ -551,9 +551,6 @@
     
     //换了
     
-    
-    
-    
 }
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error{
     
@@ -1638,9 +1635,6 @@
     [_replaceAlertView removeFromSuperview];
     _replaceAlertView=nil;
     _replaceAlertView.hidden=YES;
-    
-
-  
     
     [self.navigationController popViewControllerAnimated:YES];
 }

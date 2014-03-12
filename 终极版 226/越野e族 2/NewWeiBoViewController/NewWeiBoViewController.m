@@ -911,11 +911,40 @@
 //点击键盘上的search按钮时调用
 -(void)hidenavbar
 {
-    CGRect rect = _myTableView1.frame;
+    CGRect rect;
     
-    rect.size.height += 64;
-    
-    _myTableView1.frame = rect;
+    switch (selectedView) {
+        case 0:
+        {
+            rect = _myTableView1.frame;
+            
+            rect.size.height += 64;
+            
+            _myTableView1.frame = rect;
+        }
+            break;
+        case 1:
+        {
+            rect = _myTableView.frame;
+            
+            rect.size.height += 64;
+            
+            _myTableView.frame = rect;
+        }
+            break;
+        case 2:
+        {
+            rect = _myTableView2.frame;
+            
+            rect.size.height += 64;
+            
+            _myTableView2.frame = rect;
+        }
+            break;
+            
+        default:
+            break;
+    }
     
     CGRect rect1 = _rootScrollView.frame;
     
@@ -940,11 +969,40 @@
     search_request = nil;
     
     
-    CGRect rect = _myTableView1.frame;
+    CGRect rect;
     
-    rect.size.height -= 64;
-    
-    _myTableView1.frame = rect;
+    switch (selectedView) {
+        case 0:
+        {
+            rect = _myTableView1.frame;
+            
+            rect.size.height -= 64;
+            
+            _myTableView1.frame = rect;
+        }
+            break;
+        case 1:
+        {
+            rect = _myTableView.frame;
+            
+            rect.size.height -= 64;
+            
+            _myTableView.frame = rect;
+        }
+            break;
+        case 2:
+        {
+            rect = _myTableView2.frame;
+            
+            rect.size.height -= 64;
+            
+            _myTableView2.frame = rect;
+        }
+            break;
+            
+        default:
+            break;
+    }
     
     CGRect rect1 = _rootScrollView.frame;
     
@@ -1178,8 +1236,20 @@
                 
                 [searchloadingview stopLoading:1];
                 
+                int the_count = [[dicofsearch objectForKey:@"count"] intValue];
                 
-                
+                if (the_count == 0)
+                {
+                    UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"未找到该用户,请检查用户名是否正确" delegate:self cancelButtonTitle:@"确认" otherButtonTitles:nil,nil];
+                    
+                    [alert show];
+                    
+                    xiala_tab.hidden = YES;
+                    
+                    temp_view.hidden = NO;
+                    
+                    return;
+                }
                 
                 if ([errcode intValue]==0)
                 {
