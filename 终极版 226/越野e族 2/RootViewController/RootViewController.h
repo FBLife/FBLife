@@ -104,6 +104,11 @@
     
     //search的上拉加载
     
+    
+    int total_count_users;
+    
+    int search_user_page;
+    
     int mysearchPage;
     BOOL issearchloadsuccess;
     LoadingIndicatorView *searchloadingview;//search的tab的footview

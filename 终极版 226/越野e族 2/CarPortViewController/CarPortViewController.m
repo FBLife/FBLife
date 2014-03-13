@@ -409,7 +409,6 @@
     [MobClick beginEvent:@"CarPortViewController"];
 }
 
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -453,7 +452,8 @@
     UIImageView * leftImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"ios7logo.png"]];
     leftImageView.center = CGPointMake(MY_MACRO_NAME? 22:25,22);
     
-    UIView *leftttview=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 100, 44)];
+    UIView *leftttview=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 100,30)];
+    leftttview.backgroundColor = [UIColor clearColor];
     [leftttview addSubview:leftImageView];
     
     UIBarButtonItem * leftButton = [[UIBarButtonItem alloc] initWithCustomView:leftttview];
@@ -480,9 +480,6 @@
     seg.delegate = self;
     
     [self.view addSubview:seg];
-    
-    
-    
     
     
     if (_refreshHeaderView == nil) {

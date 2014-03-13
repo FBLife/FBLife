@@ -44,8 +44,6 @@
     //    image = [zsnApi fitSmallImage:image withSize:CGSizeMake(150,150)];
     //
     //    imageView.image = image;
-    
-    NSLog(@"image.size.width ----  %f ----- %f",image.size.width,image.size.height);
 }
 
 -(void)seccesDownLoad:(UIImage *)image

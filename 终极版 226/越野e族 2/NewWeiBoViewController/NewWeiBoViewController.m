@@ -517,8 +517,6 @@
     
     selectedView = authkey?0:1;
     
-    [self initHttpRequest:1 Url:selectedView];
-    
     
     UIBarButtonItem *negativeSpacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
     negativeSpacer.width = MY_MACRO_NAME?-5:5;
@@ -716,6 +714,11 @@
     }
     
     
+    [self refreshState];
+    
+    [self initHttpRequest:1 Url:selectedView];
+    
+    
     [self showLeftAndRightData];
     
     _replaceAlertView=[[AlertRePlaceView alloc]initWithFrame:CGRectMake(85, 200, 150, 100) labelString:@"您的网络不给力哦，请检查网络"];
@@ -800,17 +803,6 @@
 
 -(void)refresh:(UIButton *)sender
 {//搜索
-    
-    
-    BOOL logIn11 = [[NSUserDefaults standardUserDefaults] boolForKey:USER_IN];
-    
-    if (!logIn11)
-    {
-        [self LogIn];
-        
-        return;
-    }
-    
     
     if (!array_weibo_search)
     {
@@ -958,16 +950,6 @@
 
 -(void)shownavbar
 {
-    [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:0.3];
-    xiala_tab.hidden = YES;
-    temp_view.hidden = YES;
-    view_xialaherader.hidden=YES;
-    [_searchbar resignFirstResponder];
-    [search_request cancel];
-    search_request.delegate = nil;
-    search_request = nil;
-    
     
     CGRect rect;
     
@@ -1009,6 +991,18 @@
     rect1.size.height -= 64;
     
     _rootScrollView.frame = rect1;
+
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:0.3];
+    xiala_tab.hidden = YES;
+    temp_view.hidden = YES;
+    view_xialaherader.hidden=YES;
+    [_searchbar resignFirstResponder];
+    [search_request cancel];
+    search_request.delegate = nil;
+    search_request = nil;
+    
+    
     
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     [UIView commitAnimations];
@@ -1110,9 +1104,6 @@
     [array_user_search removeAllObjects];
     
     [array_weibo_search removeAllObjects];
-    
-    
-    
 }
 -(void)searchcancell
 {
@@ -1133,20 +1124,17 @@
 {
     NSString * string_searchurl = @"";
     
-    NSString * authod = [[NSUserDefaults standardUserDefaults] objectForKey:USER_AUTHOD];
-    
-    
     if (_searchbar.text.length>0)
     {
         if (_slsV.currentpage == 0)//搜微博
         {
-            string_searchurl = [NSString stringWithFormat:Search_weiBo,[_searchbar.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],authod,mysearchPage];
+            string_searchurl = [NSString stringWithFormat:Search_weiBo,[_searchbar.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],mysearchPage];
             
         }else//搜用户
         {
             //            string_searchurl=[NSString stringWithFormat:Search_user,[_searchbar.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
             
-            string_searchurl = [NSString stringWithFormat:URL_SERCH_USER,[_searchbar.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],authod,search_user_page];
+            string_searchurl = [NSString stringWithFormat:URL_SERCH_USER,[_searchbar.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],search_user_page];
         }
     }
     
@@ -1253,7 +1241,6 @@
                 
                 if ([errcode intValue]==0)
                 {
-                    
                     NSDictionary * dic111 = [dicofsearch objectForKey:@"data"];
                     
                     total_count_users = [[dicofsearch objectForKey:@"count"] intValue];
@@ -1444,7 +1431,6 @@
 
 -(BOOL)scrollViewShouldScrollToTop:(UIScrollView *)scrollView
 {
-    
     return NO;
 }
 
@@ -1561,7 +1547,7 @@
             mysearchPage ++;
         }else
         {
-            if (total_count_users/20<=search_user_page)
+            if (search_user_page*20>=total_count_users)
             {
                 searchloadingview.normalLabel.text = @"没有更多了";
                 return;

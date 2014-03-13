@@ -270,7 +270,7 @@ alpha:(a)]
 
 //上传接口---end
 //根据用户名搜索
-#define URL_SERCH_USER @"http://fb.fblife.com/openapi/index.php?mod=search&code=user&username=%@&fromtype=b5eeec0b&authkey=%@&page=%d&fbtype=json"
+#define URL_SERCH_USER @"http://fb.fblife.com/openapi/index.php?mod=search&code=user&username=%@&fromtype=b5eeec0b&page=%d&fbtype=json"
 //搜索用户url
 #define  URL_SERCH_PER @"http://fb.fblife.com/openapi/index.php?mod=getuser&code=atuser&atuser=%@&fromtype=b5eeec0b&authkey=%@&page=%i&fbtype=json"
 //获取微博详细包括评论信息
@@ -321,7 +321,7 @@ alpha:(a)]
 #define URL_NESTEST @"http://cmsweb.fblife.com/ajax.php?c=newstwo&a=newslist&classname=%@&iscommend=%@&page=%i&pagesize=%@&type=json"
 
 
-#define Search_weiBo @"http://fb.fblife.com/openapi/index.php?mod=search&code=content&topic=%@&fromtype=b5eeec0b&authkey=%@&page=%d&fbtype=json"
+#define Search_weiBo @"http://fb.fblife.com/openapi/index.php?mod=search&code=content&topic=%@&fromtype=b5eeec0b&page=%d&fbtype=json"
 
 
 

@@ -443,6 +443,7 @@
 
 -(void)SpecialClickUrl:(NSString *)theUrl WithIsRe:(BOOL)isreply
 {
+    
     [self clickURL:theUrl isRe:isreply];
 }
 
@@ -464,6 +465,7 @@
 
 -(void)clickURL:(NSString *)theUrl isRe:(BOOL)isReply
 {
+    
     if ([theUrl rangeOfString:@"http://"].length || [theUrl rangeOfString:@"https://"].length)
     {
         if (self.delegate && [self.delegate respondsToSelector:@selector(showClickUrl: WithFBFeed:)])

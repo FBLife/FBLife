@@ -691,6 +691,16 @@
     searchresaultview.hidden=YES;
     [self.view addSubview:searchresaultview];
     
+    
+    if (!searchloadingview)
+    {
+        searchloadingview =[[LoadingIndicatorView alloc]initWithFrame:CGRectMake(0, 900, 320, 40)];
+        searchloadingview.backgroundColor=[UIColor clearColor];
+        searchloadingview.normalLabel.text=@"上拉加载更多";
+    }
+    
+    searchresaultview.tableFooterView = searchloadingview;
+    
     rootnewsModel *model=[[rootnewsModel alloc]init];
     [model startloadcommentsdatawithtag:800 thetype:[personal place:[array_lanmu objectAtIndex:0]]];
     model.delegate=self;
@@ -1961,6 +1971,7 @@
     
     
     mysearchPage=1;
+    search_user_page = 1;
     issearchloadsuccess=NO;
     searchheaderview.hidden=NO;
     searchresaultview.hidden = NO;
@@ -2060,7 +2071,8 @@
     }
     
     current_select = buttonSelected;
-    searchresaultview.tableFooterView=nil;
+    
+    [searchloadingview startLoading];
     
     [self WhetherOrNotRequest];
 }
@@ -2176,12 +2188,6 @@
 
 -(void)searchbythenetework
 {
-    
-    
-    
-    
-    NSString * authod = [[NSUserDefaults standardUserDefaults] objectForKey:USER_AUTHOD];
-    
     switch (mysegment.currentPage)
     {
         case 0:
@@ -2201,7 +2207,7 @@
         {
             NSLog(@"点击的是微博");
             
-            string_searchurl = [NSString stringWithFormat:Search_weiBo,[_searchbar.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],authod,mysearchPage];
+            string_searchurl = [NSString stringWithFormat:Search_weiBo,[_searchbar.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],mysearchPage];
         }
             break;
         case 3:
@@ -2211,11 +2217,7 @@
             //            string_searchurl=[NSString stringWithFormat:@"http://so.fblife.com/api/searchapi.php?query=%@&fromtype=%d&pagesize=10&formattype=json",[_searchbar.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],4];
             
             
-            string_searchurl=[NSString stringWithFormat:Search_user,[_searchbar.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-            
-            
-            
-            
+            string_searchurl=[NSString stringWithFormat:URL_SERCH_USER,[_searchbar.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],search_user_page];
         }
             break;
             
@@ -2242,16 +2244,14 @@
             blackcolorview.hidden=YES;
             [searchloadingview stopLoading:1];
             issearchloadsuccess=NO;
-            if (mysearchPage==1) {
+            if (mysearchPage==1)
+            {
                 [self.array_searchresault removeAllObjects];
-                
             }
             
             NSDictionary * dicofsearch = [request_search.responseData objectFromJSONData];
             
             NSLog(@"搜索的信息 -=-=  %@",dicofsearch);
-            
-            
             
             if (mysegment.currentPage == 2)
             {
@@ -2266,12 +2266,86 @@
                 
                 NSString * errcode = [NSString stringWithFormat:@"%@",[dicofsearch objectForKey:@"errcode"]];
                 
+                [searchloadingview stopLoading:1];
+                
+                int the_count = [[dicofsearch objectForKey:@"count"] intValue];
+                
+                if (the_count == 0)
+                {
+                    UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"未找到该用户,请检查用户名是否正确" delegate:self cancelButtonTitle:@"确认" otherButtonTitles:nil,nil];
+                    
+                    [alert show];
+                    
+                    return;
+                }
+                
                 if ([errcode intValue]==0)
                 {
+                    NSDictionary * dic111 = [dicofsearch objectForKey:@"data"];
+                    
+                    total_count_users = [[dicofsearch objectForKey:@"count"] intValue];
+                    
+                    NSArray * allkeys = [dic111 allKeys];
+                    
+                    if (search_user_page ==1)
+                    {
+                        if (total_count_users/20 == 0)
+                        {
+                            searchloadingview.normalLabel.text = @"没有更多了";
+                        }
+                        
+                        [array_search_user removeAllObjects];
+                        [_array_searchresault removeAllObjects];
+                        
+                        searchresaultview.contentOffset = CGPointMake(0,0);
+                        
+                    }else
+                    {
+                        
+                    }
                     
                     
+                    for (int i = 0;i < allkeys.count;i++)
+                    {
+                        NSDictionary * myDic = [dic111 objectForKey:[allkeys objectAtIndex:i]];
+                        
+                        PersonInfo * info2 = [[PersonInfo alloc] initWithDictionary:myDic];
+                        
+                        info2.face_original = [dic111 objectForKey:@"small_avatar"];
+                        
+                        info2.city = [NSString stringWithFormat:@"%@",[dicofsearch objectForKey:@"location"]];
+                        
+                        if (info2.username.length !=0)
+                        {
+                            [_array_searchresault addObject:info2];
+                            [array_search_user addObject:info2];
+                        }
+                    }
+                    
+                    [searchresaultview reloadData];
+                    
+                    return;
+                
+                }else
+                {
+                    UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"未找到该用户,请检查用户名是否正确" delegate:self cancelButtonTitle:@"确认" otherButtonTitles:nil,nil];
+                    
+                    [alert show];
+                    
+                    return;
+                }
+                
+                
+                
+                
+                
+                /*
+                
+                NSString * errcode = [NSString stringWithFormat:@"%@",[dicofsearch objectForKey:@"errcode"]];
+                
+                if ([errcode intValue]==0)
+                {
                     NSDictionary * dic111 = [dicofsearch objectForKey:@"bbsinfo"];
-                    
                     
                     PersonInfo * info = [[PersonInfo alloc] initWithDictionary:dic111];
                     
@@ -2298,6 +2372,8 @@
                 }
                 
                 return;
+                 
+                 */
             }
             
             
@@ -2332,13 +2408,12 @@
             }
             
             
-            if (self.array_searchresault.count>0) {
-                
-                
-                searchresaultview.tableFooterView=searchloadingview;
-            }else{
-                searchresaultview.tableFooterView=nil;
-            }
+//            if (self.array_searchresault.count>0)
+//            {
+//                searchresaultview.tableFooterView=searchloadingview;
+//            }else{
+//                searchresaultview.tableFooterView=nil;
+//            }
             
             if (mysegment.currentPage == 0)
             {
@@ -2390,7 +2465,7 @@
     NSLog(@"dic1111===%@",dic11111);
     
     
-    if ([dic11111 objectForKey:@"errcode"]!=0) {
+    if ([[dic11111 objectForKey:@"errcode"] intValue]!=0) {
         UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"未找到相关的微博信息" delegate:self cancelButtonTitle:@"确认" otherButtonTitles:nil,nil];
         
         [alert show];
@@ -2545,11 +2620,7 @@
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
     
-    if (!searchloadingview) {
-        searchloadingview =[[LoadingIndicatorView alloc]initWithFrame:CGRectMake(0, 900, 320, 40)];
-        searchloadingview.backgroundColor=[UIColor clearColor];
-        searchloadingview.normalLabel.text=@"上拉加载更多";
-    }
+    
     
     if (scrollView==_titleView) {
         
@@ -2565,21 +2636,26 @@
                 
                 issearchloadsuccess=!issearchloadsuccess;
                 mysearchPage++;
-                if (mysegment.currentPage==3) {
-                    searchresaultview.tableFooterView=nil;
-                }else{
-                    if (self.array_searchresault.count>0) {
-                        searchresaultview.tableFooterView=searchloadingview;
-                    }else{
-                        
-                        searchresaultview.tableFooterView=nil;
+                if (mysegment.currentPage==3)
+                {
+                    if (search_user_page*20>=total_count_users)
+                    {
+                        searchloadingview.normalLabel.text = @"没有更多了";
+                        return;
                     }
+                    
+                    search_user_page++;
+                }else{
+//                    if (self.array_searchresault.count>0) {
+//                        searchresaultview.tableFooterView=searchloadingview;
+//                    }else{
+//                        
+//                        searchresaultview.tableFooterView=nil;
+//                    }
                 }
                 
                 [self searchbythenetework];
                 [searchloadingview startLoading];
-                
-                
             }
             
         }
@@ -2735,23 +2811,10 @@
 }
 
 -(void)doneloadmoremornormal:(NSDictionary*)_morenormaldic tag:(int)_tag{
-    NSLog(@"22222222222222");
     
-    
-    
-
     newsTableview *mytab=(newsTableview*)[self.view viewWithTag:_tag];
     
-    NSLog(@"mytab.tag=====%d",mytab.tag);
-    
-    
-    
-    
     [mytab newstabreceivemorenormaldic:_morenormaldic];
-    
-    
-    
-
 }
 -(void)successloadcommentdic:(NSDictionary *)_comdic mormaldic:(NSDictionary *)_nordic tag:(int)_tag{
     
