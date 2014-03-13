@@ -992,8 +992,6 @@
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
     
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshNewWeiBoData" object:nil];
-    
 //    
     center = [[CTCallCenter alloc ] init ];
 //    

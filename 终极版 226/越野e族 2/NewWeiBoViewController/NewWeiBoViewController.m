@@ -14,6 +14,8 @@
 #import "ImagesViewController.h"
 #import "WenJiViewController.h"
 #import "LogInViewController.h"
+#import "SDImageCache.h"
+#import "FullyLoaded.h"
 
 
 @interface NewWeiBoViewController ()
@@ -74,34 +76,31 @@
 
 -(void)ClickWeiBoCustomSegmentWithIndex:(int)index
 {
-    [UIView animateWithDuration:0.4 animations:^{
+//    [UIView animateWithDuration:0.4 animations:^{
         _rootScrollView.contentOffset = CGPointMake(320*index,0);
-    } completion:^(BOOL finished) {
-        
-    }];
+//    } completion:^(BOOL finished) {
+//        
+//    }];
+    
+    selectedView = index;
     
     if (isCacheData[index])
     {
+        [self refreshState];
         [self initHttpRequest:1 Url:index];
     }
     
     pageCount[index] = 1;
-    selectedView = index;
-    
 }
 
 
 -(void)refreshData
 {
+    [self refreshState];
+    
     pageCount[selectedView] = 1;
     [self initHttpRequest:1 Url:selectedView];
 }
-
--(void)refreshCurrentData
-{
-    [self initHttpRequest:1 Url:selectedView];
-}
-
 
 
 //请求数据
@@ -385,6 +384,36 @@
     [super viewWillAppear:YES];
 }
 
+
+-(void)refreshState
+{
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:0.3];
+    
+    
+    switch (selectedView) {
+        case 0:
+            _myTableView1.contentOffset=CGPointMake(0, -80);
+            [_refreshHeaderView1 szksetstate];
+            break;
+        case 1:
+            _myTableView.contentOffset=CGPointMake(0, -80);
+            [_refreshHeaderView2 szksetstate];
+            break;
+        case 2:
+            _myTableView2.contentOffset=CGPointMake(0, -80);
+            [_refreshHeaderView3 szksetstate];
+            break;
+            
+        default:
+            break;
+    }
+    
+    [UIView commitAnimations];
+}
+
+
+
 -(void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
@@ -487,8 +516,6 @@
     BOOL authkey=[[NSUserDefaults standardUserDefaults] boolForKey:USER_IN];
     
     selectedView = authkey?0:1;
-    
-    [self initHttpRequest:1 Url:selectedView];
     
     
     UIBarButtonItem *negativeSpacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
@@ -687,6 +714,11 @@
     }
     
     
+    [self refreshState];
+    
+    [self initHttpRequest:1 Url:selectedView];
+    
+    
     [self showLeftAndRightData];
     
     _replaceAlertView=[[AlertRePlaceView alloc]initWithFrame:CGRectMake(85, 200, 150, 100) labelString:@"您的网络不给力哦，请检查网络"];
@@ -737,9 +769,7 @@
     
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshData) name:@"refreshmydata" object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshCurrentData) name:@"refreshNewWeiBoData" object:nil];
-    
+        
     
     _rootScrollView.scrollsToTop = NO;
     
@@ -773,17 +803,6 @@
 
 -(void)refresh:(UIButton *)sender
 {//搜索
-    
-    
-    BOOL logIn11 = [[NSUserDefaults standardUserDefaults] boolForKey:USER_IN];
-    
-    if (!logIn11)
-    {
-        [self LogIn];
-        
-        return;
-    }
-    
     
     if (!array_weibo_search)
     {
@@ -884,18 +903,106 @@
 //点击键盘上的search按钮时调用
 -(void)hidenavbar
 {
+    CGRect rect;
+    
+    switch (selectedView) {
+        case 0:
+        {
+            rect = _myTableView1.frame;
+            
+            rect.size.height += 64;
+            
+            _myTableView1.frame = rect;
+        }
+            break;
+        case 1:
+        {
+            rect = _myTableView.frame;
+            
+            rect.size.height += 64;
+            
+            _myTableView.frame = rect;
+        }
+            break;
+        case 2:
+        {
+            rect = _myTableView2.frame;
+            
+            rect.size.height += 64;
+            
+            _myTableView2.frame = rect;
+        }
+            break;
+            
+        default:
+            break;
+    }
+    
+    CGRect rect1 = _rootScrollView.frame;
+    
+    rect1.size.height += 64;
+    
+    _rootScrollView.frame = rect1;
+
     [self.navigationController setNavigationBarHidden:YES animated:YES];
 }
 
 
 -(void)shownavbar
 {
+    
+    CGRect rect;
+    
+    switch (selectedView) {
+        case 0:
+        {
+            rect = _myTableView1.frame;
+            
+            rect.size.height -= 64;
+            
+            _myTableView1.frame = rect;
+        }
+            break;
+        case 1:
+        {
+            rect = _myTableView.frame;
+            
+            rect.size.height -= 64;
+            
+            _myTableView.frame = rect;
+        }
+            break;
+        case 2:
+        {
+            rect = _myTableView2.frame;
+            
+            rect.size.height -= 64;
+            
+            _myTableView2.frame = rect;
+        }
+            break;
+            
+        default:
+            break;
+    }
+    
+    CGRect rect1 = _rootScrollView.frame;
+    
+    rect1.size.height -= 64;
+    
+    _rootScrollView.frame = rect1;
+
     [UIView beginAnimations:nil context:nil];
     [UIView setAnimationDuration:0.3];
     xiala_tab.hidden = YES;
     temp_view.hidden = YES;
     view_xialaherader.hidden=YES;
     [_searchbar resignFirstResponder];
+    [search_request cancel];
+    search_request.delegate = nil;
+    search_request = nil;
+    
+    
     
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     [UIView commitAnimations];
@@ -997,9 +1104,6 @@
     [array_user_search removeAllObjects];
     
     [array_weibo_search removeAllObjects];
-    
-    
-    
 }
 -(void)searchcancell
 {
@@ -1020,20 +1124,17 @@
 {
     NSString * string_searchurl = @"";
     
-    NSString * authod = [[NSUserDefaults standardUserDefaults] objectForKey:USER_AUTHOD];
-    
-    
     if (_searchbar.text.length>0)
     {
         if (_slsV.currentpage == 0)//搜微博
         {
-            string_searchurl = [NSString stringWithFormat:Search_weiBo,[_searchbar.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],authod,mysearchPage];
+            string_searchurl = [NSString stringWithFormat:Search_weiBo,[_searchbar.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],mysearchPage];
             
         }else//搜用户
         {
             //            string_searchurl=[NSString stringWithFormat:Search_user,[_searchbar.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
             
-            string_searchurl = [NSString stringWithFormat:URL_SERCH_USER,[_searchbar.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],authod,search_user_page];
+            string_searchurl = [NSString stringWithFormat:URL_SERCH_USER,[_searchbar.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],search_user_page];
         }
     }
     
@@ -1123,12 +1224,23 @@
                 
                 [searchloadingview stopLoading:1];
                 
+                int the_count = [[dicofsearch objectForKey:@"count"] intValue];
                 
-                
+                if (the_count == 0)
+                {
+                    UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"未找到该用户,请检查用户名是否正确" delegate:self cancelButtonTitle:@"确认" otherButtonTitles:nil,nil];
+                    
+                    [alert show];
+                    
+                    xiala_tab.hidden = YES;
+                    
+                    temp_view.hidden = NO;
+                    
+                    return;
+                }
                 
                 if ([errcode intValue]==0)
                 {
-                    
                     NSDictionary * dic111 = [dicofsearch objectForKey:@"data"];
                     
                     total_count_users = [[dicofsearch objectForKey:@"count"] intValue];
@@ -1319,7 +1431,6 @@
 
 -(BOOL)scrollViewShouldScrollToTop:(UIScrollView *)scrollView
 {
-    
     return NO;
 }
 
@@ -1389,6 +1500,8 @@
             if (isCacheData[selectedView])
             {
                 [self initHttpRequest:pageCount[selectedView] Url:selectedView];
+                
+                [self refreshState];
             }
         }
     }
@@ -1434,7 +1547,7 @@
             mysearchPage ++;
         }else
         {
-            if (total_count_users/20<=search_user_page)
+            if (search_user_page*20>=total_count_users)
             {
                 searchloadingview.normalLabel.text = @"没有更多了";
                 return;
@@ -1644,7 +1757,7 @@
         }
         
         
-        [cell setAllViewWithType:0];
+       [cell setAllViewWithType:0];
         
         [cell setInfo:info withReplysHeight:[tableView rectForRowAtIndexPath:indexPath].size.height WithType:0];
         
@@ -2256,6 +2369,16 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
+    
+    
+    NSLog(@"didReceiveMemoryWarning");
+    
+    
+    [[SDImageCache sharedImageCache] clearMemory];
+    
+    [[FullyLoaded sharedFullyLoaded] emptyCache];
+    
+    
 }
 
 @end

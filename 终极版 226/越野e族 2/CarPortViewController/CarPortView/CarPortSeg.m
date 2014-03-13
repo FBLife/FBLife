@@ -90,7 +90,6 @@
             button_=[[UIButton alloc]initWithFrame:CGRectMake(i*320/NUMBEROFBUTTON, 0, 320/NUMBEROFBUTTON, 33)];
             button_.tag=i+10000000;
             
-            
             [button_ setTitle:[self.NameArray objectAtIndex:i] forState:UIControlStateNormal];
             
             [button_ setTitleEdgeInsets:UIEdgeInsetsMake(0,0,0,12)];

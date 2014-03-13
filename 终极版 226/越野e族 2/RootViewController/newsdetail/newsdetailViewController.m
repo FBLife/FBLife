@@ -50,7 +50,7 @@
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:NO];
-    
+        
     [MobClick beginEvent:@"newsdetailViewController"];
     
     for (id aviewp in [UIApplication sharedApplication].keyWindow.subviews) {
@@ -79,7 +79,6 @@
 -(void)viewWillDisappear:(BOOL)animated
 {
     _isloadingIv.hidden=YES;
-
     
     [MobClick endEvent:@"newsdetailViewController"];
 
@@ -561,9 +560,6 @@
     
     
     //换了
-    
-    
-    
     
 }
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error{
@@ -1649,9 +1645,6 @@
     [_replaceAlertView removeFromSuperview];
     _replaceAlertView=nil;
     _replaceAlertView.hidden=YES;
-    
-
-  
     
     [self.navigationController popViewControllerAnimated:YES];
 }

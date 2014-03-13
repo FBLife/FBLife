@@ -29,6 +29,16 @@
 @synthesize myTableView = _myTableView;
 
 
+-(void)commentSuccessWihtTid:(NSString *)theTid IndexPath:(int)theIndexpath SelectView:(int)theselectview withForward:(BOOL)isForward
+{
+    
+}
+
+-(void)ForwardingSuccessWihtTid:(NSString *)theTid IndexPath:(int)theIndexpath SelectView:(int)theselectview WithComment:(BOOL)isComment
+{
+    
+}
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -467,6 +477,8 @@
     
     content_label.lineSpacing = 3;
     
+    content_label.delegate = self;
+    
     content_label.textColor = RGBCOLOR(49,49,49);
     
     content_label.backgroundColor = [UIColor clearColor];
@@ -723,7 +735,7 @@
 
 
 -(void)SpecialClickUrl:(NSString *)theUrl WithIsRe:(BOOL)isreply
-{
+{    
     if ([theUrl rangeOfString:@"http://"].length || [theUrl rangeOfString:@"https://"].length)
     {
         [self showClickUrl:theUrl WithFBFeed:self.info];
