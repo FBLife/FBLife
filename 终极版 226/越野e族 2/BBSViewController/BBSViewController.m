@@ -528,7 +528,7 @@
     tab_.tableFooterView = loadview;
     
     
-    xiala_tab=[[UITableView alloc]initWithFrame:CGRectMake(0,MY_MACRO_NAME? 44+32+20+8:44+32+8, 320,iPhone5?568-49-19-44-36-8:480-49-19-44-36-8) style:UITableViewStylePlain];
+    xiala_tab=[[UITableView alloc]initWithFrame:CGRectMake(0,MY_MACRO_NAME? 44+32+20+8:44+32+8, 320,iPhone5?568-49-19-44-36-5:480-49-19-44-36-5) style:UITableViewStylePlain];
     
     xiala_tab.backgroundColor=[UIColor whiteColor];
     xiala_tab.hidden=YES;

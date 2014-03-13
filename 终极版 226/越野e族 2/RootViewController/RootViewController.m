@@ -684,7 +684,7 @@
     
     
     
-    searchresaultview=[[UITableView alloc]initWithFrame:CGRectMake(0,IOS_VERSION>=7?108:88, 320, iPhone5?568-20-40-40-49-8:480-19-40-40-49-8)];
+    searchresaultview=[[UITableView alloc]initWithFrame:CGRectMake(0,IOS_VERSION>=7?108:88, 320, iPhone5?568-20-40-40-49-5:480-19-40-40-49-5)];
     searchresaultview.delegate=self;
     searchresaultview.dataSource=self;
     //searchresaultview.backgroundColor=[UIColor redColor];
@@ -2383,7 +2383,6 @@
 }
 
 
-
 -(void)getWeiBoSearchData:(NSDictionary *)dic11111
 {
     
@@ -2392,10 +2391,10 @@
     
     if ([dic11111 objectForKey:@"errcode"]!=0) {
         UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"未找到相关的微博信息" delegate:self cancelButtonTitle:@"确认" otherButtonTitles:nil,nil];
-        
+        blackcolorview.hidden=NO;
+
         [alert show];
         return;
-        blackcolorview.hidden=NO;
 
     }
     

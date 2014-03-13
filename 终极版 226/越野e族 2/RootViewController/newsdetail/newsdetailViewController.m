@@ -525,11 +525,21 @@
 #pragma mark-轻扫
 
 -(void)handleSwipeFrom{
+    
+    
+    NSHTTPCookie *cookie;
+    NSHTTPCookieStorage *storage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+    for (cookie in [storage cookies])
+    {
+        [storage deleteCookie:cookie];
+    }
     newstool.delegate=nil;
     [newstool stop];
+    newstool=nil;
     [_request cancel];
     [_request cancelAuthentication];
     _request.delegate=nil;
+    _request=nil;
   
     
   
