@@ -2229,7 +2229,6 @@
     NSLog(@"1请求的url = %@",string_searchurl);
     
     
-    
     request_search = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:string_searchurl]];
     __block ASIHTTPRequest * _requset = request_search;
     
@@ -2461,17 +2460,12 @@
 
 -(void)getWeiBoSearchData:(NSDictionary *)dic11111
 {
-    
-    NSLog(@"dic1111===%@",dic11111);
-    
-    
     if ([[dic11111 objectForKey:@"errcode"] intValue]!=0) {
         UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"未找到相关的微博信息" delegate:self cancelButtonTitle:@"确认" otherButtonTitles:nil,nil];
         
         [alert show];
         return;
         blackcolorview.hidden=NO;
-
     }
     
     NSDictionary * rootObject = [[NSDictionary alloc] initWithDictionary:dic11111];
@@ -2484,16 +2478,22 @@
         
         if ([userinfo isEqual:[NSNull null]])
         {
-            //如果没有微博的话
-            NSLog(@"------------没有微博信息---------------");
             
-            UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"未找到相关的微博信息" delegate:self cancelButtonTitle:@"确认" otherButtonTitles:nil,nil];
-            
-            [alert show];
-            blackcolorview.hidden=NO;
-
-            
-            return;
+            if (mysearchPage == 1)
+            {
+                //如果没有微博的话
+                NSLog(@"------------没有微博信息---------------");
+                
+                UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"未找到相关的微博信息" delegate:self cancelButtonTitle:@"确认" otherButtonTitles:nil,nil];
+                
+                [alert show];
+                blackcolorview.hidden=NO;
+                
+                return;
+            }else
+            {
+                searchloadingview.normalLabel.text = @"没有更多了";
+            }
             
         }else
         {
