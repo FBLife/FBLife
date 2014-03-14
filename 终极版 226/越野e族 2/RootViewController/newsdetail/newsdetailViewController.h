@@ -93,13 +93,13 @@
     NSMutableString *string_email;
     
     UIButton *rightView;
-    
+  __weak ASIHTTPRequest * requestimg;
     
 }
 @property(nonatomic,assign)int _pages;
-@property(nonatomic,strong)NSString * string_Id;
-@property(nonatomic,strong)NSString * title_Str;
-@property(nonatomic,strong)NSString * weburl_Str;
+@property(nonatomic,copy)NSString * string_Id;
+@property(nonatomic,copy)NSString * title_Str;
+@property(nonatomic,copy)NSString * weburl_Str;
 @property(nonatomic,strong)UIImage * imgforshare;
 
 

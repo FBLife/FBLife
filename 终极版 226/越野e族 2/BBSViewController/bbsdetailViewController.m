@@ -1338,7 +1338,7 @@
     {
         [self showPopoverView:nil];
     }
-    
+    \
     [authortool stop];
     authortool.delegate=nil;
     
@@ -1351,7 +1351,14 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-
+-(void)dealloc{
+    
+    
+    [_webView removeFromSuperview];
+    _webView.delegate=nil;
+    _webView=nil;
+    NSLog(@"%s",__FUNCTION__);
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

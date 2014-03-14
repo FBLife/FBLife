@@ -38,7 +38,7 @@
 }
 @end
 @implementation newsdetailViewController
-@synthesize _pages,string_Id = _string_Id,title_Str=_title_Str,weburl_Str=_weburl_Str,imgforshare=_imgforshare;
+//@synthesize _pages,string_Id = _string_Id,title_Str=_title_Str,weburl_Str=_weburl_Str,imgforshare=_imgforshare;
 
 - (id)initWithID:(NSString*)id
 {
@@ -553,6 +553,7 @@
 - (void)webViewDidFinishLoad:(UIWebView *)webView{
     
 
+    [webView stopLoading];
     
     
     NSString * height = [webView stringByEvaluatingJavaScriptFromString: @"document.body.offsetHeight"];
@@ -966,27 +967,32 @@
     if (array_photo.count>0) {
         NSString * fullURL= [NSString stringWithFormat:@"%@",[array_photo objectAtIndex:0]];
         NSLog(@"1请求的url = %@",fullURL);
-        ASIHTTPRequest * request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:fullURL]];
+      requestimg = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:fullURL]];
+        requestimg.tag=2014;
+//        __weak ASIHTTPRequest * _requset = request;
         
-        __block ASIHTTPRequest * _requset = request;
+//        __weak typeof(request) weakRequest = request;
         
-        _requset.delegate = self;
+        __weak typeof(self) weakSelf = self;
         
-        [_requset setCompletionBlock:^{
+        requestimg.delegate = self;
+        
+        [requestimg setCompletionBlock:^{
+            
             NSLog(@"说明这个照片下载成功了");
-            self.imgforshare= [UIImage imageWithData:request.responseData];
+            weakSelf.imgforshare= [UIImage imageWithData:requestimg.responseData];
             
             
         }];
         
         
-        [_requset setFailedBlock:^{
+        [requestimg setFailedBlock:^{
             
-            [request cancel];
+            [requestimg cancel];
             
         }];
         
-        [_requset startAsynchronous];
+        [requestimg startAsynchronous];
         
     }
     
@@ -1858,6 +1864,26 @@
     [self presentModalViewController:browser animated:YES];
 }
 
+
+-(void)dealloc{
+    
+    
+   
+    
+    
+    
+    [requestimg cancel];
+    requestimg.delegate=nil;
+    requestimg=nil;
+    
+    
+ //   NSLog(@"%@",NSStringFromClass([newsdetailViewController class]));
+    _webView.delegate=nil;
+    secondWebView.delegate=nil;
+    [_webView removeFromSuperview];
+    [secondWebView removeFromSuperview];
+    
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

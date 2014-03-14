@@ -2465,11 +2465,11 @@
 
         [alert show];
         return;
-<<<<<<< HEAD
-
-=======
-        blackcolorview.hidden=NO;
->>>>>>> FETCH_HEAD
+//<<<<<<< HEAD
+//
+//=======
+//        blackcolorview.hidden=NO;
+//>>>>>>> FETCH_HEAD
     }
     
     NSDictionary * rootObject = [[NSDictionary alloc] initWithDictionary:dic11111];
