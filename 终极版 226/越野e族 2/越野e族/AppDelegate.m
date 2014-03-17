@@ -220,11 +220,6 @@
     if (flagofpage==4) {
         flagofpage=0;
     }
-    
-    
-    
-    
-    
 }
 
 
@@ -317,16 +312,11 @@
     
     if (tool.tag==100) {
         
-        
-        
         @try {
             //  NSDictionary * dic = [data objectFromJSONData];
             
             NSDictionary *array_test=[data objectFromJSONData];
             NSLog(@"dic== %@",array_test);
-            
-            
-            
             
             
             if (array_test.count==0) {
@@ -340,12 +330,6 @@
                 
             }else{
                 
-                
-                
-                
-                
-                
-                
                NSDictionary *dic=[array_test objectForKey:@""];
                 NSLog(@"dic== %@",dic);
                 
@@ -355,13 +339,6 @@
                 [guanggao_image loadImageFromURL:string_src withPlaceholdImage:nil];
                 
               //  [self getImgDatawithstring:string_src];
-                
-                
-                
-                
-                
-                
-                
                 
             }
         }
@@ -394,9 +371,6 @@
                     {
                         _leveyTabBarController.tabBar.tixing_imageView.hidden = NO;
 
-                        
-                        
-                        
                         [[NSNotificationCenter defaultCenter]postNotificationName:@"fbnotification" object:[NSDictionary dictionary]];
                         
                     }
@@ -414,10 +388,6 @@
                     
                 }
             }
-            
-            
-            
-     
         }
     }
     @catch (NSException *exception) {
@@ -426,8 +396,6 @@
     @finally {
         
     }
-    
-    
 }
 
 
@@ -536,32 +504,21 @@
     [guanggao_image cancelDownload];
     guanggao_image.delegate=nil;
     
-
-
-    
-    
     [[UIApplication sharedApplication] setStatusBarHidden:NO];
-    
-    
     
     if (!rootVC || !bbsVC || !weiboVC || !mineVC || !moreVC || !_leveyTabBarController)
     {
         rootVC = [[RootViewController alloc] init];
         UINavigationController * naVC1 = [[UINavigationController alloc] initWithRootViewController:rootVC];
         
-        
         bbsVC = [[BBSViewController alloc] init];
         UINavigationController * naVC2 = [[UINavigationController alloc] initWithRootViewController:bbsVC];
-        
-        
         
         weiboVC = [[NewWeiBoViewController alloc] init];
         UINavigationController * naVC3 = [[UINavigationController alloc] initWithRootViewController:weiboVC];
         
-        
         mineVC = [[CarPortViewController alloc] init];
         UINavigationController * naVC4 = [[UINavigationController alloc] initWithRootViewController:mineVC];
-        
         
         moreVC = [[PersonalmoreViewController alloc] init];
         UINavigationController * naVC5 = [[UINavigationController alloc] initWithRootViewController:moreVC];
@@ -598,11 +555,6 @@
         
         NSArray *imgArr = [NSArray arrayWithObjects:imgDic,imgDic2,imgDic3,imgDic4,imgDic5,nil];
         
-        
-        
-   
-        
-        
         _leveyTabBarController = [[LeveyTabBarController alloc] initWithViewControllers:array imageArray:imgArr];
         [_leveyTabBarController setTabBarTransparent:YES];
         [_leveyTabBarController.tabBar setBackgroundImage:[UIImage imageNamed:@"ios7tabbar@2x.png"]];
@@ -616,25 +568,11 @@
         guanggao_image=nil;
         iMagelogo=nil;
         bigimageview=nil;
-      //  [_leveyTabBarController setSelectedIndex:4];
         
         self.window.rootViewController=_leveyTabBarController;
         [[NSNotificationCenter defaultCenter]
          postNotificationName:@"testpush" object:dic_push];
         
-
-        
-        
-        
-        
-//        
-//        CGRect frame = CGRectMake(0, 0, 320, 49);
-//        UIView *v = [[UIView alloc] initWithFrame:frame];
-//        UIImage *img = [UIImage imageNamed:@"menu_bg.png"];
-//        UIColor *color = [[UIColor alloc] initWithPatternImage:img];
-//        v.backgroundColor = color;
-//        [tabbar.tabBar insertSubview:v atIndex:0];
-//        tabbar.tabBar.opaque = NO;
     }
 }
 
