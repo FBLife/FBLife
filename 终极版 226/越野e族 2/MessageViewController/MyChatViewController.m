@@ -576,7 +576,7 @@
                 }
                 
                 
-                UILabel * tempLabel = [[UILabel alloc] initWithFrame:CGRectMake(theType ==JSBubbleMessageTypeIncoming?15:5,theHeight,250,50)];
+                UILabel * tempLabel = [[UILabel alloc] initWithFrame:CGRectMake(theType ==MyChatViewCellTypeIncoming?15:5,theHeight,250,50)];
                 
                 CGPoint thePoint = [self LinesWidth:clean_string Label:tempLabel];
                 
@@ -639,10 +639,10 @@
         
         if ([info.from_username isEqualToString:[[NSUserDefaults standardUserDefaults] objectForKey:USER_NAME]])
         {
-            theType = JSBubbleMessageTypeOutgoing;
+            theType = MyChatViewCellTypeOutgoing;
         }else
         {
-            theType = JSBubbleMessageTypeIncoming;
+            theType = MyChatViewCellTypeIncoming;
         }
         
         if (!test_cell)
@@ -691,10 +691,10 @@
         
         if ([info.from_uid isEqualToString:[[NSUserDefaults standardUserDefaults] objectForKey:USER_UID]])
         {
-            theType = JSBubbleMessageTypeOutgoing;
+            theType = MyChatViewCellTypeOutgoing;
         }else
         {
-            theType = JSBubbleMessageTypeIncoming;
+            theType = MyChatViewCellTypeIncoming;
         }
         
         [cell loadAllViewWithUrl:info Style:theType];
