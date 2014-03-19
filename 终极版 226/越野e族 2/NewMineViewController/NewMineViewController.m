@@ -982,7 +982,6 @@
             return shangjia_detail_view.frame.size.height + 10;
         }else
         {
-            
             FbFeed * info = [self.data_array objectAtIndex:indexPath.row-1];
             return [test_cell returnCellHeightWith:info WithType:1] + 20;
         }
