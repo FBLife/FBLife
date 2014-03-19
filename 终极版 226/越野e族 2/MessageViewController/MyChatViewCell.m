@@ -76,10 +76,10 @@
     
     CGPoint point = [self returnHeightWithArray:[zsnApi stringExchange:info.msg_message] WithType:type];
     
-    UIImage * image = [UIImage imageNamed:type == JSBubbleMessageTypeOutgoing ?@"talk1.png":@"talk2.png"];
+    UIImage * image = [UIImage imageNamed:type == MyChatViewCellTypeOutgoing ?@"talk1.png":@"talk2.png"];
     
     
-    _background_imageView = [[UIImageView alloc] initWithFrame:CGRectMake(type == JSBubbleMessageTypeOutgoing?(320 - point.x - 65):50,34,point.x+15,point.y)];
+    _background_imageView = [[UIImageView alloc] initWithFrame:CGRectMake(type == MyChatViewCellTypeOutgoing?(320 - point.x - 65):50,34,point.x+15,point.y)];
     
     _background_imageView.userInteractionEnabled = YES;
     
@@ -259,7 +259,7 @@
                 
                 url = [url stringByReplacingOccurrencesOfString:@"[/img]" withString:@""];
                 
-                AsyncImageView * imageView = [[AsyncImageView alloc] initWithFrame:CGRectMake(theType ==JSBubbleMessageTypeIncoming?10:5,theHeight?theHeight+distance:5,image_width,image_height)];
+                AsyncImageView * imageView = [[AsyncImageView alloc] initWithFrame:CGRectMake(theType ==MyChatViewCellTypeIncoming?10:5,theHeight?theHeight+distance:5,image_width,image_height)];
                 
                 imageView.delegate = self;
                 
@@ -296,7 +296,7 @@
                 
                 
                 
-                CGRect content_frame = CGRectMake(theType ==JSBubbleMessageTypeIncoming?10:5,theHeight?theHeight:5,250,50);
+                CGRect content_frame = CGRectMake(theType ==MyChatViewCellTypeIncoming?10:5,theHeight?theHeight:5,250,50);
                 
                 RTLabel * content_label = [[RTLabel alloc] initWithFrame:content_frame];
                 
@@ -347,7 +347,7 @@
 {
     CGFloat avatarX = 10; //0.5f +5.5;
     
-    if(type == JSBubbleMessageTypeOutgoing)
+    if(type == MyChatViewCellTypeOutgoing)
     {
         avatarX = (self.contentView.frame.size.width - kJSAvatarSize - 10);
     }
@@ -409,7 +409,7 @@
                 
                 
                 
-                CGRect content_frame = CGRectMake(theType ==JSBubbleMessageTypeIncoming?10:5,theHeight?theHeight:5,250,50);
+                CGRect content_frame = CGRectMake(theType ==MyChatViewCellTypeIncoming?10:5,theHeight?theHeight:5,250,50);
                 
                 RTLabel * content_label = [[RTLabel alloc] initWithFrame:content_frame];
                 

@@ -26,8 +26,8 @@
 extern CGFloat const kJSAvatarSize;
 
 typedef enum {
-    JSBubbleMessageTypeIncoming = 0,
-    JSBubbleMessageTypeOutgoing
+    MyChatViewCellTypeIncoming = 0,
+    MyChatViewCellTypeOutgoing
 } MyChatViewCellType;
 
 

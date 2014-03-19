@@ -16,7 +16,6 @@
 #import "UMSocialSnsService.h"
 #import "MessageViewController.h"
 #import "PersonalmoreViewController.h"
-
 @implementation AppDelegate
 @synthesize rootVC;
 @synthesize bbsVC;
@@ -521,7 +520,8 @@
         UINavigationController * naVC4 = [[UINavigationController alloc] initWithRootViewController:mineVC];
         
         
-        moreVC = [[PersonalmoreViewController alloc] init];
+        moreVC = [[MallViewController alloc] init];
+//        moreVC = [[PersonalmoreViewController alloc] init];
         UINavigationController * naVC5 = [[UINavigationController alloc] initWithRootViewController:moreVC];
         
         
@@ -595,7 +595,7 @@
 
 - (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated
 {
-	if ([viewController isKindOfClass:[RootViewController class]]||[viewController isKindOfClass:[BBSViewController class]]||[viewController isKindOfClass:[NewWeiBoViewController class]]||[viewController isKindOfClass:[CarPortViewController class]]||[viewController isKindOfClass:[PersonalmoreViewController class]])
+	if ([viewController isKindOfClass:[RootViewController class]]||[viewController isKindOfClass:[BBSViewController class]]||[viewController isKindOfClass:[NewWeiBoViewController class]]||[viewController isKindOfClass:[CarPortViewController class]]||[viewController isKindOfClass:[MallViewController class]])
 	{
         [_leveyTabBarController hidesTabBar:NO animated:YES];
 	}else{
