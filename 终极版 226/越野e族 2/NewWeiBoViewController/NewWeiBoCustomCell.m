@@ -475,7 +475,7 @@
     }else
     {
         if (([theUrl rangeOfString:@"atSomeone@"].length || [theUrl rangeOfString:@"fb://PhotoDetail/id="].length) && self.delegate && [self.delegate respondsToSelector:@selector(showAtSomeBody: WithFBFeed:)])
-        {NSLog(@"多少啊----%@---%@",_weiboInfo.ruserName,theUrl);
+        {
             [self.delegate showAtSomeBody:theUrl WithFBFeed:_weiboInfo];
         }else
         {

@@ -520,8 +520,12 @@
         mineVC = [[CarPortViewController alloc] init];
         UINavigationController * naVC4 = [[UINavigationController alloc] initWithRootViewController:mineVC];
         
+        
         moreVC = [[PersonalmoreViewController alloc] init];
         UINavigationController * naVC5 = [[UINavigationController alloc] initWithRootViewController:moreVC];
+        
+        
+        
         
         naVC1.delegate = (id)self;
         naVC2.delegate = (id)self;
@@ -570,8 +574,21 @@
         bigimageview=nil;
         
         self.window.rootViewController=_leveyTabBarController;
+        
         [[NSNotificationCenter defaultCenter]
          postNotificationName:@"testpush" object:dic_push];
+        
+        
+        
+        
+//        moreVC = [[PersonalmoreViewController alloc] init];
+//
+//        moreVC.view.frame = CGRectMake(320,0,320,iPhone5?568:480);
+//        
+//        [self.window addSubview:moreVC.view];
+        
+        
+        
         
     }
 }

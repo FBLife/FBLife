@@ -801,8 +801,71 @@
     
 }
 
+
+
+// move view to left side
+- (void)moveToLeftSide
+{
+    [self animateHomeViewToSide:CGRectMake(-320+42.5,
+                                           self.navigationController.view.frame.origin.y,
+                                           self.navigationController.view.frame.size.width,
+                                           self.navigationController.view.frame.size.height)];
+}
+
+// animate home view to side rect
+- (void)animateHomeViewToSide:(CGRect)newViewRect
+{
+    //    [(AppDelegate *)[[UIApplication sharedApplication] delegate] setLeftViewHidden:NO];
+    
+    [UIView animateWithDuration:0.2
+                     animations:^{
+                         
+                         [[[(AppDelegate *)[[UIApplication sharedApplication] delegate] moreVC]view]setFrame:CGRectMake(42.5,0,320,568)];
+                         
+                         self.leveyTabBarController.view.frame = newViewRect;
+                     }
+                     completion:^(BOOL finished){
+                         UIControl *overView = [[UIControl alloc] init];
+                         overView.tag = 10086;
+                         overView.backgroundColor = [UIColor clearColor];
+                         overView.frame = self.navigationController.view.frame;
+                         [overView addTarget:self action:@selector(restoreViewLocation) forControlEvents:UIControlEventTouchDown];
+                         [self.leveyTabBarController.view addSubview:overView];
+                     }];
+}
+
+
+- (void)restoreViewLocation
+{
+    //    [(AppDelegate *)[[UIApplication sharedApplication] delegate] setLeftViewHidden:NO];
+    
+    [UIView animateWithDuration:0.3
+                     animations:^{
+                         
+                         [[[(AppDelegate *)[[UIApplication sharedApplication] delegate] moreVC]view]setFrame:CGRectMake(320,0,320,568)];
+                         
+                         self.leveyTabBarController.view.frame = CGRectMake(0,
+                                                                            self.leveyTabBarController.view.frame.origin.y,
+                                                                            self.leveyTabBarController.view.frame.size.width,
+                                                                            self.leveyTabBarController.view.frame.size.height);
+                     }
+                     completion:^(BOOL finished){
+                         UIControl *overView = (UIControl *)[[[UIApplication sharedApplication] keyWindow] viewWithTag:10086];
+                         [overView removeFromSuperview];
+                         
+                     }];
+}
+
+
+
 -(void)refresh:(UIButton *)sender
 {//搜索
+    
+    [self moveToLeftSide];
+    
+    return;
+    
+    
     
     if (!array_weibo_search)
     {
