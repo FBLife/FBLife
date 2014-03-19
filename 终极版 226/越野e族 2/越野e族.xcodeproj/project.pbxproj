@@ -20,11 +20,44 @@
 		19204541186A6D4100B2D292 /* rootnewsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 19204540186A6D4100B2D292 /* rootnewsModel.m */; };
 		19204544186A79EE00B2D292 /* newsTableview.m in Sources */ = {isa = PBXBuildFile; fileRef = 19204543186A79EE00B2D292 /* newsTableview.m */; };
 		1922DEA718718DB700B56D32 /* weibo_write_image@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1922DEA618718DB700B56D32 /* weibo_write_image@2x.png */; };
+		1924400418D68DC70056E0EF /* MallViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1924400318D68DC70056E0EF /* MallViewController.m */; };
+		1924402518D6C8780056E0EF /* MallAction47_44@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1924400618D6C8780056E0EF /* MallAction47_44@2x.png */; };
+		1924402618D6C8780056E0EF /* MallAddgouwuche250_71@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1924400718D6C8780056E0EF /* MallAddgouwuche250_71@2x.png */; };
+		1924402718D6C8780056E0EF /* Mallbackgurand@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1924400818D6C8780056E0EF /* Mallbackgurand@2x.png */; };
+		1924402818D6C8780056E0EF /* Mallblack-round@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1924400918D6C8780056E0EF /* Mallblack-round@2x.png */; };
+		1924402918D6C8780056E0EF /* Mallcaogao39_42@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1924400A18D6C8780056E0EF /* Mallcaogao39_42@2x.png */; };
+		1924402A18D6C8780056E0EF /* Mallchose-no40_40@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1924400B18D6C8780056E0EF /* Mallchose-no40_40@2x.png */; };
+		1924402B18D6C8780056E0EF /* Mallchose-ok40_40@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1924400C18D6C8780056E0EF /* Mallchose-ok40_40@2x.png */; };
+		1924402C18D6C8780056E0EF /* Mallcollect48_46@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1924400D18D6C8780056E0EF /* Mallcollect48_46@2x.png */; };
+		1924402D18D6C8780056E0EF /* Malldelete33_35@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1924400E18D6C8780056E0EF /* Malldelete33_35@2x.png */; };
+		1924402E18D6C8780056E0EF /* Malldingdan83_83@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1924400F18D6C8780056E0EF /* Malldingdan83_83@2x.png */; };
+		1924402F18D6C8780056E0EF /* MallEdit@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1924401018D6C8780056E0EF /* MallEdit@2x.png */; };
+		1924403018D6C8780056E0EF /* Mallerweima35_35@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1924401118D6C8780056E0EF /* Mallerweima35_35@2x.png */; };
+		1924403118D6C8780056E0EF /* MallFailure204_191@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1924401218D6C8780056E0EF /* MallFailure204_191@2x.png */; };
+		1924403218D6C8780056E0EF /* MallfblifeLogo190_39@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1924401318D6C8780056E0EF /* MallfblifeLogo190_39@2x.png */; };
+		1924403318D6C8780056E0EF /* Mallhome38_36@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1924401418D6C8780056E0EF /* Mallhome38_36@2x.png */; };
+		1924403418D6C8780056E0EF /* MallLeft40_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 1924401518D6C8780056E0EF /* MallLeft40_32.png */; };
+		1924403518D6C8780056E0EF /* Mallline483_1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1924401618D6C8780056E0EF /* Mallline483_1@2x.png */; };
+		1924403618D6C8780056E0EF /* Mallmoon44_44@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1924401718D6C8780056E0EF /* Mallmoon44_44@2x.png */; };
+		1924403718D6C8780056E0EF /* Mallout-saerch592_56@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1924401818D6C8780056E0EF /* Mallout-saerch592_56@2x.png */; };
+		1924403818D6C8780056E0EF /* Mallpeople38_36.png in Resources */ = {isa = PBXBuildFile; fileRef = 1924401918D6C8780056E0EF /* Mallpeople38_36.png */; };
+		1924403918D6C8780056E0EF /* MallPersonalmessage187_59@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1924401A18D6C8780056E0EF /* MallPersonalmessage187_59@2x.png */; };
+		1924403A18D6C8780056E0EF /* Mallred-chose10_10.png in Resources */ = {isa = PBXBuildFile; fileRef = 1924401B18D6C8780056E0EF /* Mallred-chose10_10.png */; };
+		1924403B18D6C8780056E0EF /* Mallredbg592_80@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1924401C18D6C8780056E0EF /* Mallredbg592_80@2x.png */; };
+		1924403C18D6C8780056E0EF /* Mallsaech26_26@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1924401D18D6C8780056E0EF /* Mallsaech26_26@2x.png */; };
+		1924403D18D6C8780056E0EF /* Mallshezhi38_39@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1924401E18D6C8780056E0EF /* Mallshezhi38_39@2x.png */; };
+		1924403E18D6C8780056E0EF /* Mallshop83_83@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1924401F18D6C8780056E0EF /* Mallshop83_83@2x.png */; };
+		1924403F18D6C8780056E0EF /* Mallshoucangjia250_71@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1924402018D6C8780056E0EF /* Mallshoucangjia250_71@2x.png */; };
+		1924404018D6C8780056E0EF /* MallSuccess249_156@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1924402118D6C8780056E0EF /* MallSuccess249_156@2x.png */; };
+		1924404118D6C8780056E0EF /* Malltongxunlu44_42@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1924402218D6C8780056E0EF /* Malltongxunlu44_42@2x.png */; };
+		1924404218D6C8780056E0EF /* Malltouxiang115_112@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1924402318D6C8780056E0EF /* Malltouxiang115_112@2x.png */; };
+		1924404318D6C8780056E0EF /* Mallwhite-round@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1924402418D6C8780056E0EF /* Mallwhite-round@2x.png */; };
 		192AC1C81872CB1300319A7B /* weibo_detai_jiantou@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 192AC1C51872CB1300319A7B /* weibo_detai_jiantou@2x.png */; };
 		192AC1C91872CB1300319A7B /* weibo_detail_talk@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 192AC1C61872CB1300319A7B /* weibo_detail_talk@2x.png */; };
 		192AC1CA1872CB1300319A7B /* weibo_detail_wurenpinglun@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 192AC1C71872CB1300319A7B /* weibo_detail_wurenpinglun@2x.png */; };
 		1934C41B188F936C00F65590 /* ios7_nonecomment121_114@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1934C41A188F936C00F65590 /* ios7_nonecomment121_114@2x.png */; };
 		1934C41E188FAB5700F65590 /* newslooked.m in Sources */ = {isa = PBXBuildFile; fileRef = 1934C41D188FAB5700F65590 /* newslooked.m */; };
+		1935767F18D98338008A2FFB /* SlideShowModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1935767E18D98338008A2FFB /* SlideShowModel.m */; };
 		193E101A18BC28B100F6D9C8 /* ios7_commentkuang421_58@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 193E101818BC28B100F6D9C8 /* ios7_commentkuang421_58@2x.png */; };
 		193E101B18BC28B100F6D9C8 /* ios7_newssendbutton_99_56@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 193E101918BC28B100F6D9C8 /* ios7_newssendbutton_99_56@2x.png */; };
 		1959712D18BB30FA00D17284 /* ios_7carportpicselect608_57@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1959712C18BB30FA00D17284 /* ios_7carportpicselect608_57@2x.png */; };
@@ -1180,12 +1213,47 @@
 		19204542186A79EE00B2D292 /* newsTableview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = newsTableview.h; sourceTree = "<group>"; };
 		19204543186A79EE00B2D292 /* newsTableview.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = newsTableview.m; sourceTree = "<group>"; };
 		1922DEA618718DB700B56D32 /* weibo_write_image@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "weibo_write_image@2x.png"; sourceTree = "<group>"; };
+		1924400218D68DC70056E0EF /* MallViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MallViewController.h; path = ../MallViewController.h; sourceTree = "<group>"; };
+		1924400318D68DC70056E0EF /* MallViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MallViewController.m; path = ../MallViewController.m; sourceTree = "<group>"; };
+		1924400618D6C8780056E0EF /* MallAction47_44@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MallAction47_44@2x.png"; sourceTree = "<group>"; };
+		1924400718D6C8780056E0EF /* MallAddgouwuche250_71@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MallAddgouwuche250_71@2x.png"; sourceTree = "<group>"; };
+		1924400818D6C8780056E0EF /* Mallbackgurand@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Mallbackgurand@2x.png"; sourceTree = "<group>"; };
+		1924400918D6C8780056E0EF /* Mallblack-round@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Mallblack-round@2x.png"; sourceTree = "<group>"; };
+		1924400A18D6C8780056E0EF /* Mallcaogao39_42@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Mallcaogao39_42@2x.png"; sourceTree = "<group>"; };
+		1924400B18D6C8780056E0EF /* Mallchose-no40_40@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Mallchose-no40_40@2x.png"; sourceTree = "<group>"; };
+		1924400C18D6C8780056E0EF /* Mallchose-ok40_40@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Mallchose-ok40_40@2x.png"; sourceTree = "<group>"; };
+		1924400D18D6C8780056E0EF /* Mallcollect48_46@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Mallcollect48_46@2x.png"; sourceTree = "<group>"; };
+		1924400E18D6C8780056E0EF /* Malldelete33_35@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Malldelete33_35@2x.png"; sourceTree = "<group>"; };
+		1924400F18D6C8780056E0EF /* Malldingdan83_83@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Malldingdan83_83@2x.png"; sourceTree = "<group>"; };
+		1924401018D6C8780056E0EF /* MallEdit@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MallEdit@2x.png"; sourceTree = "<group>"; };
+		1924401118D6C8780056E0EF /* Mallerweima35_35@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Mallerweima35_35@2x.png"; sourceTree = "<group>"; };
+		1924401218D6C8780056E0EF /* MallFailure204_191@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MallFailure204_191@2x.png"; sourceTree = "<group>"; };
+		1924401318D6C8780056E0EF /* MallfblifeLogo190_39@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MallfblifeLogo190_39@2x.png"; sourceTree = "<group>"; };
+		1924401418D6C8780056E0EF /* Mallhome38_36@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Mallhome38_36@2x.png"; sourceTree = "<group>"; };
+		1924401518D6C8780056E0EF /* MallLeft40_32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MallLeft40_32.png; sourceTree = "<group>"; };
+		1924401618D6C8780056E0EF /* Mallline483_1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Mallline483_1@2x.png"; sourceTree = "<group>"; };
+		1924401718D6C8780056E0EF /* Mallmoon44_44@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Mallmoon44_44@2x.png"; sourceTree = "<group>"; };
+		1924401818D6C8780056E0EF /* Mallout-saerch592_56@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Mallout-saerch592_56@2x.png"; sourceTree = "<group>"; };
+		1924401918D6C8780056E0EF /* Mallpeople38_36.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Mallpeople38_36.png; sourceTree = "<group>"; };
+		1924401A18D6C8780056E0EF /* MallPersonalmessage187_59@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MallPersonalmessage187_59@2x.png"; sourceTree = "<group>"; };
+		1924401B18D6C8780056E0EF /* Mallred-chose10_10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Mallred-chose10_10.png"; sourceTree = "<group>"; };
+		1924401C18D6C8780056E0EF /* Mallredbg592_80@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Mallredbg592_80@2x.png"; sourceTree = "<group>"; };
+		1924401D18D6C8780056E0EF /* Mallsaech26_26@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Mallsaech26_26@2x.png"; sourceTree = "<group>"; };
+		1924401E18D6C8780056E0EF /* Mallshezhi38_39@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Mallshezhi38_39@2x.png"; sourceTree = "<group>"; };
+		1924401F18D6C8780056E0EF /* Mallshop83_83@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Mallshop83_83@2x.png"; sourceTree = "<group>"; };
+		1924402018D6C8780056E0EF /* Mallshoucangjia250_71@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Mallshoucangjia250_71@2x.png"; sourceTree = "<group>"; };
+		1924402118D6C8780056E0EF /* MallSuccess249_156@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MallSuccess249_156@2x.png"; sourceTree = "<group>"; };
+		1924402218D6C8780056E0EF /* Malltongxunlu44_42@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Malltongxunlu44_42@2x.png"; sourceTree = "<group>"; };
+		1924402318D6C8780056E0EF /* Malltouxiang115_112@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Malltouxiang115_112@2x.png"; sourceTree = "<group>"; };
+		1924402418D6C8780056E0EF /* Mallwhite-round@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Mallwhite-round@2x.png"; sourceTree = "<group>"; };
 		192AC1C51872CB1300319A7B /* weibo_detai_jiantou@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "weibo_detai_jiantou@2x.png"; sourceTree = "<group>"; };
 		192AC1C61872CB1300319A7B /* weibo_detail_talk@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "weibo_detail_talk@2x.png"; sourceTree = "<group>"; };
 		192AC1C71872CB1300319A7B /* weibo_detail_wurenpinglun@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "weibo_detail_wurenpinglun@2x.png"; sourceTree = "<group>"; };
 		1934C41A188F936C00F65590 /* ios7_nonecomment121_114@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ios7_nonecomment121_114@2x.png"; sourceTree = "<group>"; };
 		1934C41C188FAB5700F65590 /* newslooked.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = newslooked.h; sourceTree = "<group>"; };
 		1934C41D188FAB5700F65590 /* newslooked.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = newslooked.m; sourceTree = "<group>"; };
+		1935767D18D98338008A2FFB /* SlideShowModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SlideShowModel.h; sourceTree = "<group>"; };
+		1935767E18D98338008A2FFB /* SlideShowModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SlideShowModel.m; sourceTree = "<group>"; };
 		193E101818BC28B100F6D9C8 /* ios7_commentkuang421_58@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ios7_commentkuang421_58@2x.png"; sourceTree = "<group>"; };
 		193E101918BC28B100F6D9C8 /* ios7_newssendbutton_99_56@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ios7_newssendbutton_99_56@2x.png"; sourceTree = "<group>"; };
 		1959712C18BB30FA00D17284 /* ios_7carportpicselect608_57@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ios_7carportpicselect608_57@2x.png"; sourceTree = "<group>"; };
@@ -2614,6 +2682,79 @@
 			path = RootView;
 			sourceTree = "<group>";
 		};
+		1924400118D68DAB0056E0EF /* Mall */ = {
+			isa = PBXGroup;
+			children = (
+				1935767C18D9827D008A2FFB /* MallModel */,
+				1935767B18D9826B008A2FFB /* MallView */,
+				1935767A18D98257008A2FFB /* MallController */,
+			);
+			path = Mall;
+			sourceTree = "<group>";
+		};
+		1924400518D68DF10056E0EF /* Mall */ = {
+			isa = PBXGroup;
+			children = (
+				1924400618D6C8780056E0EF /* MallAction47_44@2x.png */,
+				1924400718D6C8780056E0EF /* MallAddgouwuche250_71@2x.png */,
+				1924400818D6C8780056E0EF /* Mallbackgurand@2x.png */,
+				1924400918D6C8780056E0EF /* Mallblack-round@2x.png */,
+				1924400A18D6C8780056E0EF /* Mallcaogao39_42@2x.png */,
+				1924400B18D6C8780056E0EF /* Mallchose-no40_40@2x.png */,
+				1924400C18D6C8780056E0EF /* Mallchose-ok40_40@2x.png */,
+				1924400D18D6C8780056E0EF /* Mallcollect48_46@2x.png */,
+				1924400E18D6C8780056E0EF /* Malldelete33_35@2x.png */,
+				1924400F18D6C8780056E0EF /* Malldingdan83_83@2x.png */,
+				1924401018D6C8780056E0EF /* MallEdit@2x.png */,
+				1924401118D6C8780056E0EF /* Mallerweima35_35@2x.png */,
+				1924401218D6C8780056E0EF /* MallFailure204_191@2x.png */,
+				1924401318D6C8780056E0EF /* MallfblifeLogo190_39@2x.png */,
+				1924401418D6C8780056E0EF /* Mallhome38_36@2x.png */,
+				1924401518D6C8780056E0EF /* MallLeft40_32.png */,
+				1924401618D6C8780056E0EF /* Mallline483_1@2x.png */,
+				1924401718D6C8780056E0EF /* Mallmoon44_44@2x.png */,
+				1924401818D6C8780056E0EF /* Mallout-saerch592_56@2x.png */,
+				1924401918D6C8780056E0EF /* Mallpeople38_36.png */,
+				1924401A18D6C8780056E0EF /* MallPersonalmessage187_59@2x.png */,
+				1924401B18D6C8780056E0EF /* Mallred-chose10_10.png */,
+				1924401C18D6C8780056E0EF /* Mallredbg592_80@2x.png */,
+				1924401D18D6C8780056E0EF /* Mallsaech26_26@2x.png */,
+				1924401E18D6C8780056E0EF /* Mallshezhi38_39@2x.png */,
+				1924401F18D6C8780056E0EF /* Mallshop83_83@2x.png */,
+				1924402018D6C8780056E0EF /* Mallshoucangjia250_71@2x.png */,
+				1924402118D6C8780056E0EF /* MallSuccess249_156@2x.png */,
+				1924402218D6C8780056E0EF /* Malltongxunlu44_42@2x.png */,
+				1924402318D6C8780056E0EF /* Malltouxiang115_112@2x.png */,
+				1924402418D6C8780056E0EF /* Mallwhite-round@2x.png */,
+			);
+			path = Mall;
+			sourceTree = "<group>";
+		};
+		1935767A18D98257008A2FFB /* MallController */ = {
+			isa = PBXGroup;
+			children = (
+				1924400218D68DC70056E0EF /* MallViewController.h */,
+				1924400318D68DC70056E0EF /* MallViewController.m */,
+			);
+			path = MallController;
+			sourceTree = "<group>";
+		};
+		1935767B18D9826B008A2FFB /* MallView */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = MallView;
+			sourceTree = "<group>";
+		};
+		1935767C18D9827D008A2FFB /* MallModel */ = {
+			isa = PBXGroup;
+			children = (
+				1935767D18D98338008A2FFB /* SlideShowModel.h */,
+				1935767E18D98338008A2FFB /* SlideShowModel.m */,
+			);
+			path = MallModel;
+			sourceTree = "<group>";
+		};
 		19B1186E18687EB900CA4C07 /* custonnb */ = {
 			isa = PBXGroup;
 			children = (
@@ -3624,6 +3765,7 @@
 		566E74B2185EE62300BB88C5 = {
 			isa = PBXGroup;
 			children = (
+				1924400118D68DAB0056E0EF /* Mall */,
 				566E77A6185EE75C00BB88C5 /* public */,
 				566E74ED185EE6E800BB88C5 /* ios7Images */,
 				566E7733185EE71100BB88C5 /* CarPortViewController */,
@@ -3739,6 +3881,7 @@
 		566E74ED185EE6E800BB88C5 /* ios7Images */ = {
 			isa = PBXGroup;
 			children = (
+				1924400518D68DF10056E0EF /* Mall */,
 				1959712C18BB30FA00D17284 /* ios_7carportpicselect608_57@2x.png */,
 				56624DF9187548EA0043A367 /* chat_people@2x.png */,
 				19A9610818B5F05200F064F1 /* searchbbs150_57@2x.png */,
@@ -4980,6 +5123,7 @@
 				5633645D1862E7490069F838 /* float390*197.png in Resources */,
 				566E7BE9185EE88400BB88C5 /* back-send.png in Resources */,
 				56C955A7185EEE5500763E69 /* cancell_button@2x.png in Resources */,
+				1924402918D6C8780056E0EF /* Mallcaogao39_42@2x.png in Resources */,
 				1913EA781890AF6B0045CBD8 /* ios7_loading61_12_4@2x.png in Resources */,
 				566E7A4E185EE80100BB88C5 /* currentPageDot@2x.png in Resources */,
 				5633652B1862E7510069F838 /* 2-17-26@2x.png in Resources */,
@@ -5011,6 +5155,7 @@
 				566E7C6A185EE8F100BB88C5 /* 3-1-128-98.png in Resources */,
 				566E78CB185EE75D00BB88C5 /* star-icon.png in Resources */,
 				566E793D185EE75D00BB88C5 /* face4_1.png in Resources */,
+				1924403D18D6C8780056E0EF /* Mallshezhi38_39@2x.png in Resources */,
 				5633648F1862E7490069F838 /* downpull90_45.png in Resources */,
 				566E792F185EE75D00BB88C5 /* face43.png in Resources */,
 				5633644B1862E7490069F838 /* 3_141_132@2x.png in Resources */,
@@ -5057,6 +5202,7 @@
 				566E7C6F185EE8F100BB88C5 /* 5-128-98.png in Resources */,
 				566E7BED185EE88400BB88C5 /* bubble-default-incoming-selected.png in Resources */,
 				566E7951185EE75D00BB88C5 /* face59.png in Resources */,
+				1924404118D6C8780056E0EF /* Malltongxunlu44_42@2x.png in Resources */,
 				563365B41862E7590069F838 /* bigimplace.png in Resources */,
 				563364681862E7490069F838 /* jinghua_31x31.png in Resources */,
 				566E7C10185EE88400BB88C5 /* url_image_loading@2x.png in Resources */,
@@ -5087,11 +5233,13 @@
 				566E752C185EE6E800BB88C5 /* chose.png in Resources */,
 				566E7950185EE75D00BB88C5 /* face58_1.png in Resources */,
 				563364581862E7490069F838 /* xiala_bgmiddle.png in Resources */,
+				1924403118D6C8780056E0EF /* MallFailure204_191@2x.png in Resources */,
 				566E7C00185EE88400BB88C5 /* bubble-typing@2x.png in Resources */,
 				566E7BEB185EE88400BB88C5 /* bubble-default-incoming-green.png in Resources */,
 				5634CB4E185FDE73003868D7 /* photo_default@2x.png in Resources */,
 				56C955AA185EEE5500763E69 /* dingwei_bg.png in Resources */,
 				563365F81862E7590069F838 /* userunselect@2x.png in Resources */,
+				1924402818D6C8780056E0EF /* Mallblack-round@2x.png in Resources */,
 				563365C01862E7590069F838 /* ping.png in Resources */,
 				563363681862E68D0069F838 /* ios7_xiaoxi5959@2x.png in Resources */,
 				5633647A1862E7490069F838 /* jing-34-34xi.png in Resources */,
@@ -5177,6 +5325,7 @@
 				563363801862E68D0069F838 /* ios7_diqu@2x.png in Resources */,
 				19ECDABC186F1447002B2281 /* weibo_detail_pinglun@2x.png in Resources */,
 				5633649E1862E7490069F838 /* x39_39@2x.png in Resources */,
+				1924403B18D6C8780056E0EF /* Mallredbg592_80@2x.png in Resources */,
 				563365DA1862E7590069F838 /* paixu92_80@2x.png in Resources */,
 				566E7A2B185EE7D000BB88C5 /* self_bgup@2x.png in Resources */,
 				566E7CAD185EEA4000BB88C5 /* cancelguanzhu@2x.png in Resources */,
@@ -5200,6 +5349,7 @@
 				563364441862E7490069F838 /* horn_right24x24.png in Resources */,
 				563364671862E7490069F838 /* 5.png in Resources */,
 				566E7935185EE75D00BB88C5 /* face46.png in Resources */,
+				1924403318D6C8780056E0EF /* Mallhome38_36@2x.png in Resources */,
 				563364311862E7490069F838 /* 640_100@2x.jpg in Resources */,
 				566E7BDD185EE88400BB88C5 /* chatleft.png in Resources */,
 				566E7BFF185EE88400BB88C5 /* bubble-typing.png in Resources */,
@@ -5246,6 +5396,7 @@
 				563364541862E7490069F838 /* top1_34-34.png in Resources */,
 				192AC1C91872CB1300319A7B /* weibo_detail_talk@2x.png in Resources */,
 				19ECDAAA186EA94E002B2281 /* ios7_tabbarchose@2x.png in Resources */,
+				1924404218D6C8780056E0EF /* Malltouxiang115_112@2x.png in Resources */,
 				563365FF1862E7590069F838 /* segcenter@2x.png in Resources */,
 				56624DFD187564C70043A367 /*  icon7.png in Resources */,
 				566E7C0B185EE88400BB88C5 /* send-highlighted.png in Resources */,
@@ -5282,6 +5433,7 @@
 				1913EA751890AF6B0045CBD8 /* ios7_loading61_12_1@2x.png in Resources */,
 				5634D497186057B4003868D7 /* choosepictureno@2x.png in Resources */,
 				566E7A14185EE7D000BB88C5 /* menu_bbs_sel@2x.png in Resources */,
+				1924403418D6C8780056E0EF /* MallLeft40_32.png in Resources */,
 				19CF4121186C51BF00AA51A9 /* zc_phoneNum@2x.png in Resources */,
 				566E7C2F185EE88400BB88C5 /* qqright.png in Resources */,
 				563364551862E7490069F838 /* top2_34-34.png in Resources */,
@@ -5337,6 +5489,7 @@
 				566E7C6B185EE8F100BB88C5 /* 3-128-98.png in Resources */,
 				566E74D1185EE62300BB88C5 /* Images.xcassets in Resources */,
 				566E7926185EE75D00BB88C5 /* face39_1.png in Resources */,
+				1924403618D6C8780056E0EF /* Mallmoon44_44@2x.png in Resources */,
 				5633635F1862E68D0069F838 /* ios7_headimplace@2x.png in Resources */,
 				563364991862E7490069F838 /* searchofsearch@2x.png in Resources */,
 				566E7939185EE75D00BB88C5 /* face48.png in Resources */,
@@ -5356,7 +5509,9 @@
 				19A9610C18B5F05200F064F1 /* searchbbs150_57@2x.png in Resources */,
 				566E7BE8185EE88400BB88C5 /* back-receive@2x.png in Resources */,
 				563363901862E68D0069F838 /* ios7_fbunselect@2x.png in Resources */,
+				1924403C18D6C8780056E0EF /* Mallsaech26_26@2x.png in Resources */,
 				566E7969185EE75D00BB88C5 /* 640_146@2x.png in Resources */,
+				1924402518D6C8780056E0EF /* MallAction47_44@2x.png in Resources */,
 				566E7782185EE71100BB88C5 /* 2013_1030_140x70.png in Resources */,
 				566E7BEA185EE88400BB88C5 /* back-send@2x.png in Resources */,
 				56C95548185EED9A00763E69 /* forward_rp.png in Resources */,
@@ -5377,6 +5532,7 @@
 				563364481862E7490069F838 /* 1_141_132_2@2x.png in Resources */,
 				566E7A56185EE80100BB88C5 /* pageDot@2x.png in Resources */,
 				566E7BEC185EE88400BB88C5 /* bubble-default-incoming-green@2x.png in Resources */,
+				1924403818D6C8780056E0EF /* Mallpeople38_36.png in Resources */,
 				5633653D1862E7510069F838 /* setting_qingchu@2x.png in Resources */,
 				56607600188F5D2E00C25ACE /* zbar-help.html in Resources */,
 				566075EA188F5D2E00C25ACE /* qrcode_focus(1).png in Resources */,
@@ -5474,11 +5630,13 @@
 				566E7A2A185EE7D000BB88C5 /* self_bgup.png in Resources */,
 				566E7561185EE6E800BB88C5 /* talk1@2x.png in Resources */,
 				563365B31862E7590069F838 /* big_moren640x324.png in Resources */,
+				1924404318D6C8780056E0EF /* Mallwhite-round@2x.png in Resources */,
 				563364501862E7490069F838 /* more62x55.png in Resources */,
 				563365FA1862E7590069F838 /* wbunselect@2x.png in Resources */,
 				566E792E185EE75D00BB88C5 /* face42_1.png in Resources */,
 				56C955AD185EEE5500763E69 /* gengduotupiankuang@2x.png in Resources */,
 				56C95558185EED9A00763E69 /* weiboDetail_refresh_sel.png in Resources */,
+				1924402A18D6C8780056E0EF /* Mallchose-no40_40@2x.png in Resources */,
 				566E7784185EE71100BB88C5 /* clean_backimage@2x.png in Resources */,
 				566E7907185EE75D00BB88C5 /* face25.png in Resources */,
 				563366061862E7590069F838 /* small_moren172X126.png in Resources */,
@@ -5523,10 +5681,13 @@
 				566E7C7E185EE8F100BB88C5 /* newsselected@2x.png in Resources */,
 				563365F41862E7590069F838 /* bbsunselect@2x.png in Resources */,
 				566E7BF2185EE88400BB88C5 /* bubble-default-outgoing-green@2x.png in Resources */,
+				1924402B18D6C8780056E0EF /* Mallchose-ok40_40@2x.png in Resources */,
+				1924402F18D6C8780056E0EF /* MallEdit@2x.png in Resources */,
 				563363811862E68D0069F838 /* ios7_goahead4032@2x.png in Resources */,
 				563365301862E7510069F838 /* feedback@2x.png in Resources */,
 				566E7956185EE75D00BB88C5 /* face61.png in Resources */,
 				563364951862E7490069F838 /* turn5028.png in Resources */,
+				1924402C18D6C8780056E0EF /* Mallcollect48_46@2x.png in Resources */,
 				5633637B1862E68D0069F838 /* ios7allbbs_166_159@2x.png in Resources */,
 				5633638F1862E68D0069F838 /* ios7_fbselected@2x.png in Resources */,
 				56C95560185EED9A00763E69 /* weiboDetail_zhuanfa_sel.png in Resources */,
@@ -5537,6 +5698,7 @@
 				563365D51862E7590069F838 /* 20130502_shubiao.png in Resources */,
 				193E101A18BC28B100F6D9C8 /* ios7_commentkuang421_58@2x.png in Resources */,
 				563365261862E7510069F838 /* UMFeedbackViewController.xib in Resources */,
+				1924402718D6C8780056E0EF /* Mallbackgurand@2x.png in Resources */,
 				566E7921185EE75D00BB88C5 /* face37.png in Resources */,
 				566E7901185EE75D00BB88C5 /* face22.png in Resources */,
 				563365351862E7510069F838 /* newAbout@2x.png in Resources */,
@@ -5544,6 +5706,7 @@
 				563364A31862E7490069F838 /* 2-37-37.png in Resources */,
 				563364611862E7490069F838 /* 2_31x31.png in Resources */,
 				5650097D18618FBA00EFD08D /* underPageBackGround@2x.png in Resources */,
+				1924402E18D6C8780056E0EF /* Malldingdan83_83@2x.png in Resources */,
 				566E7A1B185EE7D000BB88C5 /* menu_fb_sel@2x.png in Resources */,
 				56C955F6185EEEB700763E69 /* addguanzhuimage@2x.png in Resources */,
 				563363661862E68D0069F838 /* ios7_shortline_527x1@2x.png in Resources */,
@@ -5552,8 +5715,10 @@
 				56607604188F5D2E00C25ACE /* zbar-samples.png in Resources */,
 				19CF417A186D885400AA51A9 /* writeblog_delete_image@2x.png in Resources */,
 				563363601862E68D0069F838 /* ios7_help5959@2x.png in Resources */,
+				1924404018D6C8780056E0EF /* MallSuccess249_156@2x.png in Resources */,
 				56C955F5185EEEB700763E69 /* 3-14-226@2x.png in Resources */,
 				5633646D1862E7490069F838 /* bbs_huifu@2x.png in Resources */,
+				1924403E18D6C8780056E0EF /* Mallshop83_83@2x.png in Resources */,
 				563364391862E7490069F838 /* 3-124-137.png in Resources */,
 				566E794E185EE75D00BB88C5 /* face57_1.png in Resources */,
 				566E7906185EE75D00BB88C5 /* face24_1.png in Resources */,
@@ -5574,12 +5739,14 @@
 				566E7CAB185EEA4000BB88C5 /* sixin@2x.png in Resources */,
 				566E78C8185EE75D00BB88C5 /* settings-icon@2x.png in Resources */,
 				563365131862E7510069F838 /* messages_left_bubble@2x.png in Resources */,
+				1924403018D6C8780056E0EF /* Mallerweima35_35@2x.png in Resources */,
 				1922DEA718718DB700B56D32 /* weibo_write_image@2x.png in Resources */,
 				566E7785185EE71100BB88C5 /* clean_selected1@2x.png in Resources */,
 				566E7C5E185EE8F100BB88C5 /* about-640-1136@2x.png in Resources */,
 				563365DC1862E7590069F838 /* pinglun2_bg@2x.png in Resources */,
 				563365C71862E7590069F838 /* share.png in Resources */,
 				566E7BF8185EE88400BB88C5 /* bubble-square-incoming-selected@2x.png in Resources */,
+				1924403218D6C8780056E0EF /* MallfblifeLogo190_39@2x.png in Resources */,
 				563363861862E68D0069F838 /* ios7_photo_write53_36@2x.png in Resources */,
 				566E795A185EE75D00BB88C5 /* face7.png in Resources */,
 				566E7C62185EE8F100BB88C5 /* Default@2x.png in Resources */,
@@ -5589,6 +5756,7 @@
 				1913EA771890AF6B0045CBD8 /* ios7_loading61_12_3@2x.png in Resources */,
 				563364911862E7490069F838 /* horn_down17X16.png in Resources */,
 				566E78E7185EE75D00BB88C5 /* face10.png in Resources */,
+				1924403F18D6C8780056E0EF /* Mallshoucangjia250_71@2x.png in Resources */,
 				566E78C6185EE75D00BB88C5 /* segmented-separator@2x.png in Resources */,
 				56C95616185EEEB700763E69 /* underPageBackGround@2x.png in Resources */,
 				56C95615185EEEB700763E69 /* quxiaoguanzhuanniu@2x.png in Resources */,
@@ -5629,6 +5797,7 @@
 				56C955F8185EEEB700763E69 /* bianji.png in Resources */,
 				566E7A16185EE7D000BB88C5 /* menu_bg_sel@2x.png in Resources */,
 				19B1185E186871B600CA4C07 /* image_dowoland@2x.png in Resources */,
+				1924402618D6C8780056E0EF /* MallAddgouwuche250_71@2x.png in Resources */,
 				566E79E5185EE7B000BB88C5 /* recentlook.sqlite in Resources */,
 				563363741862E68D0069F838 /* ios7_bbs_down20_12@2x.png in Resources */,
 				563363871862E68D0069F838 /* ios7_refresh4139@2x.png in Resources */,
@@ -5679,6 +5848,7 @@
 				566E78F7185EE75D00BB88C5 /* face18.png in Resources */,
 				566E7790185EE71100BB88C5 /* link.png in Resources */,
 				566E78CD185EE75D00BB88C5 /* 308_223@2x.png in Resources */,
+				1924403A18D6C8780056E0EF /* Mallred-chose10_10.png in Resources */,
 				566E7916185EE75D00BB88C5 /* face31_1.png in Resources */,
 				563362F51862A4380069F838 /* earth_logo@2x.png in Resources */,
 				5633647E1862E7490069F838 /* section-header-bg.png in Resources */,
@@ -5691,6 +5861,7 @@
 				56C955A2185EEE5500763E69 /* 20130502_phone_camera@2x.png in Resources */,
 				566E7BF4185EE88400BB88C5 /* bubble-default-outgoing-selected@2x.png in Resources */,
 				19B11862186871B600CA4C07 /* llongInBackImage@2x.png in Resources */,
+				1924403718D6C8780056E0EF /* Mallout-saerch592_56@2x.png in Resources */,
 				5633651A1862E7510069F838 /* nav_bg.png in Resources */,
 				56C9554A185EED9A00763E69 /* forward_rp_select.png in Resources */,
 				566E793F185EE75D00BB88C5 /* face50.png in Resources */,
@@ -5702,6 +5873,7 @@
 				563364531862E7490069F838 /* send.png in Resources */,
 				566075F8188F5D2E00C25ACE /* qrcode_scan_btn_photo_nor.png in Resources */,
 				566E7936185EE75D00BB88C5 /* face46_1.png in Resources */,
+				1924403918D6C8780056E0EF /* MallPersonalmessage187_59@2x.png in Resources */,
 				565008E21861374800EFD08D /* filmios7@2x.png in Resources */,
 				566E78CA185EE75D00BB88C5 /* social-icon@2x.png in Resources */,
 				563364771862E7490069F838 /* image-but.png in Resources */,
@@ -5757,10 +5929,12 @@
 				566E7A64185EE81500BB88C5 /* logo@2x.png in Resources */,
 				566E7A0E185EE7D000BB88C5 /* about@2x.png in Resources */,
 				563364701862E7490069F838 /* bbs_next@2x.png in Resources */,
+				1924403518D6C8780056E0EF /* Mallline483_1@2x.png in Resources */,
 				563364731862E7490069F838 /* beijingtitle640x68.png in Resources */,
 				566E7958185EE75D00BB88C5 /* face63.png in Resources */,
 				56C95600185EEEB700763E69 /* guanzhukuang.png in Resources */,
 				566E7A1E185EE7D000BB88C5 /* menu_more@2x.png in Resources */,
+				1924402D18D6C8780056E0EF /* Malldelete33_35@2x.png in Resources */,
 				563363941862E68D0069F838 /* ios7_newssearchbar@2x.png in Resources */,
 				56C95553185EED9A00763E69 /* weiboDetail_pinglun@2x.png in Resources */,
 				56C955A3185EEE5500763E69 /* 20130502_shouji_weizhi@2x.png in Resources */,
@@ -5892,6 +6066,7 @@
 				566E78E3185EE75D00BB88C5 /* EGORefreshTableHeaderView.m in Sources */,
 				566E74CF185EE62300BB88C5 /* AppDelegate.m in Sources */,
 				566E7A4F185EE80100BB88C5 /* FaceScrollView.m in Sources */,
+				1924400418D68DC70056E0EF /* MallViewController.m in Sources */,
 				566E79E7185EE7B000BB88C5 /* testbase.m in Sources */,
 				566E78D5185EE75D00BB88C5 /* ASIFormDataRequest.m in Sources */,
 				566E78D6185EE75D00BB88C5 /* ASIHTTPRequest.m in Sources */,
@@ -5929,6 +6104,7 @@
 				563364891862E7490069F838 /* CustomSegmentView.m in Sources */,
 				566E7C72185EE8F100BB88C5 /* LeveyTabBarController.m in Sources */,
 				566E78DC185EE75D00BB88C5 /* ATMHudView.m in Sources */,
+				1935767F18D98338008A2FFB /* SlideShowModel.m in Sources */,
 				566E78DD185EE75D00BB88C5 /* ATMProgressLayer.m in Sources */,
 				56C955B1185EEE5500763E69 /* WriteBlogViewController.m in Sources */,
 				565008E718616CFA00EFD08D /* FBMapViewController.m in Sources */,

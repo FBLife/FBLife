@@ -10,7 +10,6 @@
 #import "QBImagePickerController.h"
 
 
-
 @interface commrntbbdViewController (){
     UIButton *button_send;
     NSData* _data;

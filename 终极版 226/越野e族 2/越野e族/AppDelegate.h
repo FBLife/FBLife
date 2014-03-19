@@ -22,6 +22,8 @@
 #import "NewWeiBoViewController.h"
 #import "NewMineViewController.h"
 #import "MessageViewController.h"
+#import "MallViewController.h"
+
 #import "WeiboSDK.h"
 #import "CarPortViewController.h"
 #import "PersonalmoreViewController.h"
@@ -56,7 +58,7 @@
 @property(nonatomic,strong)BBSViewController * bbsVC;
 @property(nonatomic,strong)NewWeiBoViewController * weiboVC;
 @property(nonatomic,strong)CarPortViewController * mineVC;
-@property(nonatomic,strong)PersonalmoreViewController * moreVC;
+@property(nonatomic,strong)MallViewController * moreVC;
 @property(nonatomic,strong)CTCallCenter *_center;
 
 @end

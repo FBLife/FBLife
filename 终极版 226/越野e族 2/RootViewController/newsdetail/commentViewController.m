@@ -28,6 +28,7 @@
     
     NSString *string_106;//发送评论的评论
     NewMineViewController *_people;
+    UIImageView *secondimgv;//提示没有数据的那个header;
     
 }
 @end
@@ -159,7 +160,7 @@
 //    button_comment.backgroundColor=[UIColor redColor];
     
     
-    UIBarButtonItem *comment_item=[[UIBarButtonItem alloc]initWithCustomView:rightView];
+  //  UIBarButtonItem *comment_item=[[UIBarButtonItem alloc]initWithCustomView:rightView];
  //排序不先要，所以先隐藏掉
 //    self.navigationItem.rightBarButtonItem=comment_item;
 
@@ -450,6 +451,14 @@
         [request setDelegate:self];
         [request startAsynchronous];
         NSLog(@"开始请求评论数据");
+        
+        if (!_isloadingIv) {
+            _isloadingIv=[[loadingimview alloc]initWithFrame:CGRectMake(100, 200, 150, 100) labelString:@"正在加载"];
+            [[UIApplication sharedApplication].keyWindow
+             addSubview:_isloadingIv];
+            
+        }
+        _isloadingIv.hidden=NO;
     }else{
         
         NSURL *url101 = [NSURL URLWithString:[NSString stringWithFormat:@"http://fb.fblife.com/openapi/index.php?mod=comment&code=commentlist&sort=7&sortid=%d&fbtype=json&page=1&order=2",[self.string_ID integerValue]]];
@@ -516,6 +525,8 @@
             NSLog(@"xxxxxx");
             
             NSLog(@"获取评论列表");
+            _isloadingIv.hidden=YES;
+
             NSData *data=[request responseData];
             _dic = [data objectFromJSONData];
             NSLog(@"_dic======%@",_dic);
@@ -532,6 +543,8 @@
             array_weiboinfo= [_dic objectForKey:@"weiboinfo"];
             if (allcount==0) {
                 NSLog(@"jiutama0ge");
+                secondimgv.hidden=NO;
+
                // tab_pinglunliebiao.tableFooterView=label_noneshuju;
                 
             }else{
@@ -963,11 +976,9 @@
         
         return firstsectionview ;
     }else if(section==1){
-        UIImageView *secondimgv=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320, 30)];
-       // secondimgv.image=[[UIImage imageNamed:@"pinglun_bg2856.png"]stretchableImageWithLeftCapWidth:5 topCapHeight:5];
+        secondimgv=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320, 30)];
         secondimgv.backgroundColor=[UIColor whiteColor];
         
-
         
         self.string_commentnumber=[NSString stringWithFormat:@"%d",array_name.count];
         
@@ -985,13 +996,15 @@
             
             //最下面的还没有人评论
             
-            UILabel *label_none=[[UILabel alloc]initWithFrame:CGRectMake(0, 105, 320, 20)];
             
+            UILabel *label_none=[[UILabel alloc]initWithFrame:CGRectMake(0, 105, 320, 20)];
             label_none.textAlignment=UITextAlignmentCenter;
             label_none.textColor=RGBCOLOR(205, 205, 205);
             label_none.text=@"还没有人评论";
             label_none.font=[UIFont systemFontOfSize:15];
             [secondimgv addSubview:label_none];
+            
+            secondimgv.hidden=YES;
             
             
             
