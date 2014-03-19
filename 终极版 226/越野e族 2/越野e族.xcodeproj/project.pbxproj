@@ -57,6 +57,7 @@
 		1934C41B188F936C00F65590 /* ios7_nonecomment121_114@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1934C41A188F936C00F65590 /* ios7_nonecomment121_114@2x.png */; };
 		1934C41E188FAB5700F65590 /* newslooked.m in Sources */ = {isa = PBXBuildFile; fileRef = 1934C41D188FAB5700F65590 /* newslooked.m */; };
 		1935767F18D98338008A2FFB /* SlideShowModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1935767E18D98338008A2FFB /* SlideShowModel.m */; };
+		1935768218D997E9008A2FFB /* MallViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1935768118D997E9008A2FFB /* MallViewController.m */; };
 		193E101A18BC28B100F6D9C8 /* ios7_commentkuang421_58@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 193E101818BC28B100F6D9C8 /* ios7_commentkuang421_58@2x.png */; };
 		193E101B18BC28B100F6D9C8 /* ios7_newssendbutton_99_56@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 193E101918BC28B100F6D9C8 /* ios7_newssendbutton_99_56@2x.png */; };
 		1959712D18BB30FA00D17284 /* ios_7carportpicselect608_57@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1959712C18BB30FA00D17284 /* ios_7carportpicselect608_57@2x.png */; };
@@ -1251,6 +1252,8 @@
 		1934C41D188FAB5700F65590 /* newslooked.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = newslooked.m; sourceTree = "<group>"; };
 		1935767D18D98338008A2FFB /* SlideShowModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SlideShowModel.h; sourceTree = "<group>"; };
 		1935767E18D98338008A2FFB /* SlideShowModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SlideShowModel.m; sourceTree = "<group>"; };
+		1935768018D997E9008A2FFB /* MallViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MallViewController.h; sourceTree = "<group>"; };
+		1935768118D997E9008A2FFB /* MallViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MallViewController.m; sourceTree = "<group>"; };
 		193E101818BC28B100F6D9C8 /* ios7_commentkuang421_58@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ios7_commentkuang421_58@2x.png"; sourceTree = "<group>"; };
 		193E101918BC28B100F6D9C8 /* ios7_newssendbutton_99_56@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ios7_newssendbutton_99_56@2x.png"; sourceTree = "<group>"; };
 		1959712C18BB30FA00D17284 /* ios_7carportpicselect608_57@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ios_7carportpicselect608_57@2x.png"; sourceTree = "<group>"; };
@@ -2730,6 +2733,8 @@
 		1935767A18D98257008A2FFB /* MallController */ = {
 			isa = PBXGroup;
 			children = (
+				1935768018D997E9008A2FFB /* MallViewController.h */,
+				1935768118D997E9008A2FFB /* MallViewController.m */,
 			);
 			path = MallController;
 			sourceTree = "<group>";
@@ -6119,6 +6124,7 @@
 				19CF4185186D88AE00AA51A9 /* WeiBoFaceScrollView.m in Sources */,
 				566E7C1C185EE88400BB88C5 /* NewMessageViewController.m in Sources */,
 				56C955C2185EEEA900763E69 /* guanzhuViewController.m in Sources */,
+				1935768218D997E9008A2FFB /* MallViewController.m in Sources */,
 				566E7967185EE75D00BB88C5 /* LogInViewController.m in Sources */,
 				566E7BE3185EE88400BB88C5 /* JSMessageInputView.m in Sources */,
 				566E7C71185EE8F100BB88C5 /* LeveyTabBar.m in Sources */,
