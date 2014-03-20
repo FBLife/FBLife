@@ -8,7 +8,6 @@
 
 #import "PersonalmoreViewController.h"
 #import "MessageViewController.h"
-#import "LogInViewController.h"
 #import "NewMineViewController.h"
 #import "FriendListViewController.h"
 #import "DraftBoxViewController.h"
@@ -19,6 +18,7 @@
 #import "QrcodeViewController.h"
 #import "DetailViewController.h"
 #import "UMTableViewController.h"
+#import "AppDelegate.h"
 //#import "ScanningViewController.h"
 
 
@@ -28,6 +28,10 @@
 }
 
 @end
+
+
+/*
+
 
 @implementation PersonalmoreViewController
 
@@ -171,24 +175,6 @@
 
 -(void)refreshsectionthree:(NSNotification *)center{
     NSDictionary *dic_pushinfo=(NSDictionary *)center.object;
-    
-    
-    
-    /*
-     有关消息推送的相关说明：
-     
-     2 ：文集评论
-     3 ：画廊评论
-     4 ：微博评论
-     5 ：微博@
-     6 ：私信
-     7 ：文集@
-     9 ：关注
-     20 ：主贴回复
-     21 ：引用回复
-     */
-
-    
     
     int type=[[[dic_pushinfo objectForKey:@"aps"] objectForKey:@"type"] integerValue];
     NSLog(@"dic===%@=======type====%d",dic_pushinfo,type);
@@ -1068,8 +1054,8 @@
 #pragma mark-退出登录，消除devicetoken
 
 -(void)deletetoken{
-    /*http://bbs2.fblife.com/localapi/user_app_token.php?action=deltoken&authcode=sdfasfdsafdasdf&token=ssdfasdfaddfgdsgf2a&token_key=01b1f00235ae1d46432ba45771beb2d1&datatype=json*/
-    
+//    http://bbs2.fblife.com/localapi/user_app_token.php?action=deltoken&authcode=sdfasfdsafdasdf&token=ssdfasdfaddfgdsgf2a&token_key=01b1f00235ae1d46432ba45771beb2d1&datatype=json
+ 
     
     NSString *stringdevicetoken=[NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults]objectForKey:DEVICETOKEN]];
     NSString *authkey=[[NSUserDefaults standardUserDefaults] objectForKey:USER_AUTHOD];
@@ -1188,3 +1174,282 @@
 }
 
 @end
+
+
+*/
+
+
+
+@implementation PersonalmoreViewController
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self)
+    {
+        
+    }
+    return self;
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+    UIImageView * yinying_imageView = [[UIImageView alloc] initWithFrame:CGRectMake(42.5,0,10,iPhone5?568:480)];
+    
+    yinying_imageView.image = [UIImage imageNamed:iPhone5?@"Mallyinying20_1136.png":@"Mallyinying20_960.png"];
+
+    [self.view addSubview:yinying_imageView];
+    
+    UIImageView * aView = [[UIImageView alloc] initWithFrame:CGRectMake(42.5,0,555/2,568)];
+    
+    aView.image = [UIImage imageNamed:@"Mallbackgurand.png"];
+    
+    aView.userInteractionEnabled = YES;
+    
+    [self.view addSubview:aView];
+    
+    self.view.backgroundColor = RGBCOLOR(60,44,45);
+    
+    UIButton * settingButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    
+    settingButton.frame = CGRectMake(491/2,22,38/2,39/2);
+    
+    [settingButton setImage:[UIImage imageNamed:@"Mallshezhi38_39.png"] forState:UIControlStateNormal];
+    
+    [aView addSubview:settingButton];
+    
+    
+    UIButton * header_image = [UIButton buttonWithType:UIButtonTypeCustom];
+    
+    header_image.frame = CGRectMake(220/2,102/2,115/2,112/2);
+    
+    [header_image setImage:[UIImage imageNamed:@"Malltouxiang115_112.png"] forState:UIControlStateNormal];
+    
+    
+    [header_image addTarget:self action:@selector(LogInViewShow:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [aView addSubview:header_image];
+    
+    
+    UILabel * userName_label = [[UILabel alloc] initWithFrame:CGRectMake(0,102/2+30/2+112/2,555/2,30/2)];
+    
+    userName_label.text = @"登录账号";
+    
+    userName_label.textColor = [UIColor whiteColor];
+    
+    userName_label.textAlignment = NSTextAlignmentCenter;
+    
+    [aView addSubview:userName_label];
+    
+    
+    
+    
+    
+    for (int i = 0;i<2;i++)
+    {
+        UIView * line_view = [[UIView alloc] initWithFrame:CGRectMake((555/2-481/2)/2,343/2+(189/2)*i,481/2,0.5)];
+        
+        line_view.backgroundColor = [UIColor colorWithRed:113/255.0 green:97/255.0 blue:100/255.0 alpha:1];
+        
+        [aView addSubview:line_view];
+    }
+    
+    
+    NSArray * title_array = [NSArray arrayWithObjects:@"购物车",@"我的订单",@"我的收藏夹",@"消息     ",@"草稿箱  ",@"通讯录  ",@"二维码  ",@"收藏     ",@"  夜间模式",nil];
+    
+    NSArray * image_array = [NSArray arrayWithObjects:@"MallAction47_44.png",@"Mallcaogao39_42.png",@"Malltongxunlu44_42.png",@"Mallerweima35_35.png",@"Mallcollect48_46.png",@"Mallmoon44_44.png",nil];
+    
+    
+    for (int i = 0;i < 3;i++) {
+        UIButton * button = [UIButton buttonWithType:UIButtonTypeCustom];
+        
+        button.frame = CGRectMake((555/2-481/2)/2+(481/2/3)*i,343/2+29/2,481/2/3,62);
+        
+        button.backgroundColor = [UIColor clearColor];
+        
+        [button setTitle:[title_array objectAtIndex:i] forState:UIControlStateNormal];
+        
+        button.titleLabel.font = [UIFont systemFontOfSize:16];
+        
+        button.titleLabel.textAlignment = NSTextAlignmentCenter;
+        
+        [button setTitleEdgeInsets:UIEdgeInsetsMake(30,0,0,0)];
+        
+        [aView addSubview:button];
+    }
+    
+    
+    
+    for (int i = 0;i < 3;i++) {
+        for (int j = 0;j < 2;j++) {
+            
+            UIButton * button = [UIButton buttonWithType:UIButtonTypeCustom];
+            
+            button.backgroundColor = [UIColor clearColor];
+            
+            button.tag = j+i*2+999;
+            
+            button.frame = CGRectMake(37+122*j,303+59.5*i,100,45/2);
+            
+            button.titleLabel.textAlignment = NSTextAlignmentLeft;
+            
+            button.titleLabel.font = [UIFont systemFontOfSize:14];
+            
+            [button setTitle:[title_array objectAtIndex:3+j+i*2] forState:UIControlStateNormal];
+            
+            [button setImage:[UIImage imageNamed:[image_array objectAtIndex:j+i*2]] forState:UIControlStateNormal];
+            
+            [button addTarget:self action:@selector(functionButton:) forControlEvents:UIControlEventTouchUpInside];
+            
+            [button setImageEdgeInsets:UIEdgeInsetsMake(0,0,0,60)];
+            
+            [button setTitleEdgeInsets:UIEdgeInsetsMake(0,0,0,0)];
+            
+            [aView addSubview:button];
+        }
+    }
+}
+
+-(void)login
+{
+    if (!logIn)
+    {
+        logIn = [[LogInViewController alloc] init];
+        
+        logIn.delegate = self;
+    }
+    
+    [[(AppDelegate *)[UIApplication sharedApplication].delegate fansVC] presentModalViewController:logIn animated:YES];
+    
+    [self.leveyTabBarController hidesTabBar:NO animated:YES];
+}
+
+-(BOOL)isLogin
+{
+    return [[NSUserDefaults standardUserDefaults] boolForKey:USER_IN];
+}
+
+-(void)LogInViewShow:(UIButton *)button
+{
+    [self login];
+}
+
+
+-(void)functionButton:(UIButton *)button
+{
+    switch (button.tag)
+    {
+        case 999:
+            [self pushToMessageController];
+            [self.leveyTabBarController hidesTabBar:NO animated:YES];
+            break;
+        case 1000:
+            
+            break;
+        case 1001:
+            [self pushToFriendListController];
+            [self.leveyTabBarController hidesTabBar:NO animated:YES];
+            break;
+        case 1002:
+            
+            break;
+        case 1003:
+            
+            break;
+        case 1004:
+            
+            break;
+            
+            
+        
+            
+        default:
+            break;
+    }
+}
+
+-(void)pushToFriendListController
+{
+    FriendListViewController * friendList = [[FriendListViewController alloc] init];
+    
+    friendList.delegate = self;
+    
+    [[(AppDelegate *)[UIApplication sharedApplication].delegate fansVC] presentModalViewController:friendList animated:YES];
+    
+//    [self.view.window.rootViewController.navigationController presentModalViewController:friendList animated:YES];
+}
+
+-(void)pushToMessageController
+{
+    if ([self isLogin])
+    {
+        MessageViewController *message=[[MessageViewController alloc]init];
+        
+        if (string_messageorfb.length>0)
+        {
+            message.string_messageorfbno=string_messageorfb;
+            
+        }else if( self.leveyTabBarController.tabBar.tixing_imageView.hidden==NO)
+        {
+            message.string_messageorfbno=@"fb";
+        }
+        
+        string_messageorfb=@"";
+        
+        self.leveyTabBarController.tabBar.tixing_imageView.hidden = YES;
+        
+//        [[(AppDelegate *)[UIApplication sharedApplication].delegate fansVC].navigationController pushViewController:message animated:YES];
+        
+        
+        [[(AppDelegate *)[UIApplication sharedApplication].delegate fansVC] presentModalViewController:message animated:YES];
+        
+        
+    }else{
+        [self login];
+    }
+    
+}
+
+-(void)returnUserName:(NSString *)username Uid:(NSString *)uid
+{
+    
+}
+
+-(void)atSomeBodys:(NSString *)string
+{
+    
+}
+
+
+#pragma mark-LogInDelegate
+
+
+-(void)successToLogIn
+{
+    
+}
+
+-(void)failToLogIn
+{
+    
+}
+
+
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+}
+
+@end
+
+
+
+
+
+
+
+
+

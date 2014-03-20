@@ -29,6 +29,7 @@
 #import "PersonalmoreViewController.h"
 #import <CoreTelephony/CTCallCenter.h>
 #import <CoreTelephony/CTCall.h>
+#import "FansViewController.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate,UITabBarControllerDelegate,LogInViewControllerDelegate,downloaddelegate,LeveyTabBarControllerDelegate,LeveyTabBarDelegate,AsyncImageDelegate,MobClickDelegate,WXApiDelegate>
 {
@@ -58,7 +59,14 @@
 @property(nonatomic,strong)BBSViewController * bbsVC;
 @property(nonatomic,strong)NewWeiBoViewController * weiboVC;
 @property(nonatomic,strong)CarPortViewController * mineVC;
-@property(nonatomic,strong)MallViewController * moreVC;
+@property(nonatomic,strong)MallViewController * mallVC;
+@property(nonatomic,strong)PersonalmoreViewController * moreVC;
+@property(nonatomic,strong)FansViewController * fansVC;
 @property(nonatomic,strong)CTCallCenter *_center;
+
+
+-(void)setPersonalState:(PersonalStateType)type;
+
+- (void)restoreViewLocation;
 
 @end

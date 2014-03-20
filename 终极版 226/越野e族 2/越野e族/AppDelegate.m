@@ -22,6 +22,8 @@
 @synthesize mineVC;
 @synthesize moreVC;
 @synthesize weiboVC;
+@synthesize mallVC;
+@synthesize fansVC;
 @synthesize _center;
 
 - (void)dealloc
@@ -520,12 +522,10 @@
         UINavigationController * naVC4 = [[UINavigationController alloc] initWithRootViewController:mineVC];
         
         //
-        moreVC = [[MallViewController alloc] init];
-//        moreVC = [[PersonalmoreViewController alloc] init];
-        UINavigationController * naVC5 = [[UINavigationController alloc] initWithRootViewController:moreVC];
-        
-        
-        
+        mallVC = [[MallViewController alloc] init];
+        moreVC = [[PersonalmoreViewController alloc] init];
+        UINavigationController * naVC5 = [[UINavigationController alloc] initWithRootViewController:mallVC];
+    
         
         naVC1.delegate = (id)self;
         naVC2.delegate = (id)self;
@@ -573,25 +573,110 @@
         iMagelogo=nil;
         bigimageview=nil;
         
+//        _leveyTabBarController.view.layer.shadowColor = [RGBCOLOR(60,44,45) CGColor];
+//        
+//        _leveyTabBarController.view.layer.shadowOffset = CGSizeMake(10,0);
+//        
+//        _leveyTabBarController.view.layer.shadowOpacity = 0.8;
+//        
+//        _leveyTabBarController.view.layer.shadowRadius = 0.8;
+//        
+//        _leveyTabBarController.view.layer.masksToBounds = NO;
+        
         self.window.rootViewController=_leveyTabBarController;
         
         [[NSNotificationCenter defaultCenter]
          postNotificationName:@"testpush" object:dic_push];
         
         
+        moreVC = [[PersonalmoreViewController alloc] init];
+
+        moreVC.view.frame = CGRectMake(320,0,320,iPhone5?568:480);
+        
+        [self.window addSubview:moreVC.view];
+        
+        [self.window addSubview:_leveyTabBarController.view];
         
         
-//        moreVC = [[PersonalmoreViewController alloc] init];
-//
-//        moreVC.view.frame = CGRectMake(320,0,320,iPhone5?568:480);
-//        
-//        [self.window addSubview:moreVC.view];
+        fansVC = [[FansViewController alloc] init];
         
+        UINavigationController * fansNav = [[UINavigationController alloc] initWithRootViewController:fansVC];
         
+        fansNav.view.frame = CGRectMake(0,0,320,iPhone5?568:480);
         
+        fansNav.view.alpha = 0;
         
+        fansNav.view.userInteractionEnabled = NO;
+        
+        [self.window addSubview:fansNav.view];
     }
 }
+
+-(void)setPersonalState:(PersonalStateType)type
+{
+    if (type == PersonalStateTypeShow)
+    {
+        [self moveToLeftSide];
+    }
+}
+
+// move view to left side
+- (void)moveToLeftSide
+{
+    [self animateHomeViewToSide:CGRectMake(-320+42.5,
+                                           self.window.frame.origin.y,
+                                           self.window.frame.size.width,
+                                           self.window.frame.size.height)];
+}
+
+// animate home view to side rect
+- (void)animateHomeViewToSide:(CGRect)newViewRect
+{
+    //    [(AppDelegate *)[[UIApplication sharedApplication] delegate] setLeftViewHidden:NO];
+    
+    [UIView animateWithDuration:0.2
+                     animations:^{
+                         
+                         [[[(AppDelegate *)[[UIApplication sharedApplication] delegate] moreVC]view]setFrame:CGRectMake(0,0,320,568)];
+                         
+                         _leveyTabBarController.view.frame = newViewRect;
+                     }
+                     completion:^(BOOL finished){
+                         UIControl *overView = [[UIControl alloc] init];
+                         overView.tag = 10086;
+                         overView.backgroundColor = [UIColor clearColor];
+                         overView.frame = self.window.frame;
+                         [overView addTarget:self action:@selector(restoreViewLocation) forControlEvents:UIControlEventTouchDown];
+                         [_leveyTabBarController.view addSubview:overView];
+                     }];
+}
+
+
+- (void)restoreViewLocation
+{
+    //    [(AppDelegate *)[[UIApplication sharedApplication] delegate] setLeftViewHidden:NO];
+    
+    [UIView animateWithDuration:0.3
+                     animations:^{
+                         
+                         [[[(AppDelegate *)[[UIApplication sharedApplication] delegate] moreVC]view]setFrame:CGRectMake(320,0,320,568)];
+                         
+                         _leveyTabBarController.view.frame = CGRectMake(0,
+                                                                            _leveyTabBarController.view.frame.origin.y,
+                                                                            _leveyTabBarController.view.frame.size.width,
+                                                                            _leveyTabBarController.view.frame.size.height);
+                     }
+                     completion:^(BOOL finished){
+                         UIControl *overView = (UIControl *)[[[UIApplication sharedApplication] keyWindow] viewWithTag:10086];
+                         [overView removeFromSuperview];
+                         
+                     }];
+    
+    [_leveyTabBarController hidesTabBar:NO animated:YES];
+}
+
+
+
 
 - (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated
 {

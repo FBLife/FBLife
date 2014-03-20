@@ -801,7 +801,7 @@
     
 }
 
-
+/*
 
 // move view to left side
 - (void)moveToLeftSide
@@ -814,13 +814,13 @@
 
 // animate home view to side rect
 - (void)animateHomeViewToSide:(CGRect)newViewRect
-{
+{    
     //    [(AppDelegate *)[[UIApplication sharedApplication] delegate] setLeftViewHidden:NO];
     
     [UIView animateWithDuration:0.2
                      animations:^{
                          
-                         [[[(AppDelegate *)[[UIApplication sharedApplication] delegate] moreVC]view]setFrame:CGRectMake(42.5,0,320,568)];
+                         [[[(AppDelegate *)[[UIApplication sharedApplication] delegate] moreVC]view]setFrame:CGRectMake(0,0,320,568)];
                          
                          self.leveyTabBarController.view.frame = newViewRect;
                      }
@@ -856,12 +856,17 @@
                      }];
 }
 
-
+*/
 
 -(void)refresh:(UIButton *)sender
 {//搜索
     
-    [self moveToLeftSide];
+    
+    AppDelegate * delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    
+    
+    [delegate setPersonalState:PersonalStateTypeShow];
+    
     
     return;
     

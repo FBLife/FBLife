@@ -10,7 +10,17 @@
 #import "ATMHud.h"
 #import "UMUFPTableView.h"
 #import "FriendListViewController.h"
-@interface PersonalmoreViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,AsyncImageDelegate,UMUFPTableViewDataLoadDelegate,FriendListViewControllerDelegate>{
+#import "LogInViewController.h"
+
+
+typedef enum{
+    PersonalStateTypeShow=0,
+    PersonalStateTypeHidden
+}PersonalStateType;
+
+
+
+@interface PersonalmoreViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,AsyncImageDelegate,UMUFPTableViewDataLoadDelegate,FriendListViewControllerDelegate,LogInViewControllerDelegate>{
     UITableView *_myTableView;
     NSArray *arrayofsection;
     NSArray *arrayofimg;
@@ -31,7 +41,6 @@
     NSString *string_messageorfb;
     
   //  UIImageView * tixing_imageView;
-    
 }
 
 @end
