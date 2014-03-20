@@ -15,6 +15,7 @@
 		1913EA7C1890FEE20045CBD8 /* ios7_bottomtalk_39_36@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1913EA7B1890FEE20045CBD8 /* ios7_bottomtalk_39_36@2x.png */; };
 		1916EA2C1895086700FAA565 /* ios7_zanwu_120_120@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1916EA2B1895086700FAA565 /* ios7_zanwu_120_120@2x.png */; };
 		191D57E318B3085F00C6FFEA /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 191D57E218B3085F00C6FFEA /* OpenAL.framework */; };
+		191DA2F218DAE7FF001696E5 /* SellersModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 191DA2F118DAE7FF001696E5 /* SellersModel.m */; };
 		191EFEB318A6376B00F6A765 /* SGFocusImageFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 191EFEB018A6376B00F6A765 /* SGFocusImageFrame.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		191EFEB418A6376B00F6A765 /* SGFocusImageItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 191EFEB218A6376B00F6A765 /* SGFocusImageItem.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		19204541186A6D4100B2D292 /* rootnewsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 19204540186A6D4100B2D292 /* rootnewsModel.m */; };
@@ -1208,6 +1209,8 @@
 		1913EA7B1890FEE20045CBD8 /* ios7_bottomtalk_39_36@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ios7_bottomtalk_39_36@2x.png"; sourceTree = "<group>"; };
 		1916EA2B1895086700FAA565 /* ios7_zanwu_120_120@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ios7_zanwu_120_120@2x.png"; sourceTree = "<group>"; };
 		191D57E218B3085F00C6FFEA /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
+		191DA2F018DAE7FF001696E5 /* SellersModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SellersModel.h; sourceTree = "<group>"; };
+		191DA2F118DAE7FF001696E5 /* SellersModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SellersModel.m; sourceTree = "<group>"; };
 		191EFEAF18A6376B00F6A765 /* SGFocusImageFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGFocusImageFrame.h; sourceTree = "<group>"; };
 		191EFEB018A6376B00F6A765 /* SGFocusImageFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGFocusImageFrame.m; sourceTree = "<group>"; };
 		191EFEB118A6376B00F6A765 /* SGFocusImageItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGFocusImageItem.h; sourceTree = "<group>"; };
@@ -2759,6 +2762,8 @@
 			children = (
 				1935767D18D98338008A2FFB /* SlideShowModel.h */,
 				1935767E18D98338008A2FFB /* SlideShowModel.m */,
+				191DA2F018DAE7FF001696E5 /* SellersModel.h */,
+				191DA2F118DAE7FF001696E5 /* SellersModel.m */,
 			);
 			path = MallModel;
 			sourceTree = "<group>";
@@ -6100,6 +6105,7 @@
 				5633649C1862E7490069F838 /* SliderSegmentView.m in Sources */,
 				566E7981185EE75D00BB88C5 /* SDWebImageDownloader.m in Sources */,
 				563364971862E7490069F838 /* keyboardtopview.m in Sources */,
+				191DA2F218DAE7FF001696E5 /* SellersModel.m in Sources */,
 				56C95579185EEE3E00763E69 /* BlogFeed.m in Sources */,
 				563365251862E7510069F838 /* UMFeedbackViewController.m in Sources */,
 				563364321862E7490069F838 /* AdvertisingimageView.m in Sources */,
