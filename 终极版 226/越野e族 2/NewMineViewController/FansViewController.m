@@ -7,6 +7,7 @@
 //
 
 #import "FansViewController.h"
+#import "FriendListViewController.h"
 
 @interface FansViewController ()
 
@@ -39,7 +40,20 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+	
+    self.view.backgroundColor = [UIColor redColor];
+    
+    
+    
+ //   [self performSelector:@selector(presentttt) withObject:nil afterDelay:3.0];
+    
+}
+
+-(void)presentttt
+{
+    FriendListViewController * ffff = [[FriendListViewController alloc] init];
+    
+    [self.navigationController pushViewController:ffff animated:YES];
 }
 
 - (void)didReceiveMemoryWarning
