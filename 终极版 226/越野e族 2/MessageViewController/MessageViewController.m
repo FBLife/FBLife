@@ -233,7 +233,10 @@
 
 -(void)backto
 {
-    [self.navigationController popViewControllerAnimated:YES];
+//    [self.navigationController popViewControllerAnimated:YES];
+    
+    [self dismissModalViewControllerAnimated:YES];
+    
 }
 
 

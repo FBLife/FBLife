@@ -130,7 +130,8 @@
 
 -(void)backto{
     
-    [self.navigationController popViewControllerAnimated:YES];
+//    [self.navigationController popViewControllerAnimated:YES];
+    [self dismissModalViewControllerAnimated:YES];
 }
 
 -(void)scanning
@@ -411,12 +412,7 @@
         UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"未找到二维码" delegate:self cancelButtonTitle:@"确认" otherButtonTitles:nil,nil];
         
         [alert show];
-        
     }
-    
-    
-    
-    
 }
 
 

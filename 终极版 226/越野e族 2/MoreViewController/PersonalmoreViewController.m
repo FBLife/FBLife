@@ -1346,14 +1346,16 @@
             [self.leveyTabBarController hidesTabBar:NO animated:YES];
             break;
         case 1000:
-            
+            [self pushToDraftBoxController];
+            [self.leveyTabBarController hidesTabBar:NO animated:YES];
             break;
         case 1001:
             [self pushToFriendListController];
             [self.leveyTabBarController hidesTabBar:NO animated:YES];
             break;
         case 1002:
-            
+            [self pushToQrcodeController];
+            [self.leveyTabBarController hidesTabBar:NO animated:YES];
             break;
         case 1003:
             
@@ -1370,16 +1372,8 @@
     }
 }
 
--(void)pushToFriendListController
-{
-    FriendListViewController * friendList = [[FriendListViewController alloc] init];
-    
-    friendList.delegate = self;
-    
-    [[(AppDelegate *)[UIApplication sharedApplication].delegate fansVC] presentModalViewController:friendList animated:YES];
-    
-//    [self.view.window.rootViewController.navigationController presentModalViewController:friendList animated:YES];
-}
+
+#pragma mark-到消息
 
 -(void)pushToMessageController
 {
@@ -1400,10 +1394,9 @@
         
         self.leveyTabBarController.tabBar.tixing_imageView.hidden = YES;
         
-//        [[(AppDelegate *)[UIApplication sharedApplication].delegate fansVC].navigationController pushViewController:message animated:YES];
+        UINavigationController * naVC = [[UINavigationController alloc] initWithRootViewController:message];
         
-        
-        [[(AppDelegate *)[UIApplication sharedApplication].delegate fansVC] presentModalViewController:message animated:YES];
+        [[(AppDelegate *)[UIApplication sharedApplication].delegate fansVC] presentModalViewController:naVC animated:YES];
         
         
     }else{
@@ -1411,6 +1404,61 @@
     }
     
 }
+
+#pragma mark-到通讯录
+
+-(void)pushToFriendListController
+{
+    
+    if ([self isLogin])
+    {
+        FriendListViewController * friendList = [[FriendListViewController alloc] init];
+        
+        friendList.delegate = self;
+        
+        [[(AppDelegate *)[UIApplication sharedApplication].delegate fansVC] presentModalViewController:friendList animated:YES];
+    }else
+    {
+        [self login];
+    }
+}
+
+
+#pragma mark-到草稿箱
+
+-(void)pushToDraftBoxController
+{
+    if ([self isLogin])
+    {
+        DraftBoxViewController *draft=[[DraftBoxViewController alloc]init];
+        
+        UINavigationController * naVC = [[UINavigationController alloc] initWithRootViewController:draft];
+        
+        [[(AppDelegate *)[UIApplication sharedApplication].delegate fansVC] presentModalViewController:naVC animated:YES];
+    }else
+    {
+        [self login];
+    }
+}
+
+#pragma mark-到二维码
+
+-(void)pushToQrcodeController
+{
+    
+    if ([self isLogin])
+    {
+        DetailViewController *_qrcode=[[DetailViewController alloc]init];
+        
+        UINavigationController * naVC = [[UINavigationController alloc] initWithRootViewController:_qrcode];
+        
+        [[(AppDelegate *)[UIApplication sharedApplication].delegate fansVC] presentModalViewController:naVC animated:YES];
+    }else
+    {
+        [self login];
+    }
+}
+
 
 -(void)returnUserName:(NSString *)username Uid:(NSString *)uid
 {

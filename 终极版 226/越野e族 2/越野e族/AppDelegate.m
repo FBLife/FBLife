@@ -523,7 +523,6 @@
         
         //
         mallVC = [[MallViewController alloc] init];
-        moreVC = [[PersonalmoreViewController alloc] init];
         UINavigationController * naVC5 = [[UINavigationController alloc] initWithRootViewController:mallVC];
     
         
@@ -534,7 +533,7 @@
         naVC5.delegate = (id)self;
         
         
-        NSArray * array = [[NSArray alloc] initWithObjects:naVC1,naVC2,naVC3,naVC4,naVC5,nil];
+        NSArray * array = [[NSArray alloc] initWithObjects:naVC1,naVC2,naVC5,naVC4,naVC3,nil];
         
         NSMutableDictionary *imgDic = [NSMutableDictionary dictionaryWithCapacity:3];
         [imgDic setObject:[UIImage imageNamed:@"newsselected.png"] forKey:@"Default"];
@@ -632,23 +631,21 @@
 // animate home view to side rect
 - (void)animateHomeViewToSide:(CGRect)newViewRect
 {
-    //    [(AppDelegate *)[[UIApplication sharedApplication] delegate] setLeftViewHidden:NO];
-    
     [UIView animateWithDuration:0.2
                      animations:^{
                          
-                         [[[(AppDelegate *)[[UIApplication sharedApplication] delegate] moreVC]view]setFrame:CGRectMake(0,0,320,568)];
-                         
-                         _leveyTabBarController.view.frame = newViewRect;
-                     }
-                     completion:^(BOOL finished){
-                         UIControl *overView = [[UIControl alloc] init];
-                         overView.tag = 10086;
-                         overView.backgroundColor = [UIColor clearColor];
-                         overView.frame = self.window.frame;
-                         [overView addTarget:self action:@selector(restoreViewLocation) forControlEvents:UIControlEventTouchDown];
-                         [_leveyTabBarController.view addSubview:overView];
-                     }];
+         [[[(AppDelegate *)[[UIApplication sharedApplication] delegate] moreVC]view]setFrame:CGRectMake(0,0,320,568)];
+         
+         _leveyTabBarController.view.frame = newViewRect;
+     }
+     completion:^(BOOL finished){
+         UIControl *overView = [[UIControl alloc] init];
+         overView.tag = 10086;
+         overView.backgroundColor = [UIColor clearColor];
+         overView.frame = self.window.frame;
+         [overView addTarget:self action:@selector(restoreViewLocation) forControlEvents:UIControlEventTouchDown];
+         [_leveyTabBarController.view addSubview:overView];
+     }];
 }
 
 

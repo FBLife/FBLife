@@ -77,7 +77,7 @@
     //    array_info = [DraftDatabase findallbytheColumns:@"微博"];
     
     
-    tab_=[[UITableView alloc]initWithFrame:CGRectMake(0, 0, 320, iPhone5?568-44-20:480-44-20)];
+    tab_=[[UITableView alloc]initWithFrame:CGRectMake(0,MY_MACRO_NAME?64:0,320,iPhone5?568-44-20:480-44-20)];
     [aview addSubview:tab_];
     tab_.dataSource=self;
     tab_.delegate=self;
@@ -476,7 +476,8 @@
 }
 #pragma mark-返回
 -(void)backto{
-    [self.navigationController popViewControllerAnimated:YES];
+//    [self.navigationController popViewControllerAnimated:YES];
+    [self dismissModalViewControllerAnimated:YES];
 }
 - (void)didReceiveMemoryWarning
 {
