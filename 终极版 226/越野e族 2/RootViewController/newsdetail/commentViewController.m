@@ -75,7 +75,7 @@
 -(void)viewWillDisappear:(BOOL)animated
 {
     self.navigationController.navigationBarHidden = YES;
-    
+    _isloadingIv.hidden=YES;
     [MobClick endEvent:@"commentViewController"];
 }
 - (void)viewDidLoad
@@ -493,7 +493,7 @@
         pageN++;
         BOOL isqingqiu=     [personal islastpage:allcount pagenumber:pageN];
         if (isqingqiu==YES) {
-            NSString *string103=[[NSString alloc]initWithFormat:@"http://fb.fblife.com/openapi/index.php?mod=comment&code=commentlist&sortid=%@&fbtype=json&page=%d",self.string_ID,pageN];
+            NSString *string103=[[NSString alloc]initWithFormat:@"http://fb.fblife.com/openapi/index.php?mod=comment&code=commentlist&sort=7&sortid=%@&fbtype=json&page=%d",self.string_ID,pageN];
             NSURL *url103 = [NSURL URLWithString:string103];
             
             NSLog(@"ahaurl====%@",string103);
@@ -1012,7 +1012,9 @@
             UILabel *label_commentnumber=[[UILabel alloc]initWithFrame:CGRectMake(11, 5, 220, 20)];
             label_commentnumber.font=[UIFont systemFontOfSize:15];
             label_commentnumber.backgroundColor=[UIColor clearColor];
-            label_commentnumber.text=[NSString stringWithFormat:@"最新评论 (%@)",self.string_commentnumber];
+            label_commentnumber.text=[NSString stringWithFormat:@"最新评论（%d）",allcount];
+            
+            
             label_commentnumber.textColor=RGBCOLOR(1, 1, 1);
             [secondimgv addSubview:label_commentnumber];
             secondimgv.backgroundColor=RGBCOLOR(250, 250, 250);

@@ -13,6 +13,9 @@
 @synthesize delegate,tag,type;
 
 -(void)startloadcommentsdatawithtag:(int)_tag thetype:(NSString *)_type{
+ 
+    
+    
     
     //推荐新闻的
     
@@ -36,6 +39,8 @@
         dic_comment = [requestcomment.responseData objectFromJSONData];
         NSLog(@"推荐的？？？？？？？===dic====%@",dic_comment);
 
+        
+        
         @try {
             if ([[dic_comment objectForKey:@"errno"] intValue] ==0)
             {
@@ -89,7 +94,7 @@
     
     [_requsetnormal setCompletionBlock:^{
         dic_normal = [requestnomal.responseData objectFromJSONData];
-        NSLog(@"普通的？？？？？？？===dic====%@",dic_normal);
+        NSLog(@"普通的？？？？？？？%s===dic====%@",__FUNCTION__,dic_normal);
         
         
         @try {

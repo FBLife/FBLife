@@ -12,4 +12,6 @@
     
 }
 @property(nonatomic,strong)SlideShowModel *slishouwmodels;
+@property(nonatomic,strong)UITableView *MainTabView;
+
 @end
