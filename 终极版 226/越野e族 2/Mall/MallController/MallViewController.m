@@ -28,10 +28,10 @@
     [super viewDidLoad];
     self.view.backgroundColor=[UIColor whiteColor];
     
-    UIButton *button_back=[[UIButton alloc]initWithFrame: CGRectMake(MY_MACRO_NAME? -7:5, 3, 12, 43/2)];
+    UIButton *button_back=[[UIButton alloc]initWithFrame: CGRectMake(MY_MACRO_NAME? -7:5, 3, 20, 32/2)];
     
     [button_back addTarget:self action:@selector(backto) forControlEvents:UIControlEventTouchUpInside];
-    [button_back setBackgroundImage:[UIImage imageNamed:@"ios7_back.png"] forState:UIControlStateNormal];
+    [button_back setBackgroundImage:[UIImage imageNamed:@"MallLeft40_32.png"] forState:UIControlStateNormal];
     
     UIButton *back_view=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 50, 28)];
     [back_view addSubview:button_back];
@@ -41,30 +41,18 @@
     self.navigationItem.leftBarButtonItem=back_item;
     
     
-    
-//    self.navigationItem.title = self.the_type.name;
-//    
-//    UIColor * cc = [UIColor blackColor];
-//    
-//    NSDictionary * dict = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:cc,[UIFont systemFontOfSize:20],[UIColor clearColor],nil] forKeys:[NSArray arrayWithObjects:UITextAttributeTextColor,UITextAttributeFont,UITextAttributeTextShadowColor,nil]];
-//    
-//    self.navigationController.navigationBar.titleTextAttributes = dict;
-    
-    
+     
     if([self.navigationController.navigationBar respondsToSelector:@selector(setBackgroundImage:forBarMetrics:)] ) {
         //iOS 5 new UINavigationBar custom background
         [self.navigationController.navigationBar setBackgroundImage:MY_MACRO_NAME?[UIImage imageNamed:IOS7DAOHANGLANBEIJING]:[UIImage imageNamed:@"ios7eva320_44.png"] forBarMetrics: UIBarMetricsDefault];
         
     }
-    
-    
-
-    
-    
-    
-    
-    
-    
+    //主要的tableview
+    _MainTabView=[[UITableView alloc]initWithFrame:CGRectMake(0, 0, 320, iPhone5?568-64-49:480-64-49) style:UITableViewStylePlain];
+    _MainTabView.delegate=self;
+    _MainTabView.dataSource=self;
+    _MainTabView.backgroundColor=[UIColor whiteColor];
+    [self.view addSubview:_MainTabView];
     
     
     
@@ -72,8 +60,36 @@
     [self StartLoadSlideShow];
 	// Do any additional setup after loading the view.
 }
-#pragma mark-左上角按钮
+
+#pragma mark-tableview的代理
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return 5;
+}
+
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return 1;
+}
+
+-(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    static NSString *identifier=@"identifier";
+    UITableViewCell *cell=[tableView dequeueReusableCellWithIdentifier:identifier];
+    if (!cell) {
+        cell=[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+    }
+    for (UIView *oldView in cell.contentView.subviews) {
+        [oldView removeFromSuperview];
+    }
+    return cell;
+}
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return _MainTabView.frame.size.height/5;
+}
+
+
+#pragma mark-跳到分类页面
 -(void)backto{
+    NSLog(@"跳到分类页面");
+    
 }
 #pragma mark-请求幻灯数据
 -(void)StartLoadSlideShow{
@@ -87,6 +103,8 @@
 -(void)LoadPicFinishedWithUrlArray:(NSMutableArray *)sliderurlArr PicIDArr:(NSMutableArray *)picIDarray{
     
 }
+
+#pragma mark-
 -(void)dealloc{
     _slishouwmodels.delegate=nil;
     

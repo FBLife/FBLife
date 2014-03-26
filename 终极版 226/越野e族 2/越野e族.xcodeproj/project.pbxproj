@@ -62,6 +62,11 @@
 		193E101A18BC28B100F6D9C8 /* ios7_commentkuang421_58@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 193E101818BC28B100F6D9C8 /* ios7_commentkuang421_58@2x.png */; };
 		193E101B18BC28B100F6D9C8 /* ios7_newssendbutton_99_56@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 193E101918BC28B100F6D9C8 /* ios7_newssendbutton_99_56@2x.png */; };
 		1959712D18BB30FA00D17284 /* ios_7carportpicselect608_57@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1959712C18BB30FA00D17284 /* ios_7carportpicselect608_57@2x.png */; };
+		196E358618E26DF500A552D3 /* DetailClassifyCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 196E358518E26DF500A552D3 /* DetailClassifyCellView.m */; };
+		19A225C018DBDCA60019901C /* ClassifyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19A225BF18DBDCA60019901C /* ClassifyViewController.m */; };
+		19A225C318DBDCD10019901C /* DetailClassifyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19A225C218DBDCD10019901C /* DetailClassifyViewController.m */; };
+		19A225C618DBDD0D0019901C /* ProductDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19A225C518DBDD0D0019901C /* ProductDetailViewController.m */; };
+		19A225C818DC3E500019901C /* Mallcollec84_84@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 19A225C718DC3E500019901C /* Mallcollec84_84@2x.png */; };
 		19A4E58E1863094F005F4848 /* ios7eva320_44@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 19A4E58D1863094F005F4848 /* ios7eva320_44@2x.png */; };
 		19A4E58F1863094F005F4848 /* ios7eva320_44@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 19A4E58D1863094F005F4848 /* ios7eva320_44@2x.png */; };
 		19A4E5921863339E005F4848 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19A4E5911863339E005F4848 /* AVFoundation.framework */; };
@@ -1264,6 +1269,15 @@
 		193E101818BC28B100F6D9C8 /* ios7_commentkuang421_58@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ios7_commentkuang421_58@2x.png"; sourceTree = "<group>"; };
 		193E101918BC28B100F6D9C8 /* ios7_newssendbutton_99_56@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ios7_newssendbutton_99_56@2x.png"; sourceTree = "<group>"; };
 		1959712C18BB30FA00D17284 /* ios_7carportpicselect608_57@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ios_7carportpicselect608_57@2x.png"; sourceTree = "<group>"; };
+		196E358418E26DF500A552D3 /* DetailClassifyCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailClassifyCellView.h; sourceTree = "<group>"; };
+		196E358518E26DF500A552D3 /* DetailClassifyCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailClassifyCellView.m; sourceTree = "<group>"; };
+		19A225BE18DBDCA60019901C /* ClassifyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassifyViewController.h; sourceTree = "<group>"; };
+		19A225BF18DBDCA60019901C /* ClassifyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassifyViewController.m; sourceTree = "<group>"; };
+		19A225C118DBDCD10019901C /* DetailClassifyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailClassifyViewController.h; sourceTree = "<group>"; };
+		19A225C218DBDCD10019901C /* DetailClassifyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailClassifyViewController.m; sourceTree = "<group>"; };
+		19A225C418DBDD0D0019901C /* ProductDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductDetailViewController.h; sourceTree = "<group>"; };
+		19A225C518DBDD0D0019901C /* ProductDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductDetailViewController.m; sourceTree = "<group>"; };
+		19A225C718DC3E500019901C /* Mallcollec84_84@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Mallcollec84_84@2x.png"; sourceTree = "<group>"; };
 		19A4E58D1863094F005F4848 /* ios7eva320_44@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ios7eva320_44@2x.png"; sourceTree = "<group>"; };
 		19A4E5911863339E005F4848 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		19A4E593186333AE005F4848 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
@@ -2704,6 +2718,7 @@
 		1924400518D68DF10056E0EF /* Mall */ = {
 			isa = PBXGroup;
 			children = (
+				19A225C718DC3E500019901C /* Mallcollec84_84@2x.png */,
 				5628969018DA806000C0731F /* Mallyinying20_960@2x.png */,
 				5628969118DA806000C0731F /* Mallyinying20_1136@2x.png */,
 				1924400618D6C8780056E0EF /* MallAction47_44@2x.png */,
@@ -2746,6 +2761,12 @@
 			children = (
 				1935768018D997E9008A2FFB /* MallViewController.h */,
 				1935768118D997E9008A2FFB /* MallViewController.m */,
+				19A225BE18DBDCA60019901C /* ClassifyViewController.h */,
+				19A225BF18DBDCA60019901C /* ClassifyViewController.m */,
+				19A225C118DBDCD10019901C /* DetailClassifyViewController.h */,
+				19A225C218DBDCD10019901C /* DetailClassifyViewController.m */,
+				19A225C418DBDD0D0019901C /* ProductDetailViewController.h */,
+				19A225C518DBDD0D0019901C /* ProductDetailViewController.m */,
 			);
 			path = MallController;
 			sourceTree = "<group>";
@@ -2753,6 +2774,8 @@
 		1935767B18D9826B008A2FFB /* MallView */ = {
 			isa = PBXGroup;
 			children = (
+				196E358418E26DF500A552D3 /* DetailClassifyCellView.h */,
+				196E358518E26DF500A552D3 /* DetailClassifyCellView.m */,
 			);
 			path = MallView;
 			sourceTree = "<group>";
@@ -5895,6 +5918,7 @@
 				5633648C1862E7490069F838 /* cancel5028.png in Resources */,
 				5633643C1862E7490069F838 /* bghaha.png in Resources */,
 				566E7A2C185EE7D000BB88C5 /* touxiang.png in Resources */,
+				19A225C818DC3E500019901C /* Mallcollec84_84@2x.png in Resources */,
 				5634D478186048C6003868D7 /* MessageSendintput@2x.png in Resources */,
 				56C955AB185EEE5500763E69 /* dingwei_bg@2x.png in Resources */,
 				566E7C77185EE8F100BB88C5 /* ios7tabbar@2x.png in Resources */,
@@ -6180,6 +6204,7 @@
 				56C9557D185EEE3E00763E69 /* FbNewsFeed.m in Sources */,
 				566E7970185EE75D00BB88C5 /* QBImagePickerGroupCell.m in Sources */,
 				563365481862E7510069F838 /* testimgViewController.m in Sources */,
+				19A225C018DBDCA60019901C /* ClassifyViewController.m in Sources */,
 				566E7C14185EE88400BB88C5 /* UIColor+JSMessagesView.m in Sources */,
 				566E7777185EE71100BB88C5 /* CarPortDetailViewController.m in Sources */,
 				566E7968185EE75D00BB88C5 /* MyHttpResponse.m in Sources */,
@@ -6207,6 +6232,7 @@
 				56C955C0185EEEA800763E69 /* FansViewController.m in Sources */,
 				56C955B3185EEE5500763E69 /* WenJiViewController.m in Sources */,
 				563364351862E7490069F838 /* allbbsViewController.m in Sources */,
+				19A225C618DBDD0D0019901C /* ProductDetailViewController.m in Sources */,
 				563365B71862E7590069F838 /* guanggaoviewc.m in Sources */,
 				563365291862E7510069F838 /* FeedBackViewController.m in Sources */,
 				566E7A75185EE82C00BB88C5 /* downloadtool.m in Sources */,
@@ -6219,8 +6245,10 @@
 				566E7CAF185EEA4000BB88C5 /* NewUserMessageTop.m in Sources */,
 				566E796F185EE75D00BB88C5 /* QBImagePickerFooterView.m in Sources */,
 				56C955C5185EEEA900763E69 /* wbCell.m in Sources */,
+				19A225C318DBDCD10019901C /* DetailClassifyViewController.m in Sources */,
 				19B11855186865E800CA4C07 /* MerchantsInfoCell.m in Sources */,
 				563364841862E7490069F838 /* BBSfenduiViewController.m in Sources */,
+				196E358618E26DF500A552D3 /* DetailClassifyCellView.m in Sources */,
 				566E7A54185EE80100BB88C5 /* newscellview.m in Sources */,
 				563365E31862E7590069F838 /* commentViewController.m in Sources */,
 				566E78DB185EE75D00BB88C5 /* ATMHudQueueItem.m in Sources */,

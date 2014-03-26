@@ -70,7 +70,7 @@
     
     int whichsectionopend;
     BOOL isopen;
-    loadingimview *_isloadingIv;
+    loadingimview *_isloadingIv;//提示正在加载
 }
 - (void)reloadTableViewDataSource;
 - (void)doneLoadingTableViewData;

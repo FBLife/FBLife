@@ -506,7 +506,12 @@
     if (scrollView==tab_) {
         [_refreshHeaderView egoRefreshScrollViewDidScroll:scrollView];
         
-        if(tab_.contentOffset.y > (tab_.contentSize.height - tab_.frame.size.height+40)&&isloadsuccess==YES) {
+        
+        
+        
+        NSLog(@"%s%d",__FUNCTION__,[com_id_array count]>0);
+
+        if(tab_.contentOffset.y > (tab_.contentSize.height - tab_.frame.size.height+40)&&isloadsuccess==YES&&[com_id_array count]>0) {
             
             
             [loadview startLoading];
