@@ -21,7 +21,7 @@
     if (self)
 	{
         
-        NSArray *array_title=[NSArray arrayWithObjects:@"资讯",@"论坛",@"自留地",@"车库",@"个人", nil];
+        NSArray *array_title=[NSArray arrayWithObjects:@"资讯",@"论坛",@"商城",@"车库",@"自留地", nil];
         
 		self.backgroundColor = [UIColor clearColor];
 		_backgroundView = [[UIImageView alloc] initWithFrame:self.bounds];
@@ -67,7 +67,7 @@
             
             [btn setImageEdgeInsets:UIEdgeInsetsMake(0,0,12,-22)];
             
-            if (i==2) {
+            if (i==4) {
                 [btn setImageEdgeInsets:UIEdgeInsetsMake(0,0,12,-33)];
 
             }

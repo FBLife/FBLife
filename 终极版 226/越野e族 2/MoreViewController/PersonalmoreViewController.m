@@ -1218,6 +1218,8 @@
     
     [settingButton setImage:[UIImage imageNamed:@"Mallshezhi38_39.png"] forState:UIControlStateNormal];
     
+    [settingButton addTarget:self action:@selector(PushToSettingController:) forControlEvents:UIControlEventTouchUpInside];
+    
     [aView addSubview:settingButton];
     
     
@@ -1312,6 +1314,18 @@
     }
 }
 
+#pragma mark-到设置界面
+
+-(void)PushToSettingController:(UIButton *)sender
+{
+    SettingViewController * setVC = [[SettingViewController alloc] init];
+    
+    UINavigationController * naVC = [[UINavigationController alloc] initWithRootViewController:setVC];
+
+    [[(AppDelegate *)[UIApplication sharedApplication].delegate fansVC] presentModalViewController:naVC animated:YES];
+}
+
+
 -(void)login
 {
     if (!logIn)
@@ -1361,6 +1375,17 @@
             
             break;
         case 1004:
+        {
+            NSUserDefaults * userDefaults = [NSUserDefaults standardUserDefaults];
+            
+            BOOL nightMode = [userDefaults boolForKey:@"nightMode"];
+                        
+            [[(AppDelegate *)[UIApplication sharedApplication].delegate shadowView] setHidden:nightMode];
+            
+            [userDefaults setBool:!nightMode forKey:@"nightMode"];
+            
+            [userDefaults synchronize];
+        }
             
             break;
             
@@ -1483,6 +1508,15 @@
 {
     
 }
+
+
+#pragma mark-AsyncImageDelegate
+
+-(void)handleImageLayout:(AsyncImageView *)tag
+{
+    
+}
+
 
 
 

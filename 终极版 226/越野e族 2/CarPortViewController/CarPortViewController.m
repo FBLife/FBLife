@@ -449,17 +449,13 @@
     space_button.width = MY_MACRO_NAME?-4:5;
     
     
-    UIImageView * leftImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"ios7logo.png"]];
-    leftImageView.center = CGPointMake(MY_MACRO_NAME? 22:25,22);
+    UIImageView * leftImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"ios7logo"]];
+    leftImageView.center = CGPointMake(MY_MACRO_NAME? 18:30,22);
+    UIView *lefttttview=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 80, 44)];
+    [lefttttview addSubview:leftImageView];
+    UIBarButtonItem * leftButton = [[UIBarButtonItem alloc] initWithCustomView:lefttttview];
     
-    UIView *leftttview=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 100,30)];
-    leftttview.backgroundColor = [UIColor clearColor];
-    [leftttview addSubview:leftImageView];
-    
-    UIBarButtonItem * leftButton = [[UIBarButtonItem alloc] initWithCustomView:leftttview];
-    
-    self.navigationItem.leftBarButtonItems = @[space_button,leftButton];
-    
+    self.navigationItem.leftBarButtonItem = leftButton;
     
     
     UIButton * refreshButton = [UIButton buttonWithType:UIButtonTypeCustom];

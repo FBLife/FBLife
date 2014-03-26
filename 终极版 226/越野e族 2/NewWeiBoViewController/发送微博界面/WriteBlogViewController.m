@@ -706,7 +706,7 @@
                 if (allImageArray.count)
                 {
                     morePicView.hidden = NO;
-                    options_view.frame =  CGRectMake(0,(iPhone5?568:480)-(MY_MACRO_NAME?0:20)-72-215,320,73);
+                    options_view.frame =  CGRectMake(0,(iPhone5?568:480)-(MY_MACRO_NAME?0:20)-73-215,320,73);
                     myTextView.frame = CGRectMake(myTextView.frame.origin.x,myTextView.frame.origin.y,myTextView.frame.size.width,(iPhone5?568-20-73-44-215:480-20-73-44-215)-(MY_MACRO_NAME?0:20));
                 }else
                 {
@@ -777,7 +777,7 @@
     
     [UIView animateWithDuration:0.3 animations:^
      {
-         options_view.frame = CGRectMake(0,(iPhone5?568:480)-(MY_MACRO_NAME?0:20)-72-_keyboardRect.size.height,320,73);
+         options_view.frame = CGRectMake(0,(iPhone5?568:480)-(MY_MACRO_NAME?0:20)-73-_keyboardRect.size.height,320,73);
          
          myTextView.frame = CGRectMake(myTextView.frame.origin.x,myTextView.frame.origin.y,myTextView.frame.size.width,(iPhone5?568-20-73-44-_keyboardRect.size.height:480-20-73-44-_keyboardRect.size.height)-(MY_MACRO_NAME?0:20));
      }];

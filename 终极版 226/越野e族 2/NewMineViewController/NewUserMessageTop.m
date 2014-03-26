@@ -145,12 +145,6 @@
             
             [backV addSubview:_tap_background_view];
         }
-        
-        
-        
-        
-        
-        
     }
     return self;
 }
@@ -230,12 +224,12 @@
         {
             count = 7;
             _data_array = [NSMutableArray arrayWithObjects:@"详细\n资料",@"资讯",@"微博",@"关注",@"粉丝",@"地图",@"二维码",nil];
-            count_array = [NSMutableArray arrayWithObjects:@"",info.service_sernum,info.topic_count,@"",info.follow_count,info.fans_count,@"",nil];
+            count_array = [NSMutableArray arrayWithObjects:@"",info.service_sernum,info.topic_count,@"",info.follow_count,info.fans_count,@"",@"",nil];
         }else
         {
             count = 8;
             _data_array = [NSMutableArray arrayWithObjects:@"详细\n资料",@"资讯",@"微博",@"论坛",@"关注",@"粉丝",@"地图",@"二维码",nil];
-            count_array = [NSMutableArray arrayWithObjects:@"",info.service_sernum,info.topic_count,info.bbsposts,@"",info.follow_count,info.fans_count,@"",nil];
+            count_array = [NSMutableArray arrayWithObjects:@"",info.service_sernum,info.topic_count,info.bbsposts,info.follow_count,info.fans_count,@"",nil];
         }
     }else
     {

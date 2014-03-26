@@ -140,6 +140,7 @@
 		5628969318DA806000C0731F /* Mallyinying20_960@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5628969018DA806000C0731F /* Mallyinying20_960@2x.png */; };
 		5628969418DA806000C0731F /* Mallyinying20_1136@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5628969118DA806000C0731F /* Mallyinying20_1136@2x.png */; };
 		5628969518DA806000C0731F /* Mallyinying20_1136@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5628969118DA806000C0731F /* Mallyinying20_1136@2x.png */; };
+		56329CC918DC149A002BA91F /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56329CC818DC149A002BA91F /* SettingViewController.m */; };
 		563362F1186298AE0069F838 /* HotCarType@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 563362F0186298AE0069F838 /* HotCarType@2x.png */; };
 		563362F318629A960069F838 /* telephoto@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 563362F218629A960069F838 /* telephoto@2x.png */; };
 		563362F51862A4380069F838 /* earth_logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 563362F41862A4380069F838 /* earth_logo@2x.png */; };
@@ -1333,6 +1334,8 @@
 		19ECDABB186F1447002B2281 /* weibo_detail_zhuanfa@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "weibo_detail_zhuanfa@2x.png"; sourceTree = "<group>"; };
 		5628969018DA806000C0731F /* Mallyinying20_960@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Mallyinying20_960@2x.png"; sourceTree = "<group>"; };
 		5628969118DA806000C0731F /* Mallyinying20_1136@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Mallyinying20_1136@2x.png"; sourceTree = "<group>"; };
+		56329CC718DC149A002BA91F /* SettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
+		56329CC818DC149A002BA91F /* SettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
 		563362F0186298AE0069F838 /* HotCarType@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "HotCarType@2x.png"; sourceTree = "<group>"; };
 		563362F218629A960069F838 /* telephoto@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "telephoto@2x.png"; sourceTree = "<group>"; };
 		563362F41862A4380069F838 /* earth_logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "earth_logo@2x.png"; sourceTree = "<group>"; };
@@ -2746,6 +2749,8 @@
 			children = (
 				1935768018D997E9008A2FFB /* MallViewController.h */,
 				1935768118D997E9008A2FFB /* MallViewController.m */,
+				56329CC718DC149A002BA91F /* SettingViewController.h */,
+				56329CC818DC149A002BA91F /* SettingViewController.m */,
 			);
 			path = MallController;
 			sourceTree = "<group>";
@@ -6035,6 +6040,7 @@
 			files = (
 				19C556DA1883960200CD11B6 /* AdjustableUILable.m in Sources */,
 				566E7C18185EE88400BB88C5 /* MessageInfo.m in Sources */,
+				56329CC918DC149A002BA91F /* SettingViewController.m in Sources */,
 				566E7CD0185EEA4800BB88C5 /* DetailBottomView.m in Sources */,
 				566E796E185EE75D00BB88C5 /* QBImagePickerController.m in Sources */,
 				5633660D1862E92D0069F838 /* bottombarview.m in Sources */,

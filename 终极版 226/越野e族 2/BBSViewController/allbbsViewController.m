@@ -582,7 +582,6 @@
         
         if (isloadsuccess[0]==1&isloadsuccess[1]==1&isloadsuccess[2]==1&isloadsuccess[3]==1&isloadsuccess[4]==1)
         {
-            
             [standarduser setObject:@"yijingyoushujule" forKey:@"youshuju"];
             
             [self viewDidLoad];
