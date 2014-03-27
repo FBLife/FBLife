@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "SlideShowModel.h"
-@interface MallViewController : UIViewController<SlideShowModelDelegate,UITableViewDelegate,UITableViewDataSource>{
+@interface MallViewController : MyViewController<SlideShowModelDelegate,UITableViewDelegate,UITableViewDataSource>{
     
 }
 @property(nonatomic,strong)SlideShowModel *slishouwmodels;

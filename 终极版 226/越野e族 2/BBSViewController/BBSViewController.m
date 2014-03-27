@@ -433,37 +433,11 @@
         NSLog(@"已经有数据了");
         [self sendrequest];
     }
-    self.navigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;
-    
-    self.navigationController.navigationBarHidden=NO;
-    
-    
-    
-    [self.navigationController.parentViewController.view.window makeKeyAndVisible];
-    
-    
-    if([self.navigationController.navigationBar respondsToSelector:@selector(setBackgroundImage:forBarMetrics:)] )
-    {
-        //iOS 5 new UINavigationBar custom background
-        
-         [self.navigationController.navigationBar setBackgroundImage:MY_MACRO_NAME?[UIImage imageNamed:IOS7DAOHANGLANBEIJING]:[UIImage imageNamed:@"ios7eva320_44.png"] forBarMetrics: UIBarMetricsDefault];        
-        
-    }
-    UIImageView * leftImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"ios7logo"]];
-    leftImageView.center = CGPointMake(MY_MACRO_NAME? 18:30,22);
-    UIView *lefttttview=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 80, 44)];
-    [lefttttview addSubview:leftImageView];
-    UIBarButtonItem * leftButton = [[UIBarButtonItem alloc] initWithCustomView:lefttttview];
-    
-    self.navigationItem.leftBarButtonItem = leftButton;
+
+    [self setMyViewControllerLeftButtonType:MyViewControllerLeftbuttonTypelogo WithRightButtonType:MyViewControllerRightbuttonTypeSearch];
     
     self.navigationItem.title = @"论坛";
     
-    UIColor * cc = [UIColor blackColor];
-    
-    NSDictionary * dict = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:cc,[UIFont systemFontOfSize:20],[UIColor clearColor],nil] forKeys:[NSArray arrayWithObjects:UITextAttributeTextColor,UITextAttributeFont,UITextAttributeTextShadowColor,nil]];
-    
-    self.navigationController.navigationBar.titleTextAttributes = dict;
     
 //    UIButton *  refreshButton = [UIButton buttonWithType:UIButtonTypeCustom];
 //    [refreshButton setImage:[UIImage imageNamed:@"blacksearch.png"] forState:UIControlStateNormal];
@@ -472,20 +446,6 @@
 //    UIView *rightview=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 100, 40)];
 //    [rightview addSubview:refreshButton];
 //    self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc]initWithCustomView:rightview];
-    
-    UIButton *rightview=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 37, 37/2)];
-    rightview.backgroundColor=[UIColor clearColor];
-    [rightview addTarget:self action:@selector(refresh:) forControlEvents:UIControlEventTouchUpInside];
-    
-
- UIButton *    refreshButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [refreshButton setImage:[UIImage imageNamed:@"ios7_newssearch.png"] forState:UIControlStateNormal];
-    refreshButton.frame = CGRectMake(MY_MACRO_NAME? 25:10, 0, 37/2, 37/2);
-    //    refreshButton.center = CGPointMake(300,20);
-    [rightview addSubview:refreshButton];
-    [refreshButton addTarget:self action:@selector(refresh:) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *_rightitem=[[UIBarButtonItem alloc]initWithCustomView:rightview];
-    self.navigationItem.rightBarButtonItem=_rightitem;
     
 
     

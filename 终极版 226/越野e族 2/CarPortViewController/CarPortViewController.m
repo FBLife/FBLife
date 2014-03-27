@@ -428,44 +428,12 @@
     
     self.view.backgroundColor=[UIColor whiteColor];
     
-    //    self.title = @"车库";
-    
-    if([self.navigationController.navigationBar respondsToSelector:@selector(setBackgroundImage:forBarMetrics:)])
-    {
-        [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:MY_MACRO_NAME?IOS7DAOHANGLANBEIJING:IOS6DAOHANGLANBEIJING] forBarMetrics: UIBarMetricsDefault];
-    }
-    
     
     self.navigationItem.title = @"车库";
     
-    UIColor * cc = [UIColor blackColor];
-    
-    NSDictionary * dict = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:cc,[UIFont systemFontOfSize:20],[UIColor clearColor],nil] forKeys:[NSArray arrayWithObjects:UITextAttributeTextColor,UITextAttributeFont,UITextAttributeTextShadowColor,nil]];
-    
-    self.navigationController.navigationBar.titleTextAttributes = dict;
-    
-    
-    UIBarButtonItem * space_button = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
-    space_button.width = MY_MACRO_NAME?-4:5;
-    
-    
-    UIImageView * leftImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"ios7logo"]];
-    leftImageView.center = CGPointMake(MY_MACRO_NAME? 18:30,22);
-    UIView *lefttttview=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 80, 44)];
-    [lefttttview addSubview:leftImageView];
-    UIBarButtonItem * leftButton = [[UIBarButtonItem alloc] initWithCustomView:lefttttview];
-    
-    self.navigationItem.leftBarButtonItem = leftButton;
-    
-    
-    UIButton * refreshButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [refreshButton setImage:[UIImage imageNamed:@"ios7_refresh4139.png"] forState:UIControlStateNormal];
-    refreshButton.frame = CGRectMake(0,0,41/2,39/2);
-    refreshButton.center = CGPointMake(300,20);
-    [refreshButton addTarget:self action:@selector(refreshData:) forControlEvents:UIControlEventTouchUpInside];
-    
-    self.navigationItem.rightBarButtonItems= @[space_button,[[UIBarButtonItem alloc] initWithCustomView:refreshButton]];
-    
+
+    [self setMyViewControllerLeftButtonType:MyViewControllerLeftbuttonTypelogo WithRightButtonType:MyViewControllerRightbuttonTypeRefresh];
+
     
     seg = [[CarPortSeg alloc] initWithFrame:CGRectMake(0,0,320,33)];
     
