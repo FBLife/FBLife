@@ -58,7 +58,7 @@
             _Head_ImageView.layer.masksToBounds = NO;
             _Head_ImageView.userInteractionEnabled = YES;
             [self.contentView addSubview:_Head_ImageView];
-            
+        
             UITapGestureRecognizer * head_tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(headTap:)];
             [_Head_ImageView addGestureRecognizer:head_tap];
         }else

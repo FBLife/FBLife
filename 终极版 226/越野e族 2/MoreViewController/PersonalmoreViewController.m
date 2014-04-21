@@ -1218,6 +1218,8 @@
     
     [settingButton setImage:[UIImage imageNamed:@"Mallshezhi38_39.png"] forState:UIControlStateNormal];
     
+    [settingButton addTarget:self action:@selector(PushToSettingController:) forControlEvents:UIControlEventTouchUpInside];
+    
     [aView addSubview:settingButton];
     
     
@@ -1259,23 +1261,27 @@
     
     NSArray * title_array = [NSArray arrayWithObjects:@"购物车",@"我的订单",@"我的收藏夹",@"消息     ",@"草稿箱  ",@"通讯录  ",@"二维码  ",@"收藏     ",@"  夜间模式",nil];
     
-    NSArray * image_array = [NSArray arrayWithObjects:@"MallAction47_44.png",@"Mallcaogao39_42.png",@"Malltongxunlu44_42.png",@"Mallerweima35_35.png",@"Mallcollect48_46.png",@"Mallmoon44_44.png",nil];
+    NSArray * image_array = [NSArray arrayWithObjects:@"Mallshop83_83.png",@"Malldingdan83_83.png",@"Mallcollec84_84.png",@"MallAction47_44.png",@"Mallcaogao39_42.png",@"Malltongxunlu44_42.png",@"Mallerweima35_35.png",@"Mallcollect48_46.png",@"Mallmoon44_44.png",nil];
     
     
     for (int i = 0;i < 3;i++) {
         UIButton * button = [UIButton buttonWithType:UIButtonTypeCustom];
         
-        button.frame = CGRectMake((555/2-481/2)/2+(481/2/3)*i,343/2+29/2,481/2/3,62);
+        button.frame = CGRectMake((555/2-481/2)/2+(20+70)*i,343/2,70,92);
         
         button.backgroundColor = [UIColor clearColor];
         
         [button setTitle:[title_array objectAtIndex:i] forState:UIControlStateNormal];
         
-        button.titleLabel.font = [UIFont systemFontOfSize:16];
+        button.titleLabel.font = [UIFont systemFontOfSize:15];
         
-        button.titleLabel.textAlignment = NSTextAlignmentCenter;
+        [button setImage:[UIImage imageNamed:[image_array objectAtIndex:i]] forState:UIControlStateNormal];
+
+        [button setImageEdgeInsets:UIEdgeInsetsMake(0,0,30,10)];
         
-        [button setTitleEdgeInsets:UIEdgeInsetsMake(30,0,0,0)];
+        button.titleLabel.backgroundColor = [UIColor clearColor];
+        
+        [button setTitleEdgeInsets:UIEdgeInsetsMake(60,-65,0,0)];
         
         [aView addSubview:button];
     }
@@ -1299,7 +1305,7 @@
             
             [button setTitle:[title_array objectAtIndex:3+j+i*2] forState:UIControlStateNormal];
             
-            [button setImage:[UIImage imageNamed:[image_array objectAtIndex:j+i*2]] forState:UIControlStateNormal];
+            [button setImage:[UIImage imageNamed:[image_array objectAtIndex:3+j+i*2]] forState:UIControlStateNormal];
             
             [button addTarget:self action:@selector(functionButton:) forControlEvents:UIControlEventTouchUpInside];
             
@@ -1311,6 +1317,18 @@
         }
     }
 }
+
+#pragma mark-到设置界面
+
+-(void)PushToSettingController:(UIButton *)sender
+{
+    SettingViewController * setVC = [[SettingViewController alloc] init];
+    
+    UINavigationController * naVC = [[UINavigationController alloc] initWithRootViewController:setVC];
+
+    [[(AppDelegate *)[UIApplication sharedApplication].delegate fansVC] presentModalViewController:naVC animated:YES];
+}
+
 
 -(void)login
 {
@@ -1361,6 +1379,17 @@
             
             break;
         case 1004:
+        {
+            NSUserDefaults * userDefaults = [NSUserDefaults standardUserDefaults];
+            
+            BOOL nightMode = [userDefaults boolForKey:@"nightMode"];
+                        
+            [[(AppDelegate *)[UIApplication sharedApplication].delegate shadowView] setHidden:nightMode];
+            
+            [userDefaults setBool:!nightMode forKey:@"nightMode"];
+            
+            [userDefaults synchronize];
+        }
             
             break;
             
@@ -1483,6 +1512,15 @@
 {
     
 }
+
+
+#pragma mark-AsyncImageDelegate
+
+-(void)handleImageLayout:(AsyncImageView *)tag
+{
+    
+}
+
 
 
 

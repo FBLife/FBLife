@@ -108,7 +108,6 @@
             NSDictionary * dictionary = [request.responseData objectFromJSONData];
             
             
-            
             NSString * errcode = [dictionary objectForKey:@"errcode"];
             
             NSString * bbsinfo = [dictionary objectForKey:@"bbsinfo"];

@@ -25,6 +25,7 @@
 @synthesize mallVC;
 @synthesize fansVC;
 @synthesize _center;
+@synthesize shadowView = _shadowView;
 
 - (void)dealloc
 {
@@ -544,17 +545,21 @@
         [imgDic2 setObject:[UIImage imageNamed:@"bbsselected.png"] forKey:@"Highlighted"];
         [imgDic2 setObject:[UIImage imageNamed:@"bbsselected.png"] forKey:@"Seleted"];
         NSMutableDictionary *imgDic3 = [NSMutableDictionary dictionaryWithCapacity:3];
-        [imgDic3 setObject:[UIImage imageNamed:@"fbselectios7.png"] forKey:@"Default"];
-        [imgDic3 setObject:[UIImage imageNamed:@"fbselectios7.png"] forKey:@"Highlighted"];
-        [imgDic3 setObject:[UIImage imageNamed:@"fbselectios7.png"] forKey:@"Seleted"];
+        
+        [imgDic3 setObject:[UIImage imageNamed:@"personalselected.png"] forKey:@"Default"];
+        [imgDic3 setObject:[UIImage imageNamed:@"personalselected.png"] forKey:@"Highlighted"];
+        [imgDic3 setObject:[UIImage imageNamed:@"personalselected.png"] forKey:@"Seleted"];
+        
         NSMutableDictionary *imgDic4 = [NSMutableDictionary dictionaryWithCapacity:3];
         [imgDic4 setObject:[UIImage imageNamed:@"carportselected.png"] forKey:@"Default"];
         [imgDic4 setObject:[UIImage imageNamed:@"carportselected.png"] forKey:@"Highlighted"];
         [imgDic4 setObject:[UIImage imageNamed:@"carportselected.png"] forKey:@"Seleted"];
         NSMutableDictionary *imgDic5 = [NSMutableDictionary dictionaryWithCapacity:3];
-        [imgDic5 setObject:[UIImage imageNamed:@"personalselected.png"] forKey:@"Default"];
-        [imgDic5 setObject:[UIImage imageNamed:@"personalselected.png"] forKey:@"Highlighted"];
-        [imgDic5 setObject:[UIImage imageNamed:@"personalselected.png"] forKey:@"Seleted"];
+        
+        
+        [imgDic5 setObject:[UIImage imageNamed:@"fbselectios7.png"] forKey:@"Default"];
+        [imgDic5 setObject:[UIImage imageNamed:@"fbselectios7.png"] forKey:@"Highlighted"];
+        [imgDic5 setObject:[UIImage imageNamed:@"fbselectios7.png"] forKey:@"Seleted"];
         
         NSArray *imgArr = [NSArray arrayWithObjects:imgDic,imgDic2,imgDic3,imgDic4,imgDic5,nil];
         
@@ -608,6 +613,36 @@
         fansNav.view.userInteractionEnabled = NO;
         
         [self.window addSubview:fansNav.view];
+        
+        
+        
+        
+        
+        
+        _shadowView = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
+        
+        _shadowView.userInteractionEnabled = NO;
+        
+        _shadowView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.3];
+        
+        _shadowView.hidden = YES;
+        
+        [self.window addSubview:_shadowView];
+        
+        
+        
+        
+        NSUserDefaults * user = [NSUserDefaults standardUserDefaults];
+        
+        BOOL nightMode = [user boolForKey:@"nightMode"];
+        
+        if (nightMode)
+        {
+            _shadowView.hidden = NO;
+        }else
+        {
+            _shadowView.hidden = YES;
+        }
     }
 }
 
@@ -807,20 +842,14 @@
                 {
                     
                     NSLog(@"说明绑定成功了");
-                    
                 }
-                
             }
             @catch (NSException *exception) {
                 
             }
             @finally {
                 
-                
             }
-            
-            
-            
         }];
         
         [_requset setFailedBlock:^{
@@ -995,7 +1024,7 @@
             
         }
     }];
-    
+
     
     [_request setFailedBlock:^{
         //        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"检测失败,请检查您当前网络是否正常" delegate:self cancelButtonTitle:@"确认" otherButtonTitles:nil,nil];

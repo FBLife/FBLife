@@ -368,3 +368,25 @@ alpha:(a)]
 
 
 
+#pragma mark-商城接口
+
+//某件商品的详细信息
+
+#define MALLPRODUCTDETAIL_URL @"http://malltest.fblife.com/api.php?app=goods&id=%@&formattype=json"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

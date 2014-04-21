@@ -18,8 +18,10 @@
 @implementation zsnApi
 
 
-
-
++ (float)theHeight:(NSString *)content withHeight:(CGFloat)theheight WidthFont:(UIFont *)font
+{
+    return 0.0f;
+}
 
 +(NSString *)timechange:(NSString *)placetime
 {

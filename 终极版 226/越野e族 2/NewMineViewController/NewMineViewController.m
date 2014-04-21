@@ -415,7 +415,6 @@
         
         jianjie_imageview.image = [[UIImage imageNamed:@"jianjiebackimage.png"] stretchableImageWithLeftCapWidth:130 topCapHeight:7];
         
-        
         total_height = total_height + image_frmae.size.height + 23/2;
     }
     

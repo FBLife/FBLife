@@ -16,6 +16,7 @@
 #import "LogInViewController.h"
 #import "SDImageCache.h"
 #import "FullyLoaded.h"
+#import "MallPayResultViewController.h"
 
 
 @interface NewWeiBoViewController ()
@@ -866,6 +867,12 @@
     
     
     [delegate setPersonalState:PersonalStateTypeShow];
+    
+    
+    
+//    MallPayResultViewController * result = [[MallPayResultViewController alloc] init];
+//    
+//    [self.navigationController pushViewController:result animated:YES];
     
     
     return;

@@ -26,9 +26,10 @@
 #import "SliderSegmentView.h"//选择搜索版块还是帖子
 #import "SearchNewsView.h"
 #import "newslooked.h"
+#import "MyViewController.h"
 
 
-@interface BBSViewController : UIViewController<ASIHTTPRequestDelegate,UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate,downloaddelegate,YHCPickerViewDelegate,allbbsModeldelegate,AlertRePlaceViewDelegate,AKSegmentedControlDelegate,CustomSegmentViewDelegate,EGORefreshTableHeaderDelegate,AdvertisingimageViewDelegate,AdvertisingModelDelegate,AsyncImageDelegate,SliderSegmentViewDelegate,UITextFieldDelegate>{
+@interface BBSViewController : MyViewController<ASIHTTPRequestDelegate,UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate,downloaddelegate,YHCPickerViewDelegate,allbbsModeldelegate,AlertRePlaceViewDelegate,AKSegmentedControlDelegate,CustomSegmentViewDelegate,EGORefreshTableHeaderDelegate,AdvertisingimageViewDelegate,AdvertisingModelDelegate,AsyncImageDelegate,SliderSegmentViewDelegate,UITextFieldDelegate>{
     ASIHTTPRequest *request_;
     UITableView *tab_;
     UITextField *_searchbar;

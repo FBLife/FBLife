@@ -63,6 +63,7 @@
 @property(nonatomic,strong)PersonalmoreViewController * moreVC;
 @property(nonatomic,strong)FansViewController * fansVC;
 @property(nonatomic,strong)CTCallCenter *_center;
+@property(nonatomic,strong)UIView * shadowView;
 
 
 -(void)setPersonalState:(PersonalStateType)type;

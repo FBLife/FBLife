@@ -11,6 +11,7 @@
 #import "UMUFPTableView.h"
 #import "FriendListViewController.h"
 #import "LogInViewController.h"
+#import "SettingViewController.h"
 
 
 typedef enum{
@@ -20,7 +21,8 @@ typedef enum{
 
 
 
-@interface PersonalmoreViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,AsyncImageDelegate,UMUFPTableViewDataLoadDelegate,FriendListViewControllerDelegate,LogInViewControllerDelegate>{
+@interface PersonalmoreViewController : UIViewController<AsyncImageDelegate,UMUFPTableViewDataLoadDelegate,FriendListViewControllerDelegate,LogInViewControllerDelegate>//,UITableViewDataSource,UITableViewDelegate>
+{
     UITableView *_myTableView;
     NSArray *arrayofsection;
     NSArray *arrayofimg;

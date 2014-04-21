@@ -46,7 +46,7 @@
     labelcontent.font=[UIFont systemFontOfSize:12];
 
     CGSize constraintSize = CGSizeMake(310, MAXFLOAT);
-    CGSize labelSize = [labelcontent.text sizeWithFont:labelcontent.font constrainedToSize:constraintSize lineBreakMode:UILineBreakModeWordWrap];
+    CGSize labelSize = [labelcontent.text sizeWithFont:labelcontent.font constrainedToSize:constraintSize lineBreakMode:NSLineBreakByWordWrapping];
     labelcontent.Frame=CGRectMake(12.5, 30, 320-25, labelSize.height);
     
     labelcontent.backgroundColor=[UIColor clearColor];
