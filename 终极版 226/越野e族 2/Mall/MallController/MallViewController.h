@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "SlideShowModel.h"
+#import "ProductDetailViewController.h"
 @interface MallViewController : MyViewController<SlideShowModelDelegate,UITableViewDelegate,UITableViewDataSource>{
     
 }

@@ -30,7 +30,7 @@
     
 	CGSize  textSize = [text sizeWithFont:hint.font
 							  constrainedToSize:CGSizeMake(200, 1000)
-								  lineBreakMode:UILineBreakModeWordWrap];
+								  lineBreakMode:NSLineBreakByWordWrapping];
 	textSize.width = textSize.width+30;
 	textSize.height = textSize.height+30;
 

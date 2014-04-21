@@ -62,6 +62,11 @@
     return self;
 }
 
+-(void)successloadwitharray:(NSMutableArray *)muarray tag:(int)_tag
+{
+    
+}
+
 
 -(void)umengEvent:(NSString *)eventId attributes:(NSDictionary *)attributes number:(NSNumber *)number{
     NSString *numberKey = @"__ct__";
@@ -77,7 +82,6 @@
     //
     if (searchheaderview) {
         self.navigationController.navigationBarHidden=!searchheaderview.hidden;
-
     }
     
     
@@ -1628,6 +1632,8 @@
                         
                         detail.info = info;
                         
+                        self.navigationController.navigationBarHidden = NO;
+                        
                         [self.navigationController pushViewController:detail animated:YES];
                     }else
                     {
@@ -1674,113 +1680,138 @@
 }
 
 
-#pragma mark-CustomWeiBoCellDelegate
+#pragma mark-NewWeiBoCustomCellDelegate
 
--(void)clickHeadImage:(NSString *)uid WithIndex:(int)index
+
+-(void)LogIn
 {
-    BOOL authkey=[[NSUserDefaults standardUserDefaults] boolForKey:USER_IN];
+    logIn = [[LogInViewController alloc] init];
     
+    [self.leveyTabBarController hidesTabBar:YES animated:YES];
     
-    if (authkey)
+    [self presentModalViewController:logIn animated:YES];
+}
+
+
+
+-(void)showOriginalWeiBoContent:(NSString *)theTid
+{
+    BOOL isLogIn = [[NSUserDefaults standardUserDefaults] boolForKey:USER_IN];
+    
+    if (!isLogIn)
     {
-        [self.leveyTabBarController hidesTabBar:YES animated:YES];
+        [self LogIn];
+        return;
+    }
+    
+    NSString *authkey=[[NSUserDefaults standardUserDefaults] objectForKey:USER_AUTHOD];
+    NSString * fullURL= [NSString stringWithFormat:@"http://fb.fblife.com/openapi/index.php?mod=getweibo&code=content&tid=%@&fromtype=b5eeec0b&authkey=%@&page=1&fbtype=json",theTid,authkey];
+    
+    NSLog(@"1请求的url = %@",fullURL);
+    ASIHTTPRequest * request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:fullURL]];
+    
+    __block ASIHTTPRequest * _requset = request;
+    
+    _requset.delegate = self;
+    
+    [_requset setCompletionBlock:^{
+        
+        @try
+        {
+            NSDictionary * dic111 = [request.responseData objectFromJSONData];
+            NSLog(@"个人信息 -=-=  %@",dic);
+            
+            NSString *errcode =[NSString stringWithFormat:@"%@",[dic111 objectForKey:ERRCODE]];
+            
+            if ([@"0" isEqualToString:errcode])
+            {
+                NSDictionary * userInfo = [dic111 objectForKey:@"weiboinfo"];
+                
+                if ([userInfo isEqual:[NSNull null]])
+                {
+                    UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"该篇微博不存在" delegate:self cancelButtonTitle:@"确认" otherButtonTitles:nil,nil];
+                    [alert show];
+                    
+                    return;
+                }else
+                {
+                    FbFeed * obj = [[FbFeed alloc]init];
+                    
+                    obj.tid = theTid;
+                    
+                    obj = [[zsnApi conversionFBContent:userInfo isSave:NO WithType:0] objectAtIndex:0];
+                    
+                    NewWeiBoDetailViewController * detail = [[NewWeiBoDetailViewController alloc] init];
+                    
+                    detail.info=obj;
+                    
+                    [self.navigationController pushViewController:detail animated:YES];
+                }
+            }
+        }
+        @catch (NSException *exception) {
+            
+        }
+        @finally {
+            
+        }
+        
+    }];
+    
+    
+    [_requset setFailedBlock:^{
+        
+        [request cancel];
+    }];
+    
+    [_requset startAsynchronous];
+    
+}
+
+-(void)presentToFarwardingControllerWithInfo:(FbFeed *)info WithCell:(NewWeiBoCustomCell *)theCell
+{
+    
+}
+
+-(void)presentToCommentControllerWithInfo:(FbFeed *)info WithCell:(NewWeiBoCustomCell *)theCell
+{
+    
+}
+
+
+-(void)showVideoWithUrl:(NSString *)theUrl
+{
+    fbWebViewController * web = [[fbWebViewController alloc] init];
+    
+    web.urlstring = theUrl;
+    
+    [self.navigationController pushViewController:web animated:YES];
+}
+
+
+-(void)clickHeadImage:(NSString *)uid
+{
+    BOOL isLogIn = [[NSUserDefaults standardUserDefaults] boolForKey:USER_IN];
+    
+    if (!isLogIn)
+    {
+        [self LogIn];
+    }else
+    {
         NewMineViewController * mine = [[NewMineViewController alloc] init];
         
         mine.uid = uid;
         
         [self.navigationController pushViewController:mine animated:YES];
-    }else
-    {
-        if (!logIn)
-        {
-            logIn = [[LogInViewController alloc] init];
-        }
-        
-        [self presentModalViewController:logIn animated:YES];
     }
 }
 
--(void)showImage:(FbFeed *)info isReply:(BOOL)isRe withIndex:(int)index
-{
-    
-    NSString * sort = isRe?info.rsort:info.sort;
-    [_photos removeAllObjects];
-    
-    if ([sort isEqualToString:@"3"])
-    {
-        BOOL isLogIn = [[NSUserDefaults standardUserDefaults] boolForKey:USER_IN];
-        if (!isLogIn)
-        {
-            if (!logIn)
-            {
-                logIn = [[LogInViewController alloc] init];
-            }
-            [self presentModalViewController:logIn animated:YES];
-            return;
-        }
-    }
-    
-    
-    NSArray * array = [info.imageFlg?info.image_original_url_m:info.rimage_original_url_m componentsSeparatedByString:@"|"];
-    
-    NSLog(@"------  %@",info.imageFlg?info.image_original_url_m:info.rimage_original_url_m);
-    
-    for (NSString * string in array)
-    {
-        NSString * url_string = [string stringByReplacingOccurrencesOfString:@"_s." withString:@"_b."];
-        [_photos addObject:[MWPhoto photoWithURL:[NSURL URLWithString:url_string]]];
-    }
-    
-    MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithDelegate:self];
-    browser.displayActionButton = YES;
-    
-    browser.title_string = info.photo_title;
-    
-    [browser setInitialPageIndex:index];
-    
-    [self.leveyTabBarController hidesTabBar:YES animated:YES];
-    [self presentModalViewController:browser animated:YES];
-    
-}
 
-
--(void)pushToWeiBoDetail:(int)theTag
+-(void)clickUrlToShowWeiBoDetailWithInfo:(FbFeed *)info WithUrl:(NSString *)theUrl isRe:(BOOL)isRe
 {
-    isHyperlinks = YES;
-    BOOL isLogIn = [[NSUserDefaults standardUserDefaults] boolForKey:USER_IN];
-    
-    if (isLogIn)
-    {
-        if (theTag >= 1000000)
-        {
-            theTag = theTag - 1000000;
-        }
-        FbFeed * info = [self.array_searchresault objectAtIndex:theTag];
-        
-        NewWeiBoDetailViewController *  detail = [[NewWeiBoDetailViewController alloc] init];
-        
-        detail.info = info;
-        
-        [self.navigationController pushViewController:detail animated:YES];
-    }else
-    {
-        if (!logIn)
-        {
-            logIn = [[LogInViewController alloc] init];
-        }
-        [self presentModalViewController:logIn animated:YES];
-    }
-}
-
--(void)ShowWeiBoDetail:(int)theTag isReply:(BOOL)isRe
-{
-    isHyperlinks = YES;
-    FbFeed * info = [self.array_searchresault objectAtIndex:isRe?theTag-1000000:theTag];
-    
     NSString * string = isRe?info.rsort:info.sort;
     
     NSString * sortId = isRe?info.rsortId:info.sortId;
-    
     
     if ([string intValue] == 7 || [string intValue] == 6 || [string intValue] == 8)//新闻
     {
@@ -1814,38 +1845,115 @@
             [self.navigationController pushViewController:images animated:YES];
             [self setHidesBottomBarWhenPushed:NO];
         }else{
-            if (!logIn)
-            {
-                logIn = [[LogInViewController alloc] init];
-            }
-            [self presentModalViewController:logIn animated:YES];
+            
+            [self LogIn];
         }
         
         
     }else if ([string intValue] == 2)
     {
-        if (!wenji)
-        {
-            wenji = [[WenJiViewController alloc] init];
-        }
+        
+        WenJiViewController * wenji111 = [[WenJiViewController alloc] init];
+        
         wenji.bId = sortId;
         
-        [self.navigationController pushViewController:wenji animated:YES];
+        [self setHidesBottomBarWhenPushed:YES];
+        [self.leveyTabBarController hidesTabBar:YES animated:YES];
         
+        [self.navigationController pushViewController:wenji111 animated:YES];
+        
+        [self setHidesBottomBarWhenPushed:NO];
     }else
     {
         NewWeiBoDetailViewController * detail = [[NewWeiBoDetailViewController alloc] init];
         
         detail.info = info;
         
+        [self setHidesBottomBarWhenPushed:YES];
+        
+        [self.leveyTabBarController hidesTabBar:YES animated:YES];
+        
         [self.navigationController pushViewController:detail animated:YES];
+        
+        [self setHidesBottomBarWhenPushed:NO];
     }
 }
 
-
--(void)deleteSomeWeiBoContent:(int)indexPathRow
+-(void)showClickUrl:(NSString *)theUrl WithFBFeed:(FbFeed *)info;
 {
+    fbWebViewController *fbweb=[[fbWebViewController alloc]init];
     
+    fbweb.urlstring = theUrl;
+    
+    [self.navigationController pushViewController:fbweb animated:YES];
+}
+
+-(void)showAtSomeBody:(NSString *)theUrl WithFBFeed:(FbFeed *)info
+{
+    NSLog(@"theUrl ------   %@",theUrl);
+    BOOL isLogIn = [[NSUserDefaults standardUserDefaults] boolForKey:USER_IN];
+    
+    if (!isLogIn)
+    {
+        [self LogIn];
+    }else
+    {
+        NewMineViewController * people = [[NewMineViewController alloc] init];
+        
+        if ([theUrl rangeOfString:@"fb://PhotoDetail/id="].length)
+        {
+            people.uid = [theUrl stringByReplacingOccurrencesOfString:@"fb://PhotoDetail/id=" withString:@""];
+        }else if([theUrl rangeOfString:@"fb://atSomeone@/"].length)
+        {
+            people.uid = [theUrl stringByReplacingOccurrencesOfString:@"fb://atSomeone@/" withString:@""];
+        }else
+        {
+            people.uid = info.ruid;
+        }
+        
+        [self.navigationController pushViewController:people animated:YES];
+    }
+}
+
+-(void)showImage:(FbFeed *)info isReply:(BOOL)isRe WithIndex:(int)index
+{
+    NSString * sort = isRe?info.rsort:info.sort;
+    [_photos removeAllObjects];
+    
+    if ([sort isEqualToString:@"3"])
+    {
+        BOOL isLogIn = [[NSUserDefaults standardUserDefaults] boolForKey:USER_IN];
+        if (!isLogIn)
+        {
+            [self LogIn];
+            return;
+        }
+    }
+    
+    
+    NSString * image_string = isRe?info.rimage_original_url_m:info.image_original_url_m;
+    
+    NSArray * array = [image_string componentsSeparatedByString:@"|"];
+    
+    for (NSString * string in array)
+    {
+        NSString * url_string = [string stringByReplacingOccurrencesOfString:@"_s." withString:@"_b."];
+        [_photos addObject:[MWPhoto photoWithURL:[NSURL URLWithString:url_string]]];
+    }
+    
+    MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithDelegate:self];
+    
+    browser.displayActionButton = YES;
+    
+    NSString * titleString = info.photo_title;
+    
+    browser.title_string = titleString;
+    
+    [browser setInitialPageIndex:index];
+    
+    [self.leveyTabBarController hidesTabBar:YES animated:YES];
+    
+    [self presentModalViewController:browser animated:YES];
 }
 
 #pragma mark - MWPhotoBrowserDelegate
@@ -1941,6 +2049,8 @@
 #pragma mark-搜索按钮促发方法
 -(void)refresh:(UIButton *)button
 {
+    
+    [MobClick event:@"RootViewControllerRefresh"];
     
     if (!array_search_zixun)
     {

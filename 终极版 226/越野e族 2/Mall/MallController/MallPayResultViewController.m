@@ -26,7 +26,7 @@
     }
     return self;
 }
-    
+
     
     
 -(void)backto
@@ -70,49 +70,9 @@
     
     [self.view addSubview:label_];
     
-    
-    
-    
-    
-//    if (_IsSuccess)
-//    {
-//        [self paySuccess];
-//    }else
-//    {
-//        [self payFailed];
-//    }
+ 
 }
-    
--(void)paySuccess
-{
-    UIImageView * imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"MallSuccess249_156.png"]];
-    
-    imageView.center = CGPointMake(160,iPhone5?(568-(MY_MACRO_NAME?64:44))/2:(480-(MY_MACRO_NAME?64:44))/2);
-    
-    [self.view addSubview:imageView];
-    
-    
-    
-    UILabel * label_ = [[UILabel alloc] initWithFrame:CGRectMake(0,imageView.frame.origin.y+imageView.frame.size.height+20,320,20)];
-    
-    label_.text = @"您以付款成功";
-    
-    label_.textAlignment = NSTextAlignmentCenter;
-    
-    label_.textColor = [UIColor blackColor];
-    
-    [self.view addSubview:label_];
-    
-}
-    
-    
--(void)payFailed
-{
-    
-}
-    
-    
-    
+
     
     
     

@@ -95,6 +95,13 @@
 }
 
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    ProductDetailViewController * product = [[ProductDetailViewController alloc] init];
+    
+    [self.navigationController pushViewController:product animated:YES];
+}
+
 #pragma mark-跳到分类页面
 -(void)backto{
     NSLog(@"跳到分类页面");

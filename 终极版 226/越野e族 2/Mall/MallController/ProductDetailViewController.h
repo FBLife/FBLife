@@ -7,7 +7,25 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LoopScrollview.h"
+#import "ProductModel.h"
+#import "ProductCustomCell.h"
 
-@interface ProductDetailViewController : UIViewController
+
+@interface ProductDetailViewController : MyViewController<UITableViewDataSource,UITableViewDelegate,UIScrollViewDelegate,LoopScrollviewDelegate>
+{
+    UIView * tableHeaderView;
+    
+    ProductCellType theType;
+    
+    float postionState[4];
+}
+
+
+@property(nonatomic,strong)UITableView * myTableView;
+
+@property(nonatomic,strong)NSMutableArray * slide_array;//幻灯数据
+
+@property(nonatomic,strong)ProductModel * ProductInfo;
 
 @end

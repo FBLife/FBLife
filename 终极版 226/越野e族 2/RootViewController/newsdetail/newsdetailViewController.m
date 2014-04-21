@@ -48,6 +48,14 @@
     }
     return self;
 }
+-(void)didReceiveWeiboRequest:(WBBaseRequest *)request
+{
+    
+}
+-(void)didReceiveWeiboResponse:(WBBaseResponse *)response
+{
+    
+}
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:NO];
         

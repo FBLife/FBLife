@@ -28,6 +28,10 @@
     }
     return self;
 }
+-(void)hidefromview
+{
+    
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];

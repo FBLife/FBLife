@@ -1024,7 +1024,7 @@
             
         }
     }];
-    
+
     
     [_request setFailedBlock:^{
         //        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"检测失败,请检查您当前网络是否正常" delegate:self cancelButtonTitle:@"确认" otherButtonTitles:nil,nil];
