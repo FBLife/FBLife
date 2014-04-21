@@ -63,6 +63,7 @@
 		193E101B18BC28B100F6D9C8 /* ios7_newssendbutton_99_56@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 193E101918BC28B100F6D9C8 /* ios7_newssendbutton_99_56@2x.png */; };
 		1959712D18BB30FA00D17284 /* ios_7carportpicselect608_57@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1959712C18BB30FA00D17284 /* ios_7carportpicselect608_57@2x.png */; };
 		196E358618E26DF500A552D3 /* DetailClassifyCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 196E358518E26DF500A552D3 /* DetailClassifyCellView.m */; };
+		196E358818E2BBCA00A552D3 /* Mallredline78_4@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 196E358718E2BBCA00A552D3 /* Mallredline78_4@2x.png */; };
 		19A225C018DBDCA60019901C /* ClassifyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19A225BF18DBDCA60019901C /* ClassifyViewController.m */; };
 		19A225C318DBDCD10019901C /* DetailClassifyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19A225C218DBDCD10019901C /* DetailClassifyViewController.m */; };
 		19A225C618DBDD0D0019901C /* ProductDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19A225C518DBDD0D0019901C /* ProductDetailViewController.m */; };
@@ -1271,6 +1272,7 @@
 		1959712C18BB30FA00D17284 /* ios_7carportpicselect608_57@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ios_7carportpicselect608_57@2x.png"; sourceTree = "<group>"; };
 		196E358418E26DF500A552D3 /* DetailClassifyCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailClassifyCellView.h; sourceTree = "<group>"; };
 		196E358518E26DF500A552D3 /* DetailClassifyCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailClassifyCellView.m; sourceTree = "<group>"; };
+		196E358718E2BBCA00A552D3 /* Mallredline78_4@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Mallredline78_4@2x.png"; sourceTree = "<group>"; };
 		19A225BE18DBDCA60019901C /* ClassifyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassifyViewController.h; sourceTree = "<group>"; };
 		19A225BF18DBDCA60019901C /* ClassifyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassifyViewController.m; sourceTree = "<group>"; };
 		19A225C118DBDCD10019901C /* DetailClassifyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailClassifyViewController.h; sourceTree = "<group>"; };
@@ -2718,6 +2720,7 @@
 		1924400518D68DF10056E0EF /* Mall */ = {
 			isa = PBXGroup;
 			children = (
+				196E358718E2BBCA00A552D3 /* Mallredline78_4@2x.png */,
 				19A225C718DC3E500019901C /* Mallcollec84_84@2x.png */,
 				5628969018DA806000C0731F /* Mallyinying20_960@2x.png */,
 				5628969118DA806000C0731F /* Mallyinying20_1136@2x.png */,
@@ -5601,6 +5604,7 @@
 				56C9554C185EED9A00763E69 /* menu_bg.png in Resources */,
 				563363931862E68D0069F838 /* ios7_newssearch@2x.png in Resources */,
 				56C9560A185EEEB700763E69 /* jiaguanzhu_sel.png in Resources */,
+				196E358818E2BBCA00A552D3 /* Mallredline78_4@2x.png in Resources */,
 				56C955AC185EEE5500763E69 /* gaoqingtupiankuang@2x.png in Resources */,
 				56C9555A185EED9A00763E69 /* weiboDetail_shoucang.png in Resources */,
 				566E7A1A185EE7D000BB88C5 /* menu_fb_sel.png in Resources */,

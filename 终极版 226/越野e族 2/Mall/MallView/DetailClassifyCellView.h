@@ -10,5 +10,7 @@
 
 @interface DetailClassifyCellView : UIView
 @property(nonatomic,strong)AsyncImageView *headImageview;
-@property(nonatomic,strong)UILabel *MainTitle;
+@property(nonatomic,strong)UILabel *MainTitleLabel;
+@property(nonatomic,strong)UILabel *ClassifyLabel;
+-(void)settitleWithString:(NSString *)titleStr _ClassifyLabelText:(NSString *)classfyStr;
 @end

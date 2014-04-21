@@ -24,7 +24,7 @@
     newsimage_scro *sec2;
     UIScrollView *twoscro;
     newscellview *  orcell;
-
+    
     
 }
 @synthesize delegate,activityIndicator=_activityIndicator,tab=tab_;
@@ -78,7 +78,7 @@
         
         UIView *placeview=[[UIView alloc]initWithFrame:tab_.frame];
         placeview.tag=234;
-     //   placeview.backgroundColor=RGBCOLOR(222, 222, 222);
+        //   placeview.backgroundColor=RGBCOLOR(222, 222, 222);
         UIImageView *imgcenterlogo=[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"ios7_newsbeijing.png"]];
         imgcenterlogo.center=CGPointMake(tab_.frame.size.width/2, tab_.frame.size.height/2-20);
         [placeview addSubview:imgcenterlogo];
@@ -88,15 +88,15 @@
         [tab_ addSubview:placeview];
         
         _activityIndicator = [[UIActivityIndicatorView alloc]
-                                                          initWithActivityIndicatorStyle:
-                                                          UIActivityIndicatorViewStyleGray];
+                              initWithActivityIndicatorStyle:
+                              UIActivityIndicatorViewStyleGray];
         _activityIndicator.center =CGPointMake(tab_.frame.size.width/2-80,tab_.frame.size.height/2-20);
         _activityIndicator.hidden =NO;
         [_activityIndicator startAnimating];
         _activityIndicator.hidden=NO;
         _activityIndicator.tag=222;
-//        [self addSubview:_activityIndicator];
-//
+        //        [self addSubview:_activityIndicator];
+        //
     }
     return self;
 }
@@ -119,18 +119,18 @@
     }completion:^(BOOL finished)
      
      {
-
+         
          
      }];
     
-
+    
     
     
     [self.normalarray removeAllObjects];
     [self.commentarray removeAllObjects];
     
     
-  //  NSLog(@",,..com.%@\nnor%@",_newsCommentDic,_newsNormalDic);
+    //  NSLog(@",,..com.%@\nnor%@",_newsCommentDic,_newsNormalDic);
     
     @try {
         NSArray *arraynomal=[_newsNormalDic objectForKey:@"news"];
@@ -140,7 +140,7 @@
             NSDictionary *dic=[arraynomal objectAtIndex:i];
             [self.normalarray addObject:dic];
             tab_.tableFooterView=loadview;
-
+            
         }
         
         for (int i=0; i<[arraycomment count]; i++) {
@@ -153,8 +153,8 @@
         
         
         [tab_ reloadData];
-
-   
+        
+        
     }
     @catch (NSException *exception) {
         
@@ -195,16 +195,16 @@
             isloadsuccess=YES;
             [tab_ reloadData];
         }
-
+        
         
     }else{
         tab_.tableFooterView=nomore;
-
+        
     }
     
- 
     
-
+    
+    
     
 }
 
@@ -253,7 +253,7 @@
                 
                 
             }
-             int length = 5;
+            int length = 5;
             NSMutableArray *tempArray = [NSMutableArray array];
             for (int i = 0 ; i < length; i++)
             {
@@ -287,102 +287,102 @@
             [cell.contentView addSubview:bannerView];
             
             //旧的代码
-//            imagesc=[[newsimage_scro alloc]initWithFrame:CGRectMake(0, 0, 320, 163)];
-//            [imagesc setImage_array:(NSArray *)imgarray];
-//            imagesc.delegate=self;
-//          //  [imagesc startanimation];
-//            
-//            
-///**888*********************888***********这一部分是底部的scrowview****888*********************888*********************888*******************/
-//            sec2=[[newsimage_scro alloc]initWithFrame:CGRectMake(320, 0, 320, 163)];
-//            [sec2 setImage_array:(NSArray *)imgarray];
-//            sec2.delegate=self;
-//           // [sec2 startanimation];
-//            
-//            
-//            twoscro=[[UIScrollView alloc]initWithFrame:imagesc.frame];
-//            twoscro.showsHorizontalScrollIndicator=NO;
-//            twoscro.showsVerticalScrollIndicator=NO;
-//            twoscro.pagingEnabled=YES;
-//            twoscro.contentSize=CGSizeMake(640, 0);
-//            [twoscro addSubview:imagesc];
-//            
-//            [twoscro addSubview:sec2];
-//            [twoscro addSubview:imagesc];
-//            
-///**888*********************888*********************888*********************888*********************888*********************888*******************/
-//            
-//            [cell.contentView addSubview:twoscro];
-//            
-//            
-//            UITapGestureRecognizer *oneFingerOneTaps =[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(pushtocommet)];
-//            
-//            [oneFingerOneTaps setNumberOfTapsRequired:1];
-//            [oneFingerOneTaps setNumberOfTouchesRequired:1];
-//            
-//            // Add the gesture to the view
-//            [imagesc addGestureRecognizer:oneFingerOneTaps];
-//            imagesc.userInteractionEnabled=YES;
-//            
-//            //ios7_halfblack640_150@2x5
-//           // UIColor *color_gray=[[UIColor blackColor] colorWithAlphaComponent:0.5];
-//            UIView *_duantiaoview=[[UIView alloc]initWithFrame:CGRectMake(0,imagesc.frame.size.height-25, 320, 25)];
-//            _duantiaoview.userInteractionEnabled = NO;
-//            _duantiaoview.autoresizesSubviews=YES;
-//            
-//            _duantiaoview.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"ios7_halfblack640_150.png"]];
-//            
-//            
-//            _pagecontrol = [[SMPageControl alloc]initWithFrame:CGRectMake(-4, 1,  320-255, 25)];
-//            
-//            _pagecontrol.backgroundColor = [UIColor clearColor];
-//            _pagecontrol.numberOfPages = 5;
-//            _pagecontrol.indicatorMargin=8.0f;
-//            [_pagecontrol setPageIndicatorImage:[UIImage imageNamed:@"dot.png"]];
-//            [_pagecontrol setCurrentPageIndicatorImage:[UIImage imageNamed:@"dot1.png"]];
-//            _pagecontrol.center=CGPointMake(160, 130);
-//            
-//            _pagecontrol.currentPage = 0;
-//            _pagecontrol.tag = 999;
-//            
-//            labeltuiguang=[[UILabel alloc]initWithFrame:CGRectMake(10, 6, 27, 13)];
-//            labeltuiguang.backgroundColor=[UIColor colorWithRed:80/255.f green:135/255.f blue:220/255.f alpha:1];
-//            
-//            labeltuiguang.text=@"推广";
-//            labeltuiguang.textAlignment=UITextAlignmentCenter;
-//            labeltuiguang.textColor=[UIColor whiteColor];
-//            labeltuiguang.font=[UIFont systemFontOfSize:10];
-//            
-//            labeltuiguang.textAlignment=UITextAlignmentCenter;
-//            _titleimagelabel=[[UILabel alloc]initWithFrame:CGRectMake(5, 3, 310, 19)];
-//            _titleimagelabel.backgroundColor=[UIColor clearColor];
-//            // _titleimagelabel.text=@"2014进口全新大切预售火爆";
-//            
-//            _titleimagelabel.font=[UIFont systemFontOfSize:14];
-//            _titleimagelabel.textAlignment=UITextAlignmentCenter;
-//            _titleimagelabel.textColor=[UIColor whiteColor];
-//            _titleimagelabel.text=[NSString stringWithFormat:@"%@",[com_title_array objectAtIndex:0]];
-//            
-//            [cell.contentView addSubview:_duantiaoview];
-//            
-//            [cell.contentView addSubview:_pagecontrol];
-//            //[_duantiaoview addSubview:labeltuiguang];
-//            [_duantiaoview addSubview:_titleimagelabel];
+            //            imagesc=[[newsimage_scro alloc]initWithFrame:CGRectMake(0, 0, 320, 163)];
+            //            [imagesc setImage_array:(NSArray *)imgarray];
+            //            imagesc.delegate=self;
+            //          //  [imagesc startanimation];
+            //
+            //
+            ///**888*********************888***********这一部分是底部的scrowview****888*********************888*********************888*******************/
+            //            sec2=[[newsimage_scro alloc]initWithFrame:CGRectMake(320, 0, 320, 163)];
+            //            [sec2 setImage_array:(NSArray *)imgarray];
+            //            sec2.delegate=self;
+            //           // [sec2 startanimation];
+            //
+            //
+            //            twoscro=[[UIScrollView alloc]initWithFrame:imagesc.frame];
+            //            twoscro.showsHorizontalScrollIndicator=NO;
+            //            twoscro.showsVerticalScrollIndicator=NO;
+            //            twoscro.pagingEnabled=YES;
+            //            twoscro.contentSize=CGSizeMake(640, 0);
+            //            [twoscro addSubview:imagesc];
+            //
+            //            [twoscro addSubview:sec2];
+            //            [twoscro addSubview:imagesc];
+            //
+            ///**888*********************888*********************888*********************888*********************888*********************888*******************/
+            //
+            //            [cell.contentView addSubview:twoscro];
+            //
+            //
+            //            UITapGestureRecognizer *oneFingerOneTaps =[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(pushtocommet)];
+            //
+            //            [oneFingerOneTaps setNumberOfTapsRequired:1];
+            //            [oneFingerOneTaps setNumberOfTouchesRequired:1];
+            //
+            //            // Add the gesture to the view
+            //            [imagesc addGestureRecognizer:oneFingerOneTaps];
+            //            imagesc.userInteractionEnabled=YES;
+            //
+            //            //ios7_halfblack640_150@2x5
+            //           // UIColor *color_gray=[[UIColor blackColor] colorWithAlphaComponent:0.5];
+            //            UIView *_duantiaoview=[[UIView alloc]initWithFrame:CGRectMake(0,imagesc.frame.size.height-25, 320, 25)];
+            //            _duantiaoview.userInteractionEnabled = NO;
+            //            _duantiaoview.autoresizesSubviews=YES;
+            //
+            //            _duantiaoview.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"ios7_halfblack640_150.png"]];
+            //
+            //
+            //            _pagecontrol = [[SMPageControl alloc]initWithFrame:CGRectMake(-4, 1,  320-255, 25)];
+            //
+            //            _pagecontrol.backgroundColor = [UIColor clearColor];
+            //            _pagecontrol.numberOfPages = 5;
+            //            _pagecontrol.indicatorMargin=8.0f;
+            //            [_pagecontrol setPageIndicatorImage:[UIImage imageNamed:@"dot.png"]];
+            //            [_pagecontrol setCurrentPageIndicatorImage:[UIImage imageNamed:@"dot1.png"]];
+            //            _pagecontrol.center=CGPointMake(160, 130);
+            //
+            //            _pagecontrol.currentPage = 0;
+            //            _pagecontrol.tag = 999;
+            //
+            //            labeltuiguang=[[UILabel alloc]initWithFrame:CGRectMake(10, 6, 27, 13)];
+            //            labeltuiguang.backgroundColor=[UIColor colorWithRed:80/255.f green:135/255.f blue:220/255.f alpha:1];
+            //
+            //            labeltuiguang.text=@"推广";
+            //            labeltuiguang.textAlignment=UITextAlignmentCenter;
+            //            labeltuiguang.textColor=[UIColor whiteColor];
+            //            labeltuiguang.font=[UIFont systemFontOfSize:10];
+            //
+            //            labeltuiguang.textAlignment=UITextAlignmentCenter;
+            //            _titleimagelabel=[[UILabel alloc]initWithFrame:CGRectMake(5, 3, 310, 19)];
+            //            _titleimagelabel.backgroundColor=[UIColor clearColor];
+            //            // _titleimagelabel.text=@"2014进口全新大切预售火爆";
+            //
+            //            _titleimagelabel.font=[UIFont systemFontOfSize:14];
+            //            _titleimagelabel.textAlignment=UITextAlignmentCenter;
+            //            _titleimagelabel.textColor=[UIColor whiteColor];
+            //            _titleimagelabel.text=[NSString stringWithFormat:@"%@",[com_title_array objectAtIndex:0]];
+            //
+            //            [cell.contentView addSubview:_duantiaoview];
+            //
+            //            [cell.contentView addSubview:_pagecontrol];
+            //            //[_duantiaoview addSubview:labeltuiguang];
+            //            [_duantiaoview addSubview:_titleimagelabel];
             
             
         }
-
-
-   
+        
+        
+        
         
     }else{
         
         orcell=[[newscellview alloc]initWithFrame:CGRectMake(0, 0, 320, 77)];
         [orcell setImv_string:(NSString *)[[self.normalarray objectAtIndex:indexPath.row-1] objectForKey:@"photo"]];
         [orcell setTitle_string:(NSString *)[[self.normalarray objectAtIndex:indexPath.row-1] objectForKey:@"stitle"]];
-
+        
         [orcell setDate_string:(NSString *)[[self.normalarray objectAtIndex:indexPath.row-1] objectForKey:@"publishtime"]];
-
+        
         [orcell setDiscribe_string:(NSString *)[[self.normalarray objectAtIndex:indexPath.row-1] objectForKey:@"summary"]];
         //判断有木有的
         
@@ -395,14 +395,14 @@
         selectback.backgroundColor=RGBCOLOR(242, 242, 242);
         cell.selectedBackgroundView=selectback;
         cell.backgroundColor=[UIColor whiteColor];
-
+        
         [cell.contentView addSubview:orcell];
-
+        
     }
     
     return cell;
     
-
+    
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -418,20 +418,20 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-
+    
     //select[indexPath.row]=1;
     
-
     
     
-        
-     newsdetailViewController *   comment_=[[newsdetailViewController alloc]init];
-        
+    
+    
+    newsdetailViewController *   comment_=[[newsdetailViewController alloc]init];
+    
     UIViewController *copyRoot=(UIViewController *)self.delegate;
-
-        NSLog(@"222");
-        comment_.string_Id=(NSString *)[[self.normalarray objectAtIndex:indexPath.row-1] objectForKey:@"id"];
-        // [self setHidesBottomBarWhenPushed:YES];//跳入下一个View时先隐藏掉tabbar
+    
+    NSLog(@"222");
+    comment_.string_Id=(NSString *)[[self.normalarray objectAtIndex:indexPath.row-1] objectForKey:@"id"];
+    // [self setHidesBottomBarWhenPushed:YES];//跳入下一个View时先隐藏掉tabbar
     
     NSMutableArray *array_select=[NSMutableArray array];
     array_select= [newslooked findbytheid:(NSString *)[[self.normalarray objectAtIndex:indexPath.row-1] objectForKey:@"id"]];
@@ -454,17 +454,17 @@
         
         
     }
-
-        
-        [copyRoot.leveyTabBarController hidesTabBar:YES animated:YES];
-        [copyRoot.navigationController pushViewController:comment_ animated:YES];//跳入下一个View
+    
+    
+    [copyRoot.leveyTabBarController hidesTabBar:YES animated:YES];
+    [copyRoot.navigationController pushViewController:comment_ animated:YES];//跳入下一个View
     
     NSIndexPath  *indexPath_1=[NSIndexPath indexPathForRow:indexPath.row inSection:0];
     NSArray      *indexArray=[NSArray  arrayWithObject:indexPath_1];
     [tab_  reloadRowsAtIndexPaths:indexArray withRowAnimation:UITableViewRowAnimationNone];
     
-        //[self setHidesBottomBarWhenPushed:NO] ;
-
+    //[self setHidesBottomBarWhenPushed:NO] ;
+    
     
 }
 #pragma mark EGORefreshTableHeaderDelegate Methods
@@ -494,9 +494,9 @@
     [com_link_array removeAllObjects];
     [com_title_array removeAllObjects];
     [com_type_array removeAllObjects];
-
+    
 	
-//	[self refreshwithrag:self.tag];
+    //	[self refreshwithrag:self.tag];
     [self.delegate refreshmydatawithtag:self.tag];
 	[self performSelector:@selector(doneLoadingTableViewData) withObject:nil afterDelay:3.0];
 	
@@ -510,7 +510,7 @@
         
         
         NSLog(@"%s%d",__FUNCTION__,[com_id_array count]>0);
-
+        
         if(tab_.contentOffset.y > (tab_.contentSize.height - tab_.frame.size.height+40)&&isloadsuccess==YES&&[com_id_array count]>0) {
             
             
@@ -519,22 +519,22 @@
             isloadsuccess=!isloadsuccess;
             [self.delegate loadmorewithtage:self.tag page:numberofpage];
             
-    }
-
-    }
+        }
         
-
-
-
-
+    }
     
-
+    
+    
+    
+    
+    
+    
 }
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
 {
     [_refreshHeaderView egoRefreshScrollViewDidEndDragging:scrollView];
-
+    
 }
 - (BOOL)egoRefreshTableHeaderDataSourceIsLoading:(EGORefreshTableHeaderView*)view{
 	
@@ -575,20 +575,20 @@
                     
                     NSLog(@"到新闻的");
                     newsdetailViewController *  comment_=[[newsdetailViewController alloc]init];
-                  
+                    
                     comment_.string_Id=item.idoftype;
-                        [copyRoot.leveyTabBarController hidesTabBar:YES animated:YES];
-                        [copyRoot.navigationController pushViewController:comment_ animated:YES];//跳入下一个View
-                        
- 
+                    [copyRoot.leveyTabBarController hidesTabBar:YES animated:YES];
+                    [copyRoot.navigationController pushViewController:comment_ animated:YES];//跳入下一个View
+                    
+                    
                 }
                     break;
                     
                 case 2:{
                     NSLog(@"到论坛的");
-                        bbsdetailViewController *_bbsdetail=[[bbsdetailViewController alloc]init];
-                        _bbsdetail.bbsdetail_tid=item.idoftype;
-                        [copyRoot.navigationController pushViewController:_bbsdetail animated:YES];
+                    bbsdetailViewController *_bbsdetail=[[bbsdetailViewController alloc]init];
+                    _bbsdetail.bbsdetail_tid=item.idoftype;
+                    [copyRoot.navigationController pushViewController:_bbsdetail animated:YES];
                     
                     
                 }
@@ -596,11 +596,11 @@
                 case 3:{
                     
                     NSLog(@"到新闻的");
-                        copyRoot.navigationController.navigationBarHidden=NO;
-                        NSLog(@"第三种情况link=%@",string_link_);
-                        fbWebViewController *_web=[[fbWebViewController alloc]init];
-                        _web.urlstring=item.link;
-                        [copyRoot.navigationController pushViewController:_web animated:YES];
+                    copyRoot.navigationController.navigationBarHidden=NO;
+                    NSLog(@"第三种情况link=%@",string_link_);
+                    fbWebViewController *_web=[[fbWebViewController alloc]init];
+                    _web.urlstring=item.link;
+                    [copyRoot.navigationController pushViewController:_web animated:YES];
                     
                 }
                     
@@ -614,19 +614,19 @@
         
         
     }
-
+    
 }
 - (void)foucusImageFrame:(SGFocusImageFrame *)imageFrame currentItem:(int)index;
 {
 }
 
 /*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
-{
-    // Drawing code
-}
-*/
+ // Only override drawRect: if you perform custom drawing.
+ // An empty implementation adversely affects performance during animation.
+ - (void)drawRect:(CGRect)rect
+ {
+ // Drawing code
+ }
+ */
 
 @end

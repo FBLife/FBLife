@@ -1724,7 +1724,6 @@ if (scrollView==xiala_tab)
                 [self.navigationController pushViewController:_bbsdetail_ animated:YES];
                 
                 
-                
             }
         }
         
@@ -1748,7 +1747,6 @@ if (scrollView==xiala_tab)
             
             NSLog(@"===sassssss==%@",array_select);
             if (array_select.count==0) {
-                
                 
                 
                 int resault=     [newslooked addid:(NSString *)[[self.data_array objectAtIndex:indexPath.row] objectForKey:@"id"]];
@@ -1876,7 +1874,6 @@ if (scrollView==xiala_tab)
     //
     //    self.navigationItem.titleView = label_title;
     
-    
     [self.leveyTabBarController hidesTabBar:YES animated:YES];
     [self.navigationController pushViewController:_allbbs animated:YES];//跳入下一个View
     
@@ -1899,7 +1896,7 @@ if (scrollView==xiala_tab)
     
     
     
-    ASIHTTPRequest *   _request1=[[ASIHTTPRequest alloc]initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://bbs.fblife.com/bbsapinew/getforumsbycategory.php?categorytype=%@&formattype=json&authocode=%@",@"diqu",string_authcode]]];
+    ASIHTTPRequest * _request1=[[ASIHTTPRequest alloc]initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://bbs.fblife.com/bbsapinew/getforumsbycategory.php?categorytype=%@&formattype=json&authocode=%@",@"diqu",string_authcode]]];
     
     _request1.tag=1025;
     [_request1 setTimeOutSeconds:120];

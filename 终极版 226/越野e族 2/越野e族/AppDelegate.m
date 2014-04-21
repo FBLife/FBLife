@@ -317,7 +317,7 @@
             //  NSDictionary * dic = [data objectFromJSONData];
             
             NSDictionary *array_test=[data objectFromJSONData];
-            NSLog(@"dic== %@",array_test);
+            NSLog(@"======dic== %@",array_test);
             
             
             if (array_test.count==0) {

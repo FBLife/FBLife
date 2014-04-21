@@ -7,7 +7,7 @@
 //
 
 #import "MallViewController.h"
-
+#import "DetailClassifyViewController.h"
 @interface MallViewController ()
 
 @end
@@ -20,44 +20,46 @@
     if (self) {
         // Custom initialization
     }
+    
     return self;
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.view.backgroundColor=[UIColor whiteColor];
+//    self.view.backgroundColor=[UIColor whiteColor];
+//    
+//    UIButton *button_back=[[UIButton alloc]initWithFrame: CGRectMake(MY_MACRO_NAME? -7:5, 3, 20, 32/2)];
+//    
+//    [button_back addTarget:self action:@selector(backto) forControlEvents:UIControlEventTouchUpInside];
+//    [button_back setBackgroundImage:[UIImage imageNamed:@"MallLeft40_32.png"] forState:UIControlStateNormal];
+
     
-    UIButton *button_back=[[UIButton alloc]initWithFrame: CGRectMake(MY_MACRO_NAME? -7:5, 3, 20, 32/2)];
+//    UIButton *back_view=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 50, 28)];
+//    [back_view addSubview:button_back];
+//    back_view.backgroundColor=[UIColor clearColor];
+//    [back_view addTarget:self action:@selector(backto) forControlEvents:UIControlEventTouchUpInside];
+//    UIBarButtonItem *back_item=[[UIBarButtonItem alloc]initWithCustomView:back_view];
+//    self.navigationItem.leftBarButtonItem=back_item;
+//
     
-    [button_back addTarget:self action:@selector(backto) forControlEvents:UIControlEventTouchUpInside];
-    [button_back setBackgroundImage:[UIImage imageNamed:@"MallLeft40_32.png"] forState:UIControlStateNormal];
-    
-    UIButton *back_view=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 50, 28)];
-    [back_view addSubview:button_back];
-    back_view.backgroundColor=[UIColor clearColor];
-    [back_view addTarget:self action:@selector(backto) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *back_item=[[UIBarButtonItem alloc]initWithCustomView:back_view];
-    self.navigationItem.leftBarButtonItem=back_item;
+//    if([self.navigationController.navigationBar respondsToSelector:@selector(setBackgroundImage:forBarMetrics:)] ) {
+//        //iOS 5 new UINavigationBar custom background
+//        [self.navigationController.navigationBar setBackgroundImage:MY_MACRO_NAME?[UIImage imageNamed:IOS7DAOHANGLANBEIJING]:[UIImage imageNamed:@"ios7eva320_44.png"] forBarMetrics: UIBarMetricsDefault];
+//        
+//    }
     
     
-     
-    if([self.navigationController.navigationBar respondsToSelector:@selector(setBackgroundImage:forBarMetrics:)] ) {
-        //iOS 5 new UINavigationBar custom background
-        [self.navigationController.navigationBar setBackgroundImage:MY_MACRO_NAME?[UIImage imageNamed:IOS7DAOHANGLANBEIJING]:[UIImage imageNamed:@"ios7eva320_44.png"] forBarMetrics: UIBarMetricsDefault];
-        
-    }
     //主要的tableview
+    
     _MainTabView=[[UITableView alloc]initWithFrame:CGRectMake(0, 0, 320, iPhone5?568-64-49:480-64-49) style:UITableViewStylePlain];
     _MainTabView.delegate=self;
     _MainTabView.dataSource=self;
     _MainTabView.backgroundColor=[UIColor whiteColor];
     [self.view addSubview:_MainTabView];
-    
-    
-    
-    
     [self StartLoadSlideShow];
+    
+    
 	// Do any additional setup after loading the view.
 }
 
@@ -89,6 +91,11 @@
 #pragma mark-跳到分类页面
 -(void)backto{
     NSLog(@"跳到分类页面");
+    DetailClassifyViewController *_ClassifyVC=[[DetailClassifyViewController alloc]init];
+    UINavigationController *nav=[[UINavigationController alloc]initWithRootViewController:_ClassifyVC];
+    [self presentModalViewController:nav animated:YES];
+    self.leveyTabBarController.tabBar.hidden=YES;
+
     
 }
 #pragma mark-请求幻灯数据
@@ -96,6 +103,7 @@
     _slishouwmodels=[[SlideShowModel alloc]init];
     _slishouwmodels.delegate=self;
     [_slishouwmodels SlideShowModelStartLoad];
+
     
 }
 -(void)LoadErrorwithstring:(NSString *)errorinfo{
