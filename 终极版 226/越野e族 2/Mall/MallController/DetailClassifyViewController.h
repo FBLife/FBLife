@@ -7,7 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DetailClassifyCellView.h"
 
-@interface DetailClassifyViewController : UIViewController
+@interface DetailClassifyViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>{
+    
+}
+@property(nonatomic,strong)UITableView *MainTableview;
+@property(nonatomic,strong)NSArray *titleArray;
+@property(nonatomic,strong)NSArray *classArray;
+@property(nonatomic,strong)DetailClassifyCellView *cellView;
 
 @end

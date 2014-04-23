@@ -573,8 +573,8 @@
     [_titleView addSubview:silderImageView];
     
     
-    
-    array_lanmu = [NSArray arrayWithObjects:@"最新",@"新闻",@"品车",@"改装",@"导购",@"摄影",@"赛事",@"房车",@"铁骑",@"旅行",@"活动",@"户外",@"公益",nil];
+                                             //最新    新闻 品车     导购    改装    房车    铁骑     活动   赛事     旅行  摄影      户外   公益
+    array_lanmu = [NSArray arrayWithObjects:@"最新",@"新闻",@"品车",@"导购",@"改装",@"房车",@"铁骑",@"活动",@"赛事",@"旅行",@"摄影",@"户外",@"公益",nil];
     
     for (int i = 0;i < [array_lanmu count];i++)
     {
