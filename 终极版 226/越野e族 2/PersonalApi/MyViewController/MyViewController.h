@@ -44,4 +44,6 @@ typedef enum
 
 -(void)setMyViewControllerLeftButtonType:(MyViewControllerLeftbuttonType)theType WithRightButtonType:(MyViewControllerRightbuttonType)rightType;
 
+-(void)back;
+
 @end

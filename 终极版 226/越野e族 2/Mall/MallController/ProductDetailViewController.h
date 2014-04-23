@@ -19,6 +19,8 @@
     ProductCellType theType;
     
     float postionState[4];
+    
+    UIView * aView;
 }
 
 

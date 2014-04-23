@@ -43,13 +43,14 @@
 @property(nonatomic,strong)NSString * PIntroduce;//商品介绍
 @property(nonatomic,strong)NSString * PMerchantsName;//商家名字
 @property(nonatomic,strong)NSString * PMerchantsImage;//商家头像
-@property(nonatomic,strong)NSArray * PImages;//商品图片
+@property(nonatomic,strong)NSMutableArray * PImages;//商品图片
 @property(nonatomic,strong)NSString * PGoodsId;//商品ID
 @property(nonatomic,strong)NSString * PStoreId;//店铺ID
 @property(nonatomic,strong)NSString * PCateId;//商品分类ID
 @property(nonatomic,strong)NSString * PCateName;//商品所属分类名称
 @property(nonatomic,strong)NSString * PStock;//库存
 @property(nonatomic,strong)NSString * PSales;//已售商品数
+@property(nonatomic,strong)NSString * PCommentsCount;//评论数
 
 
 

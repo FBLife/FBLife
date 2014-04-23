@@ -12,6 +12,7 @@
 
 #import <UIKit/UIKit.h>
 #import "ProductModel.h"
+#import "EvaluationStars.h"
 
 typedef enum
 {
@@ -33,7 +34,7 @@ typedef enum
 
 @property(nonatomic,strong)UILabel * commentsContentLabel;
 
-@property(nonatomic,strong)UIImageView * commentsStarsImageView;
+@property(nonatomic,strong)EvaluationStars * commentsStarsImageView;
 
 
 

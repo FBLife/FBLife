@@ -874,6 +874,10 @@
     
     
 }
+
+
+
+
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
     
     
@@ -1122,6 +1126,16 @@
   sourceApplication:(NSString *)sourceApplication
          annotation:(id)annotation
 {
+    
+    UIAlertView * alert = [[UIAlertView alloc] initWithTitle:sourceApplication message:[url absoluteString] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+    
+    [alert show];
+    
+    
+    NSLog(@"------%@",sourceApplication);
+    
+    
+    
     return  [WXApi handleOpenURL:url delegate:self];
     
     // return  [UMSocialSnsService handleOpenURL:url wxApiDelegate:nil];

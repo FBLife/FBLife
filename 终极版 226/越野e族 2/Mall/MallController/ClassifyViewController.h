@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ClassifyViewController : UIViewController
+@interface ClassifyViewController : MyViewController
+{
+    
+}
+
 
 @end
