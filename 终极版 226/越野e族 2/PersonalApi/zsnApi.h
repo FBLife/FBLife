@@ -11,6 +11,7 @@
 
 +(NSString *)timechange:(NSString *)placetime;
 +(NSString *)timechange1:(NSString *)placetime;
++(NSString *)timechangeByAll:(NSString *)placetime;
 
 +(NSString *)timeFromDate:(NSDate *)date;
 + (NSString*)imgreplace:(NSString*)imgSrc;
@@ -51,6 +52,9 @@
 +(BOOL) validateEmail: (NSString *) candidate;
 
 +(CGPoint)LinesWidth:(NSString *)string Label:(UILabel *)label font:(UIFont *)thefont linebreak:(NSLineBreakMode)linebreak;
+
+
++(NSString *)returnUrlWithUid:(NSString *)uid;
 
 @end
 

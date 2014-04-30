@@ -38,6 +38,11 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     [self judgeversionandclean];
+    
+    int cacheSizeMemory = 4*1024*1024; // 4MB
+    int cacheSizeDisk = 32*1024*1024; // 32MB
+    NSURLCache *sharedCache = [[[NSURLCache alloc] initWithMemoryCapacity:cacheSizeMemory diskCapacity:cacheSizeDisk diskPath:@"nsurlcache"] autorelease];
+    [NSURLCache setSharedURLCache:sharedCache];
         
     //友盟分享平台
     
@@ -615,10 +620,6 @@
         [self.window addSubview:fansNav.view];
         
         
-        
-        
-        
-        
         _shadowView = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
         
         _shadowView.userInteractionEnabled = NO;
@@ -1127,12 +1128,74 @@
          annotation:(id)annotation
 {
     
-    UIAlertView * alert = [[UIAlertView alloc] initWithTitle:sourceApplication message:[url absoluteString] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
     
-    [alert show];
+    NSString * theString = [url absoluteString];
     
+    if ([theString rangeOfString:@"&amp;"].length) {
+        theString = [theString stringByReplacingOccurrencesOfString:@"&amp;" withString:@"&"];
+    }
     
-    NSLog(@"------%@",sourceApplication);
+    NSLog(@"urllll------%@",theString);
+    
+    NSString * typeString = nil;
+    
+    NSString * id_string = nil;
+    
+    if ([theString rangeOfString:@"m.fblife.com:"].length)
+    {
+        
+        if ([theString rangeOfString:@"type=cmsindex"].length) {
+            
+            [_leveyTabBarController hidesTabBar:NO animated:YES];
+            _leveyTabBarController.selectedIndex = 0;
+            
+        }else if ([theString rangeOfString:@"type=bbsindex"].length)
+        {
+            [_leveyTabBarController hidesTabBar:NO animated:YES];
+            _leveyTabBarController.selectedIndex = 1;
+        }else if([theString rangeOfString:@"type=cmschannel"].length)
+        {
+            [_leveyTabBarController hidesTabBar:NO animated:YES];
+            _leveyTabBarController.selectedIndex = 0;
+            
+            typeString = [[theString substringToIndex:[theString rangeOfString:@"&"].location] substringFromIndex:([theString rangeOfString:@"type="].location+5)];
+            
+            id_string = [theString substringFromIndex:([theString rangeOfString:@"classname="].location+10)];
+            
+            [rootVC wapToPinDaoWithName:id_string];
+        }else
+        {
+            typeString = [[theString substringToIndex:[theString rangeOfString:@"&"].location] substringFromIndex:([theString rangeOfString:@"type="].location+5)];
+            
+            id_string = [theString substringFromIndex:([theString rangeOfString:@"id"].location+3)];
+            
+            
+            if ([typeString isEqualToString:@"cmsdetail"])//新闻详情页
+            {
+                [_leveyTabBarController hidesTabBar:YES animated:YES];
+                _leveyTabBarController.selectedIndex = 0;
+                
+                [rootVC pushtoNewsdetailWithid:id_string];
+            }else if ([typeString isEqualToString:@"forum"])//帖子列表页
+            {
+                [_leveyTabBarController hidesTabBar:YES animated:YES];
+                _leveyTabBarController.selectedIndex = 0;
+                
+                BBSfenduiViewController * bbs = [[BBSfenduiViewController alloc] init];
+                
+                bbs.string_id = id_string;
+                
+                [rootVC.navigationController pushViewController:bbs animated:YES];
+            }else if ([typeString isEqualToString:@"thread"])//帖子详情页
+            {
+                [_leveyTabBarController hidesTabBar:YES animated:YES];
+                _leveyTabBarController.selectedIndex = 0;
+                
+                [rootVC pushtobbsdetailwithid:id_string];
+            }
+        }
+    }
+    
     
     
     
@@ -1154,6 +1217,10 @@
  
     
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+}
+
+- (void)applicationDidReceiveMemoryWarning:(UIApplication *)application {
+    [[NSURLCache sharedURLCache] removeAllCachedResponses];
 }
 
 

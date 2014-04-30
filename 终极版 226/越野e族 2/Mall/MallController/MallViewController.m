@@ -119,9 +119,9 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    ProductDetailViewController * product = [[ProductDetailViewController alloc] init];
+    ProductDetailViewController * product = [[ProductDetailViewController alloc] init];
     
-    MallTypeClassifyViewController * product = [[MallTypeClassifyViewController alloc] init];
+//    MallTypeClassifyViewController * product = [[MallTypeClassifyViewController alloc] init];
     
     [self.navigationController pushViewController:product animated:YES];
 }

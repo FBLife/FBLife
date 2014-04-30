@@ -130,10 +130,10 @@ static CGFloat SWITCH_FOCUS_PICTURE_INTERVAL = 5.0; //switch interval time
         //加载图片
         // imageView.backgroundColor = i%2?[UIColor greenColor]:[UIColor blueColor];
         SGFocusImageItem *item = [imageItems objectAtIndex:i];
+                
+        imageView.delegate = self;
         
-//        imageView.backgroundColor = (UIColor *)item.link;
-        NSLog(@"----===------- %@",item.link);
-        [ imageView loadImageFromURL:item.link withPlaceholdImage:[UIImage imageNamed:@"bigimplace.png"]];
+        [imageView loadImageFromURL:item.link withPlaceholdImage:[UIImage imageNamed:@"bigimplace.png"]];
         [_scrollView addSubview:imageView];
         [imageView release];    }
     [tapGestureRecognize release];
@@ -150,6 +150,19 @@ static CGFloat SWITCH_FOCUS_PICTURE_INTERVAL = 5.0; //switch interval time
     
     //objc_setAssociatedObject(self, (const void *)SG_FOCUS_ITEM_ASS_KEY, nil, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
+
+#pragma mark-asyncimageview
+
+-(void)handleImageLayout:(AsyncImageView *)tag
+{
+    
+}
+
+-(void)succesDownLoadWithImageView:(UIImageView *)imageView Image:(UIImage *)image
+{
+    
+}
+
 
 - (void)switchFocusImageItems
 {

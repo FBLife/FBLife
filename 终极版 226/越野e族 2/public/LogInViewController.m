@@ -384,13 +384,11 @@
 
 -(void)downloadtool:(downloadtool *)tool didfinishdownloadwithdata:(NSData *)data
 {
-    
     @try {
         if (tool.tag==101)
         {
             dictionary= [data objectFromJSONData];
             NSLog(@"登录论坛 -=-=  %@",dictionary);
-            
             
             if ([[dictionary objectForKey:@"errcode"] integerValue]==0)
             {
@@ -409,7 +407,7 @@
         {
             NSDictionary *dic_=[data objectFromJSONData];
             NSLog(@"验证是否开通fb账号");
-            NSLog(@"啦啦啦啦啦 -=-  %@,,,errcode -=  %@",[dic_ objectForKey:@"data"],[dic_ objectForKey:@"errcode"]);
+            NSLog(@"啦啦啦啦啦 -=-  %@,,,errcode -=  %@",[dic_ objectForKey:@"data"],dic_);
             
             if ([[dic_ objectForKey:@"errcode"] intValue] == 1)
             {
@@ -447,6 +445,8 @@
             
             NSDictionary * dic = [data objectFromJSONData];
             
+            NSLog(@"didididdidi------%@",dic);
+            
             if ([[dic objectForKey:@"errcode"] intValue] == 1)
             {
                 NSLog(@"开通成功");
@@ -455,7 +455,6 @@
                 [[NSUserDefaults standardUserDefaults] setObject:userNameField.text forKey:USER_NAME] ;
                 [[NSUserDefaults standardUserDefaults] setObject:pwNameField.text forKey:USER_PW] ;
                 [[NSUserDefaults standardUserDefaults] setObject:[dictionary objectForKey:@"bbsinfo"] forKey:USER_AUTHOD] ;
-                // [[NSUserDefaults standardUserDefaults]setObject:[dictionary objectForKey:@""] forKey:<#(NSString *)#>];
                 [[NSUserDefaults standardUserDefaults] setBool:YES forKey:USER_IN];
                 [[NSUserDefaults standardUserDefaults] synchronize];
                 [self.delegate successToLogIn];
@@ -501,6 +500,7 @@
                 [[NSUserDefaults standardUserDefaults] setObject:userNameField.text forKey:USER_NAME] ;
                 [[NSUserDefaults standardUserDefaults] setObject:pwNameField.text forKey:USER_PW] ;
                 [[NSUserDefaults standardUserDefaults] setObject:[dic_ objectForKey:@"bbsinfo"] forKey:USER_AUTHOD] ;
+                [[NSUserDefaults standardUserDefaults] setObject:[dic_ objectForKey:@"uid"] forKey:USER_UID];
                 [[NSUserDefaults standardUserDefaults] setBool:YES forKey:USER_IN];
                 [[NSUserDefaults standardUserDefaults] synchronize];
                 

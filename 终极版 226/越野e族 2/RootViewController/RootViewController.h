@@ -128,6 +128,11 @@
 - (void)reloadTableViewDataSource;
 - (void)doneLoadingTableViewData;
 -(void)processingPushWithdic:(NSDictionary *)dicofpush;
+-(void)pushtobbsdetailwithid:(NSString *)string_id;
+
+-(void)pushtoNewsdetailWithid:(NSString *)string_id;
+
+-(void)wapToPinDaoWithName:(NSString *)theName;
 
 @property(nonatomic,strong) NSString *category_string;//分类的名称，比如“最新”，“车讯”。。。
 

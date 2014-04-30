@@ -372,15 +372,19 @@ alpha:(a)]
 
 //某件商品的详细信息
 
-#define MALLPRODUCTDETAIL_URL @"http://malltest.fblife.com/api.php?app=goods&id=%@&formattype=json"
+#define MALLPRODUCTDETAIL_URL @"http://mall.fblife.com/api.php?app=goods&id=%@&formattype=json"
+
+//商品评价
+#define MALLPRODUCTDCOMMENTS_URL @"http://mall.fblife.com/api.php?app=goods&act=comments&id=%@&formattype=json&page=%d&pageper=20"
 
 
+//商家信息
 
+#define MALLSELLERINFO_URL @"http://mall.fblife.com/api.php?app=goods&act=storeinfo&id=%@&formattype=json"
 
+//推荐商品
 
-
-
-
+#define MALL_RECOMMEND_GOODS_URL @"http://mall.fblife.com/api.php?app=store&act=search&id=%@&goodssort=1&page=1&pageper=20&formattype=json"
 
 
 

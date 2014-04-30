@@ -13,6 +13,7 @@
 #import <UIKit/UIKit.h>
 #import "ProductModel.h"
 #import "EvaluationStars.h"
+#import "SellerInfo.h"
 
 typedef enum
 {
@@ -21,10 +22,37 @@ typedef enum
     ProductCellTypeIntroduce//商品介绍
 }ProductCellType;
 
+
+
+
+@interface SellerInfoView : UIView
+{
+    AsyncImageView * headerImageView;
+    UILabel * sellerName;
+    UIButton * MessageButton;
+    UIButton * telephoneButton;
+}
+
+-(SellerInfoView *)initWithFrame:(CGRect)frame;
+
+-(void)SellerInfoViewData:(SellerInfo *)infomation;
+
+@end
+
+
+
+
+
 @interface ProductCustomCell : UITableViewCell
 {
     
 }
+
+//商品详情
+
+@property(nonatomic,strong)UIWebView * myWebView;
+
+//商品评价
 
 @property(nonatomic,strong)AsyncImageView * buyersHeaderImageView;
 
@@ -36,11 +64,36 @@ typedef enum
 
 @property(nonatomic,strong)EvaluationStars * commentsStarsImageView;
 
+//商家介绍
+
+@property(nonatomic,strong)NSString * SellerDescription;
+
+@property(nonatomic,strong)SellerInfoView * myInfoView;
+
 
 
 -(void)setAllViewsWithCellType:(ProductCellType)theType;
 
--(void)setInfoWithProductInfo:(ProductModel *)info;
+-(void)setInfoWithProductInfo:(ProductModel *)info WithType:(ProductCellType)theType;
 
 
 @end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

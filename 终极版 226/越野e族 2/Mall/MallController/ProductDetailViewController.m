@@ -7,6 +7,11 @@
 //
 
 #import "ProductDetailViewController.h"
+#import "rtLabel.h"
+
+@class RTLabelComponent;
+@class RTLabelExtractedComponent;
+
 
 
 #define TEXTCLOLOR [UIColor colorWithRed:115/255.0f green:115/255.0f blue:115/255.0f alpha:1];
@@ -19,6 +24,7 @@
 @synthesize myTableView = _myTableView;
 @synthesize slide_array = _slide_array;
 @synthesize ProductInfo = _ProductInfo;
+@synthesize SellerInfo = _SellerInfo;
 
 
 
@@ -39,11 +45,13 @@
     NSString * full_url = [NSString stringWithFormat:MALLPRODUCTDETAIL_URL,@"8680"];
     
     
-    ASIHTTPRequest * productDetail_request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:full_url]];
+    productDetail_request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:full_url]];
     
     productDetail_request.delegate = self;
     
-    __block ASIHTTPRequest * request = productDetail_request;
+    __weak ASIHTTPRequest * request = productDetail_request;
+    
+    __weak typeof(self) _weakself=self;
     
     [productDetail_request setCompletionBlock:^{
         
@@ -56,18 +64,26 @@
         if ([errcode intValue] == 0)
         {
             NSDictionary * data_dictionary = [totalDictionary objectForKey:@"datainfo"];
-            
     
-            _ProductInfo = [[ProductModel alloc] initWithDictionary:data_dictionary];
+            _weakself.ProductInfo = [[ProductModel alloc] initWithDictionary:data_dictionary];
+            
+            UIWebView * theWebView = [[UIWebView alloc] initWithFrame:CGRectMake(0,0,320,(iPhone5?568:480)-35.5-44-(MY_MACRO_NAME?20:0))];
+            
+            theWebView.delegate = _weakself;
+            
+            theWebView.hidden = YES;
+            
+            theWebView.userInteractionEnabled = NO;
+            
+            [theWebView loadHTMLString:_weakself.ProductInfo.PDetails baseURL:[[NSBundle mainBundle] resourceURL]];
+            
+            [_weakself.view addSubview:theWebView];
             
         }
         
-        [self loadSlideViewAndContentView];
+        [_weakself loadSlideViewAndContentView];
         
-        [self loadTableHeaderViewTwo];
-        
-        [self.myTableView reloadData];
-        
+        [_weakself loadTableHeaderViewTwo];
     }];
     
     [productDetail_request setFailedBlock:^{
@@ -79,7 +95,132 @@
 }
 
 
+-(void)loadProductCommentsData
+{
+    if (productComments_request && CommentsPageCount==1) {
+        return;
+    }
+    
+    
+    [loadMoreView startLoading];
+    
+    NSString * fullUrl = [NSString stringWithFormat:MALLPRODUCTDCOMMENTS_URL,@"8680",CommentsPageCount];
+    
+    NSLog(@"fullUrl------%@",fullUrl);
+    productComments_request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:fullUrl]];
+    
+    productComments_request.delegate = self;
+    
+    __weak ASIHTTPRequest * request = productComments_request;
+    
+    [request setCompletionBlock:^{
+        
+        __weak typeof(self) bself = self;
+        
+        [loadMoreView stopLoading:1];
+        
+        @try {
+            NSDictionary * totalDictionary = [productComments_request.responseData objectFromJSONData];
+            
+            NSLog(@"评论数据 ----  %@",totalDictionary);
+            
+            NSString * errcode = [totalDictionary objectForKey:@"errcode"];
+            
+            if ([errcode intValue] == 0) {
+                
+                NSDictionary * dataDictionary = [totalDictionary objectForKey:@"datainfo"];
+                
+                NSArray * commentsArray = [dataDictionary objectForKey:@"comments"];
+                
+                for (NSDictionary * dic in commentsArray) {
+                    ProductModel * model = [[ProductModel alloc] initWithDictionary:dic];
+                    [productComments_array addObject:model];
+                }
+                
+                
+                [bself.myTableView reloadData];
+            }else
+            {
+                loadMoreView.normalLabel.text = @"没有更多了";
+            }
+        }
+        @catch (NSException *exception) {
+            
+        }
+        @finally {
+            
+        }
+    }];
+    
+    [productComments_request startAsynchronous];
+}
 
+
+-(void)loadSellerInfomationAndRecommendGoods
+{
+    __weak typeof(self) bself = self;
+    
+    if(![recommendGoods_dictionary objectForKey:@"sellerDescription"])
+    {
+        NSString * sellerInfo_url = [NSString stringWithFormat:MALLSELLERINFO_URL,@"99899"];
+        
+        _SellerInfo = [[SellerInfo alloc] init];
+        
+        [bself.SellerInfo loadInfomationWithUrl:sellerInfo_url WithBlock:^(SellerInfo *theInfo) {
+            
+            bself.SellerInfo = theInfo;
+            
+            SellerInfoView * sellerView = [[SellerInfoView alloc] initWithFrame:CGRectMake(0,0,320,93)];
+            
+            [sellerView SellerInfoViewData:bself.SellerInfo];
+            
+            [recommendGoods_dictionary setObject:sellerView forKey:@"sellerInfo"];
+            
+            if (bself.SellerInfo.SDescription.length !=0 && ![bself.SellerInfo.SDescription isEqualToString:@""]) {
+                [recommendGoods_dictionary setObject:bself.SellerInfo.SDescription forKey:@"sellerDescription"];
+            }
+            
+            [_myTableView reloadData];
+        }];
+    }
+    
+    
+    if(![recommendGoods_dictionary objectForKey:@"recommendGoods"])
+    {
+        NSString * recommendGoods_url = [NSString stringWithFormat:MALL_RECOMMEND_GOODS_URL,@"377284"];
+        
+        [bself.SellerInfo loadRecommendGoodsWithUrl:recommendGoods_url WithBlock:^(NSMutableArray *dataArray) {
+            
+            int row = (dataArray.count%2?1:0)+dataArray.count/2;
+            
+            float height = 95/2+227.5*row;
+            
+            DetailRecommendGoodsView * recommendGoodsView = [[DetailRecommendGoodsView alloc] initWithFrame:CGRectMake(0,0,320,height)];
+            
+            recommendGoodsView.delegate = bself;
+            
+            [recommendGoodsView loadViewWithDataArray:dataArray];
+            
+            [recommendGoods_dictionary setObject:recommendGoodsView forKey:@"recommendGoods"];
+            
+            [bself.myTableView reloadData];
+        }];
+    }
+}
+
+
+-(void)back
+{
+    [productDetail_request cancel];
+    productDetail_request.delegate = nil;
+    productDetail_request = nil;
+    
+    [productComments_request cancel];
+    productComments_request.delegate = nil;
+    productComments_request = nil;
+    
+    [self.navigationController popViewControllerAnimated:YES];
+}
 
 
 - (void)viewDidLoad
@@ -93,15 +234,24 @@
     
     [self setMyViewControllerLeftButtonType:MyViewControllerLeftbuttonTypeBack WithRightButtonType:MyViewControllerRightbuttonTypePerson];
     
+    CommentsPageCount = 1;
     
     _ProductInfo = [[ProductModel alloc] init];
-
+        
+    productComments_array = [[NSMutableArray alloc] init];
     
-    _myTableView = [[UITableView alloc] initWithFrame:[UIScreen mainScreen].bounds style:UITableViewStylePlain];
+    recommendGoods_dictionary = [[NSMutableDictionary alloc] init];
+
+    self.title = @"商品详情";
+    _myTableView = [[UITableView alloc] initWithFrame:CGRectMake(0,0,320,(iPhone5?568:480)-64) style:UITableViewStylePlain];
     
     _myTableView.delegate = self;
     
     _myTableView.dataSource =self;
+    
+    if (MY_MACRO_NAME) {
+        _myTableView.separatorInset = UIEdgeInsetsZero;
+    }
     
     _myTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
@@ -118,7 +268,7 @@
     NSMutableArray *tempArray = [NSMutableArray array];
     for (int i = 0 ; i < length; i++)
     {
-        NSDictionary *dict = [NSDictionary dictionaryWithObject:[[_ProductInfo.PImages objectAtIndex:i] IImageUrl] forKey:@"link"];
+        NSDictionary *dict = [NSDictionary dictionaryWithObject:[[_ProductInfo.PImages objectAtIndex:i] IThumbnail] forKey:@"link"];
         [tempArray addObject:dict];
     }
     
@@ -315,7 +465,13 @@
     
     content_imageView.frame = CGRectMake(0,320,320,content_imageView_height+23/2+14);
     
-    tableHeaderView.frame = CGRectMake(0,0,320,content_imageView.frame.size.height + 320);
+    UIView * theview = [[UIView alloc] initWithFrame:CGRectMake(0,content_imageView.frame.size.height + 320,320,23/2)];
+    
+    theview.backgroundColor = RGBCOLOR(243,243,243);
+    
+    [tableHeaderView addSubview:theview];
+    
+    tableHeaderView.frame = CGRectMake(0,0,320,content_imageView.frame.size.height + 320 + 23/2);
     
     return tableHeaderView;
 }
@@ -326,7 +482,7 @@
 
 -(UIView *)loadTableHeaderViewTwo
 {
-    aView = [[UIView alloc] initWithFrame:CGRectMake(0,0,320,35.5+23/2)];
+    aView = [[UIView alloc] initWithFrame:CGRectMake(0,0,320,35.5)];
     
     aView.backgroundColor = RGBCOLOR(243,243,243);
     
@@ -338,7 +494,7 @@
     for (int i = 0;i < 3;i++) {
         UIButton * button = [UIButton buttonWithType:UIButtonTypeCustom];
         
-        button.frame = CGRectMake(100*i+(i>1?20:0),23/2,100+(i==1?20:0),35.5);
+        button.frame = CGRectMake(100*i+(i>1?20:0),0,100+(i==1?20:0),35.5);
         
         button.backgroundColor = RGBCOLOR(251,251,251);
         
@@ -378,10 +534,7 @@
         {
             title_label.textColor = RGBCOLOR(120,120,120);
         }
-        
-        
     }
-    
     
     return aView;
 }
@@ -394,12 +547,26 @@
     switch (sender.tag) {
         case 1000:
             theType = ProductCellTypeDetail;
+            _myTableView.tableFooterView = nil;
             break;
         case 1001:
             theType = ProductCellTypeEvaluation;
+            
+            if (!loadMoreView) {
+                loadMoreView = [[LoadingIndicatorView alloc] initWithFrame:CGRectMake(0,0,320,40)];
+            }
+            
+            _myTableView.tableFooterView = loadMoreView;
+            
+            [self loadProductCommentsData];
             break;
         case 1002:
             theType = ProductCellTypeIntroduce;
+            
+            _myTableView.tableFooterView = nil;
+            
+            [self loadSellerInfomationAndRecommendGoods];
+            
             break;
             
         default:
@@ -426,25 +593,28 @@
         }
     }
     
-    
-    float contentOffset = _myTableView.contentOffset.y;
+//    float contentOffset = _myTableView.contentOffset.y;
     
     [_myTableView reloadData];
     
     
-    if (postionState[theType]  == 0.000000)
-    {
-        if (contentOffset >=tableHeaderView.frame.size.height)
-        {
-            _myTableView.contentOffset = CGPointMake(0,tableHeaderView.frame.size.height);
-        }else
-        {
-            _myTableView.contentOffset  = CGPointMake(0,contentOffset<tableHeaderView.frame.size.height?contentOffset:tableHeaderView.frame.size.height);
-        }
-    }else
-    {
-        _myTableView.contentOffset = CGPointMake(0,_myTableView.contentOffset.y>0?postionState[theType]:0);
-    }
+    
+    _myTableView.contentOffset = CGPointMake(0,tableHeaderView.frame.size.height);
+    
+    
+//    if (postionState[theType]  == 0.000000)
+//    {
+//        if (contentOffset >=tableHeaderView.frame.size.height)
+//        {
+//            _myTableView.contentOffset = CGPointMake(0,tableHeaderView.frame.size.height);
+//        }else
+//        {
+//            _myTableView.contentOffset  = CGPointMake(0,contentOffset<tableHeaderView.frame.size.height?contentOffset:tableHeaderView.frame.size.height);
+//        }
+//    }else
+//    {
+//        _myTableView.contentOffset = CGPointMake(0,_myTableView.contentOffset.y>0?postionState[theType]:0);
+//    }
 }
 
 
@@ -461,6 +631,39 @@
             sender.transform = CGAffineTransformScale(sender.transform,1.0,-1.0);
         }];
     }];
+}
+
+#pragma mark-UIWebViewDelegate
+
+
+-(void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
+{
+    
+    
+}
+
+-(void)webViewDidFinishLoad:(UIWebView *)webView
+{
+    float webViewHeight = [[webView stringByEvaluatingJavaScriptFromString:@"document.body.offsetHeight;"] floatValue];
+    
+    CGRect rect = webView.frame;
+    
+    rect.size.height = webViewHeight;
+    
+    webView.frame = rect;
+    
+    [webView removeFromSuperview];
+    
+    webView.hidden = NO;
+    
+    [recommendGoods_dictionary setObject:webView forKey:@"GoodsDetailView"];
+    
+    [self.myTableView reloadData];
+}
+
+-(void)webViewDidStartLoad:(UIWebView *)webView
+{
+    
 }
 
 #pragma mark-UIScrollViewDelegate
@@ -492,9 +695,43 @@
 }
 
 
+-(void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+{
+    if(_myTableView.contentOffset.y > (_myTableView.contentSize.height - _myTableView.frame.size.height+40) && _myTableView.contentOffset.y > 0 && scrollView == _myTableView && theType == ProductCellTypeEvaluation)
+    {
+        if ([loadMoreView.normalLabel.text isEqualToString:@"加载中..."] || [loadMoreView.normalLabel.text isEqualToString:@"没有更多了"])
+        {
+            return;
+        }
+        
+        [loadMoreView startLoading];
+        
+        CommentsPageCount ++;
+        
+        [self loadProductCommentsData];
+    }
+}
+
+
+
+-(NSString *)exchangeString:(NSString *)theString
+{
+    NSString * _text = [theString stringByReplacingOccurrencesOfString:@"<br>" withString:@"\n"];
+    RTLabelExtractedComponent *component = [RTLabel extractTextStyleFromText:_text paragraphReplacement:@"\n"];
+    return component.plainText;
+}
 
 #pragma mark-UITableViewDelegate
-
+-(void)dealloc{
+    
+    self.SellerInfo = nil;
+    
+    self.myTableView = nil;
+    
+    self.ProductInfo = nil;
+    
+    self.slide_array = nil;
+}
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -502,7 +739,22 @@
         return 0;
     }else
     {
-        return 128;
+        switch (theType) {
+            case ProductCellTypeDetail:
+                
+                return 1;
+                break;
+            case ProductCellTypeEvaluation:
+                return productComments_array.count;
+                break;
+            case ProductCellTypeIntroduce:
+            
+                return [recommendGoods_dictionary objectForKey:@"GoodsDetailView"]?recommendGoods_dictionary.count-1:recommendGoods_dictionary.count;
+                break;
+                
+            default:
+                break;
+        }
     }
 }
 
@@ -515,22 +767,74 @@
 {
     float rowHeight = 0;
     
-    switch (theType) {
-        case ProductCellTypeDetail:
-            rowHeight = 50;
-            break;
-            
-        case ProductCellTypeEvaluation:
-            rowHeight = 128;
-            break;
-            
-        case ProductCellTypeIntroduce:
-            rowHeight = 50;
-            break;
-            
-        default:
-            break;
+    if (indexPath.section != 0) {
+        switch (theType) {
+            case ProductCellTypeDetail:
+            {
+                UIWebView * webView = (UIWebView *)[recommendGoods_dictionary objectForKey:@"GoodsDetailView"];
+                
+                rowHeight = webView.frame.size.height;
+            }
+                
+                break;
+                
+            case ProductCellTypeEvaluation:
+                rowHeight = 128;
+                break;
+                
+            case ProductCellTypeIntroduce:
+                
+                if (_SellerInfo.SDescription.length !=0 && ![_SellerInfo.SDescription isEqualToString:@""]) {
+                    
+                 
+                    if (indexPath.row == 0)
+                    {
+                        UILabel * label = [[UILabel alloc] initWithFrame:CGRectMake(12.5,0,295,0)];
+                        
+                        label.textAlignment = NSTextAlignmentLeft;
+                        
+                        label.textColor = [UIColor blackColor];
+                        
+                        label.lineBreakMode = NSLineBreakByWordWrapping;
+                        
+                        label.numberOfLines = 0;
+                        
+                        label.text = _SellerInfo.SDescription;
+                        [label sizeToFit];
+
+                        
+                        
+                        rowHeight = label.frame.size.height+38;
+                    }else if (indexPath.row == 1)
+                    {
+                        rowHeight = 93;
+                    }else
+                    {
+                        DetailRecommendGoodsView * view = (DetailRecommendGoodsView *)[recommendGoods_dictionary objectForKey:@"recommendGoods"];
+                        
+                        rowHeight = view.frame.size.height;
+                    }
+                    
+                }else
+                {
+                    
+                    if (indexPath.row==0) {
+                        rowHeight = 46;
+                    }else
+                    {
+                        DetailRecommendGoodsView * view = (DetailRecommendGoodsView *)[recommendGoods_dictionary objectForKey:@"recommendGoods"];
+                        
+                        rowHeight = view.frame.size.height;
+                    }
+                }
+                
+                break;
+                
+            default:
+                break;
+        }
     }
+    
     return rowHeight;
 }
 
@@ -558,43 +862,138 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString * identifier = @"identifier";
     
-    ProductCustomCell * cell = [tableView dequeueReusableCellWithIdentifier:identifier];
-    
-    if (cell == nil)
+    if (theType == ProductCellTypeIntroduce)
     {
-        cell = [[ProductCustomCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
-    }
-    
-    
-    cell.textLabel.text = @"";
-    
-    switch (theType) {
-        case ProductCellTypeDetail:
-            cell.textLabel.text = [NSString stringWithFormat:@"周%d",indexPath.row];
-            break;
-        case ProductCellTypeEvaluation:
-            
-            _myTableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
-            
-            [cell setAllViewsWithCellType:ProductCellTypeEvaluation];
+        static NSString * identifier = @"cell";
         
-            [cell setInfoWithProductInfo:_ProductInfo];
+        UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+        
+        if (cell == nil) {
             
-            break;
-        case ProductCellTypeIntroduce:
-            cell.textLabel.text = [NSString stringWithFormat:@"郑%d",indexPath.row];
-            break;
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+        }
+        
+        tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+        
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
+        if (_SellerInfo.SDescription.length ==0 && [_SellerInfo.SDescription isEqualToString:@"GoodsDetailView"])
+        {
             
-        default:
-            break;
+            if (indexPath.row == 0)
+            {
+                SellerInfoView * view = (SellerInfoView *)[recommendGoods_dictionary objectForKey:@"sellerInfo"];
+                [cell.contentView addSubview:view];
+            }else
+            {
+                DetailRecommendGoodsView * detailView = (DetailRecommendGoodsView *)[recommendGoods_dictionary objectForKey:@"recommendGoods"];
+                [cell.contentView addSubview:detailView];
+            }
+            
+        }else
+        {
+            
+            for (UIView * view in cell.contentView.subviews) {
+                [view removeFromSuperview];
+            }
+            
+            if (indexPath.row == 0)
+            {
+                UILabel * label = [[UILabel alloc] initWithFrame:CGRectMake(12.5,19,295,cell.frame.size.height)];
+                
+                label.textAlignment = NSTextAlignmentLeft;
+                
+                label.textColor = [UIColor blackColor];
+                
+                label.lineBreakMode = NSLineBreakByWordWrapping;
+                
+                label.backgroundColor = [UIColor clearColor];
+                
+                label.numberOfLines = 0;
+                
+                label.text = _SellerInfo.SDescription;
+                [label sizeToFit];
+                
+                [cell.contentView addSubview:label];
+            }else if (indexPath.row == 1)
+            {
+                SellerInfoView * view = (SellerInfoView *)[recommendGoods_dictionary objectForKey:@"sellerInfo"];
+                [cell.contentView addSubview:view];
+            }else if (indexPath.row == 2)
+            {
+                DetailRecommendGoodsView * detailView = (DetailRecommendGoodsView *)[recommendGoods_dictionary objectForKey:@"recommendGoods"];
+                [cell.contentView addSubview:detailView];
+            }
+        }
+        
+        return cell;
+    }else
+    {
+        static NSString * identifier = @"identifier";
+        
+        ProductCustomCell * cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+        
+        if (cell == nil)
+        {
+            cell = [[ProductCustomCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+        }
+        
+        tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
+        for (UIView * view in cell.contentView.subviews) {
+            view.hidden = YES;
+        }
+        
+        switch (theType) {
+            case ProductCellTypeDetail:
+            {
+                UIWebView * webView = (UIWebView *)[recommendGoods_dictionary objectForKey:@"GoodsDetailView"];
+                
+                webView.hidden = NO;
+                
+                [cell.contentView addSubview:webView];
+                
+            }
+                break;
+            case ProductCellTypeEvaluation:
+            {
+                ProductModel * info = [productComments_array objectAtIndex:indexPath.row];
+                
+                _myTableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+                
+                [cell setAllViewsWithCellType:ProductCellTypeEvaluation];
+                
+                [cell setInfoWithProductInfo:info WithType:ProductCellTypeEvaluation];
+            }
+                break;
+            case ProductCellTypeIntroduce:
+            {
+                
+            }
+                
+                break;
+                
+            default:
+                break;
+        }
+        return cell;
     }
-    
-    
-    
-    return cell;
 }
+
+
+
+
+#pragma mark-DetailRecommendGoodsViewDelegate
+
+
+-(void)ClickToProductDetailsWith:(SellerInfo *)info
+{
+    
+}
+
 
 
 - (void)didReceiveMemoryWarning

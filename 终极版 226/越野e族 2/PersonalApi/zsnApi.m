@@ -45,6 +45,17 @@
     return confromTimespStr;
 }
 
++(NSString *)timechangeByAll:(NSString *)placetime
+{
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init] ;
+    [formatter setDateStyle:NSDateFormatterMediumStyle];
+    [formatter setTimeStyle:NSDateFormatterShortStyle];
+    [formatter setDateFormat:@"YYYY-MM-dd HH:mm:ss"];
+    NSDate *confromTimesp = [NSDate dateWithTimeIntervalSince1970:[placetime doubleValue]];
+    NSString *confromTimespStr = [formatter stringFromDate:confromTimesp];
+    return confromTimespStr;
+}
+
 
 +(NSString *)timeFromDate:(NSDate *)date
 {
@@ -1209,6 +1220,30 @@
     return lastPoint;
 }
 
+
+#pragma mark-根据uid获取头像url
+
++(NSString *)returnUrlWithUid:(NSString *)uid
+{
+    if (uid.length !=0 && uid.length < 6)
+    {
+        for (int i = 0;i < uid.length -6;i++)
+        {
+            uid = [NSString stringWithFormat:@"%d%@",0,uid];
+        }
+    }
+    
+    NSString * string;
+    if (uid.length ==0)
+    {
+        string = @"";
+    }else
+    {
+        string =  [NSString stringWithFormat:@"http://avatar.fblife.com/000/%@/%@/%@_avatar_middle.jpg",[[uid substringToIndex:2] substringFromIndex:0],[[uid substringToIndex:4] substringFromIndex:2],[[uid substringToIndex:6] substringFromIndex:4]];
+    }
+    
+    return string;
+}
 
 
 @end

@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "SMPageControl.h"
+#import "AsyncImageView.h"
 @class SGFocusImageItem;
 @class LoopScrollview;
 
@@ -20,7 +21,7 @@
 @end
 
 
-@interface LoopScrollview : UIView <UIGestureRecognizerDelegate, UIScrollViewDelegate>
+@interface LoopScrollview : UIView <UIGestureRecognizerDelegate, UIScrollViewDelegate,AsyncImageDelegate>
 {
     BOOL _isAutoPlay;
 }

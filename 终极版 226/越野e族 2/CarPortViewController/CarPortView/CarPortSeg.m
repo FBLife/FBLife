@@ -199,7 +199,7 @@
                 {
                     
                     [self cancelButtonState];
-                    [self setCountryName:@"国家"];
+                    [self setCountryName:@"国别"];
                     [delegate setDataViewHidden:sender.tag-10000000];
                 }
                 

@@ -52,6 +52,14 @@
 @property(nonatomic,strong)NSString * PSales;//已售商品数
 @property(nonatomic,strong)NSString * PCommentsCount;//评论数
 
+//评价
+
+@property(nonatomic,strong)NSString * BuyerId;
+@property(nonatomic,strong)NSString * BuyerName;
+@property(nonatomic,strong)NSString * CommentsTime;
+@property(nonatomic,strong)NSString * CommentsContent;
+@property(nonatomic,strong)NSString * CommentsEvaluation;
+
 
 
 -(ProductModel *)initWithDictionary:(NSDictionary *)theDictionary;

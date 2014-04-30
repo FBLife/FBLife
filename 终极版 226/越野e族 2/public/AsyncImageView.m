@@ -72,18 +72,17 @@
                 //                if (![image isEqual:self.image])
                 
                 
-                if (image)
-                {
                     //                    self.image = [image copy];
                     
-                    [self fadeAnimation:image];
+                [self fadeAnimation:image];
+                
+                [self.delegate handleImageLayout:self];
+                
+                if (self.delegate && [self.delegate respondsToSelector:@selector(succesDownLoadWithImageView:Image:)])
+                {
                     
-                    [self.delegate handleImageLayout:self];
                     
-                    if (self.delegate && [self.delegate respondsToSelector:@selector(succesDownLoadWithImageView:Image:)])
-                    {
-                        [self.delegate succesDownLoadWithImageView:self Image:image];
-                    }
+                    [self.delegate succesDownLoadWithImageView:self Image:image];
                 }
             }else
             {
@@ -266,19 +265,9 @@
                         NSLog(@"async image download done");
                         
                         
-                        //                        CATransition *animation = [CATransition animation];
-                        //                        animation.delegate = self;
-                        //                        animation.duration = 0.5 ;  // 动画持续时间(秒)
-                        //                        animation.timingFunction = UIViewAnimationCurveEaseInOut;
-                        //                        animation.type = kCATransitionFade;//淡入淡出效果
-                        //
-                        //                        self.image = image;
-                        
                         [self fadeAnimation:image];
                         
                         [self.delegate handleImageLayout:self];
-                        
-                        //                        [self.layer addAnimation:animation forKey:@"animation"];
                         
                         
                     }
@@ -289,6 +278,7 @@
                     
                     if (self.delegate && [self.delegate respondsToSelector:@selector(succesDownLoadWithImageView:Image:)])
                     {
+                        
                         [self.delegate succesDownLoadWithImageView:self Image:image];
                     }
                     

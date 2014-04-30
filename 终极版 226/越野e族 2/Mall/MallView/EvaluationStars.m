@@ -25,17 +25,6 @@
         pinglunLabel.textColor = RGBCOLOR(97,101,113);
         
         [self addSubview:pinglunLabel];
-        
-        for (int i = 0;i < 5;i++)
-        {
-            UIImageView * star_imageView = [[UIImageView alloc] initWithFrame:CGRectMake(40+9*i,5,17/2,16/2)];
-            
-            star_imageView.image = [UIImage imageNamed:@"ZMallhuangxing_17x16.png"];
-            
-            star_imageView.tag = 100 + i;
-            
-            [self addSubview:star_imageView];
-        }
     }
     return self;
 }
@@ -49,9 +38,23 @@
 
 -(void)loadStarsWithCount:(int)theCount
 {
-    for (int i = 0;i < 5 - theCount;i++) {
-        UIImageView * imageView = (UIImageView *)[self viewWithTag:104-i];
-        imageView.hidden = YES;
+    for (int i = 0;i < 3;i++)
+    {
+        UIImageView * star_imageView = [[UIImageView alloc] initWithFrame:CGRectMake(40+9*i,5,17/2,16/2)];
+        
+        if (i == 0) {
+            star_imageView.image = [UIImage imageNamed:@"ZMallhuangxing_17x16.png"];
+        }else if (i == 1)
+        {
+            star_imageView.image = [UIImage imageNamed:theCount==1?@"Mall_gray_star_17x16.png":@"ZMallhuangxing_17x16.png"];
+        }else
+        {
+            star_imageView.image = [UIImage imageNamed:theCount==3?@"ZMallhuangxing_17x16.png":@"Mall_gray_star_17x16.png"];
+        }
+        
+        star_imageView.tag = 100 + i;
+        
+        [self addSubview:star_imageView];
     }
 }
 

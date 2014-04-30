@@ -1180,6 +1180,8 @@
 
 
 
+
+
 @implementation PersonalmoreViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -1191,6 +1193,8 @@
     }
     return self;
 }
+
+/*带商城信息
 
 - (void)viewDidLoad
 {
@@ -1330,6 +1334,377 @@
 }
 
 
+
+
+*/
+
+
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+    UIImageView * aView = [[UIImageView alloc] initWithFrame:CGRectMake(42.5,0,556/2,568)];
+    
+    aView.image = [UIImage imageNamed:@"PersonalMoreBackGroundImage.png"];
+    
+    aView.userInteractionEnabled = YES;
+    
+    [self.view addSubview:aView];
+    
+    
+//    UIImageView * yinying_imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0,0,10,iPhone5?568:480)];
+//    
+//    yinying_imageView.image = [UIImage imageNamed:iPhone5?@"Mallyinying20_1136.png":@"Mallyinying20_960.png"];
+//    
+//    [aView addSubview:yinying_imageView];
+    
+    self.view.backgroundColor = [UIColor whiteColor];
+    
+    
+    float location_height = iPhone5?30:0;
+    
+    
+    BOOL isLogIn = [[NSUserDefaults standardUserDefaults] boolForKey:USER_IN];
+    
+   
+    if (isLogIn) {
+        [self receivemyimage_head];
+    }
+    
+//已登录
+    
+    saoyisao_button = [UIButton buttonWithType:UIButtonTypeCustom];
+    
+    saoyisao_button.frame = CGRectMake(58,79,37/2,37/2);
+    
+    saoyisao_button.hidden = !isLogIn;
+
+    [saoyisao_button setImage:[UIImage imageNamed:@"person_saoyisao_37x37.png"] forState:UIControlStateNormal];
+    
+    [saoyisao_button addTarget:self action:@selector(saoyisaoButton:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [aView addSubview:saoyisao_button];
+    
+    
+    headerImage_view = [[AsyncImageView alloc] initWithFrame:CGRectMake(101,49,150/2,150/2)];
+    
+    headerImage_view.layer.cornerRadius = 150/4;
+    
+    headerImage_view.layer.masksToBounds = YES;
+    
+    headerImage_view.hidden = !isLogIn;
+    
+    [aView addSubview:headerImage_view];
+    
+    
+    logOut_button = [UIButton buttonWithType:UIButtonTypeCustom];
+    
+    logOut_button.frame = CGRectMake(201,79,37/2,42/2);
+    
+    logOut_button.hidden = !isLogIn;
+    
+    [logOut_button setImage:[UIImage imageNamed:@"person_out_37x42.png"] forState:UIControlStateNormal];
+    
+    [logOut_button addTarget:self action:@selector(dengluortuichu) forControlEvents:UIControlEventTouchUpInside];
+    
+    [aView addSubview:logOut_button];
+    
+    
+    
+    userName_label = [[UILabel alloc] initWithFrame:CGRectMake(88,135.5,100,15)];
+    
+    userName_label.textColor = [UIColor whiteColor];
+    
+    userName_label.textAlignment = NSTextAlignmentCenter;
+    
+    userName_label.font = [UIFont systemFontOfSize:33/2];
+    
+    [aView addSubview:userName_label];
+    
+    
+    
+    
+    Follow = [[UILabel alloc] initWithFrame:CGRectMake(45,164 + location_height,27,14)];
+    
+    Follow.text = @"关注";
+    
+    Follow.hidden = !isLogIn;
+    
+    Follow.textAlignment = NSTextAlignmentCenter;
+    
+    Follow.textColor = [UIColor whiteColor];
+    
+    Follow.backgroundColor = [UIColor clearColor];
+    
+    Follow.font = [UIFont systemFontOfSize:12];
+    
+    [aView addSubview:Follow];
+    
+    Follow_label = [[UILabel alloc] initWithFrame:CGRectMake(84,163.5 + location_height,45,15)];
+    
+    Follow_label.hidden = !isLogIn;
+    
+    Follow_label.textColor = [UIColor whiteColor];
+    
+    Follow_label.font = [UIFont systemFontOfSize:18];
+    
+    Follow_label.textAlignment = NSTextAlignmentLeft;
+    
+    Follow_label.backgroundColor = [UIColor clearColor];
+    
+    [aView addSubview:Follow_label];
+    
+    
+    
+    
+    Fans = [[UILabel alloc] initWithFrame:CGRectMake(Follow.frame.origin.x+234/2,164 + location_height,27,14)];
+    
+    Fans.text = @"粉丝";
+    
+    Fans.hidden = !isLogIn;
+    
+    Fans.textAlignment = NSTextAlignmentCenter;
+    
+    Fans.textColor = [UIColor whiteColor];
+    
+    Fans.backgroundColor = [UIColor clearColor];
+    
+    Fans.font = [UIFont systemFontOfSize:12];
+    
+    [aView addSubview:Fans];
+    
+    
+    
+    Fans_label = [[UILabel alloc] initWithFrame:CGRectMake(Fans.frame.origin.x+39,163.5 + location_height,45,15)];
+    
+    Fans_label.textColor = [UIColor whiteColor];
+    
+    Fans_label.hidden = !isLogIn;
+    
+    Fans_label.font = [UIFont systemFontOfSize:18];
+    
+    Fans_label.textAlignment = NSTextAlignmentLeft;
+    
+    Fans_label.backgroundColor = [UIColor clearColor];
+    
+    [aView addSubview:Fans_label];
+    
+    
+    
+    line_view = [[UIView alloc] initWithFrame:CGRectMake(267/2,161.5 + location_height,0.5,16)];
+    
+    line_view.backgroundColor = RGBCOLOR(96,99,112);
+    
+    line_view.hidden = !isLogIn;
+    
+    [aView addSubview:line_view];
+    
+    
+   
+
+    
+    //未登录
+    
+    login_image = [UIButton buttonWithType:UIButtonTypeCustom];
+    
+    login_image.frame = CGRectMake(220/2,102/2,115/2,112/2);
+    
+    [login_image setImage:[UIImage imageNamed:@"Malltouxiang115_112.png"] forState:UIControlStateNormal];
+    
+    login_image.hidden = isLogIn;
+    
+    [login_image addTarget:self action:@selector(LogInViewShow:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [aView addSubview:login_image];
+    
+    
+    login_label = [[UILabel alloc] initWithFrame:CGRectMake(0,102/2+30/2+112/2,555/2,30/2)];
+    
+    login_label.text = @"登录账号";
+    
+    login_label.hidden = isLogIn;
+    
+    login_label.textColor = [UIColor whiteColor];
+    
+    login_label.textAlignment = NSTextAlignmentCenter;
+    
+    [aView addSubview:login_label];
+    
+    
+    
+    UIImageView * SquaredBackGroundView = [[UIImageView alloc] initWithFrame:CGRectMake(23.25,200 + location_height,231,230)];
+    
+    SquaredBackGroundView.image = [UIImage imageNamed:@"SquaredBackGroundImage.png"];
+    
+    SquaredBackGroundView.userInteractionEnabled = YES;
+    
+    [aView addSubview:SquaredBackGroundView];
+    
+    
+    NSArray * array1 = [NSArray arrayWithObjects:@"person_xiaoxi_45x42.png",@"person_tongxunlu_46x43.png",@"person_caogaoxiang_40x42.png",@"person_erweima_34x34.png",@"person_huancun_38x38.png",@"person_fankui_43x29.png",@"person_gengxin_28x39.png",@"person_about_40x40.png",@"person_night_39x40.png",@"person_xiaoxi-1_45x42.png",@"person_tongxunlu-1_46x43.png",@"person_caogaoxiang-1_40x42.png",@"person_erweima-1_34x34.png",@"person_huancun-1_38x38.png",@"person_fankui-1_43x29.png",@"person_gengxin-1_28x39.png",@"person_about-1_40x40.png",@"person_night-1_39x40.png",nil];
+    
+    NSArray * array2 = [NSArray arrayWithObjects:@"消  息",@"通讯录",@"草稿箱",@"二维码",@"清除缓存",@"意见反馈",@"版本更新",@"关  于",@"夜间模式",nil];
+    
+    
+    for (int i = 0;i < 3;i++) {
+        for (int j = 0;j < 3;j++) {
+            UIButton * button = [UIButton buttonWithType:UIButtonTypeCustom];
+            
+            button.frame = CGRectMake(0.5+76.5*j,0.5+76.5*i,76,76);
+            
+            button.tag = 1000+j+i*3;
+            
+            UIImage * normal_image = [UIImage imageNamed:[array1 objectAtIndex:j+i*3]];
+            
+            UIImage * highLighted_image = [UIImage imageNamed:[array1 objectAtIndex:j+i*3+9]];
+            
+            [button setImage:normal_image forState:UIControlStateNormal];
+            
+            [button setImage:highLighted_image forState:UIControlStateHighlighted];
+            
+            [button setTitle:[array2 objectAtIndex:j+i*3] forState:UIControlStateNormal];
+            
+            [button setTitleColor:RGBCOLOR(142,142,142) forState:UIControlStateNormal];
+            
+            [button setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
+            
+            button.titleLabel.font = [UIFont systemFontOfSize:12.5];
+            
+            button.titleLabel.backgroundColor = [UIColor clearColor];
+            
+            [button setTitleEdgeInsets:UIEdgeInsetsMake(46,-17,0,0)];
+            
+            [button setImageEdgeInsets:UIEdgeInsetsMake(0,(76-normal_image.size.width)/2,30,(76-normal_image.size.width)/2)];
+            
+            [button addTarget:self action:@selector(doButton:) forControlEvents:UIControlEventTouchUpInside];
+            
+            [SquaredBackGroundView addSubview:button];
+        }
+    }
+    
+    
+    UILabel * copyRight = [[UILabel alloc] initWithFrame:CGRectMake(0,(iPhone5?568:480)-40,555/2,20)];
+    
+    copyRight.text = [NSString stringWithFormat:@"Copyright © 2002-%@ FBLIFE.com",[self stringFromDate]];
+
+    copyRight.textAlignment = NSTextAlignmentCenter;
+    
+    copyRight.textColor = RGBCOLOR(96,100,111);
+    
+    copyRight.font = [UIFont systemFontOfSize:10];
+
+    copyRight.backgroundColor = [UIColor clearColor];
+    
+    [aView addSubview:copyRight];
+    
+}
+
+
+
+- (NSString *)stringFromDate{
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    
+    [dateFormatter setDateFormat:@"YYYY"];
+    
+    NSString *destDateString = [dateFormatter stringFromDate:[NSDate date]];
+    
+    return destDateString;
+    
+}
+
+
+//button点击方法
+
+-(void)doButton:(UIButton *)sender
+{
+    switch (sender.tag-1000) {
+        case 0:
+            [self pushToMessageController];
+            [self.leveyTabBarController hidesTabBar:NO animated:YES];
+            break;
+        case 1:
+            [self pushToFriendListController];
+            [self.leveyTabBarController hidesTabBar:NO animated:YES];
+            break;
+        case 2:
+            [self pushToDraftBoxController];
+            [self.leveyTabBarController hidesTabBar:NO animated:YES];
+            break;
+        case 3:
+        {
+            QrcodeViewController * qrcode = [[QrcodeViewController alloc] init];
+            
+            qrcode.headImage = headerImage_view.image;
+            
+            qrcode.uid = [[NSUserDefaults standardUserDefaults] objectForKey:USER_UID];
+            
+            qrcode.nameString = [[NSUserDefaults standardUserDefaults] objectForKey:USER_NAME];
+            
+            UINavigationController * naVC = [[UINavigationController alloc] initWithRootViewController:qrcode];
+            
+            [[(AppDelegate *)[UIApplication sharedApplication].delegate fansVC] presentModalViewController:naVC animated:YES];
+            
+            [self.navigationController pushViewController:naVC animated:YES];
+        }
+            
+            break;
+        case 4:
+            [self removeCache];
+            break;
+        case 5:
+            [self feedback];
+            break;
+        case 6:
+            [self checkVersionUpdate];
+            break;
+        case 7:
+        {
+            if ([self isLogin])
+            {
+                AboutViewController * aboutVC = [[AboutViewController alloc] init];
+                
+                UINavigationController * naVC = [[UINavigationController alloc] initWithRootViewController:aboutVC];
+                
+                [[(AppDelegate *)[UIApplication sharedApplication].delegate fansVC] presentModalViewController:naVC animated:YES];
+            }else
+            {
+                [self login];
+            }
+            
+            [self.leveyTabBarController hidesTabBar:NO animated:YES];
+        }
+            break;
+        case 8:
+        {
+            NSUserDefaults * userDefaults = [NSUserDefaults standardUserDefaults];
+            
+            BOOL nightMode = [userDefaults boolForKey:@"nightMode"];
+            
+            [[(AppDelegate *)[UIApplication sharedApplication].delegate shadowView] setHidden:nightMode];
+            
+            [userDefaults setBool:!nightMode forKey:@"nightMode"];
+            
+            [userDefaults synchronize];
+        }
+            break;
+            
+        default:
+            break;
+    }
+}
+
+
+//扫一扫
+
+-(void)saoyisaoButton:(UIButton *)sender
+{
+    [self pushToQrcodeController];
+    [self.leveyTabBarController hidesTabBar:NO animated:YES];
+}
+
+
 -(void)login
 {
     if (!logIn)
@@ -1353,54 +1728,6 @@
 {
     [self login];
 }
-
-
--(void)functionButton:(UIButton *)button
-{
-    switch (button.tag)
-    {
-        case 999:
-            [self pushToMessageController];
-            [self.leveyTabBarController hidesTabBar:NO animated:YES];
-            break;
-        case 1000:
-            [self pushToDraftBoxController];
-            [self.leveyTabBarController hidesTabBar:NO animated:YES];
-            break;
-        case 1001:
-            [self pushToFriendListController];
-            [self.leveyTabBarController hidesTabBar:NO animated:YES];
-            break;
-        case 1002:
-            [self pushToQrcodeController];
-            [self.leveyTabBarController hidesTabBar:NO animated:YES];
-            break;
-        case 1003:
-            
-            break;
-        case 1004:
-        {
-            NSUserDefaults * userDefaults = [NSUserDefaults standardUserDefaults];
-            
-            BOOL nightMode = [userDefaults boolForKey:@"nightMode"];
-                        
-            [[(AppDelegate *)[UIApplication sharedApplication].delegate shadowView] setHidden:nightMode];
-            
-            [userDefaults setBool:!nightMode forKey:@"nightMode"];
-            
-            [userDefaults synchronize];
-        }
-            
-            break;
-            
-            
-        
-            
-        default:
-            break;
-    }
-}
-
 
 #pragma mark-到消息
 
@@ -1491,7 +1818,12 @@
 
 -(void)returnUserName:(NSString *)username Uid:(NSString *)uid
 {
+    NewMineViewController * mine = [[NewMineViewController alloc] init];
     
+    mine.uid = uid;
+    
+    [self.navigationController pushViewController:mine animated:YES];
+
 }
 
 -(void)atSomeBodys:(NSString *)string
@@ -1505,7 +1837,9 @@
 
 -(void)successToLogIn
 {
+    [self setAllViewHidden:YES];
     
+    [self receivemyimage_head];
 }
 
 -(void)failToLogIn
@@ -1521,6 +1855,306 @@
     
 }
 
+
+-(void)removeCache
+{
+    
+    [[SDImageCache sharedImageCache] clearDisk];
+    [[FullyLoaded sharedFullyLoaded] removeAllCacheDownloads];
+    NSIndexPath *reloadIndexPath = [NSIndexPath indexPathForRow:7 inSection:0];
+    NSArray *arra=[NSArray arrayWithObject:reloadIndexPath];
+    [ _myTableView reloadRowsAtIndexPaths:arra withRowAnimation:UITableViewRowAnimationNone];
+    
+    //弹出提示信息
+    UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"温馨提示" message:@"缓存清除成功" delegate:nil cancelButtonTitle:@"知道了" otherButtonTitles:nil, nil];
+    [alert show];
+}
+-(void)feedback{
+    
+    if ([self isLogin])
+    {
+        UMFeedbackViewController *feedb=[[UMFeedbackViewController alloc]init];
+        
+        UINavigationController * naVC = [[UINavigationController alloc] initWithRootViewController:feedb];
+        
+        [[(AppDelegate *)[UIApplication sharedApplication].delegate fansVC] presentModalViewController:naVC animated:YES];
+    }else
+    {
+        [self login];
+    }
+}
+
+
+-(void)checkVersionUpdate
+{
+    NSURL * fullUrl = [NSURL URLWithString:[NSString stringWithFormat:@"http://bbs.fblife.com/bbsapinew/version.php?appversion=%@",NOW_VERSION]];
+    
+    ASIHTTPRequest * request = [ASIHTTPRequest requestWithURL:fullUrl];
+    
+    __block ASIHTTPRequest * _request = request;
+    
+    
+    request.delegate = self;
+    
+    [_request setCompletionBlock:^{
+        
+        @try {
+            NSDictionary * dic = [request.responseData objectFromJSONData];
+            
+            NSString * bbsInfo = [NSString stringWithFormat:@"%@",[dic objectForKey:@"bbsinfo"]];
+            NSLog(@"dic===%@",dic);
+            if (![bbsInfo isEqualToString:NOW_VERSION])
+            {
+                NSString * new = [NSString stringWithFormat:@"我们的%@版本已经上线了,赶快去更新吧!",bbsInfo];
+                
+                UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"发现新版本" message:new delegate:self cancelButtonTitle:@"立即升级" otherButtonTitles:@"稍后提示",nil];
+                
+                alert.delegate = self;
+                
+                alert.tag = 10000;
+                
+                [alert show];
+                
+                
+            }else
+            {
+                UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"版本更新检查" message:@"您目前使用的是最新版本" delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil,nil];
+                [alert show];
+            }
+        }
+        @catch (NSException *exception) {
+            
+        }
+        @finally {
+            
+        }
+        
+        
+        
+    }];
+    
+    
+    [_request setFailedBlock:^{
+        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"检测失败,请检查您当前网络是否正常" delegate:self cancelButtonTitle:@"确认" otherButtonTitles:nil,nil];
+        [alert show];
+    }];
+    
+    [request startAsynchronous];
+}
+
+#pragma mark-UIAlertViewDelegate
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 0 && alertView.tag == 10000)
+    {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://itunes.apple.com/cn/app/yue-ye-yi-zu/id605673005?mt=8"]];
+    }
+}
+
+-(void)dengluortuichu{
+    
+    BOOL isLogIn = [[NSUserDefaults standardUserDefaults] boolForKey:USER_IN];
+    
+    if (isLogIn)
+    {
+        [self deletetoken];
+        
+        [self setAllViewHidden:NO];
+        
+        self.leveyTabBarController.tabBar.tixing_imageView.hidden = YES;
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"clearolddata" object:nil];
+        
+        NSUserDefaults * user = [NSUserDefaults standardUserDefaults];
+        [user setObject:@"" forKey:USER_NAME] ;
+        [user setObject:@"" forKey:USER_PW] ;
+        [user setObject:@"" forKey:USER_AUTHOD] ;
+        [user setObject:@"" forKey:USER_UID] ;
+        string_follownumber=@"";
+        string_fansnumber=@"";
+        
+        [user setBool:NO forKey:USER_IN];
+        
+        [user removeObjectForKey:@"friendList"];
+        [user removeObjectForKey:@"RecentContact"];
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"clean" object:nil];
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"removeTheTimer" object:nil];
+        
+        
+        [user synchronize];
+        
+        [self LogOut];
+    }else
+    {
+        if (!logIn)
+        {
+            logIn = [[LogInViewController alloc] init];
+        }
+        [self.leveyTabBarController hidesTabBar:YES animated:YES];
+        [self presentModalViewController:logIn animated:YES];
+    }
+}
+-(void)receivemyimage_head{
+    
+    NSString *authkey=[[NSUserDefaults standardUserDefaults] objectForKey:USER_AUTHOD];
+    NSString * fullURL= [NSString stringWithFormat:URL_USERMESSAGE,@"(null)",authkey];
+    NSLog(@"1请求的url = %@",fullURL);
+    ASIHTTPRequest * request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:fullURL]];
+    
+    __block ASIHTTPRequest * _requset = request;
+    
+    _requset.delegate = self;
+    
+    [_requset setCompletionBlock:^{
+        
+        @try {
+            NSDictionary * dic = [request.responseData objectFromJSONData];
+            NSLog(@"个人信息 -=-=  %@",dic);
+            
+            if ([[dic objectForKey:@"errcode"] intValue] !=1)
+            {
+                NSDictionary * dictionary = [[[dic objectForKey:@"data"] allValues] objectAtIndex:0];
+                NSLog(@"dictionary=%@",dictionary);
+                
+                
+                string_face_original=[NSString stringWithFormat:@"%@",[dictionary objectForKey:@"face_original"]];
+                
+                Fans_label.text = [NSString stringWithFormat:@"%@",[dictionary objectForKey:@"fans_count"]];
+                
+                Follow_label.text = [NSString stringWithFormat:@"%@",[dictionary objectForKey:@"follow_count"]];
+                
+                userName_label.text = [NSString stringWithFormat:@"%@",[dictionary objectForKey:@"username"]];
+                
+                NSString *string_uid=[NSString stringWithFormat:@"%@",[dictionary objectForKey:@"uid"]];
+                
+                [[NSUserDefaults standardUserDefaults]setObject:string_uid forKey:USER_UID];
+                
+                [[NSNotificationCenter defaultCenter]postNotificationName:@"successgetuid" object:Nil];
+                
+                [headerImage_view loadImageFromURL:string_face_original withPlaceholdImage:[UIImage imageNamed:@"ios7_headimplace.png"]];
+                
+            }
+        }
+        @catch (NSException *exception) {
+            
+        }
+        @finally {
+            
+        }
+        
+        
+        
+        
+    }];
+    
+    
+    [_requset setFailedBlock:^{
+        
+        [request cancel];
+        
+        
+        //        [self initHttpRequestInfomation];
+    }];
+    
+    [_requset startAsynchronous];
+}
+
+#pragma mark-退出登录，消除devicetoken
+
+-(void)deletetoken{
+    //    http://bbs2.fblife.com/localapi/user_app_token.php?action=deltoken&authcode=sdfasfdsafdasdf&token=ssdfasdfaddfgdsgf2a&token_key=01b1f00235ae1d46432ba45771beb2d1&datatype=json
+    
+    
+    NSString *stringdevicetoken=[NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults]objectForKey:DEVICETOKEN]];
+    NSString *authkey=[[NSUserDefaults standardUserDefaults] objectForKey:USER_AUTHOD];
+    NSString * fullURL= [NSString stringWithFormat:@"http://bbs2.fblife.com/localapi/user_app_token.php?action=deltoken&authcode=%@&token=%@&token_key=01b1f00235ae1d46432ba45771beb2d1&datatype=json",authkey,stringdevicetoken];
+    NSLog(@"删除的urlurl = %@",fullURL);
+    ASIHTTPRequest * request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:fullURL]];
+    
+    __block ASIHTTPRequest * _requset = request;
+    
+    _requset.delegate = self;
+    
+    [_requset setCompletionBlock:^{
+        
+        @try {
+            NSDictionary * dic = [request.responseData objectFromJSONData];
+            NSLog(@"删除消息 -=-=  %@",dic);
+            
+            if ([[dic objectForKey:@"errcode"] intValue] ==0)
+            {
+                
+            }
+        }
+        @catch (NSException *exception) {
+            
+        }
+        @finally {
+            
+            
+        }
+        
+        
+    }];
+    
+    
+    [_requset setFailedBlock:^{
+        
+        [request cancel];
+        
+        
+        //        [self initHttpRequestInfomation];
+    }];
+    
+    [_requset startAsynchronous];
+    
+    
+}
+-(void)LogOut
+{
+    [hud show];
+    //弹出提示信息
+    [hud setBlockTouches:NO];
+    [hud setAccessoryPosition:ATMHudAccessoryPositionLeft];
+    [hud setShowSound:[[NSBundle mainBundle] pathForResource:@"pop" ofType:@"wav"]];
+    [hud setCaption:NS_EXIT_SUC];
+    [hud setActivity:NO];
+    //    [hud setImage:[UIImage imageNamed:@"19-check"]];
+    [hud show];
+    [hud hideAfter:3];
+    // [_myTableView reloadData];
+}
+
+
+
+-(void)setAllViewHidden:(BOOL)isLogIn
+{
+    login_image.hidden = isLogIn;
+    
+    login_label.hidden = isLogIn;
+    
+    
+    saoyisao_button.hidden = !isLogIn;
+    
+    headerImage_view.hidden = !isLogIn;
+    
+    userName_label.hidden = !isLogIn;
+    
+    Follow_label.hidden = !isLogIn;
+    
+    Fans_label.hidden = !isLogIn;
+    
+    line_view.hidden = !isLogIn;
+    
+    logOut_button.hidden = !isLogIn;
+    
+    Fans.hidden = !isLogIn;
+    
+    Follow.hidden = !isLogIn;
+}
 
 
 

@@ -65,6 +65,12 @@
 @synthesize PStock = _PStock;
 @synthesize PStoreId = _PStoreId;
 @synthesize PCommentsCount = _PCommentsCount;
+@synthesize BuyerId = _BuyerId;
+@synthesize BuyerName = _BuyerName;
+@synthesize CommentsContent = _CommentsContent;
+@synthesize CommentsEvaluation = _CommentsEvaluation;
+@synthesize CommentsTime = _CommentsTime;
+
 
 
 
@@ -85,14 +91,9 @@
         
         self.PCommentsCount = [NSString stringWithFormat:@"%@",[theDictionary objectForKey:@"comments"]];
         
-//        self.PName = [NSString stringWithFormat:@"%@",[theDictionary objectForKey:@"goods_name"]];
-//        
-//        self.PName = [NSString stringWithFormat:@"%@",[theDictionary objectForKey:@"goods_name"]];
-//        
-//        self.PName = [NSString stringWithFormat:@"%@",[theDictionary objectForKey:@"goods_name"]];
-//        
-//        self.PName = [NSString stringWithFormat:@"%@",[theDictionary objectForKey:@"goods_name"]];
+        self.PDetails = [NSString stringWithFormat:@"%@",[theDictionary objectForKey:@"description"]];
         
+        self.PArea = [NSString stringWithFormat:@"%@",[theDictionary objectForKey:@"region_name"]];
         
         
         NSArray * imageArray = [theDictionary objectForKey:@"_images"];
@@ -104,6 +105,20 @@
             
             [_PImages addObject:imageModel];
         }
+        
+        //评论
+        
+        self.BuyerId = [NSString stringWithFormat:@"%@",[theDictionary objectForKey:@"buyer_id"]];
+        
+        self.BuyerName = [NSString stringWithFormat:@"%@",[theDictionary objectForKey:@"buyer_name"]];
+        
+        self.CommentsContent = [NSString stringWithFormat:@"%@",[theDictionary objectForKey:@"comment"]];
+        
+        self.CommentsEvaluation = [NSString stringWithFormat:@"%@",[theDictionary objectForKey:@"evaluation"]];
+        
+        self.CommentsTime = [NSString stringWithFormat:@"%@",[theDictionary objectForKey:@"evaluation_time"]];
+        
+        
     }
     return self;
 }

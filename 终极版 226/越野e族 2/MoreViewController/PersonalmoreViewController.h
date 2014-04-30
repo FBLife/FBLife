@@ -12,6 +12,7 @@
 #import "FriendListViewController.h"
 #import "LogInViewController.h"
 #import "SettingViewController.h"
+#import "QrcodeViewController.h"
 
 
 typedef enum{
@@ -43,6 +44,52 @@ typedef enum{
     NSString *string_messageorfb;
     
   //  UIImageView * tixing_imageView;
+    
+    
+    
+    
+//不带商城的功能界面
+    
+    
+    UIButton * saoyisao_button;
+    
+    AsyncImageView * headerImage_view;
+    
+    UILabel * userName_label;
+    
+    UILabel * Follow_label;
+    
+    UILabel * Follow;
+    
+    UILabel * Fans_label;
+    
+    UILabel * Fans;
+    
+    UIButton * logOut_button;
+    
+    UIButton * login_image;
+    
+    UILabel * login_label;
+    
+    UIView * line_view;
+    
 }
 
 @end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

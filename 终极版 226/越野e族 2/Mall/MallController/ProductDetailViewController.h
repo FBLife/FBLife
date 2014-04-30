@@ -10,9 +10,12 @@
 #import "LoopScrollview.h"
 #import "ProductModel.h"
 #import "ProductCustomCell.h"
+#import "SellerInfo.h"
+#import "DetailRecommendGoodsView.h"
+#import "LoadingIndicatorView.h"
 
 
-@interface ProductDetailViewController : MyViewController<UITableViewDataSource,UITableViewDelegate,UIScrollViewDelegate,LoopScrollviewDelegate>
+@interface ProductDetailViewController : MyViewController<UITableViewDataSource,UITableViewDelegate,UIScrollViewDelegate,LoopScrollviewDelegate,UIWebViewDelegate,DetailRecommendGoodsViewDelegate>
 {
     UIView * tableHeaderView;
     
@@ -21,6 +24,18 @@
     float postionState[4];
     
     UIView * aView;
+    
+    NSMutableArray * productComments_array;
+    
+    NSMutableDictionary * recommendGoods_dictionary;
+    
+    LoadingIndicatorView * loadMoreView;
+    
+    ASIHTTPRequest * productDetail_request;
+    
+    ASIHTTPRequest * productComments_request;
+    
+    int CommentsPageCount;
 }
 
 
@@ -29,5 +44,7 @@
 @property(nonatomic,strong)NSMutableArray * slide_array;//幻灯数据
 
 @property(nonatomic,strong)ProductModel * ProductInfo;
+
+@property(nonatomic,strong)SellerInfo * SellerInfo;
 
 @end

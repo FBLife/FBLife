@@ -425,6 +425,15 @@
     
 }
 
+-(void)pushtoNewsdetailWithid:(NSString *)string_id
+{
+    newsdetailViewController *    comment_=[[newsdetailViewController alloc]init];
+    
+    comment_.string_Id = string_id;
+    
+    [self.navigationController pushViewController:comment_ animated:YES];//跳入下一个View
+}
+
 -(void)pushtopersonalmessage{
     
     NSLog(@"跳到私信");
@@ -754,13 +763,26 @@
     }
 }
 
+#pragma mark-wap界面跳转
+
+-(void)wapToPinDaoWithName:(NSString *)theName
+{
+    NSArray *array_pinyin=[NSArray arrayWithObjects:@"zuixin",@"xinwen",@"pinche",@"daogou",@"gaizhuang",@"fangche",@"tieqi",@"huodong",@"saishi",@"lvxing",@"sheying",@"huwai",@"gongyi",nil];
+        
+    int index = [array_pinyin indexOfObject:theName]+1;
+    
+    UIButton * button = (UIButton *)[self.view viewWithTag:index];
+    
+    [self choose:button];
+}
+
 #pragma mark-导航栏的选择类别
 -(void)choose:(UIButton *)sender
 {
     
     NSLog(@".............");
     sender.titleLabel.textColor=[UIColor blackColor];
-    NSString *stringnetwork=[Reachability checkNetWork ];
+    NSString *stringnetwork=[Reachability checkNetWork];
     
     NSLog(@"当前的网络为%@",stringnetwork);
     
@@ -2174,6 +2196,7 @@
 #pragma mark-自定义segment的代理
 -(void)buttonClick:(int)buttonSelected
 {
+    
     if (buttonSelected != current_select)
     {
         [_array_searchresault removeAllObjects];
@@ -2230,13 +2253,11 @@
                 [searchresaultview reloadData];
             }else
             {
-                
                 [self searchbythenetework];
             }
             
         }else
         {
-            
             [self searchbythenetework];
         }
         
