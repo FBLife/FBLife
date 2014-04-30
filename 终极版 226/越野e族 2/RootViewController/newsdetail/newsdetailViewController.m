@@ -613,7 +613,7 @@
         diimgv.image=[UIImage imageNamed:@"bluedown.png"];
     }
     if (scrollView.contentOffset.y< (scrollView.contentSize.height - scrollView.frame.size.height+55)&&scrollView.contentOffset.y>0) {
-        NSLog(@"慢慢来吧，总会到达的！");
+//        NSLog(@"慢慢来吧，总会到达的！");
         didulabel.hidden=YES;
     }
     

@@ -7,7 +7,20 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CustomSegmentView.h"
 
-@interface ClassifyViewController : UIViewController
+@interface ClassifyViewController : MyViewController
+<UITableViewDataSource,UITableViewDelegate,CustomSegmentViewDelegate>
+
+{
+    
+    
+    
+    
+}
+
+@property(nonatomic,strong)NSString *str_id;
+
+@property(nonatomic,strong)UITableView *MainTabView;
 
 @end

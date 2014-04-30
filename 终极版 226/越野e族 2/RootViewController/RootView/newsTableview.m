@@ -282,7 +282,7 @@
                 SGFocusImageItem *item = [[SGFocusImageItem alloc] initWithDict:dict tag:length];
                 [itemArray addObject:item];
             }
-            SGFocusImageFrame *bannerView = [[SGFocusImageFrame alloc] initWithFrame:CGRectMake(0, 0, 320, 163) delegate:self imageItems:itemArray isAuto:NO];
+            SGFocusImageFrame *bannerView = [[SGFocusImageFrame alloc] initWithFrame:CGRectMake(0, 0, 320, 163) delegate:self imageItems:itemArray isAuto:NO type:1];
             [bannerView scrollToIndex:0];
             [cell.contentView addSubview:bannerView];
             
