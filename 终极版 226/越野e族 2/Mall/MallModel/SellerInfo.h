@@ -10,13 +10,13 @@
 
 @class SellerInfo;
 
-typedef void(^myBlock)(SellerInfo * theInfo);
+typedef void(^SellersBlock)(SellerInfo * theInfo);
 
 typedef void(^goodsBlock)(NSMutableArray * dataArray);
 
 @interface SellerInfo : NSObject<ASIHTTPRequestDelegate>
 {
-    myBlock sellerBlock;
+    SellersBlock sellerBlock;
     
     goodsBlock myGoodsBlock;
     
@@ -44,7 +44,7 @@ typedef void(^goodsBlock)(NSMutableArray * dataArray);
 
 -(SellerInfo *)initWithDic:(NSDictionary *)myDic;
 
--(void)loadInfomationWithUrl:(NSString *)theUrl WithBlock:(myBlock)theBlock;
+-(void)loadInfomationWithUrl:(NSString *)theUrl WithBlock:(SellersBlock)theBlock;
 
 -(void)loadRecommendGoodsWithUrl:(NSString *)theUrl WithBlock:(goodsBlock)theBlock;
 

@@ -7,12 +7,20 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "SlideShowModel.h"
+//#import "SlideShowModel.h"
 #import "ProductDetailViewController.h"
-@interface MallViewController : MyViewController<SlideShowModelDelegate,UITableViewDelegate,UITableViewDataSource>{
-    
+
+#import"SGFocusImageFrame.h"
+
+@interface MallViewController : MyViewController<UITextFieldDelegate,SGFocusImageFrameDelegate,UITableViewDelegate,UITableViewDataSource>{
+    UITextField *searchfield;
+
 }
-@property(nonatomic,strong)SlideShowModel *slishouwmodels;
+
 @property(nonatomic,strong)UITableView *MainTabView;
+
+
+
+
 
 @end

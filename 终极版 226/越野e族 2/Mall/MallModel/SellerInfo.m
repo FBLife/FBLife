@@ -52,7 +52,7 @@
     return self;
 }
 
--(void)loadInfomationWithUrl:(NSString *)theUrl WithBlock:(myBlock)theBlock
+-(void)loadInfomationWithUrl:(NSString *)theUrl WithBlock:(SellersBlock)theBlock
 {
     sellerBlock = theBlock;
     
