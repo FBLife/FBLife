@@ -67,7 +67,7 @@
     if (theType == MyViewControllerLeftbuttonTypeBack)
     {
         UIButton *button_back=[[UIButton alloc]initWithFrame:CGRectMake(10,8,12,21.5)];
-        [button_back addTarget:self action:@selector(back:) forControlEvents:UIControlEventTouchUpInside];
+        [button_back addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
         [button_back setBackgroundImage:[UIImage imageNamed:@"ios7_back@2x.png"] forState:UIControlStateNormal];
         UIBarButtonItem *back_item=[[UIBarButtonItem alloc]initWithCustomView:button_back];
         self.navigationItem.leftBarButtonItems=@[spaceButton,back_item];
@@ -171,7 +171,7 @@
 
 -(void)PeopleView:(UIButton *)sender
 {
-    
+    [self nextResponder];
 }
 
 
@@ -192,7 +192,7 @@
 }
 
 
--(void)back:(UIButton *)sender
+-(void)back
 {
     [self.navigationController popViewControllerAnimated:YES];
 }

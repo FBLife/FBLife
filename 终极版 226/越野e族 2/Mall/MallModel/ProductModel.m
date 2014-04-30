@@ -64,6 +64,7 @@
 @synthesize PSales = _PSales;
 @synthesize PStock = _PStock;
 @synthesize PStoreId = _PStoreId;
+@synthesize PCommentsCount = _PCommentsCount;
 
 
 
@@ -74,23 +75,35 @@
     if (self) {
         self.PName = [NSString stringWithFormat:@"%@",[theDictionary objectForKey:@"goods_name"]];
         
-        self.PBrand = [NSString stringWithFormat:@"%@",[theDictionary objectForKey:@"goods_name"]];
+        self.PPrice = [NSString stringWithFormat:@"%@",[theDictionary objectForKey:@"price"]];
+
+        self.PMark = [NSString stringWithFormat:@"%@",[theDictionary objectForKey:@"cate_name"]];
+
+        self.PBrwoseCount = [NSString stringWithFormat:@"%@",[theDictionary objectForKey:@"views"]];
         
-        self.PName = [NSString stringWithFormat:@"%@",[theDictionary objectForKey:@"goods_name"]];
+        self.PBrand = [NSString stringWithFormat:@"%@",[theDictionary objectForKey:@"brand"]];
         
-        self.PName = [NSString stringWithFormat:@"%@",[theDictionary objectForKey:@"goods_name"]];
+        self.PCommentsCount = [NSString stringWithFormat:@"%@",[theDictionary objectForKey:@"comments"]];
         
-        self.PName = [NSString stringWithFormat:@"%@",[theDictionary objectForKey:@"goods_name"]];
+//        self.PName = [NSString stringWithFormat:@"%@",[theDictionary objectForKey:@"goods_name"]];
+//        
+//        self.PName = [NSString stringWithFormat:@"%@",[theDictionary objectForKey:@"goods_name"]];
+//        
+//        self.PName = [NSString stringWithFormat:@"%@",[theDictionary objectForKey:@"goods_name"]];
+//        
+//        self.PName = [NSString stringWithFormat:@"%@",[theDictionary objectForKey:@"goods_name"]];
         
-        self.PName = [NSString stringWithFormat:@"%@",[theDictionary objectForKey:@"goods_name"]];
         
-        self.PName = [NSString stringWithFormat:@"%@",[theDictionary objectForKey:@"goods_name"]];
         
-        self.PName = [NSString stringWithFormat:@"%@",[theDictionary objectForKey:@"goods_name"]];
+        NSArray * imageArray = [theDictionary objectForKey:@"_images"];
         
-        self.PName = [NSString stringWithFormat:@"%@",[theDictionary objectForKey:@"goods_name"]];
+        _PImages = [[NSMutableArray alloc] init];
         
-        self.PName = [NSString stringWithFormat:@"%@",[theDictionary objectForKey:@"goods_name"]];
+        for (NSDictionary * imgDic in imageArray) {
+            ProductImageModel * imageModel = [[ProductImageModel alloc] initWithDic:imgDic];
+            
+            [_PImages addObject:imageModel];
+        }
     }
     return self;
 }

@@ -131,9 +131,9 @@ static CGFloat SWITCH_FOCUS_PICTURE_INTERVAL = 5.0; //switch interval time
         // imageView.backgroundColor = i%2?[UIColor greenColor]:[UIColor blueColor];
         SGFocusImageItem *item = [imageItems objectAtIndex:i];
         
-        imageView.backgroundColor = (UIColor *)item.link;
-        
-//        [ imageView loadImageFromURL:item.image withPlaceholdImage:[UIImage imageNamed:@"bigimplace.png"]];
+//        imageView.backgroundColor = (UIColor *)item.link;
+        NSLog(@"----===------- %@",item.link);
+        [ imageView loadImageFromURL:item.link withPlaceholdImage:[UIImage imageNamed:@"bigimplace.png"]];
         [_scrollView addSubview:imageView];
         [imageView release];    }
     [tapGestureRecognize release];

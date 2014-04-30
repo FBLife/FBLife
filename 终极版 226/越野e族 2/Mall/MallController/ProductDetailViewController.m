@@ -49,7 +49,24 @@
         
         NSDictionary * totalDictionary = [request.responseData objectFromJSONData];
         
-        NSLog(@"total -----   %@",totalDictionary);
+        NSString * errcode = [totalDictionary objectForKey:@"errcode"];
+        
+        NSLog(@"totalDictionary ------    %@",totalDictionary);
+        
+        if ([errcode intValue] == 0)
+        {
+            NSDictionary * data_dictionary = [totalDictionary objectForKey:@"datainfo"];
+            
+    
+            _ProductInfo = [[ProductModel alloc] initWithDictionary:data_dictionary];
+            
+        }
+        
+        [self loadSlideViewAndContentView];
+        
+        [self loadTableHeaderViewTwo];
+        
+        [self.myTableView reloadData];
         
     }];
     
@@ -78,27 +95,7 @@
     
     
     _ProductInfo = [[ProductModel alloc] init];
-    
-    _ProductInfo.PName = @"King3.0 升高3英寸猛禽减震系统";
-    
-    _ProductInfo.PTopCount = @"17";
-    
-    _ProductInfo.PPrice = @"568000.00";
-    
-    _ProductInfo.PBrand = @"福特";
-    
-    _ProductInfo.PMark = @"加长 可调节 拉杆 猛禽";
-    
-    _ProductInfo.PBrwoseCount = @"2021";
-    
-    _ProductInfo.PArea = @"天津";
 
-
-    
-    _slide_array = [[NSMutableArray alloc] initWithObjects:[UIColor redColor],[UIColor blueColor],[UIColor yellowColor],nil];
-    
-    
-    [self loadSlideViewAndContentView];
     
     _myTableView = [[UITableView alloc] initWithFrame:[UIScreen mainScreen].bounds style:UITableViewStylePlain];
     
@@ -117,12 +114,11 @@
 -(UIView *)loadSlideViewAndContentView
 {
     tableHeaderView = [[UIView alloc] init];
-    
-    int length = _slide_array.count;
+    int length = _ProductInfo.PImages.count;
     NSMutableArray *tempArray = [NSMutableArray array];
     for (int i = 0 ; i < length; i++)
     {
-        NSDictionary *dict = [NSDictionary dictionaryWithObject:[_slide_array objectAtIndex:i] forKey:@"link"];
+        NSDictionary *dict = [NSDictionary dictionaryWithObject:[[_ProductInfo.PImages objectAtIndex:i] IImageUrl] forKey:@"link"];
         [tempArray addObject:dict];
     }
     
@@ -192,15 +188,17 @@
     
     top_button.frame = CGRectMake(265,14,45,15);
     
-    [top_button setTitle:_ProductInfo.PTopCount forState:UIControlStateNormal];
+    [top_button setTitle:@"17" forState:UIControlStateNormal];
+    
+    top_button.titleLabel.textAlignment = NSTextAlignmentLeft;
     
     top_button.titleLabel.font = [UIFont systemFontOfSize:15];
     
     [top_button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     
-    [top_button setImage:[UIImage imageNamed:@"赞一个.png"] forState:UIControlStateNormal];
+    [top_button setImage:[UIImage imageNamed:@"ZMallgood_26x29.png"] forState:UIControlStateNormal];
     
-    [top_button setTitleEdgeInsets:UIEdgeInsetsMake(0,8,0,0)];
+    [top_button setTitleEdgeInsets:UIEdgeInsetsMake(0,5,0,0)];
     
     [top_button setImageEdgeInsets:UIEdgeInsetsMake(0,0,0,15)];
     
@@ -328,23 +326,25 @@
 
 -(UIView *)loadTableHeaderViewTwo
 {
-    UIView * aView = [[UIView alloc] initWithFrame:CGRectMake(0,0,320,30+23/2)];
+    aView = [[UIView alloc] initWithFrame:CGRectMake(0,0,320,35.5+23/2)];
     
     aView.backgroundColor = RGBCOLOR(243,243,243);
     
-    NSArray * array = [NSArray arrayWithObjects:@"商品详情",@"商品评价",@"商家介绍",nil];
+    NSArray * array = [NSArray arrayWithObjects:@"商品详情",[NSString stringWithFormat:@"商品评价(%@)",_ProductInfo.PCommentsCount],@"商家介绍",nil];
+    
+    NSArray * ImageArray = [NSArray arrayWithObjects:@"ZMallNewxiangqing1_200x71.png",@"ZMallNewpingjia1_240x71.png",@"ZMallNewjianjie1_200x71.png",@"ZMallNewxiangqing_200x71.png",@"ZMallNewpingjia_240x71.png",@"ZMallNewjianjie_200x71.png",nil];
     
     
     for (int i = 0;i < 3;i++) {
         UIButton * button = [UIButton buttonWithType:UIButtonTypeCustom];
         
-        button.frame = CGRectMake(0+320/3*i,23/2,320/3,30);
+        button.frame = CGRectMake(100*i+(i>1?20:0),23/2,100+(i==1?20:0),35.5);
         
         button.backgroundColor = RGBCOLOR(251,251,251);
         
-        [button setTitle:[array objectAtIndex:i] forState:UIControlStateNormal];
+        [button setImage:[UIImage imageNamed:[ImageArray objectAtIndex:i]] forState:UIControlStateNormal];
         
-        button.titleLabel.font = [UIFont systemFontOfSize:15];
+        [button setImage:[UIImage imageNamed:[ImageArray objectAtIndex:i+3]] forState:UIControlStateSelected];
         
         button.tag = 1000+i;
         
@@ -353,6 +353,33 @@
         [button addTarget:self action:@selector(switchSegment:) forControlEvents:UIControlEventTouchUpInside];
         
         [aView addSubview:button];
+        
+        
+        
+        UILabel * title_label = [[UILabel alloc] initWithFrame:button.bounds];
+        
+        title_label.text = [array objectAtIndex:i];
+        
+        title_label.tag = 10;
+        
+        title_label.textAlignment = NSTextAlignmentCenter;
+        
+        title_label.textColor = [UIColor blackColor];
+        
+        title_label.font = [UIFont systemFontOfSize:15];
+        
+        title_label.userInteractionEnabled = NO;
+        
+        [button addSubview:title_label];
+        
+        if (i == 0) {
+            button.selected = YES;
+        }else
+        {
+            title_label.textColor = RGBCOLOR(120,120,120);
+        }
+        
+        
     }
     
     
@@ -379,6 +406,27 @@
             break;
     }
     
+    
+    for (int i = 1000;i < 1003;i++) {
+        if (i == sender.tag) {
+            sender.selected = YES;
+            
+            UILabel * label = (UILabel *)[sender viewWithTag:10];
+            
+            label.textColor = [UIColor blackColor];
+        }else
+        {
+            UIButton * button = (UIButton *)[aView viewWithTag:i];
+            
+            button.selected = NO;
+            
+            UILabel * label = (UILabel *)[button viewWithTag:10];
+            
+            label.textColor = RGBCOLOR(120,120,120);
+        }
+    }
+    
+    
     float contentOffset = _myTableView.contentOffset.y;
     
     [_myTableView reloadData];
@@ -404,7 +452,15 @@
 
 -(void)TopOnce:(UIButton *)sender
 {
-    
+    [UIView animateWithDuration:0.5 animations:^{
+        sender.transform = CGAffineTransformScale(sender.transform,1.0,-1.0);
+        [sender setTitle:@"18" forState:UIControlStateNormal];
+        [sender setImage:[UIImage imageNamed:@"ZMallgood1_26x29.png"] forState:UIControlStateNormal];
+    } completion:^(BOOL finished) {
+        [UIView animateWithDuration:0.5 animations:^{
+            sender.transform = CGAffineTransformScale(sender.transform,1.0,-1.0);
+        }];
+    }];
 }
 
 #pragma mark-UIScrollViewDelegate
@@ -457,7 +513,25 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 50;
+    float rowHeight = 0;
+    
+    switch (theType) {
+        case ProductCellTypeDetail:
+            rowHeight = 50;
+            break;
+            
+        case ProductCellTypeEvaluation:
+            rowHeight = 128;
+            break;
+            
+        case ProductCellTypeIntroduce:
+            rowHeight = 50;
+            break;
+            
+        default:
+            break;
+    }
+    return rowHeight;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -467,7 +541,7 @@
         return tableHeaderView.frame.size.height;
     }else
     {
-        return 30;
+        return 35.5;
     }
 }
 
@@ -477,7 +551,7 @@
         return tableHeaderView;
     }else
     {
-        return [self loadTableHeaderViewTwo];
+        return aView;
     }
 }
 
@@ -486,20 +560,28 @@
 {
     static NSString * identifier = @"identifier";
     
-    UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+    ProductCustomCell * cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     
     if (cell == nil)
     {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+        cell = [[ProductCustomCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
     }
     
+    
+    cell.textLabel.text = @"";
     
     switch (theType) {
         case ProductCellTypeDetail:
             cell.textLabel.text = [NSString stringWithFormat:@"周%d",indexPath.row];
             break;
         case ProductCellTypeEvaluation:
-            cell.textLabel.text = [NSString stringWithFormat:@"武%d",indexPath.row];
+            
+            _myTableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+            
+            [cell setAllViewsWithCellType:ProductCellTypeEvaluation];
+        
+            [cell setInfoWithProductInfo:_ProductInfo];
+            
             break;
         case ProductCellTypeIntroduce:
             cell.textLabel.text = [NSString stringWithFormat:@"郑%d",indexPath.row];
