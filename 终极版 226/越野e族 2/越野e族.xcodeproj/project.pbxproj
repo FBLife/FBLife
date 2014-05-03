@@ -587,17 +587,14 @@
 		5646EBD019012A8C00E984DF /* ZMalltelephone_187x59@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5646EB7C19012A8C00E984DF /* ZMalltelephone_187x59@2x.png */; };
 		5646EBD119012A8C00E984DF /* ZMallup_18x22@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5646EB7D19012A8C00E984DF /* ZMallup_18x22@2x.png */; };
 		5646EBD219012A8C00E984DF /* ZMallup_18x22@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5646EB7D19012A8C00E984DF /* ZMallup_18x22@2x.png */; };
-<<<<<<< HEAD
 		5646EBD319012A8C00E984DF /* ZMallwitheground9x9@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5646EB7E19012A8C00E984DF /* ZMallwitheground9x9@2x.png */; };
 		5646EBD419012A8C00E984DF /* ZMallwitheground9x9@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5646EB7E19012A8C00E984DF /* ZMallwitheground9x9@2x.png */; };
 		5646EBD519012A8C00E984DF /* ZMallxiangqing_201x71@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5646EB7F19012A8C00E984DF /* ZMallxiangqing_201x71@2x.png */; };
 		5646EBD619012A8C00E984DF /* ZMallxiangqing_201x71@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5646EB7F19012A8C00E984DF /* ZMallxiangqing_201x71@2x.png */; };
 		5646EBD719012A8C00E984DF /* ZMallxiangqing1_201x71@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5646EB8019012A8C00E984DF /* ZMallxiangqing1_201x71@2x.png */; };
 		5646EBD819012A8C00E984DF /* ZMallxiangqing1_201x71@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5646EB8019012A8C00E984DF /* ZMallxiangqing1_201x71@2x.png */; };
-=======
 		5646EBD319012A8C00E984DF /* ZMallwitheground_9x9@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5646EB7E19012A8C00E984DF /* ZMallwitheground_9x9@2x.png */; };
 		5646EBD419012A8C00E984DF /* ZMallwitheground_9x9@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5646EB7E19012A8C00E984DF /* ZMallwitheground_9x9@2x.png */; };
->>>>>>> FETCH_HEAD
 		565008E21861374800EFD08D /* filmios7@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 565008E11861374800EFD08D /* filmios7@2x.png */; };
 		565008E41861664600EFD08D /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 565008E31861664600EFD08D /* MapKit.framework */; };
 		565008E718616CFA00EFD08D /* FBMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 565008E618616CFA00EFD08D /* FBMapViewController.m */; };
@@ -1934,13 +1931,10 @@
 		5646EB7B19012A8C00E984DF /* ZMalltelephone_34x34@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ZMalltelephone_34x34@2x.png"; sourceTree = "<group>"; };
 		5646EB7C19012A8C00E984DF /* ZMalltelephone_187x59@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ZMalltelephone_187x59@2x.png"; sourceTree = "<group>"; };
 		5646EB7D19012A8C00E984DF /* ZMallup_18x22@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ZMallup_18x22@2x.png"; sourceTree = "<group>"; };
-<<<<<<< HEAD
 		5646EB7E19012A8C00E984DF /* ZMallwitheground9x9@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ZMallwitheground9x9@2x.png"; sourceTree = "<group>"; };
 		5646EB7F19012A8C00E984DF /* ZMallxiangqing_201x71@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ZMallxiangqing_201x71@2x.png"; sourceTree = "<group>"; };
 		5646EB8019012A8C00E984DF /* ZMallxiangqing1_201x71@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ZMallxiangqing1_201x71@2x.png"; sourceTree = "<group>"; };
-=======
 		5646EB7E19012A8C00E984DF /* ZMallwitheground_9x9@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ZMallwitheground_9x9@2x.png"; sourceTree = "<group>"; };
->>>>>>> FETCH_HEAD
 		565008E11861374800EFD08D /* filmios7@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "filmios7@2x.png"; sourceTree = "<group>"; };
 		565008E31861664600EFD08D /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		565008E518616CFA00EFD08D /* FBMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBMapViewController.h; sourceTree = "<group>"; };
@@ -2935,11 +2929,9 @@
 		1924400518D68DF10056E0EF /* Mall */ = {
 			isa = PBXGroup;
 			children = (
-<<<<<<< HEAD
 				1966D3401909474700AAE914 /* MallNoneresault@2x.png */,
 				196E358718E2BBCA00A552D3 /* Mallredline78_4@2x.png */,
 				5646EB5519012A8C00E984DF /* ZMallblackround9x9@2x.png */,
-=======
 				56C3062F190524EF001C1E48 /* ZMallNewxiangqing_200x71@2x.png */,
 				56C30630190524EF001C1E48 /* ZMallNewxiangqing1_200x71@2x.png */,
 				56C30631190524EF001C1E48 /* ZMallNewpingjia1_240x71@2x.png */,
@@ -2948,7 +2940,6 @@
 				56C30634190524EF001C1E48 /* ZMallNewjianjie_200x71@2x.png */,
 				196E358718E2BBCA00A552D3 /* Mallredline78_4@2x.png */,
 				5646EB5519012A8C00E984DF /* ZMallblackround9x9@2x.png.png */,
->>>>>>> FETCH_HEAD
 				5646EB5619012A8C00E984DF /* ZMallchose_196x57@2x.png */,
 				5646EB5719012A8C00E984DF /* ZMallchose1_199x57@2x.png */,
 				5646EB5819012A8C00E984DF /* ZMallchose2_197x57@2x.png */,
@@ -3041,13 +3032,10 @@
 				19A225C518DBDD0D0019901C /* ProductDetailViewController.m */,
 				56EEEB7F18E2D2E6006DF090 /* MallPayResultViewController.h */,
 				56EEEB8018E2D2E6006DF090 /* MallPayResultViewController.m */,
-<<<<<<< HEAD
 				1948FA7B1908BF8700DB21CD /* MainMallSearchViewController.h */,
 				1948FA7C1908BF8700DB21CD /* MainMallSearchViewController.m */,
-=======
 				56FA427E190609B30067B26B /* MallTypeClassifyViewController.h */,
 				56FA427F190609B30067B26B /* MallTypeClassifyViewController.m */,
->>>>>>> FETCH_HEAD
 			);
 			path = MallController;
 			sourceTree = "<group>";
@@ -3061,7 +3049,6 @@
 				196E358518E26DF500A552D3 /* DetailClassifyCellView.m */,
 				5655DE9118FFE837009FB445 /* ProductCustomCell.h */,
 				5655DE9218FFE837009FB445 /* ProductCustomCell.m */,
-<<<<<<< HEAD
 				1948FA6C1906786C00DB21CD /* ShouyeheaderView.h */,
 				1948FA6D1906786C00DB21CD /* ShouyeheaderView.m */,
 				1948FA7519075FE400DB21CD /* FiveStareView.h */,
@@ -3076,12 +3063,10 @@
 				19117471190E252C0027ED3B /* MainFourClassicView.m */,
 				19C06356190F90AB00958E1D /* ClassifySlideView.h */,
 				19C06357190F90AB00958E1D /* ClassifySlideView.m */,
-=======
 				56C3064119053600001C1E48 /* EvaluationStars.h */,
 				56C3064219053600001C1E48 /* EvaluationStars.m */,
 				5689830E19075BDB00871BCA /* SellerGoodsView.h */,
 				5689830F19075BDB00871BCA /* SellerGoodsView.m */,
->>>>>>> FETCH_HEAD
 			);
 			path = MallView;
 			sourceTree = "<group>";
@@ -6383,10 +6368,7 @@
 				56607579188F5D1200C25ACE /* UMSCommentDetailController.xib in Resources */,
 				56607571188F5D1200C25ACE /* UMSocialLocalizable.strings in Resources */,
 				566075F9188F5D2E00C25ACE /* qrcode_scan_btn_photo_nor.png in Resources */,
-<<<<<<< HEAD
-=======
 				56C3063C190524EF001C1E48 /* ZMallNewjianjie1_200x71@2x.png in Resources */,
->>>>>>> FETCH_HEAD
 				19B1185F186871B600CA4C07 /* image_dowoland@2x.png in Resources */,
 				5646EBC619012A8C00E984DF /* ZMallsearch2_427x52@2x.png in Resources */,
 				56C30636190524EF001C1E48 /* ZMallNewxiangqing_200x71@2x.png in Resources */,
@@ -6417,12 +6399,9 @@
 				5646EBD019012A8C00E984DF /* ZMalltelephone_187x59@2x.png in Resources */,
 				5646EB9C19012A8C00E984DF /* ZMallhome_37x37@2x.png in Resources */,
 				5646EB8A19012A8C00E984DF /* ZMallchose4_199x57@2x.png in Resources */,
-<<<<<<< HEAD
 				5646EBBA19012A8C00E984DF /* ZMallpingjia_240x71@2x.png in Resources */,
 				5646EBD419012A8C00E984DF /* ZMallwitheground9x9@2x.png in Resources */,
-=======
 				5646EBD419012A8C00E984DF /* ZMallwitheground_9x9@2x.png in Resources */,
->>>>>>> FETCH_HEAD
 				566075E9188F5D2E00C25ACE /* qrcode_flash.png in Resources */,
 				19A4E58F1863094F005F4848 /* ios7eva320_44@2x.png in Resources */,
 				566075E7188F5D2E00C25ACE /* qrcode_embeddedimage_shadow.9.png in Resources */,

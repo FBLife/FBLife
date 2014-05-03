@@ -48,7 +48,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-<<<<<<< HEAD
     
     SlideArray=[NSMutableArray array];//存储幻灯数据
     fivestarArray=[NSArray array];
@@ -56,7 +55,6 @@
     fourtitlearray=[NSMutableArray array];
     fourinfoSArray=[NSArray array];
 
-=======
 //    self.view.backgroundColor=[UIColor whiteColor];
 //    
 //    UIButton *button_back=[[UIButton alloc]initWithFrame: CGRectMake(MY_MACRO_NAME? -7:5, 3, 20, 32/2)];
@@ -78,7 +76,6 @@
 //        [self.navigationController.navigationBar setBackgroundImage:MY_MACRO_NAME?[UIImage imageNamed:IOS7DAOHANGLANBEIJING]:[UIImage imageNamed:@"ios7eva320_44.png"] forBarMetrics: UIBarMetricsDefault];
 //        
 //    }
->>>>>>> FETCH_HEAD
     self.view.backgroundColor=[UIColor whiteColor];
     
     
@@ -89,8 +86,6 @@
     
     [self setMyViewControllerLeftButtonType:MyViewControllerLeftbuttonTypeOther WithRightButtonType:MyViewControllerRightbuttonTypePerson];
     
-<<<<<<< HEAD
-=======
     
 //    UIButton *button_back=[[UIButton alloc]initWithFrame: CGRectMake(MY_MACRO_NAME? -7:5, 3, 20, 32/2)];
 //    
@@ -112,7 +107,6 @@
 //        
 //    }
     //主要的tableview
->>>>>>> FETCH_HEAD
     
     _MainTabView=[[UITableView alloc]initWithFrame:CGRectMake(0, 0, 320, iPhone5?568-64-49:480-64-49) style:UITableViewStylePlain];
     _MainTabView.delegate=self;
@@ -120,7 +114,6 @@
     _MainTabView.backgroundColor=[UIColor whiteColor];
     _MainTabView.separatorColor=[UIColor clearColor];
     [self.view addSubview:_MainTabView];
-<<<<<<< HEAD
     
 //    __weak typeof(self) __weakself=self;
 //    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,0), ^{
@@ -150,8 +143,6 @@
 //
     
     
-=======
->>>>>>> FETCH_HEAD
     
     
 //    [self StartLoadSlideShow];
@@ -386,16 +377,13 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-<<<<<<< HEAD
   //  ProductDetailViewController * product = [[ProductDetailViewController alloc] init];
     
    // [self.navigationController pushViewController:product animated:YES];
     
-=======
 //    ProductDetailViewController * product = [[ProductDetailViewController alloc] init];
     
     MallTypeClassifyViewController * product = [[MallTypeClassifyViewController alloc] init];
->>>>>>> FETCH_HEAD
     
     if (indexPath.row==0) {
         [searchfield becomeFirstResponder];

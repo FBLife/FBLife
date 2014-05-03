@@ -10,24 +10,17 @@
 #import "MainMagiClanternModel.h"
 #import "ClassifySlideView.h"
 
-<<<<<<< HEAD
 @interface ClassifyViewController (){
     
     NSArray *array_lanmu;
     
     ClassifySlideView *_clv;
-
-=======
-@interface ClassifyViewController ()
-{
     
->>>>>>> FETCH_HEAD
 }
 
 @end
 
 @implementation ClassifyViewController
-
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -67,7 +60,7 @@
     
     
     
-     [self startLoadChanpin];
+    [self startLoadChanpin];
     
     
     
@@ -143,10 +136,10 @@
         }];
         
         
- 
+        
     }];
     
-
+    
     
     
     
@@ -163,7 +156,7 @@
         
         
     }];
-
+    
     
     
     
@@ -180,32 +173,3 @@
 }
 
 @end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

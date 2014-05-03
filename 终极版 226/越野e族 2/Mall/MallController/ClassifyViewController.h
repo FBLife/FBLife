@@ -10,7 +10,6 @@
 #import "CustomSegmentView.h"
 
 @interface ClassifyViewController : MyViewController
-<<<<<<< HEAD
 <UITableViewDataSource,UITableViewDelegate,CustomSegmentViewDelegate>
 
 {
@@ -23,11 +22,5 @@
 @property(nonatomic,strong)NSString *str_id;
 
 @property(nonatomic,strong)UITableView *MainTabView;
-=======
-{
-    
-}
-
->>>>>>> FETCH_HEAD
 
 @end
