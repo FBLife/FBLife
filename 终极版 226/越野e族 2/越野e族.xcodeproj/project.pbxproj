@@ -649,6 +649,14 @@
 		5646EBD019012A8C00E984DF /* ZMalltelephone_187x59@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5646EB7C19012A8C00E984DF /* ZMalltelephone_187x59@2x.png */; };
 		5646EBD119012A8C00E984DF /* ZMallup_18x22@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5646EB7D19012A8C00E984DF /* ZMallup_18x22@2x.png */; };
 		5646EBD219012A8C00E984DF /* ZMallup_18x22@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5646EB7D19012A8C00E984DF /* ZMallup_18x22@2x.png */; };
+		5646EBD319012A8C00E984DF /* ZMallwitheground9x9@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5646EB7E19012A8C00E984DF /* ZMallwitheground9x9@2x.png */; };
+		5646EBD419012A8C00E984DF /* ZMallwitheground9x9@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5646EB7E19012A8C00E984DF /* ZMallwitheground9x9@2x.png */; };
+		5646EBD519012A8C00E984DF /* ZMallxiangqing_201x71@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5646EB7F19012A8C00E984DF /* ZMallxiangqing_201x71@2x.png */; };
+		5646EBD619012A8C00E984DF /* ZMallxiangqing_201x71@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5646EB7F19012A8C00E984DF /* ZMallxiangqing_201x71@2x.png */; };
+		5646EBD719012A8C00E984DF /* ZMallxiangqing1_201x71@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5646EB8019012A8C00E984DF /* ZMallxiangqing1_201x71@2x.png */; };
+		5646EBD819012A8C00E984DF /* ZMallxiangqing1_201x71@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5646EB8019012A8C00E984DF /* ZMallxiangqing1_201x71@2x.png */; };
+		5646EBD319012A8C00E984DF /* ZMallwitheground_9x9@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5646EB7E19012A8C00E984DF /* ZMallwitheground_9x9@2x.png */; };
+		5646EBD419012A8C00E984DF /* ZMallwitheground_9x9@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5646EB7E19012A8C00E984DF /* ZMallwitheground_9x9@2x.png */; };
 		565008E21861374800EFD08D /* filmios7@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 565008E11861374800EFD08D /* filmios7@2x.png */; };
 		565008E41861664600EFD08D /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 565008E31861664600EFD08D /* MapKit.framework */; };
 		565008E718616CFA00EFD08D /* FBMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 565008E618616CFA00EFD08D /* FBMapViewController.m */; };
@@ -2023,6 +2031,10 @@
 		5646EB7D19012A8C00E984DF /* ZMallup_18x22@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ZMallup_18x22@2x.png"; sourceTree = "<group>"; };
 		5646EB7F19012A8C00E984DF /* ZMallxiangqing_201x71@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ZMallxiangqing_201x71@2x.png"; sourceTree = "<group>"; };
 		5646EB8019012A8C00E984DF /* ZMallxiangqing1_201x71@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ZMallxiangqing1_201x71@2x.png"; sourceTree = "<group>"; };
+		5646EB7E19012A8C00E984DF /* ZMallwitheground9x9@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ZMallwitheground9x9@2x.png"; sourceTree = "<group>"; };
+		5646EB7F19012A8C00E984DF /* ZMallxiangqing_201x71@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ZMallxiangqing_201x71@2x.png"; sourceTree = "<group>"; };
+		5646EB8019012A8C00E984DF /* ZMallxiangqing1_201x71@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ZMallxiangqing1_201x71@2x.png"; sourceTree = "<group>"; };
+		5646EB7E19012A8C00E984DF /* ZMallwitheground_9x9@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ZMallwitheground_9x9@2x.png"; sourceTree = "<group>"; };
 		565008E11861374800EFD08D /* filmios7@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "filmios7@2x.png"; sourceTree = "<group>"; };
 		565008E31861664600EFD08D /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		565008E518616CFA00EFD08D /* FBMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBMapViewController.h; sourceTree = "<group>"; };
@@ -3033,6 +3045,7 @@
 				56C30634190524EF001C1E48 /* ZMallNewjianjie_200x71@2x.png */,
 				196E358718E2BBCA00A552D3 /* Mallredline78_4@2x.png */,
 				5646EB5519012A8C00E984DF /* ZMallblackround9x9@2x.png */,
+				5646EB5519012A8C00E984DF /* ZMallblackround9x9@2x.png.png */,
 				5646EB5619012A8C00E984DF /* ZMallchose_196x57@2x.png */,
 				5646EB5719012A8C00E984DF /* ZMallchose1_199x57@2x.png */,
 				5646EB5819012A8C00E984DF /* ZMallchose2_197x57@2x.png */,
@@ -6580,6 +6593,9 @@
 				5635DD1D190DFCD80033E8B8 /* person_huancun-1_38x38@2x.png in Resources */,
 				5635DD31190DFCD80033E8B8 /* person_xiaoxi-1_45x42@2x.png in Resources */,
 				5646EB8A19012A8C00E984DF /* ZMallchose4_199x57@2x.png in Resources */,
+				5646EBBA19012A8C00E984DF /* ZMallpingjia_240x71@2x.png in Resources */,
+				5646EBD419012A8C00E984DF /* ZMallwitheground9x9@2x.png in Resources */,
+				5646EBD419012A8C00E984DF /* ZMallwitheground_9x9@2x.png in Resources */,
 				566075E9188F5D2E00C25ACE /* qrcode_flash.png in Resources */,
 				19A4E58F1863094F005F4848 /* ios7eva320_44@2x.png in Resources */,
 				566075E7188F5D2E00C25ACE /* qrcode_embeddedimage_shadow.9.png in Resources */,
