@@ -163,6 +163,9 @@
     {
         NSLog(@"error == %@",request1111.error);
         
+        
+        [self doneLoadingTableViewData];
+        
         if (pageCount[selectedView] == 1)
         {
             switch (selectedView)
@@ -230,6 +233,8 @@
             
             NSString *errcode =[NSString stringWithFormat:@"%@",[rootObject objectForKey:ERRCODE]];
             
+            
+            [self doneLoadingTableViewData];
             
             if ([@"0" isEqualToString:errcode])
             {
@@ -1486,7 +1491,7 @@
     {
         pageCount[selectedView] = 1;
         [self initHttpRequest:pageCount[selectedView] Url:selectedView];
-        [self performSelector:@selector(doneLoadingTableViewData) withObject:nil afterDelay:3.0];
+//        [self performSelector:@selector(doneLoadingTableViewData) withObject:nil afterDelay:3.0];
     }
 }
 

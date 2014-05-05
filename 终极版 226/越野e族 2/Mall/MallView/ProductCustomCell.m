@@ -11,6 +11,7 @@
 
 
 @implementation SellerInfoView
+@synthesize delegate = _delegate;
 
 -(SellerInfoView *)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
@@ -70,6 +71,8 @@
 
 -(void)SellerInfoViewData:(SellerInfo *)infomation
 {
+    theInfo = infomation;
+    
     [headerImageView loadImageFromURL:infomation.SStoreLogo withPlaceholdImage:[UIImage imageNamed:@"touxiang.png"]];
     sellerName.text = infomation.SStoreName;
 }
@@ -77,12 +80,26 @@
 
 -(void)PushToMessageVC:(UIButton *)sender
 {
-    
+    if (_delegate && [_delegate respondsToSelector:@selector(pushToChatViewControllerWith:)]) {
+        [_delegate pushToChatViewControllerWith:theInfo];
+    }
 }
 
 -(void)CallSeller:(UIButton *)sender
 {
+    UIApplication * app = [UIApplication sharedApplication];
     
+    NSURL * url = [NSURL URLWithString:[NSString stringWithFormat:@"tel://%@",theInfo.STelephone]];
+        
+    if ([app canOpenURL:url])
+    {
+        [app openURL:url];
+    }else
+    {
+        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"您当前设备不支持此功能" delegate:nil cancelButtonTitle:@"确认" otherButtonTitles:nil,nil];
+        
+        [alert show];
+    }
 }
 
 

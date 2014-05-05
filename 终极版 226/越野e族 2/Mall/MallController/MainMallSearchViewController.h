@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ProductDetailViewController.h"
+
 
 @interface MainMallSearchViewController : MyViewController<UITableViewDataSource,UITableViewDelegate,UIScrollViewDelegate>
 @property(nonatomic,strong)UITableView *MainTabView;

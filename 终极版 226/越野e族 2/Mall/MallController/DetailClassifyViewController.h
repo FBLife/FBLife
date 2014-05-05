@@ -8,13 +8,19 @@
 
 #import <UIKit/UIKit.h>
 #import "DetailClassifyCellView.h"
+#import "DetailClassifyModel.h"
+#import "DetailClassifyCell.h"
+#import "MallTypeClassifyViewController.h"
 
-@interface DetailClassifyViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>{
+@interface DetailClassifyViewController : MyViewController<UITableViewDataSource,UITableViewDelegate>{
     
+    DetailClassifyModel * ClassifyModel;
 }
 @property(nonatomic,strong)UITableView *MainTableview;
 @property(nonatomic,strong)NSArray *titleArray;
 @property(nonatomic,strong)NSArray *classArray;
 @property(nonatomic,strong)DetailClassifyCellView *cellView;
+
+@property(nonatomic,strong)NSMutableArray * data_array;
 
 @end

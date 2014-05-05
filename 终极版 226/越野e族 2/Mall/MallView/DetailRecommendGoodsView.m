@@ -126,7 +126,7 @@
     
     ProductDetailViewController * Product_detail = [[ProductDetailViewController alloc] init];
     
-    Product_detail.SellerInfo = info;
+    Product_detail.GoodsId = info.GoodsId;
     
     [[(ProductDetailViewController *)self.delegate navigationController] pushViewController:Product_detail animated:YES];
 }

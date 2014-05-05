@@ -386,7 +386,9 @@ alpha:(a)]
 
 #define MALL_RECOMMEND_GOODS_URL @"http://mall.fblife.com/api.php?app=store&act=search&id=%@&goodssort=1&page=1&pageper=20&formattype=json"
 
+//商城分类
 
+#define MALL_CLASSIFY_URL @"http://mall.fblife.com/api.php?app=category&formattype=json"
 
 
 

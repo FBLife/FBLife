@@ -1352,13 +1352,6 @@
     
     [self.view addSubview:aView];
     
-    
-//    UIImageView * yinying_imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0,0,10,iPhone5?568:480)];
-//    
-//    yinying_imageView.image = [UIImage imageNamed:iPhone5?@"Mallyinying20_1136.png":@"Mallyinying20_960.png"];
-//    
-//    [aView addSubview:yinying_imageView];
-    
     self.view.backgroundColor = [UIColor whiteColor];
     
     
@@ -1598,6 +1591,24 @@
     
     [aView addSubview:copyRight];
     
+    
+    
+    NSUserDefaults * user = [NSUserDefaults standardUserDefaults];
+    
+    NSDictionary * myDictionary = [user objectForKey:@"myInformationData"];
+    
+    if (myDictionary) {
+        [self loadMyInformationDataWith:myDictionary];
+    }
+    
+    
+    hud = [[ATMHud alloc] initWithDelegate:self];
+    
+    [self.view addSubview:hud.view];
+    
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receivemyimage_head) name:@"successLoginToLoadPersonalData" object:nil];
+    
 }
 
 
@@ -1768,11 +1779,13 @@
     
     if ([self isLogin])
     {
-        FriendListViewController * friendList = [[FriendListViewController alloc] init];
+        FriendListViewController *message=[[FriendListViewController alloc]init];
         
-        friendList.delegate = self;
+        message.title_name_string = @"mine";
         
-        [[(AppDelegate *)[UIApplication sharedApplication].delegate fansVC] presentModalViewController:friendList animated:YES];
+        message.delegate = self;
+        
+        [[(AppDelegate *)[UIApplication sharedApplication].delegate fansVC] presentModalViewController:message animated:YES];
     }else
     {
         [self login];
@@ -1822,7 +1835,9 @@
     
     mine.uid = uid;
     
-    [self.navigationController pushViewController:mine animated:YES];
+    UINavigationController * naVC = [[UINavigationController alloc] initWithRootViewController:mine];
+    
+    [[(AppDelegate *)[UIApplication sharedApplication].delegate fansVC] presentModalViewController:naVC animated:YES];
 
 }
 
@@ -1858,16 +1873,11 @@
 
 -(void)removeCache
 {
+    UIAlertView * alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"清空缓存" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定",nil];
     
-    [[SDImageCache sharedImageCache] clearDisk];
-    [[FullyLoaded sharedFullyLoaded] removeAllCacheDownloads];
-    NSIndexPath *reloadIndexPath = [NSIndexPath indexPathForRow:7 inSection:0];
-    NSArray *arra=[NSArray arrayWithObject:reloadIndexPath];
-    [ _myTableView reloadRowsAtIndexPaths:arra withRowAnimation:UITableViewRowAnimationNone];
+    alertView.tag = 556;
     
-    //弹出提示信息
-    UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"温馨提示" message:@"缓存清除成功" delegate:nil cancelButtonTitle:@"知道了" otherButtonTitles:nil, nil];
-    [alert show];
+    [alertView show];
 }
 -(void)feedback{
     
@@ -1946,18 +1956,8 @@
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    if (buttonIndex == 0 && alertView.tag == 10000)
-    {
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://itunes.apple.com/cn/app/yue-ye-yi-zu/id605673005?mt=8"]];
-    }
-}
-
--(void)dengluortuichu{
     
-    BOOL isLogIn = [[NSUserDefaults standardUserDefaults] boolForKey:USER_IN];
-    
-    if (isLogIn)
-    {
+    if (buttonIndex == 1 && alertView.tag == 555) {
         [self deletetoken];
         
         [self setAllViewHidden:NO];
@@ -1985,18 +1985,73 @@
         
         
         [user synchronize];
-        
-        [self LogOut];
-    }else
+    }else if (buttonIndex == 0 && alertView.tag == 10000)
     {
-        if (!logIn)
-        {
-            logIn = [[LogInViewController alloc] init];
-        }
-        [self.leveyTabBarController hidesTabBar:YES animated:YES];
-        [self presentModalViewController:logIn animated:YES];
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://itunes.apple.com/cn/app/yue-ye-yi-zu/id605673005?mt=8"]];
+    }else if (buttonIndex == 1 && alertView.tag == 556)
+    {
+        [[SDImageCache sharedImageCache] clearDisk];
+        [[FullyLoaded sharedFullyLoaded] removeAllCacheDownloads];
+        
+        
+        [self hudRemove:YES];
+        
+        [self performSelector:@selector(hudRemove:) withObject:NO afterDelay:1.5];
     }
 }
+
+
+-(void)hudRemove:(BOOL)isCom
+{
+    if (isCom) {
+        [hud setBlockTouches:NO];
+        [hud setAccessoryPosition:ATMHudAccessoryPositionLeft];
+        [hud setCaption:@"正在清除缓存"];
+        [hud setActivity:YES];
+        [hud show];
+    }else
+    {
+        [hud setBlockTouches:NO];
+        [hud setAccessoryPosition:ATMHudAccessoryPositionLeft];
+        [hud setCaption:@"缓存清除成功"];
+        [hud setActivity:NO];
+        [hud setImage:[UIImage imageNamed:@"19-check"]];
+        [hud show];
+        [hud hideAfter:0.4];
+    }
+}
+
+
+
+-(void)dengluortuichu{
+    
+    UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"确定注销此账号?" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定",nil];
+    
+    alert.tag = 555;
+    
+    [alert show];
+}
+
+
+-(void)loadMyInformationDataWith:(NSDictionary *)dictionary
+{
+    string_face_original=[NSString stringWithFormat:@"%@",[dictionary objectForKey:@"face_original"]];
+    
+    Fans_label.text = [NSString stringWithFormat:@"%@",[dictionary objectForKey:@"fans_count"]];
+    
+    Follow_label.text = [NSString stringWithFormat:@"%@",[dictionary objectForKey:@"follow_count"]];
+    
+    userName_label.text = [NSString stringWithFormat:@"%@",[dictionary objectForKey:@"username"]];
+    
+    NSString *string_uid=[NSString stringWithFormat:@"%@",[dictionary objectForKey:@"uid"]];
+    
+    [[NSUserDefaults standardUserDefaults]setObject:string_uid forKey:USER_UID];
+    
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"successgetuid" object:Nil];
+    
+    [headerImage_view loadImageFromURL:string_face_original withPlaceholdImage:[UIImage imageNamed:@"ios7_headimplace.png"]];
+}
+
 -(void)receivemyimage_head{
     
     NSString *authkey=[[NSUserDefaults standardUserDefaults] objectForKey:USER_AUTHOD];
@@ -2020,22 +2075,13 @@
                 NSLog(@"dictionary=%@",dictionary);
                 
                 
-                string_face_original=[NSString stringWithFormat:@"%@",[dictionary objectForKey:@"face_original"]];
+                NSUserDefaults * userDefaults = [NSUserDefaults standardUserDefaults];
                 
-                Fans_label.text = [NSString stringWithFormat:@"%@",[dictionary objectForKey:@"fans_count"]];
+                [userDefaults setObject:dictionary forKey:@"myInformationData"];
                 
-                Follow_label.text = [NSString stringWithFormat:@"%@",[dictionary objectForKey:@"follow_count"]];
+                [userDefaults synchronize];
                 
-                userName_label.text = [NSString stringWithFormat:@"%@",[dictionary objectForKey:@"username"]];
-                
-                NSString *string_uid=[NSString stringWithFormat:@"%@",[dictionary objectForKey:@"uid"]];
-                
-                [[NSUserDefaults standardUserDefaults]setObject:string_uid forKey:USER_UID];
-                
-                [[NSNotificationCenter defaultCenter]postNotificationName:@"successgetuid" object:Nil];
-                
-                [headerImage_view loadImageFromURL:string_face_original withPlaceholdImage:[UIImage imageNamed:@"ios7_headimplace.png"]];
-                
+                [self loadMyInformationDataWith:dictionary];
             }
         }
         @catch (NSException *exception) {
@@ -2044,10 +2090,6 @@
         @finally {
             
         }
-        
-        
-        
-        
     }];
     
     
@@ -2122,10 +2164,8 @@
     [hud setShowSound:[[NSBundle mainBundle] pathForResource:@"pop" ofType:@"wav"]];
     [hud setCaption:NS_EXIT_SUC];
     [hud setActivity:NO];
-    //    [hud setImage:[UIImage imageNamed:@"19-check"]];
     [hud show];
     [hud hideAfter:3];
-    // [_myTableView reloadData];
 }
 
 

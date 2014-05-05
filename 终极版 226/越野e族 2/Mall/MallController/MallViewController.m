@@ -45,6 +45,14 @@
     return self;
 }
 
+-(void)otherTypeButton:(UIButton *)sender
+{
+    DetailClassifyViewController * classifV = [[DetailClassifyViewController alloc] init];
+    
+    [self.navigationController pushViewController:classifV animated:YES];
+}
+
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -162,6 +170,8 @@
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
 //    NSArray *array_title=[NSArray arrayWithObjects:@"推荐商品",@"整车",@"户外运动",@"改装零部件",@"产品分类",@"五星商家", nil];
+    
+    __weak typeof(self) bself = self;
 
     if (indexPath.row==0) {
 
@@ -304,7 +314,7 @@
             
             ClassifyViewController *_clV=[[ClassifyViewController alloc]init];
             _clV.str_id=[NSString stringWithFormat:@"%d",tag];
-            [self.navigationController pushViewController:_clV animated:YES];
+            [bself.navigationController pushViewController:_clV animated:YES];
             
 
             
@@ -338,6 +348,14 @@
             
             
             NSLog(@"四大分类的。。。。tag===%d",tag);
+            
+            
+            ProductDetailViewController * productDetail = [[ProductDetailViewController alloc] init];
+            
+            
+            productDetail.GoodsId = [NSString stringWithFormat:@"%d",tag];
+            
+            [bself.navigationController pushViewController:productDetail animated:YES];
             
         }];
         
@@ -570,6 +588,15 @@
                     
                     
                     NSLog(@"到商品页面的%@",item.idoftype);
+                    
+                    
+                    ProductDetailViewController * productDetail = [[ProductDetailViewController alloc] init];
+                    
+                    productDetail.GoodsId = item.idoftype;
+                    
+                    [self.navigationController pushViewController:productDetail animated:YES];
+                    
+                    
 //                    newsdetailViewController *  comment_=[[newsdetailViewController alloc]init];
 //                    
 //                    comment_.string_Id=item.idoftype;

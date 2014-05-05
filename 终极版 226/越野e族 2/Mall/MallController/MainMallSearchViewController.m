@@ -100,11 +100,22 @@
     
     
     NSLog(@"点击arrayinfo商品详情id==goosid==%@",arrayinfo);
+    
+    
+    __weak typeof(self) bself = self;
 
     
         [_reV setarray:arrayinfo searchbloc:^(int idofGoods) {
             
             NSLog(@"点击进入商品详情id==goosid==%d",idofGoods);
+            
+            ProductDetailViewController * detail = [[ProductDetailViewController alloc] init];
+            
+            detail.GoodsId = [NSString stringWithFormat:@"%d",idofGoods];
+            
+            [bself.navigationController pushViewController:detail animated:YES];
+            
+            
             
         }];
         [cell.contentView addSubview:_reV];
@@ -114,7 +125,7 @@
     cell.selectionStyle=UITableViewCellSelectionStyleNone;
     
  
-        return cell;
+    return cell;
     
     
     

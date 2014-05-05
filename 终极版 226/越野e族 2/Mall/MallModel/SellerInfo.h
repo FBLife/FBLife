@@ -28,6 +28,7 @@ typedef void(^goodsBlock)(NSMutableArray * dataArray);
 
 //商家信息
 
+@property(nonatomic,strong)NSString * SStoreUid;//商家id
 @property(nonatomic,strong)NSString * SStoreName;//商家名称
 @property(nonatomic,strong)NSString * SRegionName;//商家所在地区
 @property(nonatomic,strong)NSString * SDescription;//商家介绍

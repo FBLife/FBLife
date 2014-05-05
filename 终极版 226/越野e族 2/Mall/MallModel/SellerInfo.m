@@ -14,6 +14,7 @@
 @synthesize SStoreLogo = _SStoreLogo;
 @synthesize SStoreName = _SStoreName;
 @synthesize STelephone = _STelephone;
+@synthesize SStoreUid = _SStoreUid;
 //推荐商品
 @synthesize GoodsImage = _GoodsImage;
 @synthesize GoodsId = _GoodsId;
@@ -28,6 +29,8 @@
     
     if (self) {
         self.SStoreName = [NSString stringWithFormat:@"%@",[myDic objectForKey:@"store_name"]];
+        
+        self.SStoreUid = [NSString stringWithFormat:@"%@",[myDic objectForKey:@"store_id"]];
         
         self.SDescription = [NSString stringWithFormat:@"%@",[[myDic objectForKey:@"description"] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]];
         
@@ -121,9 +124,7 @@
                         NSDictionary * data_dic = [[totalDic objectForKey:@"datainfo"] objectForKey:key_string];
                         
                         SellerInfo * info = [[SellerInfo alloc] initWithDic:data_dic];
-                        
-                        NSLog(@"--%@--%@--%@--%@",info.GoodsName,info.GoodsId,info.GoodsImage,info.GoodsPrice);
-                        
+                                                
                         [data addObject:info];
                     }
                     myGoodsBlock(data);

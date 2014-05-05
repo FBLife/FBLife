@@ -41,7 +41,7 @@ typedef enum {
 @property (strong, nonatomic) AsyncImageView *avatarImageView;
 @property(nonatomic,strong)UIImageView * background_imageView;
 
-@property(nonatomic,strong)id<MyChatViewCellDelegate>delegate;
+@property(nonatomic,assign)id<MyChatViewCellDelegate>delegate;
 
 
 

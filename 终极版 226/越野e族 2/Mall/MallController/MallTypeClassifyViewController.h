@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "SellerGoodsView.h"
+#import "DetailClassifyModel.h"
 
 @interface ClassifyPopView :UIView
 {
@@ -32,6 +33,8 @@
 
 
 @property(nonatomic,strong)UITableView * myTableView;
+
+@property(nonatomic,strong)DetailClassifyModel * theModel;
 
 
 @end

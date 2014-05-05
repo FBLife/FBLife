@@ -25,6 +25,7 @@
 @synthesize slide_array = _slide_array;
 @synthesize ProductInfo = _ProductInfo;
 @synthesize SellerInfo = _SellerInfo;
+@synthesize GoodsId = _GoodsId;
 
 
 
@@ -42,8 +43,9 @@
 
 -(void)loadProductDetailInfo
 {
-    NSString * full_url = [NSString stringWithFormat:MALLPRODUCTDETAIL_URL,@"8680"];
+    NSString * full_url = [NSString stringWithFormat:MALLPRODUCTDETAIL_URL,_GoodsId];
     
+    NSLog(@"full_url------%@",full_url);
     
     productDetail_request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:full_url]];
     
@@ -84,6 +86,9 @@
         [_weakself loadSlideViewAndContentView];
         
         [_weakself loadTableHeaderViewTwo];
+        
+        [_weakself.myTableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationNone];
+        
     }];
     
     [productDetail_request setFailedBlock:^{
@@ -104,7 +109,7 @@
     
     [loadMoreView startLoading];
     
-    NSString * fullUrl = [NSString stringWithFormat:MALLPRODUCTDCOMMENTS_URL,@"8680",CommentsPageCount];
+    NSString * fullUrl = [NSString stringWithFormat:MALLPRODUCTDCOMMENTS_URL,_GoodsId,CommentsPageCount];
     
     NSLog(@"fullUrl------%@",fullUrl);
     productComments_request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:fullUrl]];
@@ -141,7 +146,7 @@
                 [bself.myTableView reloadData];
             }else
             {
-                loadMoreView.normalLabel.text = @"没有更多了";
+                loadMoreView.normalLabel.text = CommentsPageCount==1?@"暂无评价":@"没有更多了";
             }
         }
         @catch (NSException *exception) {
@@ -160,9 +165,11 @@
 {
     __weak typeof(self) bself = self;
     
-    if(![recommendGoods_dictionary objectForKey:@"sellerDescription"])
+    if(![recommendGoods_dictionary objectForKey:@"sellerInfo"])
     {
-        NSString * sellerInfo_url = [NSString stringWithFormat:MALLSELLERINFO_URL,@"99899"];
+        NSString * sellerInfo_url = [NSString stringWithFormat:MALLSELLERINFO_URL,bself.ProductInfo.PStoreId];
+        
+        NSLog(@"商家信息url:%@",sellerInfo_url);
         
         _SellerInfo = [[SellerInfo alloc] init];
         
@@ -172,6 +179,8 @@
             
             SellerInfoView * sellerView = [[SellerInfoView alloc] initWithFrame:CGRectMake(0,0,320,93)];
             
+            sellerView.delegate = self;
+            
             [sellerView SellerInfoViewData:bself.SellerInfo];
             
             [recommendGoods_dictionary setObject:sellerView forKey:@"sellerInfo"];
@@ -180,14 +189,18 @@
                 [recommendGoods_dictionary setObject:bself.SellerInfo.SDescription forKey:@"sellerDescription"];
             }
             
-            [_myTableView reloadData];
+            if ([recommendGoods_dictionary objectForKey:@"recommendGoods"]) {
+                [bself.myTableView reloadData];
+            }
         }];
     }
     
     
     if(![recommendGoods_dictionary objectForKey:@"recommendGoods"])
     {
-        NSString * recommendGoods_url = [NSString stringWithFormat:MALL_RECOMMEND_GOODS_URL,@"377284"];
+        NSString * recommendGoods_url = [NSString stringWithFormat:MALL_RECOMMEND_GOODS_URL,bself.ProductInfo.PStoreId];
+        
+        NSLog(@"商家推荐商品url：%@",recommendGoods_url);
         
         [bself.SellerInfo loadRecommendGoodsWithUrl:recommendGoods_url WithBlock:^(NSMutableArray *dataArray) {
             
@@ -203,7 +216,10 @@
             
             [recommendGoods_dictionary setObject:recommendGoodsView forKey:@"recommendGoods"];
             
-            [bself.myTableView reloadData];
+            if ([recommendGoods_dictionary objectForKey:@"sellerInfo"]) {
+                [bself.myTableView reloadData];
+            }
+            
         }];
     }
 }
@@ -220,6 +236,15 @@
     productComments_request = nil;
     
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+
+-(void)PeopleView:(UIButton *)sender
+{
+    AppDelegate * delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    
+    
+    [delegate setPersonalState:PersonalStateTypeShow];
 }
 
 
@@ -264,6 +289,8 @@
 -(UIView *)loadSlideViewAndContentView
 {
     tableHeaderView = [[UIView alloc] init];
+    
+/*循环
     int length = _ProductInfo.PImages.count;
     NSMutableArray *tempArray = [NSMutableArray array];
     for (int i = 0 ; i < length; i++)
@@ -296,8 +323,49 @@
     LoopScrollview *bannerView = [[LoopScrollview alloc] initWithFrame:CGRectMake(0, 0, 320,320) delegate:self imageItems:itemArray isAuto:NO];
     [bannerView scrollToIndex:0];
     [tableHeaderView addSubview:bannerView];
+
+ */
     
     
+    
+    UIScrollView * pictureScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0,0,320,320)];
+    
+    pictureScrollView.contentSize = CGSizeMake(320*_ProductInfo.PImages.count,0);
+    
+    pictureScrollView.pagingEnabled = YES;
+    
+    pictureScrollView.tag = 88888;
+    
+    pictureScrollView.showsHorizontalScrollIndicator = NO;
+    
+    pictureScrollView.showsVerticalScrollIndicator = NO;
+    
+    pictureScrollView.bounces = YES;
+    
+    pictureScrollView.delegate = self;
+
+    [tableHeaderView addSubview:pictureScrollView];
+    
+    
+    for (int i = 0;i < _ProductInfo.PImages.count;i++) {
+        AsyncImageView * productImageView = [[AsyncImageView alloc] initWithFrame:CGRectMake(0+320*i,0,320,320)];
+        
+        [productImageView loadImageFromURL:[[_ProductInfo.PImages objectAtIndex:i] IThumbnail] withPlaceholdImage:[UIImage imageNamed:@"bigimplace.png"]];
+        
+        [pictureScrollView addSubview:productImageView];
+    }
+    
+    
+    
+    _pageControl = [[SMPageControl alloc]initWithFrame:CGRectMake(0,300,320,10)];
+    _pageControl.backgroundColor = [UIColor clearColor];
+    _pageControl.numberOfPages = _ProductInfo.PImages.count;
+    _pageControl.indicatorMargin=6.0f;
+    [_pageControl setPageIndicatorImage:[UIImage imageNamed:@"dot.png"]];
+    [_pageControl setCurrentPageIndicatorImage:[UIImage imageNamed:@"dot1.png"]];
+    _pageControl.currentPage = 0;
+    
+    [tableHeaderView addSubview:_pageControl];
     
 
     float content_imageView_height = 0;
@@ -313,7 +381,7 @@
     
     content_imageView_height += 14;
     
-    UILabel * name_label = [[UILabel alloc] initWithFrame:CGRectMake(23/2,14,255-23,15)];
+    UILabel * name_label = [[UILabel alloc] initWithFrame:CGRectMake(23/2,14,297,15)];
     
     name_label.text = _ProductInfo.PName;
     
@@ -327,34 +395,35 @@
     
     [content_imageView addSubview:name_label];
     
-    UIView * lineView = [[UIView alloc] initWithFrame:CGRectMake(509/2,14,0.5,15)];
     
-    lineView.backgroundColor = RGBCOLOR(201,201,201);
-    
-    [content_imageView addSubview:lineView];
-    
-    
-    UIButton * top_button = [UIButton buttonWithType:UIButtonTypeCustom];
-    
-    top_button.frame = CGRectMake(265,14,45,15);
-    
-    [top_button setTitle:@"17" forState:UIControlStateNormal];
-    
-    top_button.titleLabel.textAlignment = NSTextAlignmentLeft;
-    
-    top_button.titleLabel.font = [UIFont systemFontOfSize:15];
-    
-    [top_button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    
-    [top_button setImage:[UIImage imageNamed:@"ZMallgood_26x29.png"] forState:UIControlStateNormal];
-    
-    [top_button setTitleEdgeInsets:UIEdgeInsetsMake(0,5,0,0)];
-    
-    [top_button setImageEdgeInsets:UIEdgeInsetsMake(0,0,0,15)];
-    
-    [top_button addTarget:self action:@selector(TopOnce:) forControlEvents:UIControlEventTouchUpInside];
-    
-    [content_imageView addSubview:top_button];
+
+//赞
+//    UIView * lineView = [[UIView alloc] initWithFrame:CGRectMake(509/2,14,0.5,15)];
+//    
+//    lineView.backgroundColor = RGBCOLOR(201,201,201);
+//    
+//    [content_imageView addSubview:lineView];
+//    UIButton * top_button = [UIButton buttonWithType:UIButtonTypeCustom];
+//    
+//    top_button.frame = CGRectMake(265,14,45,15);
+//    
+//    [top_button setTitle:@"17" forState:UIControlStateNormal];
+//    
+//    top_button.titleLabel.textAlignment = NSTextAlignmentLeft;
+//    
+//    top_button.titleLabel.font = [UIFont systemFontOfSize:15];
+//    
+//    [top_button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+//    
+//    [top_button setImage:[UIImage imageNamed:@"ZMallgood_26x29.png"] forState:UIControlStateNormal];
+//    
+//    [top_button setTitleEdgeInsets:UIEdgeInsetsMake(0,5,0,0)];
+//    
+//    [top_button setImageEdgeInsets:UIEdgeInsetsMake(0,0,0,15)];
+//    
+//    [top_button addTarget:self action:@selector(TopOnce:) forControlEvents:UIControlEventTouchUpInside];
+//    
+//    [content_imageView addSubview:top_button];
     
     
     content_imageView_height += 27.5;
@@ -597,8 +666,6 @@
     
     [_myTableView reloadData];
     
-    
-    
     _myTableView.contentOffset = CGPointMake(0,tableHeaderView.frame.size.height);
     
     
@@ -670,7 +737,12 @@
 
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    
+    if (scrollView.tag == 88888)
+    {
+        int page = scrollView.contentOffset.x / 290;//通过滚动的偏移量来判断目前页面所对应的小白点
+        
+        _pageControl.currentPage = page;
+    }
 }
 
 
@@ -699,7 +771,7 @@
 {
     if(_myTableView.contentOffset.y > (_myTableView.contentSize.height - _myTableView.frame.size.height+40) && _myTableView.contentOffset.y > 0 && scrollView == _myTableView && theType == ProductCellTypeEvaluation)
     {
-        if ([loadMoreView.normalLabel.text isEqualToString:@"加载中..."] || [loadMoreView.normalLabel.text isEqualToString:@"没有更多了"])
+        if ([loadMoreView.normalLabel.text isEqualToString:@"加载中..."] || [loadMoreView.normalLabel.text isEqualToString:@"没有更多了"]  || [loadMoreView.normalLabel.text isEqualToString:@"暂无评价"])
         {
             return;
         }
@@ -748,7 +820,7 @@
                 return productComments_array.count;
                 break;
             case ProductCellTypeIntroduce:
-            
+                
                 return [recommendGoods_dictionary objectForKey:@"GoodsDetailView"]?recommendGoods_dictionary.count-1:recommendGoods_dictionary.count;
                 break;
                 
@@ -786,7 +858,6 @@
                 
                 if (_SellerInfo.SDescription.length !=0 && ![_SellerInfo.SDescription isEqualToString:@""]) {
                     
-                 
                     if (indexPath.row == 0)
                     {
                         UILabel * label = [[UILabel alloc] initWithFrame:CGRectMake(12.5,0,295,0)];
@@ -817,9 +888,8 @@
                     
                 }else
                 {
-                    
                     if (indexPath.row==0) {
-                        rowHeight = 46;
+                        rowHeight = 93;
                     }else
                     {
                         DetailRecommendGoodsView * view = (DetailRecommendGoodsView *)[recommendGoods_dictionary objectForKey:@"recommendGoods"];
@@ -878,7 +948,7 @@
         
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
-        if (_SellerInfo.SDescription.length ==0 && [_SellerInfo.SDescription isEqualToString:@"GoodsDetailView"])
+        if (_SellerInfo.SDescription.length ==0 && [_SellerInfo.SDescription isEqualToString:@""])
         {
             
             if (indexPath.row == 0)
@@ -993,6 +1063,31 @@
 {
     
 }
+
+
+#pragma mark-SellerInfoViewDelegate
+
+-(void)pushToChatViewControllerWith:(SellerInfo *)info
+{
+    MessageInfo * theinfo = [[MessageInfo alloc] init];
+    
+    theinfo.to_username = info.SStoreName;
+    
+    theinfo.othername = info.SStoreName;
+    
+    theinfo.to_uid = info.SStoreUid;
+    
+    theinfo.from_username = [[NSUserDefaults standardUserDefaults] objectForKey:USER_NAME];
+    
+    theinfo.from_uid = [[NSUserDefaults standardUserDefaults] objectForKey:USER_UID];
+    
+    MyChatViewController * chat = [[MyChatViewController alloc] init];
+    
+    chat.info = theinfo;
+    
+    [self.navigationController pushViewController:chat animated:YES];
+}
+
 
 
 

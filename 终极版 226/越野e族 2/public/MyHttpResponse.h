@@ -15,7 +15,7 @@
 @property(nonatomic,readonly,strong) NSError* networkError;
 @property(nonatomic,readonly) NSInteger responseError;
 @property(nonatomic,readonly,strong) NSString *errMessage;
-@property(nonatomic,readonly,strong) id data; 
+@property(nonatomic,readonly,strong) id data;
 
 +(MyHttpResponse*)responseWithRequest:(ASIHTTPRequest*)request;
 -(BOOL)success;

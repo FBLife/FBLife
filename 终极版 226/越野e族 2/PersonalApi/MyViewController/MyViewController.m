@@ -86,6 +86,8 @@
         
         UIButton * leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
         
+        [leftButton addTarget:self action:@selector(otherTypeButton:) forControlEvents:UIControlEventTouchUpInside];
+        
         [leftButton setImage:[UIImage imageNamed:self.leftImageName] forState:UIControlStateNormal];
         
         leftButton.frame = CGRectMake(0,0,leftImage.size.width,leftImage.size.height);
@@ -168,6 +170,12 @@
         
     }
 }
+
+-(void)otherTypeButton:(UIButton *)sender
+{
+    
+}
+
 
 -(void)PeopleView:(UIButton *)sender
 {

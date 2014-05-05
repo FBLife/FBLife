@@ -13,9 +13,13 @@
 #import "SellerInfo.h"
 #import "DetailRecommendGoodsView.h"
 #import "LoadingIndicatorView.h"
+#import "MyChatViewController.h"
+#import "MessageInfo.h"
+#import "SMPageControl.h"
 
+@class SellerInfoView;
 
-@interface ProductDetailViewController : MyViewController<UITableViewDataSource,UITableViewDelegate,UIScrollViewDelegate,LoopScrollviewDelegate,UIWebViewDelegate,DetailRecommendGoodsViewDelegate>
+@interface ProductDetailViewController : MyViewController<UITableViewDataSource,UITableViewDelegate,UIScrollViewDelegate,LoopScrollviewDelegate,UIWebViewDelegate,DetailRecommendGoodsViewDelegate,SellerInfoViewDelegate>
 {
     UIView * tableHeaderView;
     
@@ -36,6 +40,8 @@
     ASIHTTPRequest * productComments_request;
     
     int CommentsPageCount;
+    
+    SMPageControl * _pageControl;
 }
 
 
@@ -46,5 +52,11 @@
 @property(nonatomic,strong)ProductModel * ProductInfo;
 
 @property(nonatomic,strong)SellerInfo * SellerInfo;
+
+@property(nonatomic,strong)NSString * GoodsId;
+
+
+
+
 
 @end

@@ -427,6 +427,7 @@
                 
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"LogIn" object:nil];
                 
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"successLoginToLoadPersonalData" object:nil];
                 
                 [self dismissModalViewControllerAnimated:YES];
                 
@@ -462,6 +463,8 @@
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"LogIn" object:nil];
                 [[NSNotificationCenter defaultCenter] postNotificationName:USER_AUTHOD object:[dictionary objectForKey:@"bbsinfo"]];
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"clearolddata" object:nil];
+                
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"successLoginToLoadPersonalData" object:nil];
                 
                 [self dismissModalViewControllerAnimated:YES];
             }else

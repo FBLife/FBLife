@@ -23,6 +23,13 @@ typedef enum
 }ProductCellType;
 
 
+@protocol SellerInfoViewDelegate <NSObject>
+
+-(void)pushToChatViewControllerWith:(SellerInfo *)info;
+
+@end
+
+
 
 
 @interface SellerInfoView : UIView
@@ -31,7 +38,13 @@ typedef enum
     UILabel * sellerName;
     UIButton * MessageButton;
     UIButton * telephoneButton;
+    
+    SellerInfo * theInfo;
 }
+
+
+@property(nonatomic,assign)id<SellerInfoViewDelegate>delegate;
+
 
 -(SellerInfoView *)initWithFrame:(CGRect)frame;
 

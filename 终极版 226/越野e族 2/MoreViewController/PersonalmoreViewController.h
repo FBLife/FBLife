@@ -22,7 +22,7 @@ typedef enum{
 
 
 
-@interface PersonalmoreViewController : UIViewController<AsyncImageDelegate,UMUFPTableViewDataLoadDelegate,FriendListViewControllerDelegate,LogInViewControllerDelegate>//,UITableViewDataSource,UITableViewDelegate>
+@interface PersonalmoreViewController : UIViewController<AsyncImageDelegate,UMUFPTableViewDataLoadDelegate,FriendListViewControllerDelegate,LogInViewControllerDelegate,UIAlertViewDelegate>//,UITableViewDataSource,UITableViewDelegate>
 {
     UITableView *_myTableView;
     NSArray *arrayofsection;

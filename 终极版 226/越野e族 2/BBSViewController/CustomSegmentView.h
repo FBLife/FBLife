@@ -21,7 +21,7 @@
 }
 
 @property(nonatomic,assign)int currentPage;
-@property(nonatomic,strong)id<CustomSegmentViewDelegate>delegate;
+@property(nonatomic,assign)id<CustomSegmentViewDelegate>delegate;
 
 
 

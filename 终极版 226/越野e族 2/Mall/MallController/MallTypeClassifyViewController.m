@@ -31,7 +31,7 @@
 
 
 -(void)setAllViewsWithContent:(NSArray *)theContent
-{
+{    
     UIImageView * separatorLine = [[UIImageView alloc] initWithFrame:CGRectMake(0,0,320,7)];
     
     separatorLine.image = [UIImage imageNamed:@"ZMallneijiantou_640x14.png"];
@@ -46,7 +46,7 @@
     
     [self addSubview:backView];
     
-    int row = (theContent.count/3?1:0)+theContent.count/3;
+    int row = (theContent.count%3?1:0)+theContent.count/3;
 
     
     for (int i = 0;i < row;i++) {
@@ -55,8 +55,6 @@
             if (j+i*3<theContent.count)
             {
                 UIButton * button = [UIButton buttonWithType:UIButtonTypeCustom];
-                
-                button.frame = CGRectMake(12+103*j,20+44*i,90,32);
                 
                 [button setTitleColor:RGBCOLOR(82,82,82) forState:UIControlStateNormal];
                 
@@ -67,10 +65,17 @@
                 [button setTitle:[theContent objectAtIndex:j+i*3] forState:UIControlStateNormal];
                 
                 [button addTarget:self action:@selector(ChooseButton:) forControlEvents:UIControlEventTouchUpInside];
-                
                 [backView addSubview:button];
+                
+                
+                [UIView animateWithDuration:0.4 animations:^{
+                    
+                    button.frame = CGRectMake(12+103*j,20+44*i,90,32);
+                    
+                } completion:^(BOOL finished) {
+                    
+                }];
             }
-            
         }
     }
 }
@@ -78,7 +83,7 @@
 
 -(void)ChooseButton:(UIButton *)sender
 {
-    
+    NSLog(@"点击的是什么------%@",sender.titleLabel.text);
 }
 
 @end
@@ -97,6 +102,7 @@
 
 @implementation MallTypeClassifyViewController
 @synthesize myTableView = _myTableView;
+@synthesize theModel = _theModel;
 
 
 
@@ -112,49 +118,9 @@
 
 -(void)PeopleView:(UIButton *)sender
 {
-//    AppDelegate * delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
-//    
-//    [delegate setPersonalState:PersonalStateTypeShow];
+    AppDelegate * delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
     
-    
-    
-    NSArray * array1 = [NSArray arrayWithObjects:@"牧马人系列",@"猛禽系列",@"坦途系列",nil];
-    
-    NSMutableArray * data_array = [[NSMutableArray alloc] init];
-    
-    NSArray * array2 = [NSArray arrayWithObjects:@"悬挂系列",@"外装饰件",@"内装饰件",@"装甲防护系列",@"户外装备",nil];
-    
-    for (int i = 0;i < 3;i++) {
-        [data_array addObject:array2];
-    }
-    
-    
-    SellerGoodsView * goodsView = [[SellerGoodsView alloc] initWithFrame:CGRectMake(320,20,557/2,iPhone5?548:460)];
-    
-    goodsView.layer.shadowColor = [UIColor blackColor].CGColor;
-    
-    goodsView.layer.shadowOffset = CGSizeMake(-1,0);
-    
-    goodsView.layer.shadowRadius = 5;
-
-    goodsView.delegate = self;
-    
-    [goodsView loadViewWithContent:data_array NameArray:array1];
-    
-    [[UIApplication sharedApplication].keyWindow addSubview:goodsView];
-    
-    [UIView animateWithDuration:1.0 animations:^{
-        
-        goodsView.frame = CGRectMake(320-557/2,20,557/2,iPhone5?548:460);
-        
-        CGRect rect = self.navigationController.view.frame;
-        
-        rect.origin.x = -557/2;
-        
-        self.navigationController.view.frame = rect;
-    } completion:^(BOOL finished) {
-        
-    }];
+    [delegate setPersonalState:PersonalStateTypeShow];
 }
 
 
@@ -166,19 +132,9 @@
     
     [self setMyViewControllerLeftButtonType:MyViewControllerLeftbuttonTypeBack WithRightButtonType:MyViewControllerRightbuttonTypePerson];
     
-    self.title = @"整车";
+    self.title = _theModel.ClassValue;
     
     history_index = -1;
-    
-    aaa = [NSArray arrayWithObjects:@"SUV",@"皮卡",@"商务",@"轿车",nil];
-    
-    dataArray = [[NSMutableArray alloc] init];
-    
-    for (int i = 0;i < 4;i++) {
-        NSArray * array = [NSArray arrayWithObjects:@"雷克萨斯",@"奔驰",@"宝马",@"保时捷",nil];
-        
-        [dataArray addObject:array];
-    }
     
     _myTableView = [[UITableView alloc] initWithFrame:CGRectMake(0,0,320,(iPhone5?568:480)-64) style:UITableViewStylePlain];
     
@@ -192,14 +148,23 @@
         _myTableView.separatorInset = UIEdgeInsetsZero;
     }
     
+    _myTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
     [self.view addSubview:_myTableView];
+    
+    
+    UIView * vvv = [[UIView alloc] initWithFrame:CGRectMake(0,0,0,0)];
+    
+    _myTableView.tableFooterView = vvv;
+    
 }
 
 
 
 -(float)returnPopViewHeightWithCount:(int)theCount
 {
-    int row = (theCount/3?1:0)+theCount/3;
+    int row = (theCount%3?1:0)+theCount/3;
+    
     return 20+44*row + 12;
 }
 
@@ -210,17 +175,15 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return aaa.count;
+    return _theModel.ClassChildren.count;
 }
 
 
 -(float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSArray * tempArray = [dataArray objectAtIndex:indexPath.row];
+    DetailClassifyModel * aModel = [_theModel.ClassChildren objectAtIndex:indexPath.row];
     
-    NSLog(@"height ------   %d",identifierHidden[indexPath.row]);
-    
-    return identifierHidden[indexPath.row]?([self returnPopViewHeightWithCount:tempArray.count]+51):58;
+    return identifierHidden[indexPath.row]?([self returnPopViewHeightWithCount:aModel.ClassChildren.count]+51):58;
 }
 
 
@@ -243,10 +206,18 @@
     }
     
     
+    UIView * lineView = [[UIView alloc] initWithFrame:CGRectMake(0,0,320,0.5)];
+    
+    lineView.backgroundColor = RGBCOLOR(198,198,198);
+    
+    [cell.contentView addSubview:lineView];
+    
+    
+    DetailClassifyModel * aModel = [_theModel.ClassChildren objectAtIndex:indexPath.row];
     
     UILabel * title_label = [[UILabel alloc] initWithFrame:CGRectMake(12,21,280,16)];
     
-    title_label.text = [aaa objectAtIndex:indexPath.row];
+    title_label.text = aModel.ClassValue;
     
     title_label.textAlignment = NSTextAlignmentLeft;
     
@@ -266,18 +237,28 @@
     
     
     if (identifierHidden[indexPath.row]) {
-        NSArray * tempArray = [dataArray objectAtIndex:indexPath.row];
         
-        ClassifyPopView * popView = [[ClassifyPopView alloc] initWithFrame:CGRectMake(0,51,320,[self returnPopViewHeightWithCount:tempArray.count])];
+        ClassifyPopView * popView = [[ClassifyPopView alloc] initWithFrame:CGRectMake(0,51,320,[self returnPopViewHeightWithCount:aModel.ClassChildren.count])];
         
-        [popView setAllViewsWithContent:tempArray];
+        popView.clipsToBounds = YES;
+        
+        popView.tag = 100;
+        
+        [popView setAllViewsWithContent:aModel.ClassChildren];
         
         [cell.contentView addSubview:popView];
     }
     
     
+    if (indexPath.row == _theModel.ClassChildren.count-1) {
+        UIView * footLine = [[UIView alloc] initWithFrame:CGRectMake(0,57.5,320,0.5)];
+        
+        footLine.backgroundColor = RGBCOLOR(198,198,198);
+        
+        [cell.contentView addSubview:footLine];
+    }
     
-    
+ 
     return cell;
 }
 
@@ -288,18 +269,38 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    for (int i = 0;i < aaa.count;i++)
+    int rows = 900000000;
+    
+    for (int i = 0;i < _theModel.ClassChildren.count;i++)
     {
         if (identifierHidden[i] && i != indexPath.row)
         {
             identifierHidden[i] = !identifierHidden[i];
+            
+            rows = i;
         }
     }
     
     identifierHidden[indexPath.row] = !identifierHidden[indexPath.row];
     
-    [tableView reloadData];
     
+    UITableViewCell * cell = [tableView cellForRowAtIndexPath:rows==900000000?indexPath:[NSIndexPath indexPathForRow:rows inSection:0]];
+    
+    ClassifyPopView * view = (ClassifyPopView *)[cell.contentView viewWithTag:100];
+    
+    [UIView animateWithDuration:0.2 animations:^{
+        view.frame = CGRectMake(0,51,320,0);
+    
+    } completion:^(BOOL finished) {
+        
+    }];
+    
+    if (rows == 900000000) {
+        [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath,nil] withRowAnimation:UITableViewRowAnimationFade];
+    }else
+    {
+        [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath,[NSIndexPath indexPathForRow:rows inSection:0],nil] withRowAnimation:UITableViewRowAnimationFade];
+    }
 }
 
 

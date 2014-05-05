@@ -17,10 +17,16 @@
         
         self.backgroundColor=[UIColor clearColor];
         //1
-        _headImageview=[[AsyncImageView alloc]initWithFrame:CGRectMake(20, 20, 40, 40)];
-        [_headImageview loadImageFromURL1:nil withPlaceholdImage:[UIImage imageNamed:@"bigimplace.png"]];
-        _headImageview.backgroundColor=[UIColor redColor];
-        [self addSubview:_headImageview];
+        
+        
+        if (!_headImageview) {
+            _headImageview=[[AsyncImageView alloc]initWithFrame:CGRectMake(20, 20, 40, 40)];
+            [_headImageview loadImageFromURL1:nil withPlaceholdImage:[UIImage imageNamed:@"bigimplace.png"]];
+            _headImageview.backgroundColor=[UIColor redColor];
+            [self addSubview:_headImageview];
+        }
+        
+        
         
         //2
         _MainTitleLabel=[[UILabel alloc]initWithFrame:CGRectMake(80, 20, 100, 16)];

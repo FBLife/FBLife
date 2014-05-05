@@ -34,7 +34,7 @@
     
 }
 @property(nonatomic, retain) ASIHTTPRequest * request;
-@property (nonatomic, strong) id <AsyncImageDelegate> delegate;
+@property (nonatomic, assign) id <AsyncImageDelegate> delegate;
 
 - (void) loadImageFromURL1:(NSString*)imageURL withPlaceholdImage:(UIImage *)placeholdImage;
 - (void) loadImageFromURL:(NSString*)imageURL;

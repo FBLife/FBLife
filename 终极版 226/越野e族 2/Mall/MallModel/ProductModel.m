@@ -95,6 +95,8 @@
         
         self.PArea = [NSString stringWithFormat:@"%@",[theDictionary objectForKey:@"region_name"]];
         
+        self.PStoreId = [NSString stringWithFormat:@"%@",[theDictionary objectForKey:@"store_id"]];
+        
         
         NSArray * imageArray = [theDictionary objectForKey:@"_images"];
         

@@ -22,6 +22,19 @@
     return self;
 }
 
+
+- (NSString *)stringFromDate{
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    
+    [dateFormatter setDateFormat:@"YYYY"];
+    
+    NSString *destDateString = [dateFormatter stringFromDate:[NSDate date]];
+    
+    return destDateString;
+    
+}
+
 - (void)viewDidLoad
 {
     
@@ -51,7 +64,7 @@
     UIBarButtonItem *back_item=[[UIBarButtonItem alloc]initWithCustomView:back_view];
     self.navigationItem.leftBarButtonItem=back_item;
     //1008  832
-    imageView = [[UIImageView alloc] initWithImage:[personal getImageWithName:iPhone5?@"newAboultIphone5@2x":@"newAbout@2x"]];
+    imageView = [[UIImageView alloc] initWithImage:[personal getImageWithName:iPhone5?@"newAboultIphone5new@2x":@"newAboutnew@2x"]];
     imageView.frame = CGRectMake(0,MY_MACRO_NAME?64:0,320,iPhone5?1008/2:832/2);
     //    imageView.center = CGPointMake(160,iPhone5?252:208);
     imageView.backgroundColor = [UIColor clearColor];
@@ -72,7 +85,19 @@
     
     
     
+    UILabel * logo_title_label = [[UILabel alloc] initWithFrame:CGRectMake(0,(iPhone5?430:345)+(MY_MACRO_NAME?64:0),320,10)];
     
+    logo_title_label.text = [NSString stringWithFormat:@"Copyright © 2002-%@ FBLIFE.com",[self stringFromDate]];
+    
+    logo_title_label.textAlignment = NSTextAlignmentCenter;
+    
+    logo_title_label.textColor = RGBCOLOR(120,120,120);
+    
+    logo_title_label.font = [UIFont systemFontOfSize:10];
+    
+    logo_title_label.backgroundColor = [UIColor clearColor];
+    
+    [self.view addSubview:logo_title_label];
     
     [self.view addSubview:version_label];
 
