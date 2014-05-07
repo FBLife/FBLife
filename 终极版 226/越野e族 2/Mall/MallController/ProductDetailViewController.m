@@ -8,6 +8,7 @@
 
 #import "ProductDetailViewController.h"
 #import "rtLabel.h"
+#import "loadingimview.h"
 
 @class RTLabelComponent;
 @class RTLabelExtractedComponent;
@@ -17,15 +18,21 @@
 #define TEXTCLOLOR [UIColor colorWithRed:115/255.0f green:115/255.0f blue:115/255.0f alpha:1];
 
 @interface ProductDetailViewController ()
+{
+    loadingimview * _isloadingIv;
+    
+}
 
 @end
 
 @implementation ProductDetailViewController
 @synthesize myTableView = _myTableView;
+@synthesize place_imageView = _place_imageView;
 @synthesize slide_array = _slide_array;
 @synthesize ProductInfo = _ProductInfo;
 @synthesize SellerInfo = _SellerInfo;
 @synthesize GoodsId = _GoodsId;
+@synthesize replaceAlertView = _replaceAlertView;
 
 
 
@@ -89,10 +96,16 @@
         
         [_weakself.myTableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationNone];
         
+        _weakself.place_imageView.hidden = YES;
+        
     }];
     
     [productDetail_request setFailedBlock:^{
+        _weakself.place_imageView.hidden = YES;
         
+        _weakself.replaceAlertView.hidden = NO;
+        
+        [_weakself performSelector:@selector(hiddenAlertReplaceView) withObject:nil afterDelay:1.0];
     }];
     
 
@@ -243,7 +256,6 @@
 {
     AppDelegate * delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
     
-    
     [delegate setPersonalState:PersonalStateTypeShow];
 }
 
@@ -281,6 +293,37 @@
     _myTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     [self.view addSubview:_myTableView];
+    
+    
+    if (!_place_imageView)
+    {
+        _place_imageView = [[UIImageView alloc] initWithFrame:_myTableView.bounds];
+        
+        _place_imageView.backgroundColor = [UIColor whiteColor];
+        
+        UIImageView *imgcenterlogo=[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"ios7_newsbeijing.png"]];
+        
+        imgcenterlogo.center=_place_imageView.center;
+        
+        [_place_imageView addSubview:imgcenterlogo];
+        
+        [self.view addSubview:_place_imageView];
+    }
+    
+    if (!_isloadingIv) {
+        _isloadingIv=[[loadingimview alloc]initWithFrame:CGRectMake(100,100, 150, 100) labelString:@"正在加载"];
+        
+        _isloadingIv.center = CGPointMake(160,iPhone5?548/2:460/2);
+        
+        [_place_imageView addSubview:_isloadingIv];
+    }
+    
+    
+    _replaceAlertView=[[AlertRePlaceView alloc]initWithFrame:CGRectMake(100, 200, 150, 100) labelString:@"您的网络不给力哦，请检查网络"];
+    _replaceAlertView.center=CGPointMake(160,iPhone5?548/2:460/2);
+    _replaceAlertView.delegate=self;
+    _replaceAlertView.hidden=YES;
+    [self.view addSubview:_replaceAlertView];
 }
 
 
@@ -336,6 +379,8 @@
     
     pictureScrollView.tag = 88888;
     
+    pictureScrollView.backgroundColor = [UIColor whiteColor];
+    
     pictureScrollView.showsHorizontalScrollIndicator = NO;
     
     pictureScrollView.showsVerticalScrollIndicator = NO;
@@ -350,7 +395,7 @@
     for (int i = 0;i < _ProductInfo.PImages.count;i++) {
         AsyncImageView * productImageView = [[AsyncImageView alloc] initWithFrame:CGRectMake(0+320*i,0,320,320)];
         
-        [productImageView loadImageFromURL:[[_ProductInfo.PImages objectAtIndex:i] IThumbnail] withPlaceholdImage:[UIImage imageNamed:@"bigimplace.png"]];
+        [productImageView loadImageFromURL:[[_ProductInfo.PImages objectAtIndex:i] IThumbnail] withPlaceholdImage:[UIImage imageNamed:@"squarebigimplace.png"]];
         
         [pictureScrollView addSubview:productImageView];
     }
@@ -557,6 +602,7 @@
     
     NSArray * array = [NSArray arrayWithObjects:@"商品详情",[NSString stringWithFormat:@"商品评价(%@)",_ProductInfo.PCommentsCount],@"商家介绍",nil];
     
+    
     NSArray * ImageArray = [NSArray arrayWithObjects:@"ZMallNewxiangqing1_200x71.png",@"ZMallNewpingjia1_240x71.png",@"ZMallNewjianjie1_200x71.png",@"ZMallNewxiangqing_200x71.png",@"ZMallNewpingjia_240x71.png",@"ZMallNewjianjie_200x71.png",nil];
     
     
@@ -662,26 +708,26 @@
         }
     }
     
-//    float contentOffset = _myTableView.contentOffset.y;
+    float contentOffset = _myTableView.contentOffset.y;
     
     [_myTableView reloadData];
     
-    _myTableView.contentOffset = CGPointMake(0,tableHeaderView.frame.size.height);
+//    _myTableView.contentOffset = CGPointMake(0,tableHeaderView.frame.size.height);
     
     
-//    if (postionState[theType]  == 0.000000)
-//    {
-//        if (contentOffset >=tableHeaderView.frame.size.height)
-//        {
-//            _myTableView.contentOffset = CGPointMake(0,tableHeaderView.frame.size.height);
-//        }else
-//        {
-//            _myTableView.contentOffset  = CGPointMake(0,contentOffset<tableHeaderView.frame.size.height?contentOffset:tableHeaderView.frame.size.height);
-//        }
-//    }else
-//    {
-//        _myTableView.contentOffset = CGPointMake(0,_myTableView.contentOffset.y>0?postionState[theType]:0);
-//    }
+    if (postionState[theType]  == 0.000000)
+    {
+        if (contentOffset >=tableHeaderView.frame.size.height)
+        {
+            _myTableView.contentOffset = CGPointMake(0,tableHeaderView.frame.size.height);
+        }else
+        {
+            _myTableView.contentOffset  = CGPointMake(0,contentOffset<tableHeaderView.frame.size.height?contentOffset:tableHeaderView.frame.size.height);
+        }
+    }else
+    {
+        _myTableView.contentOffset = CGPointMake(0,_myTableView.contentOffset.y>0?postionState[theType]:0);
+    }
 }
 
 
@@ -925,6 +971,9 @@
         return tableHeaderView;
     }else
     {
+        
+        NSLog(@"aview---------%@",aView);
+        
         return aView;
     }
 }
@@ -1089,6 +1138,20 @@
 }
 
 
+
+#pragma mark-AlertRePlaceViewHidden
+
+-(void)hiddenAlertReplaceView
+{
+    [_replaceAlertView removeFromSuperview];
+    
+    _replaceAlertView = nil;
+}
+
+-(void)hidefromview
+{
+    
+}
 
 
 - (void)didReceiveMemoryWarning

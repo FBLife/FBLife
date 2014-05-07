@@ -117,13 +117,11 @@
                 {
                     NSMutableArray * data = [[NSMutableArray alloc] init];
                     
-                    NSArray * key_array = [[[totalDic objectForKey:@"datainfo"] allKeys] sortedArrayUsingSelector:@selector(compare:)];
+                    NSArray * key_array = [totalDic objectForKey:@"datainfo"];
                     
-                    for (NSString * key_string in key_array) {
+                    for (NSDictionary * aDic in key_array) {
                         
-                        NSDictionary * data_dic = [[totalDic objectForKey:@"datainfo"] objectForKey:key_string];
-                        
-                        SellerInfo * info = [[SellerInfo alloc] initWithDic:data_dic];
+                        SellerInfo * info = [[SellerInfo alloc] initWithDic:aDic];
                                                 
                         [data addObject:info];
                     }

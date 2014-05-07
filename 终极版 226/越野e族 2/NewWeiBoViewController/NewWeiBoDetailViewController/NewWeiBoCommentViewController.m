@@ -65,11 +65,10 @@
     
     isZhuanFa = NO;
     
-    if (![tid isEqualToString:@""] && tid.length > 0 && ![tid isEqual:[NSNull null]])
-    {
-        self.info.tid = tid;
-        self.info.rtid = rid;
-        self.info.content = theTitle;
+    
+    if (tid.length == 0 || [tid isEqualToString:@""] || [tid isEqual:[NSNull null]]) {
+        tid = self.info.tid;
+        rid = self.info.rtid;
     }
     
     if ([zhuanfa isEqualToString:@"1"])
@@ -412,7 +411,7 @@
     [myTextView resignFirstResponder];
     pageControl.hidden = YES;
     
-    NSString * string = [NSString stringWithFormat:URL_REPLY,[myTextView.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],self.info.tid,isZhuanFa?@"both":@"reply",AUTHKEY,@"-1"];
+    NSString * string = [NSString stringWithFormat:URL_REPLY,[myTextView.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],tid,isZhuanFa?@"both":@"reply",AUTHKEY,@"-1"];
     
     NSLog(@"评论 请求的url ==  %@",string);
     
@@ -579,8 +578,6 @@
     {
         [DraftDatabase deleteStudentBythecontent:myTextView.text];
     }
-    
-    
     
     
     [DraftDatabase addtype:@"微博评论" content:myTextView.text date:morelocationString username:[[NSUserDefaults standardUserDefaults] objectForKey:USER_NAME] fabiaogid:self.info.rtid huifubbsid:self.info.userName weiboid:self.info.tid thehuifubbsfid:isZhuanFa?@"1":@"0" thetitle:self.info.content columns:@"微博" image:@""];

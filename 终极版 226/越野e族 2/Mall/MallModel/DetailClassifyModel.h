@@ -18,16 +18,46 @@ typedef void(^DetailClassifModelBlock)(NSMutableArray * theArray);
     ASIHTTPRequest * ClassifyRequest;
 }
 
-@property(nonatomic,strong)NSString * ClassId;
-@property(nonatomic,strong)NSString * ClassValue;
-@property(nonatomic,strong)NSMutableArray * ClassChildren;
+//一级分类
+
+@property(nonatomic,strong)NSString * ClassDefaultCate;//分类名称
+@property(nonatomic,strong)NSString * ClassDefaultImage;//分类头像
+@property(nonatomic,strong)NSString * ClassCateId;//分类ID
+@property(nonatomic,strong)NSMutableArray * ClassCates;//分类内容(里边存放字典包含cate_name(名称) link（数字）两个字段)
 
 
--(void)initHttpRequestWithUrl:(NSString *)theUrl WithBlock:(DetailClassifModelBlock)theBlock;
+//二级三级分类
+
+@property(nonatomic,strong)NSString * TClassID;
+@property(nonatomic,strong)NSString * TClassValue;
+@property(nonatomic,strong)NSMutableArray * TClassChildren;
+
 
 
 -(DetailClassifyModel *)initWithDic:(NSDictionary *)theDic;
 
+-(void)initHttpRequestWithUrl:(NSString *)theUrl WithBlock:(DetailClassifModelBlock)theBlock;
+
+-(DetailClassifyModel *)initWithTwoDic:(NSDictionary *)theDic;
+
+-(void)initHttpRequestTwoWithUrl:(NSString *)theUrl WithBlock:(DetailClassifModelBlock)theBlock;
+
 
 
 @end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

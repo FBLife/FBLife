@@ -1568,7 +1568,7 @@
             
             [button setTitleEdgeInsets:UIEdgeInsetsMake(46,-17,0,0)];
             
-            [button setImageEdgeInsets:UIEdgeInsetsMake(0,(76-normal_image.size.width)/2,30,(76-normal_image.size.width)/2)];
+            [button setImageEdgeInsets:UIEdgeInsetsMake(3,(76-normal_image.size.width)/2,30,(76-normal_image.size.width)/2)];
             
             [button addTarget:self action:@selector(doButton:) forControlEvents:UIControlEventTouchUpInside];
             

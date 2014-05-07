@@ -16,10 +16,12 @@
 #import "MyChatViewController.h"
 #import "MessageInfo.h"
 #import "SMPageControl.h"
+#import "AlertRePlaceView.h"
+
 
 @class SellerInfoView;
 
-@interface ProductDetailViewController : MyViewController<UITableViewDataSource,UITableViewDelegate,UIScrollViewDelegate,LoopScrollviewDelegate,UIWebViewDelegate,DetailRecommendGoodsViewDelegate,SellerInfoViewDelegate>
+@interface ProductDetailViewController : MyViewController<UITableViewDataSource,UITableViewDelegate,UIScrollViewDelegate,LoopScrollviewDelegate,UIWebViewDelegate,DetailRecommendGoodsViewDelegate,SellerInfoViewDelegate,AlertRePlaceViewDelegate>
 {
     UIView * tableHeaderView;
     
@@ -47,6 +49,8 @@
 
 @property(nonatomic,strong)UITableView * myTableView;
 
+@property(nonatomic,strong)UIImageView * place_imageView;
+
 @property(nonatomic,strong)NSMutableArray * slide_array;//幻灯数据
 
 @property(nonatomic,strong)ProductModel * ProductInfo;
@@ -55,6 +59,7 @@
 
 @property(nonatomic,strong)NSString * GoodsId;
 
+@property(nonatomic,strong)AlertRePlaceView * replaceAlertView;
 
 
 

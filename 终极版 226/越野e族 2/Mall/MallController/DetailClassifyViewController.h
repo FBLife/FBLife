@@ -17,10 +17,10 @@
     DetailClassifyModel * ClassifyModel;
 }
 @property(nonatomic,strong)UITableView *MainTableview;
-@property(nonatomic,strong)NSArray *titleArray;
-@property(nonatomic,strong)NSArray *classArray;
 @property(nonatomic,strong)DetailClassifyCellView *cellView;
 
 @property(nonatomic,strong)NSMutableArray * data_array;
+
+@property(nonatomic,strong)NSArray * headerImagesArray;
 
 @end

@@ -608,7 +608,7 @@
     
     
    height= [personal celllength:300 lablefont:[UIFont systemFontOfSize:16] labeltext:str]+37;
-    NSLog(@"===height====%f",height-37);
+    NSLog(@"===height====%f",height);
 
     return height;
     
@@ -833,11 +833,6 @@
                 }
                 
             }
-        
-        
-    
-    
-            
         }
     }else if([data_.type isEqualToString:@"微博评论"])
     {

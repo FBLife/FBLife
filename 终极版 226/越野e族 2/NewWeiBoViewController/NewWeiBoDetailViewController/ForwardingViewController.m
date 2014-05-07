@@ -88,12 +88,23 @@
     
     isZhuanFa = NO;
     
-    if (![tid isEqualToString:@""] && tid.length > 0 && ![tid isEqual:[NSNull null]])
-    {
-        self.info.tid = tid;
-        self.info.rtid = rid;
-        self.info.content = theTitle;
-        self.totid = totid;
+    if (tid.length == 0 || [tid isEqualToString:@""] || [tid isEqual:[NSNull null]]) {
+        tid = self.info.tid;
+        rid = self.info.rtid;
+        theText = self.info.content;
+        username = self.info.userName;
+        totid = self.info.totid;
+        
+        theTitle = self.info.rcontent;
+        
+        
+        rid = self.info.rtid;
+        if (![rid isEqual:[NSNull null]]&&![rid isEqualToString:@"(null)"]) {
+            
+        }else
+        {
+            rid = self.info.tid;
+        }
     }
     
     if (self.info.userName.length !=0)
@@ -501,17 +512,7 @@
     
     
     
-    
-    NSString * _forwardId = self.info.rtid;
-    if (![_forwardId isEqual:[NSNull null]]&&![_forwardId isEqualToString:@"(null)"]) {
-        
-    }else
-    {
-        _forwardId = self.info.tid;
-    }
-    
-    
-    NSString * fullUrl = [NSString stringWithFormat:URL_FORWARD,[myTextView.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],self.info.tid,_forwardId,isZhuanFa?@"both":@"forward",AUTHKEY];
+    NSString * fullUrl = [NSString stringWithFormat:URL_FORWARD,[myTextView.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],tid,rid,isZhuanFa?@"both":@"forward",AUTHKEY];
     
     NSLog(@"评论 请求的url ==  %@",fullUrl);
     
@@ -545,7 +546,7 @@
             {
                 if (delegate && [delegate respondsToSelector:@selector(ForwardingSuccessWihtTid:IndexPath:SelectView: WithComment:)])
                 {
-                    [delegate ForwardingSuccessWihtTid:self.info.tid IndexPath:self.theIndexPath SelectView:self.theSelectViewIndex WithComment:isZhuanFa];
+                    [delegate ForwardingSuccessWihtTid:tid IndexPath:self.theIndexPath SelectView:self.theSelectViewIndex WithComment:isZhuanFa];
                 }
                 
                 [self dismissModalViewControllerAnimated:YES];
@@ -657,7 +658,7 @@
     
     
     
-    [DraftDatabase addtype:@"微博转发" content:myTextView.text date:morelocationString username:[[NSUserDefaults standardUserDefaults] objectForKey:USER_NAME] fabiaogid:self.info.rtid huifubbsid:self.info.totid weiboid:self.info.tid thehuifubbsfid:self.info.content thetitle:isZhuanFa?@"1":@"0" columns:@"微博" image:username];
+    [DraftDatabase addtype:@"微博转发" content:myTextView.text date:morelocationString username:[[NSUserDefaults standardUserDefaults] objectForKey:USER_NAME] fabiaogid:rid huifubbsid:totid weiboid:tid thehuifubbsfid:theText thetitle:isZhuanFa?@"1":@"0" columns:@"微博" image:username];
 }
 
 

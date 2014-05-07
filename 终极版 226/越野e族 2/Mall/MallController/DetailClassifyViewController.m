@@ -14,6 +14,7 @@
 
 @implementation DetailClassifyViewController
 @synthesize data_array = _data_array;
+@synthesize headerImagesArray = _headerImagesArray;
 
 
 
@@ -77,11 +78,9 @@
 
     self.view.backgroundColor=[UIColor whiteColor];
     //放在Controller里面
-    _titleArray=[NSArray arrayWithObjects:@"整车",@"户外运动",@"改装零部件",@"自驾装备",@"数码通讯",@"服饰鞋帽", nil];
     
-    _classArray=[NSArray arrayWithObjects:@"SUV  皮卡  跨界  轿车  房车  ",@"ATV  UTV  两轮  游艇  三角翼",@"底盘系  传动系  影音系  内饰类",@"户外起居  户外电器  常用工具" ,@"电台  GPS  手机  pad  数码配件",@"男装  女装  童装  鞋帽  配饰",nil];
-
     
+    _headerImagesArray = [NSArray arrayWithObjects:@"MallClassifyCar.png",@"MallClassifyMovement.png",@"MallClassifyModified.png",@"MallClassifyDriveEquipment.png",@"MallClassifyCommunication.png",@"MallClassifyDress.png",nil];
     
     
     [self setMyViewControllerLeftButtonType:MyViewControllerLeftbuttonTypeBack WithRightButtonType:MyViewControllerRightbuttonTypePerson];

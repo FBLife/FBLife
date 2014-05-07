@@ -388,9 +388,11 @@ alpha:(a)]
 
 //商城分类
 
-#define MALL_CLASSIFY_URL @"http://mall.fblife.com/api.php?app=category&formattype=json"
+#define MALL_CLASSIFY_URL @"http://mall.fblife.com/api.php?app=index&act=goodscate&formattype=json"
 
+//商品二级分类
 
+#define MALL_CLASSIFY_DETAILURL @"http://malltest.fblife.com/api.php?app=category&act=catelist&cate_id=%@&formattype=json"
 
 
 

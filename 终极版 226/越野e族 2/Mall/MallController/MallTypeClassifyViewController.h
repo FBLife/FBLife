@@ -36,5 +36,7 @@
 
 @property(nonatomic,strong)DetailClassifyModel * theModel;
 
+@property(nonatomic,strong)NSMutableArray * data_array;
+
 
 @end

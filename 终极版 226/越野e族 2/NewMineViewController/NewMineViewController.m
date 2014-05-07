@@ -82,6 +82,8 @@
     
     request_weibo.delegate = self;
     
+    request_weibo.timeOutSeconds = 20;
+    
     request_weibo.tag = 1001;
     
     [request_weibo startAsynchronous];
@@ -108,6 +110,8 @@
     request_mine = [[ASIHTTPRequest alloc] initWithURL:[NSURL URLWithString:fullURL]];
     
     request_mine.shouldAttemptPersistentConnection = NO;
+    
+    request_mine.timeOutSeconds = 20;
     
     request_mine.delegate = self;
     

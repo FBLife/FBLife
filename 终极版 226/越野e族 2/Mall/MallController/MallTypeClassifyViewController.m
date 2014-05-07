@@ -20,6 +20,7 @@
 
 @implementation ClassifyPopView
 
+
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -62,7 +63,7 @@
                 
                 button.titleLabel.font = [UIFont systemFontOfSize:15];
                 
-                [button setTitle:[theContent objectAtIndex:j+i*3] forState:UIControlStateNormal];
+                [button setTitle:[[theContent objectAtIndex:j+i*3] objectForKey:@"value"] forState:UIControlStateNormal];
                 
                 [button addTarget:self action:@selector(ChooseButton:) forControlEvents:UIControlEventTouchUpInside];
                 [backView addSubview:button];
@@ -103,6 +104,7 @@
 @implementation MallTypeClassifyViewController
 @synthesize myTableView = _myTableView;
 @synthesize theModel = _theModel;
+@synthesize data_array = _data_array;
 
 
 
@@ -125,14 +127,35 @@
 
 
 
+-(void)initHttpRequest
+{
+    NSString * fullUrl = [NSString stringWithFormat:MALL_CLASSIFY_DETAILURL,_theModel.ClassCateId];
+    
+    NSLog(@"fullUrl------%@",fullUrl);
+    
+    __weak typeof(self) bself = self;
+    
+    [_theModel initHttpRequestTwoWithUrl:fullUrl WithBlock:^(NSMutableArray *theArray) {
+        bself.data_array = theArray;
+        
+        [bself.myTableView reloadData];
+    }];
+    
+}
+
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
+    
+    _data_array = [NSMutableArray array];
+    
+    [self initHttpRequest];
+    
     [self setMyViewControllerLeftButtonType:MyViewControllerLeftbuttonTypeBack WithRightButtonType:MyViewControllerRightbuttonTypePerson];
     
-    self.title = _theModel.ClassValue;
+    self.title = _theModel.ClassDefaultCate;
     
     history_index = -1;
     
@@ -175,15 +198,15 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return _theModel.ClassChildren.count;
+    return _data_array.count;
 }
 
 
 -(float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    DetailClassifyModel * aModel = [_theModel.ClassChildren objectAtIndex:indexPath.row];
+    DetailClassifyModel * aModel = [_data_array objectAtIndex:indexPath.row];
     
-    return identifierHidden[indexPath.row]?([self returnPopViewHeightWithCount:aModel.ClassChildren.count]+51):58;
+    return identifierHidden[indexPath.row]?([self returnPopViewHeightWithCount:aModel.TClassChildren.count]+51):58;
 }
 
 
@@ -206,18 +229,12 @@
     }
     
     
-    UIView * lineView = [[UIView alloc] initWithFrame:CGRectMake(0,0,320,0.5)];
+    DetailClassifyModel * aModel = [_data_array objectAtIndex:indexPath.row];
     
-    lineView.backgroundColor = RGBCOLOR(198,198,198);
-    
-    [cell.contentView addSubview:lineView];
-    
-    
-    DetailClassifyModel * aModel = [_theModel.ClassChildren objectAtIndex:indexPath.row];
     
     UILabel * title_label = [[UILabel alloc] initWithFrame:CGRectMake(12,21,280,16)];
     
-    title_label.text = aModel.ClassValue;
+    title_label.text = aModel.TClassValue;
     
     title_label.textAlignment = NSTextAlignmentLeft;
     
@@ -227,7 +244,11 @@
     
     [cell.contentView addSubview:title_label];
     
+    UIView * lineView = [[UIView alloc] initWithFrame:CGRectMake(0,0,320,0.5)];
     
+    lineView.backgroundColor = RGBCOLOR(198,198,198);
+    
+    [cell.contentView addSubview:lineView];
     
     UIImageView * jiantouImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:identifierHidden[indexPath.row]?@"ZMalljiantou-down_31x18.png":@"ZMalljiantou-up_31x18.png"]];
     
@@ -238,19 +259,19 @@
     
     if (identifierHidden[indexPath.row]) {
         
-        ClassifyPopView * popView = [[ClassifyPopView alloc] initWithFrame:CGRectMake(0,51,320,[self returnPopViewHeightWithCount:aModel.ClassChildren.count])];
+        ClassifyPopView * popView = [[ClassifyPopView alloc] initWithFrame:CGRectMake(0,51,320,[self returnPopViewHeightWithCount:aModel.TClassChildren.count])];
         
         popView.clipsToBounds = YES;
         
         popView.tag = 100;
         
-        [popView setAllViewsWithContent:aModel.ClassChildren];
+        [popView setAllViewsWithContent:aModel.TClassChildren];
         
         [cell.contentView addSubview:popView];
     }
     
     
-    if (indexPath.row == _theModel.ClassChildren.count-1) {
+    if (indexPath.row == _data_array.count-1) {
         UIView * footLine = [[UIView alloc] initWithFrame:CGRectMake(0,57.5,320,0.5)];
         
         footLine.backgroundColor = RGBCOLOR(198,198,198);
@@ -271,7 +292,7 @@
 {
     int rows = 900000000;
     
-    for (int i = 0;i < _theModel.ClassChildren.count;i++)
+    for (int i = 0;i < _theModel.ClassCates.count;i++)
     {
         if (identifierHidden[i] && i != indexPath.row)
         {

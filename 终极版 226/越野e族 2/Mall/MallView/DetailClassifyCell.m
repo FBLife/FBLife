@@ -20,8 +20,8 @@
         if (!_headImageview)
         {
             _headImageview=[[AsyncImageView alloc]initWithFrame:CGRectMake(20, 20, 40, 40)];
-            [_headImageview loadImageFromURL1:nil withPlaceholdImage:[UIImage imageNamed:@"bigimplace.png"]];
-            _headImageview.backgroundColor=[UIColor redColor];
+//            [_headImageview loadImageFromURL:nil withPlaceholdImage:[UIImage imageNamed:@"tongxun.png"]];
+            _headImageview.image = [UIImage imageNamed:@"tongxun.png"];
             [self.contentView addSubview:_headImageview];
         }
         
@@ -50,13 +50,15 @@
 
 -(void)loadContentWithDetailClassifyModel:(DetailClassifyModel *)model
 {
-    _MainTitleLabel.text = model.ClassValue;
+    _MainTitleLabel.text = model.ClassDefaultCate;
+
+    [_headImageview loadImageFromURL:model.ClassDefaultImage withPlaceholdImage:[UIImage imageNamed:@""]];
     
     NSMutableString * exampleString = [NSMutableString stringWithString:@""];
     
-    for (DetailClassifyModel * aModel in model.ClassChildren) {
+    for (NSDictionary * aDic in model.ClassCates) {
                 
-        [exampleString appendString:[NSString stringWithFormat:@"%@ ",aModel.ClassValue]];
+        [exampleString appendString:[NSString stringWithFormat:@"%@ ",[aDic objectForKey:@"cate_name"]]];
     }
     
     _ClassifyLabel.text = exampleString;

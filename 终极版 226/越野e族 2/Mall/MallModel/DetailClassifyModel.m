@@ -9,9 +9,16 @@
 #import "DetailClassifyModel.h"
 
 @implementation DetailClassifyModel
-@synthesize ClassChildren = _ClassChildren;
-@synthesize ClassId = _ClassId;
-@synthesize ClassValue = _ClassValue;
+
+@synthesize ClassCateId = _ClassCateId;
+@synthesize ClassCates = _ClassCates;
+@synthesize ClassDefaultCate = _ClassDefaultCate;
+@synthesize ClassDefaultImage = _ClassDefaultImage;
+
+
+@synthesize TClassChildren = _TClassChildren;
+@synthesize TClassID = _TClassID;
+@synthesize TClassValue = _TClassValue;
 
 
 
@@ -21,30 +28,36 @@
     
     if (self) {
         
-        self.ClassId = [NSString stringWithFormat:@"%@",[theDic objectForKey:@"id"]];
+        self.ClassDefaultCate = [NSString stringWithFormat:@"%@",[theDic objectForKey:@"default_cate"]];
         
-        self.ClassValue = [NSString stringWithFormat:@"%@",[theDic objectForKey:@"value"]];
+        self.ClassDefaultImage = [NSString stringWithFormat:@"%@",[theDic objectForKey:@"default_image"]];
         
+        self.ClassCateId = [NSString stringWithFormat:@"%@",[theDic objectForKey:@"cate_id"]];
         
-        NSArray * tempArray = [NSArray arrayWithArray:[theDic objectForKey:@"children"]];
+        self.ClassCates = [NSMutableArray arrayWithArray:[theDic objectForKey:@"cates"]];
         
-        self.ClassChildren = [NSMutableArray array];
-        
-        
-        for (NSDictionary * dic in tempArray) {
-            DetailClassifyModel * model = [[DetailClassifyModel alloc] init];
-            
-            model.ClassId = [NSString stringWithFormat:@"%@",[dic objectForKey:@"id"]];
-            
-            model.ClassValue = [NSString stringWithFormat:@"%@",[dic objectForKey:@"value"]];
-            
-            model.ClassChildren = [NSMutableArray arrayWithArray:[dic objectForKey:@"children"]];
-            
-            [self.ClassChildren addObject:model];
         }
-    }
     return self;
 }
+
+
+
+-(DetailClassifyModel *)initWithTwoDic:(NSDictionary *)theDic
+{
+    self = [super init];
+
+    if (self) {
+        
+        self.TClassID = [NSString stringWithFormat:@"%@",[theDic objectForKey:@"id"]];
+        
+        self.TClassValue = [NSString stringWithFormat:@"%@",[theDic objectForKey:@"value"]];
+        
+        self.TClassChildren = [NSMutableArray arrayWithArray:[theDic objectForKey:@"children"]];
+    }
+    
+    return self;
+}
+
 
 
 -(void)initHttpRequestWithUrl:(NSString *)theUrl WithBlock:(DetailClassifModelBlock)theBlock
@@ -61,9 +74,11 @@
             
             NSString * errcode = [jsonDic objectForKey:@"errcode"];
             
+            NSString * errorinfo = [jsonDic objectForKey:@"errorinfo"];
+            
             NSMutableArray * total_array = [NSMutableArray array];
             
-            if ([errcode intValue]==0)
+            if ([errcode intValue]==0 && [errorinfo isEqualToString:@"noerror"])
             {
                 NSArray * data_array = [jsonDic objectForKey:@"datainfo"];
                 
@@ -97,6 +112,55 @@
 }
 
 
+-(void)initHttpRequestTwoWithUrl:(NSString *)theUrl WithBlock:(DetailClassifModelBlock)theBlock
+{
+    myBlock = theBlock;
+    
+    ClassifyRequest = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:theUrl]];
+    
+    __weak ASIHTTPRequest * request = ClassifyRequest;
+    
+    [request setCompletionBlock:^{
+        @try {
+            NSDictionary * jsonDic = [ClassifyRequest.responseData objectFromJSONData];
+            
+            NSString * errcode = [jsonDic objectForKey:@"errcode"];
+            
+            NSMutableArray * total_array = [NSMutableArray array];
+            
+            if ([errcode intValue]==0)
+            {
+                NSArray * data_array = [[jsonDic objectForKey:@"datainfo"] objectForKey:@"children"];
+                
+                for (NSDictionary * subDic in data_array) {
+                    
+                    DetailClassifyModel * model = [[DetailClassifyModel alloc] initWithTwoDic:subDic];
+                    
+                    [total_array addObject:model];
+                }
+            }
+            
+            if (myBlock) {
+                myBlock(total_array);
+            }
+        }
+        @catch (NSException *exception) {
+            
+        }
+        @finally {
+            
+        }
+    }];
+    
+    
+    [request setFailedBlock:^{
+        
+    }];
+    
+    [ClassifyRequest startAsynchronous];
+}
+
+
 
 -(void)dealloc
 {
@@ -106,11 +170,19 @@
     
     ClassifyRequest = nil;
     
-    _ClassChildren = nil;
+    _ClassDefaultImage = nil;
     
-    _ClassId = nil;
+    _ClassDefaultCate = nil;
     
-    _ClassValue = nil;
+    _ClassCates = nil;
+    
+    _ClassCateId = nil;
+    
+    _TClassValue = nil;
+    
+    _TClassID = nil;
+    
+    _TClassChildren = nil;
 }
 
 

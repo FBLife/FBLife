@@ -87,7 +87,7 @@
     
     if (isCacheData[index])
     {
-        [self refreshState];
+        [self refreshState:NO];
         [self initHttpRequest:1 Url:index];
     }
     
@@ -97,7 +97,7 @@
 
 -(void)refreshData
 {
-    [self refreshState];
+    [self refreshState:NO];
     
     pageCount[selectedView] = 1;
     [self initHttpRequest:1 Url:selectedView];
@@ -163,11 +163,11 @@
     {
         NSLog(@"error == %@",request1111.error);
         
-        
-        [self doneLoadingTableViewData];
-        
         if (pageCount[selectedView] == 1)
         {
+            
+            [self refreshState:YES];
+            
             switch (selectedView)
             {
                 case 0:
@@ -218,6 +218,10 @@
         
         _replaceAlertView.hidden=NO;
         [_replaceAlertView hide];
+        
+        [_myTableView setContentInset:UIEdgeInsetsMake(0.0f, 0.0f, 0.0f, 0.0f)];
+        
+        [_myTableView2 setContentInset:UIEdgeInsetsMake(0.0f, 0.0f, 0.0f, 0.0f)];
     }
 }
 
@@ -232,9 +236,6 @@
             NSDictionary * rootObject = [[NSDictionary alloc] initWithDictionary:[request11111.responseData objectFromJSONData]];
             
             NSString *errcode =[NSString stringWithFormat:@"%@",[rootObject objectForKey:ERRCODE]];
-            
-            
-            [self doneLoadingTableViewData];
             
             if ([@"0" isEqualToString:errcode])
             {
@@ -270,6 +271,8 @@
                     }
                 }else
                 {
+                    [self doneLoadingTableViewData];
+                    
                     [FbFeed deleteAllByType:selectedView];
                     
                     if (selectedView == 1)
@@ -391,7 +394,7 @@
 }
 
 
--(void)refreshState
+-(void)refreshState:(BOOL)isHidden
 {
     [UIView beginAnimations:nil context:nil];
     [UIView setAnimationDuration:0.3];
@@ -399,15 +402,15 @@
     
     switch (selectedView) {
         case 0:
-            _myTableView1.contentOffset=CGPointMake(0, -80);
+            _myTableView1.contentOffset=CGPointMake(0,isHidden?0:-80);
             [_refreshHeaderView1 szksetstate];
             break;
         case 1:
-            _myTableView.contentOffset=CGPointMake(0, -80);
+            _myTableView.contentOffset=CGPointMake(0,isHidden?0:-80);
             [_refreshHeaderView2 szksetstate];
             break;
         case 2:
-            _myTableView2.contentOffset=CGPointMake(0, -80);
+            _myTableView2.contentOffset=CGPointMake(0,isHidden?0:-80);
             [_refreshHeaderView3 szksetstate];
             break;
             
@@ -720,7 +723,7 @@
     }
     
     
-    [self refreshState];
+    [self refreshState:NO];
     
     [self initHttpRequest:1 Url:selectedView];
     
@@ -1464,7 +1467,7 @@
 - (void)doneLoadingTableViewData
 {
     _reloading = NO;
-	
+    
     switch (selectedView)
     {
         case 0:
@@ -1474,6 +1477,7 @@
             [_refreshHeaderView2 egoRefreshScrollViewDataSourceDidFinishedLoading:_myTableView];
             break;
         case 2:
+            
             [_refreshHeaderView3 egoRefreshScrollViewDataSourceDidFinishedLoading:_myTableView2];
             break;
             
@@ -1581,7 +1585,7 @@
             {
                 [self initHttpRequest:pageCount[selectedView] Url:selectedView];
                 
-                [self refreshState];
+                [self refreshState:NO];
             }
         }
     }
@@ -2246,6 +2250,9 @@
     forward.theSelectViewIndex = selectedView;
     [self.leveyTabBarController hidesTabBar:YES animated:YES];
     [self presentModalViewController:forward animated:YES];
+    
+    
+    
 }
 
 
