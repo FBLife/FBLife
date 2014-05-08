@@ -18,7 +18,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        identifierIsHidden[0] = 1;
+        //        identifierIsHidden[0] = 1;
         
         history_page = 0;
         
@@ -56,7 +56,7 @@
         _classifyTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         
         [self addSubview:_classifyTableView];
-
+        
     }
     return self;
 }
@@ -64,10 +64,12 @@
 
 -(void)loadViewWithContent:(NSMutableArray *)contents NameArray:(NSArray *)names
 {
+    
+    
     data_array = [NSMutableArray arrayWithArray:contents];
     
     namesArray = [NSArray arrayWithArray:names];
-
+    
     [_classifyTableView reloadData];
     
 }
@@ -75,12 +77,15 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    if ([[data_array objectAtIndex:section] isEqual:[NSNull null]]) {
+        return 0;
+    }
     return identifierIsHidden[section]?[[data_array objectAtIndex:section] count]:0;
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return data_array.count;
+    return namesArray.count;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -93,9 +98,11 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
     }
     
+    //cell.selectionStyle = UITableViewCellSelectionStyleNone;//单元格点击不高亮
+    
     cell.backgroundColor = RGBCOLOR(76,76,76);
     
-    cell.textLabel.text = [[data_array objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+    cell.textLabel.text = [[[data_array objectAtIndex:indexPath.section] objectAtIndex:indexPath.row] objectForKey:@"value"];
     
     cell.textLabel.textColor = [UIColor whiteColor];
     
@@ -160,6 +167,7 @@
 
 -(void)OpenToShow:(UIButton *)sender
 {
+    
     if (sender.tag != history_page) {
         identifierIsHidden[history_page-100] = 0;
     }
@@ -172,16 +180,24 @@
 }
 
 
-
-
-
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
-{
-    // Drawing code
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    NSLog(@"section = %d,row = %d",indexPath.section,indexPath.row);
+    
+    NSLog(@"%@",[[[data_array objectAtIndex:indexPath.section] objectAtIndex:indexPath.row] objectForKey:@"value"]);
+    NSLog(@"%@",[[[data_array objectAtIndex:indexPath.section] objectAtIndex:indexPath.row] objectForKey:@"id"]);
+    
+    
+    if (self.cellClickedBlock) {
+        self.cellClickedBlock([[[data_array objectAtIndex:indexPath.section] objectAtIndex:indexPath.row] objectForKey:@"id"]);
+        
+    }
+    
 }
-*/
+
+
+-(void)setCellClickedBlock:(cellClickedBlock)cellClickedBlock{
+    _cellClickedBlock = cellClickedBlock;
+}
 
 @end

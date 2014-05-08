@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+typedef void (^cellClickedBlock)(NSString* classId);//点击cell的block
+
 
 @protocol SellerGoodsViewDelegate <NSObject>
 
@@ -30,6 +32,8 @@
 @property(nonatomic,strong)UITableView * classifyTableView;
 
 @property(nonatomic,assign)id<SellerGoodsViewDelegate>delegate;
+
+@property(nonatomic,strong)cellClickedBlock cellClickedBlock;
 
 
 -(void)loadViewWithContent:(NSMutableArray *)contents NameArray:(NSArray *)names;
