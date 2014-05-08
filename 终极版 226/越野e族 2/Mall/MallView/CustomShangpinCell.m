@@ -92,10 +92,8 @@
     
     //row==0 取数组下标为0 1的元素
     //row==1 取数组下标为2 3的元素
-    //row==2 取数组下标为4 5的元素
     
     int bNum1 = theIndexPath.row *2;
-    //
     int bNum2 = 0;
     if (theIndexPath.row *2+2>shangpinArray.count) {
         bNum2 = bNum1;
@@ -103,19 +101,26 @@
         bNum2 = theIndexPath.row *2+1;
     }
     
-    
+    NSLog(@"%d",shangpinArray.count);
     NSLog(@"bnum1 = %d  bnum2 = %d",bNum1,bNum2);
     
-    if (shangpinArray.count!=0) {
-        self.oneView1.jianjieLb.text = [shangpinArray[bNum1]objectForKey:@"goods_name"];
-        self.oneView1.plb1.text = [NSString stringWithFormat:@"￥%@",[shangpinArray[bNum1]objectForKey:@"price"]];
-        [self.oneView1.imv loadImageFromURL:[shangpinArray[bNum1]objectForKey:@"default_image"] withPlaceholdImage:[UIImage imageNamed:@"big_moren640x324.png"]];
-        self.btn1.tag = [[shangpinArray[bNum1]objectForKey:@"goods_id"]intValue];
+    
+    if (shangpinArray.count!=0&&bNum1<shangpinArray.count&&bNum2<=shangpinArray.count) {
+        if (shangpinArray[bNum1] !=[NSNull null]) {
+            self.oneView1.jianjieLb.text = [shangpinArray[bNum1]objectForKey:@"goods_name"];
+            self.oneView1.plb1.text = [NSString stringWithFormat:@"￥%@",[shangpinArray[bNum1]objectForKey:@"price"]];
+            [self.oneView1.imv loadImageFromURL:[shangpinArray[bNum1]objectForKey:@"default_image"] withPlaceholdImage:[UIImage imageNamed:@"big_moren640x324.png"]];
+            self.btn1.tag = [[shangpinArray[bNum1]objectForKey:@"goods_id"]intValue];
+        }
+        if (shangpinArray[bNum2] !=[NSNull null]) {
+            self.oneView2.jianjieLb.text = [shangpinArray[bNum2]objectForKey:@"goods_name"];
+            self.oneView2.plb1.text = [NSString stringWithFormat:@"￥%@",[shangpinArray[bNum2]objectForKey:@"price"]];
+            [self.oneView2.imv loadImageFromURL:[shangpinArray[bNum2]objectForKey:@"default_image"] withPlaceholdImage:[UIImage imageNamed:@"big_moren640x324.png"]];
+            self.btn2.tag = [[shangpinArray[bNum2]objectForKey:@"goods_id"]intValue];
+        }
         
-        self.oneView2.jianjieLb.text = [shangpinArray[bNum2]objectForKey:@"goods_name"];
-        self.oneView2.plb1.text = [NSString stringWithFormat:@"￥%@",[shangpinArray[bNum2]objectForKey:@"price"]];
-        [self.oneView2.imv loadImageFromURL:[shangpinArray[bNum2]objectForKey:@"default_image"] withPlaceholdImage:[UIImage imageNamed:@"big_moren640x324.png"]];
-        self.btn2.tag = [[shangpinArray[bNum2]objectForKey:@"goods_id"]intValue];
+        
+        
         
         if (bNum1 == bNum2) {
             self.oneView2.hidden = YES;

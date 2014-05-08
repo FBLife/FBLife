@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 //#import "SlideShowModel.h"
 #import "ProductDetailViewController.h"
+#import "SellersDetailViewController.h"
 
 #import"SGFocusImageFrame.h"
 

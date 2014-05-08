@@ -437,6 +437,9 @@
 -(void)turntonShangjiawithId:(int )tag{
     
     NSLog(@"跳到商家的，商家id===%d",tag);
+    SellersDetailViewController *se = [[SellersDetailViewController alloc]init];
+    se.sellerId = [NSString stringWithFormat:@"%d",tag];
+    [self.navigationController pushViewController:se animated:YES];
     
     
     
@@ -612,6 +615,7 @@
 //                    bbsdetailViewController *_bbsdetail=[[bbsdetailViewController alloc]init];
 //                    _bbsdetail.bbsdetail_tid=item.idoftype;
 //                    [copyRoot.navigationController pushViewController:_bbsdetail animated:YES];
+                    
                     
                     
                 }

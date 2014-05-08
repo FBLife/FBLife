@@ -32,6 +32,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    self.view.backgroundColor = [UIColor whiteColor];
     
     //商家实例
     SellersModel * sellerModel = [[SellersModel alloc]init];
@@ -40,7 +41,6 @@
     self.sellerModel = sellerModel;
     
     //准备网络数据
-    self.sellerId = @"99899";
     sellerModel.sellerId = self.sellerId;//点击论坛按钮跳转需要商家id
     
     [self prepareData];
